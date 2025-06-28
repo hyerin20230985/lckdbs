@@ -1,0 +1,10 @@
+.import {
+    color: red;
+}
+.warning-text {
+    color: grey;
+    font-size: smaller;
+}
+.info-check {
+    color: grey;
+}
