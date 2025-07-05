@@ -16,25 +16,86 @@
     display: block;
 }
 
-#sidebar {
-    width: 200px;
-    background-color: #2a2a3e;
-    border-right: 1px solid #434343;
-    padding: 20px;
-    color: white;
-    font-size: larger;
-    position: static;
+.role-sidebar {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    background:#242d40;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Distribute items evenly vertically */
+    align-items: center;
+    min-height: 680px; /* 챔피언 목록의 최소 높이에 맞춰 설정, 필요에 따라 조절 */
+    flex-shrink: 0;
+    /* ! Important: The direct <li> elements need to be wrapped in a <ul> for proper list semantics and styling */
+    /* Your HTML has <li> directly inside .role-sidebar, which is invalid.
+       It should be <div class="role-sidebar"> <ul class="role-list"> <li>...</li> </ul> </div>
+       I've added .role-list for this purpose below.
+    */
 }
-
-#sidebar ul {
+.role-sidebar ul.role-list { /* Assuming you add a ul with class role-list in HTML */
     list-style: none;
     padding: 0;
+    margin: 0;
+    width: 100%;
+    flex-grow: 1; /* Allow the list to take available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Distribute list items */
+    align-items: center;
 }
 
-#sidebar li {
-    margin-bottom: 20px;
+.role-sidebar li { /* Targeting li elements directly inside role-sidebar or role-list */
+    padding: 10px 0; /* Adjust padding as needed, 0 for horizontal */
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
     cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    text-align: center;
+    width: 100%; /* Take full width of its parent (role-sidebar or role-list) */
+    box-sizing: border-box;
+    display: flex; /* Use flexbox to center image and text */
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
 }
+
+.role-sidebar li a {
+    text-decoration: none;
+    color: inherit;
+    display: flex; /* Make the anchor tag a flex container */
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center horizontally */
+    gap: 5px; /* Space between image and text */
+    width: 100%; /* Ensure the anchor takes full width for hover effects */
+    padding: 5px 0; /* Add some vertical padding inside the clickable area */
+}
+
+/* Crucial: Control the size of the images inside the role sidebar */
+.role-sidebar li img {
+    width: 40px; /* Set a fixed width for the icons */
+    height: 40px; /* Set a fixed height for the icons */
+    object-fit: contain; /* Ensure the image scales down without cropping */
+    display: block; /* Remove any extra space below the image */
+}
+
+.role-sidebar li:hover,
+.role-sidebar li.selected {
+    background-color: #e9ecef;
+    color: #007bff;
+}
+
+/* Adjust colors for selected state to fit dark background, if desired */
+.role-sidebar li.selected {
+    background-color: #007bff; /* Example: blue background for selected */
+    color: #ffffff; /* White text for selected */
+}
+
 .overlay {
     position: absolute;
     bottom: 0;
@@ -74,6 +135,9 @@
     perspective: 1000px;
     width: 250px;
     aspect-ratio: 3/4;
+    position: relative;
+    transition: transform 0.3s ease;
+    display: inline-block;
 }
 .card-inner {
     transition: transform 0.6s;
@@ -82,7 +146,7 @@
     transform-style: preserve-3d;
     position: relative;
 }
-.card:hover .card-inner {
+.card.active .card-inner {
     transform: rotateY(180deg);
 }
 .card-front, .card-back {
@@ -97,9 +161,31 @@
     z-index: 2;
 }
 .card-back {
-    background-color: white;
     transform: rotateY(180deg);
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+/* .detail-card {
+  position: absolute;
+  left: 100%;
+  margin-left: 20px;
+  width: 200px;
+  height: 300px;
+  background-color: rgba(255,255,255,0.95);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  padding: 15px;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.card.active .detail-card {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+} */

@@ -10,44 +10,64 @@
 </head>
 <body class="flex bg-[#2a2a3e]">
     <!--사이드바-->
-    <div id="sidebar">
-        <ul>
-            <li data-role="ALL" class="selected">ALL</li>
-            <li data-role="TOP">TOP</li>
-            <li data-role="JUNGLE">JUNGLE</li>
-            <li data-role="MID">MID</li>
-            <li data-role="ADC">ADC</li>
-            <li data-role="SUP">SUP</li>
-        </ul>
-    </div>
+    <div class="role-sidebar">
+            <ul class="role-list">
+                <li data-role="TOP">
+                    <a>
+                        <img src="/images/icon/top.webp" alt="탑 아이콘"> 탑
+                    </a>
+                </li>
+                <li data-role="JUNGLE">
+                    <a>
+                        <img src="/images/icon/jungle.webp" alt="정글 아이콘"> 정글
+                    </a>
+                </li>
+                <li data-role="MID">
+                    <a>
+                        <img src="/images/icon/mid.webp" alt="미드 아이콘"> 미드
+                    </a>
+                </li>
+                <li data-role="ADC">
+                    <a>
+                        <img src="/images/icon/adc.webp" alt="원딜 아이콘"> 원딜
+                    </a>
+                </li>
+                <li data-role="SUP">
+                    <a>
+                        <img src="/images/icon/sup.webp" alt="서폿 아이콘"> 서폿
+                    </a>
+                </li>
+            </ul>
+        </div>
 
     <!--탑선수카드-->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 p-4">
     <div id="1001" data-role="TOP" class="card">
-  <div class="card-inner">
-    <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
-        <img src="/images/Doran.png" alt="Doran">
-        <div class="overlay bg-gradient-to-t from-black/70 from-50%">
-          <div class="position">TOP</div>
-          <div class="nickname">Doran</div>
-          <div class="name">최현준</div>
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
+            <img src="/images/Doran.png" alt="Doran">
+            <div class="overlay bg-gradient-to-t from-black/70 from-50%">
+              <div class="position">TOP</div>
+              <div class="nickname">Doran</div>
+              <div class="name">최현준</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
+          <div class="info">
+            <p class="text-sm">Doran (최현준)</p>
+            <p class="text-sm">포지션: TOP</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card-back">
-      <div class="info">
-        <p class="text-sm">Doran (최현준)</p>
-        <p class="text-sm">포지션: TOP</p>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div id="1002" data-role="TOP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Kiin.png" alt="Kiin">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">TOP</div>
@@ -56,7 +76,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
       <div class="info">
         <p class="text-sm">Kiin (김기인)</p>
         <p class="text-sm">포지션: TOP</p>
@@ -68,7 +88,7 @@
 <div id="1003" data-role="TOP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Siwoo.png" alt="Siwoo">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">TOP</div>
@@ -77,7 +97,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Siwoo (전시우)</p>
         <p class="text-sm">포지션: TOP</p>
@@ -89,7 +109,7 @@
 <div id="1004" data-role="TOP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/PerfecT.png" alt="PerfecT">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">TOP</div>
@@ -98,7 +118,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">PerfecT (이승민)</p>
         <p class="text-sm">포지션: TOP</p>
@@ -110,7 +130,7 @@
 <div id="1005" data-role="TOP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Clear.png" alt="Clear">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">TOP</div>
@@ -119,7 +139,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Clear (송현민)</p>
         <p class="text-sm">포지션: TOP</p>
@@ -131,7 +151,7 @@
 <div id="1006" data-role="TOP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/DuDu.png" alt="DuDu">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">TOP</div>
@@ -140,7 +160,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">DuDu (이동주)</p>
         <p class="text-sm">포지션: TOP</p>
@@ -152,7 +172,7 @@
 <div id="1007" data-role="TOP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Kingen.png" alt="Kingen">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">TOP</div>
@@ -161,7 +181,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Kingen (황성훈)</p>
         <p class="text-sm">포지션: TOP</p>
@@ -173,7 +193,7 @@
 <div id="1008" data-role="TOP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Rich.png" alt="Rich">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">TOP</div>
@@ -182,7 +202,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Rich (이재원)</p>
         <p class="text-sm">포지션: TOP</p>
@@ -194,7 +214,7 @@
 <div id="1009" data-role="TOP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Morgan.png" alt="Morgan">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">TOP</div>
@@ -203,7 +223,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Morgan (박루한)</p>
         <p class="text-sm">포지션: TOP</p>
@@ -215,7 +235,7 @@
 <div id="1010" data-role="TOP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Zeus.png" alt="Zeus">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">TOP</div>
@@ -224,7 +244,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Zeus (최우제)</p>
         <p class="text-sm">포지션: TOP</p>
@@ -237,7 +257,7 @@
     <div id="2001" data-role="JUNGLE" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Peanut.png" alt="Peanut">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">JUNGLE</div>
@@ -246,7 +266,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Peanut (한왕호)</p>
         <p class="text-sm">포지션: JUNGLE</p>
@@ -258,7 +278,7 @@
 <div id="2002" data-role="JUNGLE" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Canyon.png" alt="Canyon">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">JUNGLE</div>
@@ -267,7 +287,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Canyon (김건부)</p>
         <p class="text-sm">포지션: JUNGLE</p>
@@ -279,7 +299,7 @@
 <div id="2003" data-role="JUNGLE" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Oner.png" alt="Oner">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">JUNGLE</div>
@@ -288,7 +308,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Oner (문현준)</p>
         <p class="text-sm">포지션: JUNGLE</p>
@@ -300,7 +320,7 @@
 <div id="2004" data-role="JUNGLE" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Cuzz.png" alt="Cuzz">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">JUNGLE</div>
@@ -309,7 +329,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Cuzz (문우찬)</p>
         <p class="text-sm">포지션: JUNGLE</p>
@@ -321,7 +341,7 @@
 <div id="2005" data-role="JUNGLE" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Raptor.png" alt="Raptor">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">JUNGLE</div>
@@ -330,7 +350,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Raptor (전어진)</p>
         <p class="text-sm">포지션: JUNGLE</p>
@@ -342,7 +362,7 @@
 <div id="2006" data-role="JUNGLE" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Sylvie.png" alt="Sylvie">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">JUNGLE</div>
@@ -351,7 +371,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Sylvie (이승복)</p>
         <p class="text-sm">포지션: JUNGLE</p>
@@ -363,7 +383,7 @@
 <div id="2007" data-role="JUNGLE" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Juhan.png" alt="Juhan">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">JUNGLE</div>
@@ -372,7 +392,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Juhan (이주한)</p>
         <p class="text-sm">포지션: JUNGLE</p>
@@ -384,7 +404,7 @@
 <div id="2008" data-role="JUNGLE" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/HamBak.png" alt="HamBak">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">JUNGLE</div>
@@ -393,7 +413,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">HamBakv (함유진)</p>
         <p class="text-sm">포지션: JUNGLE</p>
@@ -405,7 +425,7 @@
 <div id="2009" data-role="JUNGLE" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Lucid.png" alt="Lucid">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">JUNGLE</div>
@@ -414,7 +434,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Lucid (최용혁)</p>
         <p class="text-sm">포지션: JUNGLE</p>
@@ -426,7 +446,7 @@
 <div id="2010" data-role="JUNGLE" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Pyosik.png" alt="Pyosik">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">JUNGLE</div>
@@ -435,7 +455,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Pyosik (홍창현)</p>
         <p class="text-sm">포지션: JUNGLE</p>
@@ -448,7 +468,7 @@
     <div id="3001" data-role="MID" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Zeka.png" alt="Zeka">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">MID</div>
@@ -457,7 +477,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Zeka (김건우)</p>
         <p class="text-sm">포지션: MID</p>
@@ -469,7 +489,7 @@
 <div id="3002" data-role="MID" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Chovy.png" alt="Chovy">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">MID</div>
@@ -478,7 +498,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Chovy (정지훈)</p>
         <p class="text-sm">포지션: MID</p>
@@ -490,7 +510,7 @@
 <div id="3003" data-role="MID" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Faker.png" alt="Faker">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">MID</div>
@@ -499,7 +519,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Faker (이상혁)</p>
         <p class="text-sm">포지션: MID</p>
@@ -511,7 +531,7 @@
 <div id="3004" data-role="MID" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/ShowMaker.png" alt="ShowMaker">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">MID</div>
@@ -520,7 +540,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">ShowMaker (허수)</p>
         <p class="text-sm">포지션: MID</p>
@@ -532,7 +552,7 @@
 <div id="3005" data-role="MID" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/BDD.png" alt="BDD">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">MID</div>
@@ -541,7 +561,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">BDD (곽보성)</p>
         <p class="text-sm">포지션: MID</p>
@@ -553,7 +573,7 @@
 <div id="3006" data-role="MID" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/VicLa.png" alt="VicLa">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">MID</div>
@@ -562,7 +582,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">VicLa (이대광)</p>
         <p class="text-sm">포지션: MID</p>
@@ -574,7 +594,7 @@
 <div id="3007" data-role="MID" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/BuLLDoG.png" alt="BuLLDoG">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">MID</div>
@@ -583,7 +603,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">BuLLDoG (이태영)</p>
         <p class="text-sm">포지션: MID</p>
@@ -595,7 +615,7 @@
 <div id="3008" data-role="MID" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Fisher.png" alt="Fisher">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">MID</div>
@@ -604,7 +624,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Fisher (이정태)</p>
         <p class="text-sm">포지션: MID</p>
@@ -616,7 +636,7 @@
 <div id="3009" data-role="MID" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Ucal.png" alt="Ucal">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">MID</div>
@@ -625,7 +645,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Ucal (손우현)</p>
         <p class="text-sm">포지션: MID</p>
@@ -637,7 +657,7 @@
 <div id="3010" data-role="MID" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Clozer.png" alt="Clozer">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">MID</div>
@@ -646,7 +666,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Clozer (이주현)</p>
         <p class="text-sm">포지션: MID</p>
@@ -659,7 +679,7 @@
     <div id="4001" data-role="ADC" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Viper.png" alt="Viper">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">ADC</div>
@@ -668,7 +688,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Viper (박도현)</p>
         <p class="text-sm">포지션: ADC</p>
@@ -680,7 +700,7 @@
 <div id="4002" data-role="ADC" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Ruler.png" alt="Ruler">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">ADC</div>
@@ -689,7 +709,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Ruler (박재혁)</p>
         <p class="text-sm">포지션: ADC</p>
@@ -701,7 +721,7 @@
 <div id="4003" data-role="ADC" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Smash.png" alt="Smash">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">ADC</div>
@@ -710,7 +730,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Smash (신금재)</p>
         <p class="text-sm">포지션: ADC</p>
@@ -722,7 +742,7 @@
 <div id="4004" data-role="ADC" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Aiming.png" alt="Aiming">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">ADC</div>
@@ -731,7 +751,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Aiming (김하람)</p>
         <p class="text-sm">포지션: ADC</p>
@@ -743,7 +763,7 @@
 <div id="4005" data-role="ADC" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Deokdam.png" alt="Deokdam">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">ADC</div>
@@ -752,7 +772,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Deokdam (서대길)</p>
         <p class="text-sm">포지션: ADC</p>
@@ -764,7 +784,7 @@
 <div id="4006" data-role="ADC" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Diable.png" alt="Diable">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">ADC</div>
@@ -773,7 +793,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Diable (남대근)</p>
         <p class="text-sm">포지션: ADC</p>
@@ -785,7 +805,7 @@
 <div id="4007" data-role="ADC" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Berserker.png" alt="Berserker">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">ADC</div>
@@ -794,7 +814,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Berserker (김민철)</p>
         <p class="text-sm">포지션: ADC</p>
@@ -806,7 +826,7 @@
 <div id="4008" data-role="ADC" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Jiwoo.png" alt="Jiwoo">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">ADC</div>
@@ -815,7 +835,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Jiwoo (정지우)</p>
         <p class="text-sm">포지션: ADC</p>
@@ -827,7 +847,7 @@
 <div id="4009" data-role="ADC" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/teddy.png" alt="Teddy">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">ADC</div>
@@ -836,7 +856,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Teddy (박진성)</p>
         <p class="text-sm">포지션: ADC</p>
@@ -848,7 +868,7 @@
 <div id="4010" data-role="ADC" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Hype.png" alt="Hype">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">ADC</div>
@@ -857,7 +877,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Hype (변정현)</p>
         <p class="text-sm">포지션: ADC</p>
@@ -870,7 +890,7 @@
     <div id="5001" data-role="SUP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Delight.png" alt="Delight">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">SUP</div>
@@ -879,7 +899,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Delight (유환중)</p>
         <p class="text-sm">포지션: SUP</p>
@@ -891,7 +911,7 @@
 <div id="5002" data-role="SUP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Duro.png" alt="Duro">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">SUP</div>
@@ -900,7 +920,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Duro (주민규)</p>
         <p class="text-sm">포지션: SUP</p>
@@ -912,7 +932,7 @@
 <div id="5003" data-role="SUP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Keria.png" alt="Keria">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">SUP</div>
@@ -921,7 +941,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Keria (류민석)</p>
         <p class="text-sm">포지션: SUP</p>
@@ -933,7 +953,7 @@
 <div id="5004" data-role="SUP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/BeryL.png" alt="BeryL">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">SUP</div>
@@ -942,7 +962,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">BeryL (조건희)</p>
         <p class="text-sm">포지션: SUP</p>
@@ -954,7 +974,7 @@
 <div id="5005" data-role="SUP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Way.png" alt="Way">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">SUP</div>
@@ -963,7 +983,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Way (한길)</p>
         <p class="text-sm">포지션: SUP</p>
@@ -975,7 +995,7 @@
 <div id="5006" data-role="SUP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Kellin.png" alt="Kellin">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">SUP</div>
@@ -984,7 +1004,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Kellin (김형규)</p>
         <p class="text-sm">포지션: SUP</p>
@@ -996,7 +1016,7 @@
 <div id="5007" data-role="SUP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Life.png" alt="Life">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">SUP</div>
@@ -1005,7 +1025,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Life (김정민)</p>
         <p class="text-sm">포지션: SUP</p>
@@ -1017,7 +1037,7 @@
 <div id="5008" data-role="SUP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Lehends.png" alt="Lehends">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">SUP</div>
@@ -1026,7 +1046,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Lehends (손시우)</p>
         <p class="text-sm">포지션: SUP</p>
@@ -1038,7 +1058,7 @@
 <div id="5009" data-role="SUP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Andil.png" alt="Andil">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">SUP</div>
@@ -1047,7 +1067,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Andil (문관빈)</p>
         <p class="text-sm">포지션: SUP</p>
@@ -1059,7 +1079,7 @@
 <div id="5010" data-role="SUP" class="card">
   <div class="card-inner">
     <div class="card-front">
-      <div class="player-card bg-gradient-to-r from-[#060b40] via-gray-700 to-[#060b40]">
+      <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
         <img src="/images/Pollu.png" alt="Pollu">
         <div class="overlay bg-gradient-to-t from-black/70 from-50%">
           <div class="position">SUP</div>
@@ -1068,7 +1088,7 @@
         </div>
       </div>
     </div>
-    <div class="card-back">
+    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
       <div class="info">
         <p class="text-sm">Pollu (오동규)</p>
         <p class="text-sm">포지션: SUP</p>
@@ -1077,6 +1097,8 @@
   </div>
 </div>
 
+    <script src="/js/playerjs/detailcard.js"></script>
     <script src="/js/playerjs/sidebar.js"></script>
+    <script src="/js/playerjs/playercard.js"></script>
 </body>
 </html>

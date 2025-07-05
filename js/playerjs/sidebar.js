@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const filterList = document.querySelectorAll("#sidebar li");
+  const filterList = document.querySelectorAll(".role-list li");
   const cards = document.querySelectorAll("div[data-role]");
 
   filterList.forEach(li => {
@@ -23,5 +23,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
 
