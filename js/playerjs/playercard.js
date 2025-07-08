@@ -1,13 +1,43 @@
-document.querySelectorAll(".card").forEach(card => {
-  card.addEventListener("click", () => {
-    // 다른 카드들 초기화
-    document.querySelectorAll(".card").forEach(other => {
-      if (other !== card) {
-        other.classList.remove("active");
-      }
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('player-list-container');
 
-    // 현재 카드 토글
-    card.classList.toggle("active");
-  });
+    if (players && container) {
+        players.forEach(player => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = player.id;
+            card.dataset.role = player.role;
+            card.dataset.nickname = player.nickname;
+            card.dataset.name = player.name;
+            card.dataset.image = player.image;
+            card.dataset.team = player.team; // 팀 정보 추가
+
+            // 팀별 배경 클래스 결정
+            const teamBgClass = player.team ? `team-${player.team.replace(/\./g, '')}-bg` : 'default-player-card-bg';
+
+            card.innerHTML = `
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="player-card bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900">
+                            <img src="${player.image}" alt="${player.nickname}">
+                            <div class="overlay bg-gradient-to-t from-black/70 from-50%">
+                                <div class="position">${player.role}</div>
+                                <div class="nickname">${player.nickname}</div>
+                                <div class="name">${player.name}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back bg-gradient-to-r from-indigo-950 via-blue-900 to-indigo-950">
+                        <div class="info">
+                            <p class="text-sm">${player.nickname} (${player.name})</p>
+                            <p class="text-sm">포지션: ${player.role}</p>
+                            <p class="text-sm">팀: ${player.team}</p> <!-- 팀 정보 표시 -->
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+    }
 });

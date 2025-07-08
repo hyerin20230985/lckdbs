@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   const filterList = document.querySelectorAll(".role-list li");
-  const cards = document.querySelectorAll("div[data-role]");
 
   filterList.forEach(li => {
     li.addEventListener("click", () => {
+      // 필터링을 클릭할 때마다 카드 목록을 새로 가져옵니다.
+      const cards = document.querySelectorAll("div[data-role]");
+
       // 1. 강조 효과 클래스 처리
       filterList.forEach(l => l.classList.remove("selected"));
       li.classList.add("selected");
@@ -23,4 +25,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-

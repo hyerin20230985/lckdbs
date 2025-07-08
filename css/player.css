@@ -146,7 +146,7 @@
     transform-style: preserve-3d;
     position: relative;
 }
-.card.active .card-inner {
+.card:hover .card-inner {
     transform: rotateY(180deg);
 }
 .card-front, .card-back {
@@ -189,3 +189,50 @@
   transform: translateX(0);
   pointer-events: auto;
 } */
+
+#detail-popup {
+    position: absolute;
+    width: 300px;
+    height: 350px;
+    background-color: rgba(42, 95, 248, 0.12);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(42, 95, 248, 0.42);
+    padding: 15px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+}
+
+#year-select {
+    margin-bottom: 12px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    background-color: rgba(42, 95, 248, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    width: 120px;
+    border: 1px solid rgba(42, 95, 248, 0.42);
+    color: white; /* 텍스트 색상 추가 */
+}
+
+#year-select option {
+    background-color: #2a2a3e; /* 옵션 배경색 추가 */
+    color: white;
+}
+
+#close-detail {
+    padding: 10px;
+    width: 100%;
+    background-color: #060b40;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: auto;
+}
