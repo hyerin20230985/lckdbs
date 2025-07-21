@@ -6,7 +6,7 @@ const allChampions = [
     // 예시: 챔피언 이름과 이미지 URL, 그리고 담당 'roles' 배열을 추가합니다.
     // 한 챔피언이 여러 역할을 할 수 있다면 roles 배열에 모두 넣어주세요.
     // **챔피언 설명(description) 속성을 추가했습니다.**
-    { name: "가렌", imageUrl: "./photos/champions/50.png", roles: ["top"], description: "데마시아의 힘, 가렌입니다." },
+    { name: "가렌", imageUrl: "./ㅇㅇphotos/champions/50.png", roles: ["top"], description: "데마시아의 힘, 가렌입니다." },
     { name: "갈리오", imageUrl: "./photos/champions/57.png", roles: ["mid", "support"], description: "듀란드의 거상, 갈리오입니다." },
     { name: "갱플랭크", imageUrl: "./photos/champions/30.png", roles: ["top"], description: "염통 없는 바다뱀, 갱플랭크입니다." },
     { name: "그라가스", imageUrl: "./photos/champions/44.png", roles: ["jungle", "top"], description: "술통 파괴자, 그라가스입니다." },
