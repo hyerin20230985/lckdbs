@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCK 팀 및 선수 목록</title>
+    
+    <link rel="stylesheet" href="../css/schedule2-styles.css"> 
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css"> 
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="../index.html" class="logo">LCKDBS</a>
+            </div>
+            <div class="nav-center">
+                <a href="/html/player.html" class="nav-item">선수</a>
+                <a href="/html/team.html" class="nav-item">팀</a>
+                <a href="/html/champion.html" class="nav-item">챔피언</a>
+                <a href="/html/schedule2.html" class="nav-item">일정</a>
+                <a href="#" class="nav-item">순위</a>
+                <a href="#" class="nav-item">스탯</a>
+                <a href="#" class="nav-item">분석</a>
+                <a href="/html/com.html" class="nav-item">커뮤니티</a>
+                <a href="#" class="nav-item live">LIVE</a>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="login-btn">로그인</a>
+                <a href="/html/signup.html" class="signup-btn">회원가입</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="schedule_container">
+            <h2>대회 일정</h2>
+
+            <div class="logo_container">
+                <div class="logo-item-wrapper">
+                    <img src="../images/photos/assets/퍼스트 스탠드.svg" alt="퍼스트 스탠드 토너먼트 로고" class="tournament_logo" data-tournament="퍼스트 스탠드 토너먼트">
+                </div>
+                <div class="logo-item-wrapper">
+                    <img src="../images/photos/assets/lck.svg" alt="LCK 로고" class="tournament_logo" data-tournament="LCK">
+                </div>
+                <div class="logo-item-wrapper">
+                    <img src="../images/photos/assets/msi.svg" alt="MSI 로고" class="tournament_logo" data-tournament="MSI">
+                </div>
+                <div class="logo-item-wrapper">
+                    <img src="../images/photos/assets/롤드컵.svg" alt="롤드컵 로고" class="tournament_logo" data-tournament="롤드컵">
+                </div>
+            </div> 
+            <div class="controls-and-stats-row">
+                <div class="calendar-container">
+                    <label for="dateSelect">날짜 선택:</label>
+                    <input type="text" id="dateSelect" class="date_select" placeholder="날짜를 선택하세요">
+                    <img src="../images/photos/assets/calendar.png" alt="캘린더 이미지" class="calendar_icon">
+                </div>
+
+                <div class="team_stats" id="teamStatsDisplay">
+                    팀 통계
+                </div>
+                
+                <div class="team_select_dropdown">
+                    <button class="team_select_button">팀 선택</button>
+                    <div class="team_list">
+                        <ul>
+                            <li><img src="../images/photos/assets/T1.png" alt="T1 로고" class="team_logo"> T1</li>
+                            <li><img src="../images/photos/assets/GEN.G.svg" alt="Gen.G 로고" class="team_logo"> Gen.G</li>
+                            <li><img src="../images/photos/assets/DK.svg" alt="DK 로고" class="team_logo"> DK</li>
+                            <li><img src="../images/photos/assets/HLE.svg" alt="HLE 로고" class="team_logo"> HLE</li>
+                            <li><img src="../images/photos/assets/KT.svg" alt="BRO 로고" class="team_logo"> KT</li>
+                            <li><img src="../images/photos/assets/DRX.svg" alt="DRX 로고" class="team_logo"> DRX</li>
+                            <li><img src="../images/photos/assets/KDF.svg" alt="KDF 로고" class="team_logo"> KDF</li>
+                            <li><img src="../images/photos/assets/BNK.png" alt="BNK 로고" class="team_logo"> BNK</li>
+                            <li><img src="../images/photos/assets/NS.svg" alt="NS 로고" class="team_logo"> NS</li>
+                            <li><img src="../images/photos/assets/BRO.svg" alt="OK 로고" class="team_logo"> OK</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div> 
+            <div class="schedule_list">
+                <table id="scheduleTable">
+                    <thead>
+                        <tr>
+                            <th>시간</th>
+                            <th>구분</th>
+                            <th colspan="1">팀 1</th>
+                            <th></th> 
+                            <th colspan="1">팀 2</th>
+                            <th>스코어</th>
+                            <th>다시보기</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleTableBody">
+                        <tr>
+                            <td colspan="7" style="text-align: center;">대회 로고와 날짜를 선택하여 일정을 확인하세요.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> 
+        </div> 
+    </main>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
+    <script src="../js/schedule-script.js"></script>
+</body>
+</html>

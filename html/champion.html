@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>챔피언</title>
+    <link rel="stylesheet" href="../css/champion-styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="../index.html" class="logo">LCKDBS</a>
+            </div>
+            <div class="nav-center">
+                <a href="/html/player.html" class="nav-item">선수</a>
+                <a href="/html/team.html" class="nav-item">팀</a>
+                <a href="/html/champion.html" class="nav-item">챔피언</a>
+                <a href="/html/schedule2.html" class="nav-item">일정</a>
+                <a href="#" class="nav-item">순위</a>
+                <a href="#" class="nav-item">스탯</a>
+                <a href="#" class="nav-item">분석</a>
+                <a href="/html/com.html" class="nav-item">커뮤니티</a>
+                <a href="#" class="nav-item live">LIVE</a>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="login-btn">로그인</a>
+                <a href="/html/signup.html" class="signup-btn">회원가입</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <div class="role-sidebar">
+            <ul class="role-list">
+                <li onclick="selectedRole('top', this)">
+                    <a>
+                        <img src="../images/photos/assets/top.webp" alt="탑 아이콘"> 탑
+                    </a>
+                </li>
+                <li onclick="selectedRole('jungle', this)">
+                    <a>
+                        <img src="../images/photos/assets/jungle.webp" alt="정글 아이콘"> 정글
+                    </a>
+                </li>
+                <li onclick="selectedRole('mid', this)">
+                    <a>
+                        <img src="../images/photos/assets/mid.webp" alt="미드 아이콘"> 미드
+                    </a>
+                </li>
+                <li onclick="selectedRole('adc', this)">
+                    <a>
+                        <img src="../images/photos/assets/adc.webp" alt="원딜 아이콘"> 원딜
+                    </a>
+                </li>
+                <li onclick="selectedRole('support', this)">
+                    <a>
+                        <img src="../images/photos/assets/sup.webp" alt="서폿 아이콘"> 서폿
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="champListWrap1">
+            <div class="champListWrap2">
+                <ul class="ganada">
+                    <li onclick="selectedChoseong('all', this)" class="selected"><a href="javascript:void(0);">ALL</a></li>
+                    <li onclick="selectedChoseong('ㄱ', this)"><a href="javascript:void(0);">ㄱ</a></li>
+                    <li onclick="selectedChoseong('ㄴ', this)"><a href="javascript:void(0);">ㄴ</a></li>
+                    <li onclick="selectedChoseong('ㄷ', this)"><a href="javascript:void(0);">ㄷ</a></li>
+                    <li onclick="selectedChoseong('ㄹ', this)"><a href="javascript:void(0);">ㄹ</a></li>
+                    <li onclick="selectedChoseong('ㅁ', this)"><a href="javascript:void(0);">ㅁ</a></li>
+                    <li onclick="selectedChoseong('ㅂ', this)"><a href="javascript:void(0);">ㅂ</a></li>
+                    <li onclick="selectedChoseong('ㅅ', this)"><a href="javascript:void(0);">ㅅ</a></li>
+                    <li onclick="selectedChoseong('ㅇ', this)"><a href="javascript:void(0);">ㅇ</a></li>
+                    <li onclick="selectedChoseong('ㅈ', this)"><a href="javascript:void(0);">ㅈ</a></li>
+                    <li onclick="selectedChoseong('ㅊ', this)"><a href="javascript:void(0);">ㅊ</a></li>
+                    <li onclick="selectedChoseong('ㅋ', this)"><a href="javascript:void(0);">ㅋ</a></li>
+                    <li onclick="selectedChoseong('ㅌ', this)"><a href="javascript:void(0);">ㅌ</a></li>
+                    <li onclick="selectedChoseong('ㅍ', this)"><a href="javascript:void(0);">ㅍ</a></li>
+                    <li onclick="selectedChoseong('ㅎ', this)"><a href="javascript:void(0);">ㅎ</a></li>
+                </ul>
+                <div class="scrollingList">
+                    <ul class="champList" id="champList">
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/championjs/champion-scripts.js"></script>
+</body>
+</html>

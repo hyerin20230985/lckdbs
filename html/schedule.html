@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/schedule-styles.css">
+    <title>LCK 팀 및 선수 목록</title>
+
+</head>
+<body>
+    <header class="header_container__2I4IR" id="header" data-app-status="false" data-fixed="true">
+        <div class="header_menu__23d4_">
+            <ul class="sub_menu_list__3LmV1">
+                <li class="sub_menu_item__Q2d1m"><a href="/esports/League_of_Legends/home" class="sub_menu_link__3BySZ">홈</a></li>
+                <li class="sub_menu_item__Q2d1m"><a href="/esports/League_of_Legends/board" class="sub_menu_link__3BySZ">커뮤니티</a></li>
+                <li class="sub_menu_item__Q2d1m"><a href="/esports/League_of_Legends/board/gametalk/2025031617NWRPFZ04564lol" class="sub_menu_link__3BySZ">경기</a></li>
+                <li class="sub_menu_item__Q2d1m"><a href="/esports/League_of_Legends/news/lol" class="sub_menu_link__3BySZ">뉴스</a></li>
+                <li class="sub_menu_item__Q2d1m"><a href="/esports/League_of_Legends/schedule/first_stand_lol" class="sub_menu_link__3BySZ" data-active="true">일정</a></li>
+                <li class="sub_menu_item__Q2d1m"><a href="/esports/League_of_Legends/videos/league/first_stand_lol" class="sub_menu_link__3BySZ">영상</a></li>
+                <li class="sub_menu_item__Q2d1m"><a href="/esports/League_of_Legends/record" class="sub_menu_link__3BySZ">순위</a></li>
+                <li class="sub_menu_item__Q2d1m"><a href="/esports/League_of_Legends/prediction" class="sub_menu_link__3BySZ">승부예측</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <div class="schedule_container">
+            <h2>대회 일정</h2>
+            <div class="tournament_selector">
+                <label for="tournamentSelect">대회 선택:</label>
+                <select id="tournamentSelect" onchange="updateSchedule(new Date($('#dateSelect').val()), this.value)">
+                    <option value="">선택하세요</option>
+                    <option value="퍼스트 스탠드 토너먼트">퍼스트 스탠드 토너먼트</option>
+                    <option value="LCK">LCK</option>
+                    <option value="MSI">MSI</option>
+                    <option value="롤드컵">롤드컵</option>
+                </select>
+            </div>
+            <div class="year_selector">
+                <label for="dateSelect">날짜 선택:</label>
+                <input type="text" id="dateSelect" class="date_select" placeholder="날짜를 선택하세요">
+                <i class="calendar_icon" onclick="$('#dateSelect').datepicker('show');">📅</i>
+            </div>
+            <div class="schedule_list" id="scheduleList"></div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <script>
+        let scrollPosition = 0; // 스크롤 위치를 저장할 변수
+        let statPageIdCounter = 0; // statPageId를 생성하기 위한 counter
+
+        $(function() {
+            $('#dateSelect').datepicker({
+                dateFormat: 'yy-mm-dd',
+                onSelect: function(dateText) {
+                    const selectedDate = new Date(dateText);
+                    const tournament = document.getElementById('tournamentSelect').value;
+                    if (tournament) {
+                        updateSchedule(selectedDate, tournament); // 선택한 날짜와 대회로 일정 업데이트
+                    }
+                }
+            });
+        });
+    
+        const schedules = {
+            '퍼스트 스탠드 토너먼트': [
+                { date: '2025-03-10', time: '17:00', round: '1라운드', team1: 'Team Liquid', team1Player: '/photos/players/umti.jpg', team1Logo: '/photos/assets/team liquid.png', team2: 'Karmine Corp', team2Logo: '/photos/assets/karmine corp.png', team2Player: '/photos/players/canna.jpg', score: '2 : 1', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044679' },
+                { date: '2025-03-10', time: '20:00', round: '1라운드', team1: '한화생명 E스포츠', team1Player: '/photos/players/zeus.jpg', team1Logo: '/photos/assets/HLE.svg', team2: 'TOP E-sports', team2Logo: '/photos/assets/top esports.png', team2Player: '/photos/players/369.jpg', score: '2 : 0', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044684' },
+            ],
+            'LCK': [
+                { date: '2025-04-15', time: '18:00', round: '정규 시즌', team1: 'T1', team1Player: '/photos/players/faker.jpg', team1Logo: '/photos/assets/t1.png', team2: 'Gen.G', team2Logo: '/photos/assets/gen.g.svg', team2Player: '/photos/players/chovy.jpg', score: '3 : 1', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044690' },
+            ],
+            'MSI': [
+                { date: '2025-05-05', time: '19:00', round: '그룹 스테이지', team1: 'DWG KIA', team1Player: '/photos/players/showmaker.jpg', team1Logo: '/photos/assets/dk.svg', team2: 'T1', team2Logo: '/photos/assets/T1.png', team2Player: '/photos/players/FAKER.jpg', score: '3 : 2', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044695' },
+            ],
+            '롤드컵': [
+                { date: '2025-10-10', time: '17:00', round: '8강', team1: 'T1', team1Player: '/photos/players/FAKER.jpg', team1Logo: '/photos/assets/T1.png', team2: 'DWG KIA', team2Logo: '/photos/assets/2022 DK.svg', team2Player: '/photos/players/showmaker.jpg', score: '3 : 1', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044700' },
+            ],
+        };
+
+function updateSchedule(selectedDate, tournament) {
+    const scheduleList = document.getElementById('scheduleList');
+    scheduleList.innerHTML = '';
+
+    if (!selectedDate || !tournament) {
+        return;
+    }
+
+    const selectedDateString = selectedDate.toISOString().split('T')[0];
+    const now = new Date();
+
+    schedules[tournament].forEach(schedule => {
+        if (schedule.date === selectedDateString) {
+            const matchDateTime = new Date(`${schedule.date}T${schedule.time}`);
+            const isEnded = now > matchDateTime ? '종료' : '';
+            const status = isEnded ? '<span class="status">종료</span>' : '';
+
+            // statPageId 생성
+            const statPageId = `statPage-${statPageIdCounter++}`;
+
+            const scheduleItem = document.createElement('div');
+            scheduleItem.className = 'schedule_item';
+            scheduleItem.dataset.statPageId = statPageId; // statPageId를 schedule_item에 저장
+           scheduleItem.dataset.tournament = tournament;  // 🔥 추가
+            scheduleItem.dataset.date = schedule.date;     // 🔥 추가
+            scheduleItem.innerHTML = `
+                <span class="schedule_time">${schedule.time} ${status}</span>
+                <span class="schedule_round">${schedule.round}</span>
+                <div class="schedule_team">
+                    <div class="team_info">
+                        <img src="${schedule.team1Player}" alt="${schedule.team1} 선수" class="player_photo">
+                        <img src="${schedule.team1Logo}" alt="${schedule.team1} 로고" class="team_logo">
+                        <span class="team_name">${schedule.team1}</span>
+                    </div>
+                    <div class="schedule_score">
+                        <span class="win">${schedule.score.split(':')[0]}</span> 
+                        vs 
+                        <span class="lose">${schedule.score.split(':')[1]}</span>
+                    </div>
+                    <div class="team_info">
+                        <span class="team_name">${schedule.team2}</span>
+                        <img src="${schedule.team2Logo}" alt="${schedule.team2} 로고" class="team_logo">
+                        <img src="${schedule.team2Player}" alt="${schedule.team2} 선수" class="player_photo">
+                    </div>
+                </div>
+                <a href="${schedule.link}" class="more_info" target="_blank">다시보기</a>
+            `;
+            scheduleList.appendChild(scheduleItem);
+
+            // stat-page-container 생성 및 추가
+            const statPageContainer = document.createElement('div');
+            statPageContainer.className = 'stat-page-container';
+            statPageContainer.id = statPageId; // statPageId를 id로 설정
+    
+            scheduleList.appendChild(statPageContainer);
+        }
+    });
+}
+
+$(document).ready(function() {
+    $('#scheduleList').on('click', '.schedule_item', function() {
+        const statPageContainerId = $(this).data('stat-page-id');
+        const statPageContainer = $('#' + statPageContainerId);
+
+        // statPageContainer가 존재하는지 확인합니다.
+        if (!statPageContainer.length) {
+            console.error('Stat page container not found with id:', statPageContainerId);
+            return;
+        }
+
+        const isVisible = statPageContainer.hasClass('show');
+
+        if (!isVisible) {
+            // 스탯 페이지가 숨겨져 있는 경우
+            statPageContainer.addClass('show'); // 스탯 페이지 표시
+
+            // 내용이 비어있을 때만 AJAX 요청
+            if (statPageContainer.html() === '') {
+                const tournament = $(this).data('tournament');
+                const date = $(this).data('date');
+
+                $.ajax({
+                    url: `stat.html?tournament=${tournament}&date=${date}`, // 쿼리 파라미터 추가
+                    dataType: 'html',
+                    success: function (data) {
+                        statPageContainer.html(data);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error loading stat-page.html:", status, error);
+                        statPageContainer.html(`<p>Failed to load stats. Error: ${status} - ${error}</p>`);
+                    }
+                });
+            }
+        } else {
+            // 스탯 페이지가 이미 표시된 경우
+            statPageContainer.removeClass('show'); // 스탯 페이지 숨김
+            // statPageContainer.html(''); // 스탯 페이지 컨테이너 내용 초기화 (유지)
+        }
+    });
+});
+
+
+</script>
+</body>
+
+</html>

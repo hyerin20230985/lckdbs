@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선수 상세 정보</title>
+    <link rel="stylesheet" href="../css/playerdetail.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-6">
+        <!-- 네비게이션 -->
+        <div class="breadcrumb mb-5 text-gray-400">
+            <span>선수</span>
+            <span>/</span>
+            <span>미드</span>
+            <span>/</span>
+            <span>FAKER</span>
+        </div>
+
+        <!-- 상단 컨텐츠: 프로필, 주요장면, 스탯 -->
+        <div class="upper-content grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- 왼쪽: 프로필 -->
+            <div class="profile-section bg-gray-800 rounded-lg shadow-md p-4">
+                <img src="../images/photos/players/Faker.png" alt="선수 프로필" class="profile-image rounded-lg mb-4">
+                <div class="profile-info">
+                    <h1 id="player-name" class="text-2xl font-bold">Faker</h1>
+                    <h2 id="player-realname" class="text-lg text-gray-400">이상혁</h2>
+                    <div class="info-details text-gray-300">
+                        <p>역할군: 미드(중단)</p>
+                        <p>소속팀: <a href="team.html" class="text-blue-400 hover:underline">T1</a></p>
+                        <p>생년월일: 1996-05-07</p>
+                        <p>데뷔년도: 2013-04-06</p>
+                    </div>
+                    <div class="awards mt-4">
+                        <h3 class="font-bold">개인수상이력:</h3>
+                        <p class="text-gray-300">LCK 10회 우승 (2013 SUMMER, 2013 WINTER, 2015 SPRING, 2015 SUMMER, 2016 SPRING, 2017 SPRING, 2019 SPRING, 2019 SUMMER, 2021 SPRING, 2022 SPRING)</p>
+                        <p class="text-gray-300">MSI 2회 우승 (2016, 2017)</p>
+                        <p class="text-gray-300">WORLDS 5회 우승 (2013, 2015, 2016, 2023, 2024)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 중앙: 주요장면 & 통산승률 -->
+            <div class="center-section flex flex-col gap-6">
+                <!-- 주요장면 -->
+                <section class="highlight-section">
+                    <h2 class="section-title text-xl font-bold">▶ 주요장면</h2>
+                    <div class="highlights-grid grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="highlight-item">
+                           <a href="https://www.youtube.com/watch?v=C0fae8Q1l1U" target="_blank">
+                               <img src="../images/photos/assets/first.png" alt="하이라이트 1" class="rounded-lg">
+                           </a>
+                        </div>
+                        <div class="highlight-item">
+                            <a href="https://www.youtube.com/watch?v=O56sZVIFBnE" target="_blank">
+                                <img src="../images/photos/assets/second.png" alt="하이라이트 2" class="rounded-lg">
+                            </a>
+                        </div>
+                        <div class="highlight-item">
+                            <a href="https://www.youtube.com/watch?v=NOGLey0_QTU" target="_blank">
+                                <img src="../images/photos/assets/third.PNG" alt="하이라이트 3" class="rounded-lg">
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 통산 승률 -->
+                <section class="record-section">
+                    <h2 class="section-title text-xl font-bold"><a href="match.html" class="text-blue-400">▶ 통산 승률</a></h2>
+                    <div class="player_bar">
+                        <img src="../images/photos/assets/player_bar.png" alt="페이커통산승률" class="rounded-lg mb-4">
+                    </div>
+                    <table class="stats-table w-full border-collapse mb-4">
+                        <thead>
+                            <tr>
+                                <th class="border border-gray-600">총 경기</th>
+                                <th class="border border-gray-600">승</th>
+                                <th class="border border-gray-600">패</th>
+                                <th class="border border-gray-600">KDA</th>
+                                <th class="border border-gray-600">승률</th>
+                            </tr>
+                        </thead>
+                        <tbody id="player-stats">
+                            <!-- JavaScript로 데이터 채워짐 -->
+                        </tbody>
+                    </table>
+                    <div class="stat22">
+                        <img src="../images/photos/assets/stat222.PNG" alt="2024스프링" class="rounded-lg mb-4">
+                    </div>
+                </section>
+            </div>
+
+            <!-- 오른쪽: 선수 스탯 -->
+            <div class="right-section">
+                <section class="stats-section bg-gray-800 rounded-lg shadow-md p-4">
+                    <h2 class="section-title text-xl font-bold">▶ 선수 스탯</h2>
+                    <div class="chart-container">
+                        <canvas id="stats-chart"></canvas>
+                        <div id="player-rating" class="player-rating text-lg font-bold">선수평점: 9.9</div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- 하단 컨텐츠: 선수평 -->
+        <div class="bottom-content mt-10">
+            <section class="review-section bg-gray-800 rounded-lg shadow-md p-4">
+                <h2 class="section-title text-xl font-bold">▶ 전체 선수평 보기</h2>
+                
+                <!-- 선수평 작성 폼 -->
+                <form id="review-form" class="review-form">
+                    <input type="text" name="nickname" placeholder="닉네임" required class="p-2 mb-4 rounded-md bg-gray-700 text-white">
+                    <input type="password" name="password" placeholder="비밀번호" required class="p-2 mb-4 rounded-md bg-gray-700 text-white">
+                    <textarea name="review" placeholder="선수에 대한 평가를 작성해주세요." required class="p-2 mb-4 rounded-md bg-gray-700 text-white"></textarea>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">선수평 등록</button>
+                </form>
+
+                <!-- 선수평 목록 -->
+                <div id="reviews-list" class="reviews-list">
+                    <!-- JavaScript로 동적 추가됨 -->
+                </div>
+
+                <!-- 페이지네이션 -->
+                <div class="pagination flex justify-center items-center gap-2 mt-4">
+                    <button id="first-page" class="bg-gray-700 hover:bg-gray-600 text-white px-2 py-1 rounded">≪</button>
+                    <button id="prev-page" class="bg-gray-700 hover:bg-gray-600 text-white px-2 py-1 rounded">＜</button>
+                    <span id="page-info" class="text-gray-400">1 / 100</span>
+                    <button id="next-page" class="bg-gray-700 hover:bg-gray-600 text-white px-2 py-1 rounded">＞</button>
+                    <button id="last-page" class="bg-gray-700 hover:bg-gray-600 text-white px-2 py-1 rounded">≫</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="../js/player-detail-info.js"></script>
+</body>
+</html>

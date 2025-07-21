@@ -1,0 +1,654 @@
+/* write.css - Adjusted to dark background theme with specific border colors */
+
+/* Variables from com.css for consistency */
+:root {
+  --primary-bg-color: #1A1B29; /* Dark background */
+  --secondary-bg-color: #2A2B3D; /* Slightly lighter dark for elements */
+  --accent-yellow: #ECCA52; /* Main accent color (yellow) */
+  --accent-blue: #38E4E4; /* Secondary accent color (teal/cyan) */
+  --text-color-light: #F0F2F5; /* Light text for general content on dark background */
+  --text-color-muted: #A0A0B0; /* Softer text color */
+  --text-color-dark: #333333; /* Used for placeholders or elements that need to contrast on very light backgrounds (less common in this theme) */
+  --border-color-dark: #40415A; /* General dark border */
+  --border-color-accent-blue: var(--accent-blue); /* Teal/cyan border */
+  --input-bg-color: var(--primary-bg-color); /* Input field background */
+  --hover-bg-dark: #383950; /* Darker elements hover background */
+  --font-family-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --shadow-light: rgba(0, 0, 0, 0.2); /* Subtle shadow for dark theme */
+  --shadow-medium: rgba(0, 0, 0, 0.4); /* Medium shadow */
+  --shadow-strong: rgba(0, 0, 0, 0.6); /* Stronger shadow */
+}
+
+/* Global body and main container styles (from com.css, adjusted for FMK structure) */
+body {
+  font-family: var(--font-family-primary);
+  background-color: var(--primary-bg-color);
+  color: var(--text-color-light);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+#wrap {
+  min-width: 1050px; /* From FMK HTML */
+  width: 100%;
+  height: auto !important;
+  background-color: var(--primary-bg-color); /* Match body background */
+}
+
+#container {
+  width: 1050px; /* From FMK HTML */
+  margin: 0 auto;
+  height: auto !important;
+  display: flex;
+  justify-content: center;
+}
+
+/* #content 대신 #main-content-area 사용 */
+#main-content-area {
+  width: 860px; /* From FMK HTML */
+  height: auto !important;
+  padding: 20px; /* Add some padding to the content area */
+  box-sizing: border-box;
+}
+
+.content_dummy {
+  background-color: var(--secondary-bg-color); /* Slightly lighter background for the main content area */
+  padding: 20px; /* Inner padding */
+  border-radius: 8px; /* Slight roundness */
+  box-shadow: 0 4px 15px var(--shadow-medium);
+  border: 1px solid var(--border-color-dark);
+}
+
+/* Board specific styles, mimicking FMK's write page */
+.bd_hd {
+  border-bottom: 1px solid var(--border-color-dark);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+.bd_bc strong {
+  color: var(--accent-yellow); /* Yellow for Home link */
+}
+
+.tl_srch {
+    margin-bottom: 20px; /* Space after board title search area */
+}
+
+.bd_tl h1.ngeb a {
+  color: var(--accent-blue); /* Teal/cyan for board title */
+  font-size: 1.5em;
+  text-decoration: none;
+}
+.bd_tl h1.ngeb i.bg_color { /* The colored block next to the title */
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-blue);
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+
+/* Write Form container */
+.bd_wrt_main {
+  background-color: var(--primary-bg-color); /* Darker background for the form itself */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); /* Inner shadow for depth */
+  border: 1px solid var(--border-color-dark);
+}
+
+/* "게시물 작성" Title */
+.bd_wrt_main h2 {
+    color: var(--accent-yellow); /* Changed to #ECCA52 */
+    text-align: center;
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-shadow: 0 1px 3px var(--shadow-light);
+    letter-spacing: 0.5px;
+}
+
+/* Form group styling for title, category, content (now including image upload label) */
+.form-group {
+    margin-bottom: 30px; /* Increased margin-bottom for more vertical space */
+}
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--text-color-light); /* Light text for labels */
+    font-size: 1.1em;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select,
+.form-group input[type="password"] { /* Apply to password input as well*/
+    width: 100%;
+    padding: 18px 20px; /* Increased padding for larger input field*/
+    border: 1px solid var(--border-color-dark); /* Dark border*/
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1.1em; /* Slightly larger font size within input*/
+    background-color: var(--input-bg-color); /* Darker background for inputs*/
+    color: var(--text-color-light); /* Light text for input*/
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: inset 0 1px 3px var(--shadow-light); /* Inner shadow for inputs*/
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus,
+.form-group select:focus,
+.form-group input[type="password"]:focus { /* Apply to password input focus*/
+    border-color: var(--accent-blue); /* Teal/cyan border on focus*/
+    box-shadow: 0 0 0 3px rgba(56, 228, 228, 0.3);
+    outline: none;
+}
+
+/* Placeholder color for inputs */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-color-muted);
+}
+
+/* Editor Area (simplified from FMK's complex editor) */
+.get_editor {
+  margin-bottom: 20px;
+}
+.xpress-editor .tool {
+  background-color: var(--secondary-bg-color); /* Lighter dark for toolbar */
+  border: 1px solid var(--border-color-dark); /* Dark border */
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  padding: 8px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Increased gap for better spacing of items */
+  align-items: center; /* Vertically align items in toolbar */
+}
+.xpress-editor .tool ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 5px;
+}
+.xpress-editor .tool button,
+.xpress-editor .tool select {
+  background-color: var(--primary-bg-color); /* Darker button background */
+  color: var(--text-color-light);
+  border: 1px solid var(--border-color-dark);
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+  box-shadow: 0 1px 3px var(--shadow-light); /* Subtle shadow for toolbar elements */
+}
+.xpress-editor .tool button:hover,
+.xpress-editor .tool select:hover {
+  background-color: var(--hover-bg-dark); /* Dark hover */
+  color: var(--accent-yellow);
+}
+
+/* Category select within toolbar */
+.xpress-editor .tool .category-select-toolbar select {
+  padding: 6px 10px; /* Consistent padding */
+  font-size: 0.9em; /* Consistent font size */
+  background-color: var(--primary-bg-color); /* Dark background */
+  color: var(--text-color-light); /* Light text */
+  border: 1px solid var(--border-color-dark); /* Dark border */
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px var(--shadow-light);
+}
+.xpress-editor .tool .category-select-toolbar select:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px rgba(56, 228, 228, 0.3);
+}
+
+/* 마크다운 서식 안내 버튼 스타일 (삭제 필요) */
+/*
+.markdown-guide {
+    display: flex;
+    gap: 5px;
+    margin-left: 10px;
+}
+.markdown-guide .md-btn {
+    background-color: var(--primary-bg-color);
+    color: var(--text-color-light);
+    border: 1px solid var(--border-color-dark);
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+    box-shadow: 0 1px 3px var(--shadow-light);
+}
+.markdown-guide .md-btn:hover {
+    background-color: var(--hover-bg-dark);
+    color: var(--accent-yellow);
+}
+*/
+
+.input_area.xpress_xeditor_editing_area_container {
+  border: 1px solid var(--border-color-dark); /* Dark border */
+  border-radius: 0 0 6px 6px;
+  background-color: var(--primary-bg-color); /* Dark background for textarea */
+  box-shadow: inset 0 1px 3px var(--shadow-light);
+}
+.input_area textarea.input_syntax {
+  border: none; /* Remove inner border */
+  background: none;
+  color: var(--text-color-light);
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 1em;
+  resize: vertical;
+  min-height: 250px;
+}
+.input_area textarea.input_syntax:focus {
+  outline: none;
+}
+
+/* 마크다운 미리보기 영역 스타일 (삭제 필요) */
+/*
+.markdown-preview-group {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.markdown-preview-area {
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 8px;
+    padding: 15px 20px;
+    min-height: 200px;
+    color: var(--text-color-light);
+    overflow-y: auto;
+    box-shadow: inset 0 1px 3px var(--shadow-light);
+}
+.markdown-preview-area h1,
+.markdown-preview-area h2,
+.markdown-preview-area h3,
+.markdown-preview-area h4,
+.markdown-preview-area h5,
+.markdown-preview-area h6 {
+    color: var(--accent-blue);
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--border-color-dark);
+}
+.markdown-preview-area p {
+    margin-bottom: 1em;
+}
+.markdown-preview-area strong {
+    font-weight: bold;
+    color: var(--accent-yellow);
+}
+.markdown-preview-area em {
+    font-style: italic;
+}
+.markdown-preview-area ul,
+.markdown-preview-area ol {
+    margin-left: 20px;
+    margin-bottom: 1em;
+}
+.markdown-preview-area li {
+    margin-bottom: 0.5em;
+}
+.markdown-preview-area a {
+    color: var(--accent-blue);
+    text-decoration: underline;
+}
+.markdown-preview-area pre {
+    background-color: #000;
+    color: #0F0;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9em;
+    margin-bottom: 1em;
+}
+.markdown-preview-area code {
+    background-color: #333;
+    color: #eee;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+*/
+
+/* File Upload Area */
+.xefu-container {
+  margin-top: 25px;
+  border: 1px solid var(--border-color-dark); /* Dark border */
+  border-radius: 8px;
+  padding: 20px;
+  background-color: var(--secondary-bg-color); /* Lighter dark background */
+  box-shadow: 0 2px 10px var(--shadow-light);
+}
+
+.xefu-dropzone {
+  color: var(--text-color-muted);
+  font-size: 0.9em;
+  line-height: 1.5;
+  text-align: center;
+  padding: 15px 0;
+  border: 2px dashed var(--border-color-dark); /* Dark dashed border */
+  border-radius: 6px;
+  position: relative; /* For file input button positioning */
+}
+.xefu-dropzone p { /* Style for text within dropzone */
+  margin: 5px 0;
+  color: var(--text-color-muted);
+}
+
+.xefu-btn.fileinput-button {
+  display: inline-block;
+  background-color: var(--hover-bg-dark); /* Dark background */
+  color: var(--text-color-light);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden; /* To hide default file input */
+  border: 1px solid var(--border-color-dark);
+}
+.xefu-btn.fileinput-button input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.xefu-btn.fileinput-button:hover {
+  background-color: var(--primary-bg-color); /* Even darker on hover */
+  border-color: var(--accent-yellow); /* Yellow border on hover */
+}
+
+.file-list {
+    margin-top: 15px;
+    padding: 0;
+    list-style: none;
+    background-color: var(--input-bg-color); /* Dark background for list */
+    border-radius: 6px;
+    box-shadow: inset 0 1px 3px var(--shadow-light);
+    border: 1px solid var(--border-color-dark);
+}
+
+.file-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border-color-dark); /* Dark border */
+    font-size: 0.95em;
+    color: var(--text-color-light);
+}
+
+.file-list li:last-child {
+  border-bottom: none;
+}
+
+.file-list li button {
+    background: none;
+    border: none;
+    color: #ff6b6b; /* Red for delete button */
+    cursor: pointer;
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 1em;
+    transition: color 0.2s ease;
+    padding: 5px;
+}
+.file-list li button:hover {
+  color: #e00000;
+}
+
+
+/* Options Checkboxes */
+.opt_chk {
+  margin-top: 25px;
+  padding: 15px 0;
+  border-top: 1px solid var(--border-color-dark); /* Dark border */
+  border-bottom: 1px solid var(--border-color-dark); /* Dark border */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between checkboxes */
+  justify-content: flex-start;
+}
+.opt_chk .section {
+  display: flex;
+  align-items: center;
+}
+.opt_chk input[type="checkbox"] {
+  margin-right: 8px;
+  /* Custom checkbox styling if desired */
+}
+.opt_chk label {
+  color: var(--text-color-light);
+  font-size: 0.95em;
+  cursor: pointer;
+}
+
+
+/* Registration/Action Buttons */
+.regist {
+  margin-top: 30px;
+  text-align: right; /* Default align to right */
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 10px; /* Space between buttons */
+  align-items: center; /* Vertically align items in the flex container*/
+}
+
+/* Styling for the password input within the .regist div*/
+.regist .form-group {
+    /* 원래 인라인 스타일에 해당하는 부분 */
+    margin-bottom: 30px; /* 기본값 유지, 아래 `password-input-group`에서 덮어씀 */
+    flex-grow: 1;
+    margin-right: 10px;
+    max-width: 250px;
+}
+
+/* 새로운 클래스 추가: 인라인 스타일 대체 및 password input group용 */
+.regist .password-input-group {
+    margin-bottom: 0; /* 이전에 인라인으로 지정했던 스타일 */
+}
+
+
+.regist #postPassword {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 1em;
+    height: auto;
+    box-sizing: border-box;
+}
+
+/* Ensure the label for password is not displayed as it has class 'blind' */
+.regist .form-group label.blind {
+    display: none;
+}
+
+
+.regist .bd_btn {
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.regist .bd_btn[onclick*="com.html"] { /* "돌아가기" 버튼 (사용자가 "취소"로 인지할 가능성) */
+  background-color: transparent; /* 투명 배경 */
+  color: var(--text-color-light); /* 밝은 텍스트 */
+  border: 1px solid var(--accent-blue); /* #38E4E4 테두리 */
+}
+.regist .bd_btn[onclick*="com.html"]:hover {
+  background-color: var(--hover-bg-dark);
+  box-shadow: 0 6px 15px var(--shadow-medium);
+}
+
+/* 임시 저장, 임시 저장 불러오기, 미리 보기 버튼 (이전 마크다운 방식에서 쓰였을 수 있음. 현재는 쓰이지 않음) */
+.regist .bd_btn:not([type="submit"]):not([onclick*="com.html"]) {
+  background-color: var(--primary-bg-color); /* Darker background */
+  color: var(--text-color-light);
+  border: 1px solid var(--border-color-dark); /* Dark border */
+}
+.regist .bd_btn:not([type="submit"]):not([onclick*="com.html"]):hover {
+  background-color: var(--hover-bg-dark);
+  box-shadow: 0 4px 10px var(--shadow-medium);
+}
+
+
+.regist button[type="submit"].blue { /* "등록" (작성 완료) 버튼 */
+  background-color: var(--accent-yellow); /* Yellow background */
+  color: var(--primary-bg-color); /* Dark text on yellow */
+  border: 1px solid var(--border-color-white); /* White border */
+}
+.regist button[type="submit"].blue:hover {
+  background-color: #d1b821; /* Darker yellow */
+  box-shadow: 0 4px 12px rgba(236, 202, 82, 0.6);
+}
+
+
+/* Bottom warning/info texts */
+.bd_wrt_main > p {
+  color: var(--text-color-muted);
+  font-size: 0.9em;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+.bd_wrt_main > p span {
+  color: var(--accent-yellow); /* Yellow for highlighted words like "후방주의" */
+  font-weight: bold;
+}
+
+/* Responsive Adjustments (basic) */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  #wrap {
+    min-width: unset;
+    width: 100%;
+  }
+  #container {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  /* #content 대신 #main-content-area 사용 */
+  #main-content-area {
+    width: 100%;
+    padding: 10px;
+  }
+  .content_dummy {
+    padding: 10px;
+  }
+
+  .bd_wrt_main {
+    padding: 15px;
+  }
+
+  .bd_wrt_main h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  /* Adjustments for categories and title in form-group on small screens */
+  .form-group label {
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+  .form-group input[type="text"],
+  .form-group textarea,
+  .form-group select,
+  .form-group input[type="password"] { /* Apply to password input on small screens*/
+    padding: 10px 12px;
+    font-size: 0.95em;
+  }
+  .form-group textarea {
+    min-height: 180px;
+  }
+
+  .xpress-editor .tool {
+    gap: 5px;
+    padding: 5px;
+    flex-direction: column; /* 모바일에서 툴바 버튼 세로 정렬 */
+    align-items: flex-start; /* 왼쪽 정렬 */
+  }
+  .xpress-editor .tool ul.category-select-toolbar {
+    width: 100%;
+  }
+  .xpress-editor .tool .category-select-toolbar select {
+    width: 100%;
+  }
+  .xpress-editor .tool button,
+  .xpress-editor .tool select {
+    padding: 4px 8px;
+    font-size: 0.8em;
+  }
+  .xpress-editor .tool .category-select-toolbar select {
+    width: auto; /* Allow select to shrink */
+  }
+
+  /* 마크다운 가이드 스타일 (삭제 필요) */
+  /*
+  .markdown-guide {
+      margin-left: 0;
+      width: 100%;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+  }
+  .markdown-guide .md-btn {
+      width: auto;
+      flex-grow: 1;
+      min-width: 40px;
+  }
+  */
+
+  .xefu-dropzone {
+    padding: 10px;
+  }
+  .xefu-btn.fileinput-button {
+    padding: 8px 15px;
+    font-size: 0.85em;
+  }
+
+  .opt_chk {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .regist {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .regist .bd_btn {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+
+  /* Specific adjustments for password input on small screens if needed */
+  .regist .form-group {
+      max-width: unset; /* Remove max-width on small screens */
+      margin-right: 0;
+      width: 100%;
+  }
+}

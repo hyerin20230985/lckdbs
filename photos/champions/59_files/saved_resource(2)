@@ -1,0 +1,43 @@
+
+var ftGUID_8976526="59162CF44552A1";
+var ftConfID_8976526="0";
+var ftParams_8976526="ftOBA=1&ft_agentEnv=0&ft_referrer=https%3A%2F%2Fc0f525f5669c0a4987518b864e9c5c97.safeframe.googlesyndication.com%2Fsafeframe%2F1-0-45%2Fhtml%2Fcontainer.html&gdpr=0&ftClick=https://exch.quantserve.com/r?&a=p-1RYxePXT9bCS2&labels=_qc.clk,_click.adserver.rtb,_click.rand.840764196&rtbip=103.229.8.50&rtbdata2=EA46EWh0dHBzOi8vbmFtdS53aWtpWiRwWjlpSExqWFRRZWtnRW80cEtsbkdyZW1iaUQ2Z0lONU5IMD2AAbf1wtgEugEkZTAyMTI5MmEtYmNmYy00NjYzLTg2ZTktNDMyMWEzMzFmOTY1wAGQywHIAYWn6cH3MtoBJDdkMjAxY2IxLTI0YjUtMzlmZi1iZDhhLWJjNmUxNWI2NWMxMrACDsgCANAChOORq7O81MUq6AIm8gIMCCYQ-pDn0qyjys4q8gIPCIWLJRCdpcOs0tLOoJIB-AIAigMTdGhlbWVkaWFncmlkLjFNQ1lHWpIDDHRoZW1lZGlhZ3JpZJgDAKgDALIDBK9z07-6AxIJVUQ5GcOpjOYRmXYc8NjFx6jCAxIJXUy4lnX5yl8RTGjefJSswbjIA92AgIMB0gMSCUNSOP8eGf8PEQkwpxo8F2WT2AOklvSQA-IDD3AtMVJZeGVQWFQ5YkNTMuoDBgisAhD6AfIDBTE2MzI4-AMAgAThNIoEAjc2kgQLR1JJRC0xNTc2MTCaBBIJgEUAoy78bAcR_p0HdoSk1biiBBIJQ1I4_x4Z_w8RCTCnGjwXZZOqBBIJVUQ5GcOpjOYRmXYc8NjFx6i4BNAF0AQB8gQCS1KABQGKBSoyMGY1MGUyZjQ2MTdiZGE5YWZkN2M2ZDQ3NWJhMjBjZjA1M2M0ZWY2OWSQBQGaBRUg9Q4vRhe9qa_XxtR1uiDPBTxO9p2iBSRwWjlpSExqWFRRZWtnRW80cEtsbkdyZW1iaUQ2Z0lONU5IMD24BQDABdzpi-8MyAWe26kE0gUGCAQQARgF6AUFmgYUChIJgEUAoy78bAcR_p0HdoSk1bigBgCoBr2e3dMBtQYDESI4ugZMCgJLUhICNDEY3IMZIgxqZW9uZ2phLWRvbmcqBTE2MzI4OhlzayUyMGJyb2FkYmFuZCUyMGNvJTIwbHRkWg5zayUyMGJyb2FkYmFuZMkGCCAQhetUqAvqBhFodHRwczovL2Fkb2JlLmNvbfEGADgQhetUqAv4BgCABwCKBxIJXUy4lnX5yl8RTGjefJSswbg&redirecturl3=&ft_custom=lzEaUpE2SlONZxwAlXgbW8YzBQDEbUlPwjYeB5FgSlSVNhlQvKjnqg==&site_url=namu.wiki&cachebuster=362719.6592943451";
+var ftKeyword_8976526="";
+var ftCustom_8976526="lzEaUpE2SlONZxwAlXgbW8YzBQDEbUlPwjYeB5FgSlSVNhlQvKjnqg==";
+var ftSection_8976526="";
+var ftSegment_8976526="afr5,ampy";
+var ftSegmentList_8976526=[{s:'afr5'},{s:'ampy'}];
+var ftRuleMatch_8976526="0";
+var ftTimestamp_8976526="1750069243";
+var ftGeoC2_8976526="kr";
+var ftGeoState_8976526="41";
+var ftGeoCity_8976526="jeongja-dong";
+var ftISP_8976526="sk broadband co ltd";
+var ftSpeed_8976526="broadband";
+var ftConnType_8976526="wifi";
+var ftDMA_8976526="410076";
+var ftLong_8976526="126.99";
+var ftLat_8976526="37.3";
+var ftPostal_8976526="16328";
+var ftTimeZone_8976526="+900";
+var ftMobileCarrier_8976526="";
+var ftImp8976526 = {};
+ftImp8976526.privacy = "x";
+ftImp8976526.guidAge = "460";
+ftImp8976526.impID = "C4A284DE-E3F5-6A9B-4F0E-76B6BDC9D273";
+ftImp8976526.duid = "FT:59162CF44552A1";
+
+ftImp8976526.ft_tpplid = "";
+ftImp8976526.ft_c = {};
+ftImp8976526.gdpr = "0";
+ftImp8976526.gdpr_consent = "";
+ftImp8976526.gdpr_pd = "";
+ftImp8976526.oob_consent = "";
+ftImp8976526.gdprStoredConsent = "";
+ftImp8976526.us_privacy = "";
+ftImp8976526.gpc = "";
+
+ftImp8976526.jsAppend = "1";
+var ftCreativeId_8976526 = "5068843";
+(function(){var tag=document.getElementById("ft_servedby_8976526")||function(s){return s[s.length-1]}(document.getElementsByTagName("script")),js=document.createElement("script");js.src="https://ajs-assets.ftstatic.com/ftUtils.js";js.id="ftscript_m8976526";js.setAttribute("name","ftscript_m8976526");tag.parentNode.insertBefore(js,tag)})();window.fTChecker=window.fTChecker||function(id){if(!id)return false;id=""+id;if(window.hasOwnProperty("ftUtils")){window["ft"+id]=Object.assign({},window.ftUtils.common);window["ft"+id].getBannerConfig(id)}else(function(id){window.setTimeout(function(){window.fTChecker(id)},50)})(id)};window.fTChecker("8976526");
+

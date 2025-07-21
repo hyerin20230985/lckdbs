@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0049)https://sync.pmbmonetize.live/static/adisync.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>adisync</title>
+</head>
+<body marginwidth="0" marginheight="0">
+  <script>
+    (function () {
+      var dnt = (typeof navigator.doNotTrack !== 'undefined') ? navigator.doNotTrack
+      : (typeof window.doNotTrack !== 'undefined')            ? window.doNotTrack
+      : (typeof navigator.msDoNotTrack !== 'undefined')       ? navigator.msDoNotTrack
+      : null;
+
+      if (dnt == 1 || dnt == 'yes') return console.log('DNT is enabled');
+
+      var MASTEREP = 'https://sync.pmbmonetize.live/psync';
+      var cfg = {
+        xandr: {
+          pixel: 'https://ib.adnxs.com/getuid?https%3A%2F%2Fsync.pmbmonetize.live%2Fpsync%3Ft%3Dd%26e%3D75%26u%3D%24UID'
+        },
+        adyoulike: {
+          pixel: 'https://sync.pmbmonetize.live/psync?t=s&e=91&cb=https%3A%2F%2Fvisitor.omnitagjs.com%2Fvisitor%2Fsync%3Fuid%3D766527347534e5daab1d03bdcaa484b0%26visitor%3D%25USER_ID%25'
+        },
+        adaptmx: {
+          pixel: 'https://sync.a-mo.net/cchain?gdpr=0&gdpr_consent=&us_privacy=&cb=https%3A%2F%2Fsync.pmbmonetize.live%2Fpsync%3Ft%3Dd%26e%3D87%26u%3D'
+        },
+        adaptmx_124: {
+          pixel: 'https://sync.a-mo.net/cchain?gdpr=0&gdpr_consent=&us_privacy=&cb=https%3A%2F%2Fsync.pmbmonetize.live%2Fpsync%3Ft%3Dd%26e%3D124%26u%3D'
+        },
+        vidazoo: {
+          pixel: 'https://sync.pmbmonetize.live/psync?t=s&e=85&cb=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dadipolo%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D%26userId%3D%25USER_ID%25'
+        },
+        unruly: {
+          pixel: 'https://sync.1rx.io/usersync2/rmphb?gdpr=&gdpr_consent=&us_privacy=&redir=https%3A%2F%2Fsync.pmbmonetize.live%2Fpsync%3Ft%3Dd%26e%3D82%26u%3D%5BRX_UUID%5D'
+        },
+        smilewanted: {
+          pixel: 'https://csync.smilewanted.com/getuid?source=openrtb&zoneCode=openrtb_adipolo&gdpr=&gdpr_consent=&us_privacy={{USPrivacy}}&redirect=https%3A%2F%2Fsync.pmbmonetize.live%2Fpsync%3Ft%3Dd%26e%3D123%26u%3D%24UID'
+        },
+        onetag: {
+          iframe: 'https://onetag-sys.com/usync/?pubId=61d88450bdb25bc&gdpr=&gdpr_consent=&us_privacy='
+        },
+        admatic: {
+          iframe: 'https://dsp-service.admatic.de/cookie_sync?r=https%3A%2F%2Fsync.pmbmonetize.live%2Fpsync%3Ft%3Dd%26e%3D144%26u%3D%24%7BUSER_ID%7D'
+        },
+        nobid: {
+          iframe: 'https://public.servenobid.com/sync.html?gdpr=&gdpr_consent=&usp_consent=&redirect=https%3A%2F%2Fsync.pmbmonetize.live%2Fpsync%3Ft%3Dd%26e%3D92%26u%3D%24UID'
+        },
+        aniview: {
+          iframe: 'https://player.aniview.com/ssync/60095c900c0799791c46d8d4/ssync.html?pid=60095c900c0799791c46d8d4&gdpr=&consent=&ccpa=&r=https%3A%2F%2Fsync.pmbmonetize.live%2Fpsync%3Ft%3Dd%26e%3D128%26u%3D%5BAV_UID%5D'
+        },
+        bidmatic: {
+          pixel: 'https://sync.pmbmonetize.live/psync?t=s&e=85&cb=https%3A%2F%2Fsync.bidmatic.io%2Fcsync%3Ft%3Da%26ep%3D777754%26extuid%3D%24UID'
+        }
+      };
+
+      function getQSParam(a) {
+        if (!a || -1 === (window.location.search || "").indexOf(a)) return null;
+        var b = new RegExp("[?&]" + a + "((=([^&]*))|(&|$))"),
+          c = b.exec(window.location.search);
+        return !c || c.length < 5 ? null : decodeURIComponent(c[3] || "");
+      }
+
+      function fireFrame(endpoint) {
+        var iframe = document.createElement('iframe');
+        iframe.style.cssText = 'display:none;width:0px;height:0px;';
+        iframe.src = endpoint;
+        document.body.appendChild(iframe);
+      }
+
+      function firePixel(endpoint) {
+        var img = document.createElement('img');
+        img.style.cssText = 'display:none;width:0px;height:0px;';
+        img.src = endpoint;
+        document.body.appendChild(img);
+      }
+
+      if (window.location.search && getQSParam('cb')) {
+        firePixel(MASTEREP + window.location.search);
+      }
+
+      for (var i in cfg) {
+        if (cfg.hasOwnProperty(i)) {
+          if (cfg[i].hasOwnProperty('iframe')) {
+            fireFrame(cfg[i].iframe);
+          } else if (cfg[i].hasOwnProperty('pixel')) {
+            firePixel(cfg[i].pixel);
+          }
+        }
+      }
+    })();
+  </script><img src="./getuid" style="display: none; width: 0px; height: 0px;"><img src="./psync" style="display: none; width: 0px; height: 0px;"><img src="./cchain" style="display: none; width: 0px; height: 0px;"><img src="./cchain(1)" style="display: none; width: 0px; height: 0px;"><img src="./psync(1)" style="display: none; width: 0px; height: 0px;"><img src="./rmphb" style="display: none; width: 0px; height: 0px;"><img src="./getuid(1)" style="display: none; width: 0px; height: 0px;"><iframe src="./saved_resource(26).html" style="display: none; width: 0px; height: 0px;"></iframe><iframe src="./cookie_sync(1).html" style="display: none; width: 0px; height: 0px;"></iframe><iframe src="./sync(8).html" style="display: none; width: 0px; height: 0px;"></iframe><iframe src="./ssync(1).html" style="display: none; width: 0px; height: 0px;"></iframe><img src="./psync(2)" style="display: none; width: 0px; height: 0px;">
+
+
+
+</body></html>

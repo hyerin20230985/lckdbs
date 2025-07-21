@@ -1,0 +1,251 @@
+
+
+/* Reset some default styles */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Apple SD Gothic Neo, Helvetica, Arial, NanumGothic, 나눔고딕, Malgun Gothic, 맑은 고딕, Dotum, 굴림, gulim, 새굴림, noto sans, 돋움, sans-serif; /* 기본 폰트 패밀리 */
+    font-size: 14px; /* 기본 글자 크기 */
+    line-height: 20px; /* 기본 줄 간격 */
+    background-color: #111827;
+    color: #ffffff; /* 기본 글자색 하얀색으로 변경 */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Header styles */
+.header_container__2I4IR {
+    background-color: #1c1c1c; /* 헤더 배경색 */
+    padding: 10px 20px; /* 패딩 */
+    width: 100%; /* 부모 요소의 전체 너비 사용 */
+    min-width: 100%; /* 최소 너비 설정 */
+}
+
+
+/* Sub-menu styles */
+.header_menu__23d4_ {
+    background-color: #1c1c1c; /* 서브 메뉴 배경색 */
+    padding: 10px 0; /* 패딩 */
+}
+
+.sub_menu_list__3LmV1 {
+    list-style: none; /* 리스트 스타일 제거 */
+    display: flex; /* 수평 정렬 */
+    padding: 0; /* 패딩 제거 */
+    margin: 0; /* 마진 제거 */
+    justify-content: center; /* 가운데 정렬 */
+}
+
+.sub_menu_item__Q2d1m {
+    margin-right: 30px; /* 서브 메뉴 항목 간격 */
+}
+
+.sub_menu_link__3BySZ {
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: #ffffff; /* 기본 글자색 */
+    font-size: 14px; /* 글자 크기 설정 */
+    transition: color 0.3s; /* 색상 변화 애니메이션 */
+}
+
+.sub_menu_link__3BySZ:hover {
+    color: #ffcc00; /* 호버 색상 */
+}
+
+.sub_menu_link__3BySZ.active {
+    font-weight: bold; /* 선택된 항목 강조 */
+    color: #ffcc00; /* 선택된 링크 색상 */
+}
+
+/* Schedule container styles */
+.schedule_container {
+    position: relative;
+    padding: 20px; /* 패딩 */
+    background: #242d40; /* 배경색 */
+    width: 1800px;
+    min-height: 200px;
+    height: auto;
+    border: 2px solid #afafaf; /* 테두리 스타일 */
+    border-radius: 10px;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.calendar_icon {
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 1.2em; /* 아이콘 크기 조정 */
+}
+
+.year_selector {
+    display: flex;
+    align-items: center; /* 세로 정렬 */
+    margin-bottom: 20px; /* 아래쪽 마진 */
+}
+
+.year_selector label {
+    margin-right: 10px; /* 레이블과 드롭다운 간격 */
+    font-size: 14px; /* 레이블 글자 크기 증가 */
+}
+
+.year_select {
+    padding: 10px; /* 드롭다운 패딩 */
+    font-size: 14px; /* 드롭다운 글자 크기 증가 */
+    border: 1px solid #ccc; /* 테두리 */
+    border-radius: 4px; /* 모서리 둥글게 */
+}
+
+/* Schedule list styles */
+.schedule_list {
+    border-top: 1px solid #ccc; /* 위쪽 경계선 */
+    margin-top: 10px; /* 위쪽 마진 */
+    display: flex; /* Flexbox를 사용하여 수평 정렬 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+}
+
+.schedule_item {
+    display: flex; /* 수평 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    padding: 15px 0; /* 패딩 */
+    border-bottom: 1px solid #ccc; /* 아래쪽 경계선 */
+    justify-content: space-between; /* 간격 조정 */
+    position: relative;
+}
+
+/* 시간 영역 스타일 */
+.schedule_time {
+    width: 120px; /* 시간 영역 너비 조정 */
+    font-weight: bold; /* 두꺼운 글씨 */
+    text-align: center; /* 중앙 정렬 */
+}
+
+/* 라운드 영역 스타일 */
+.schedule_round {
+    width: 100px; /* 라운드 영역 너비 */
+    font-weight: bold; /* 두꺼운 글씨 */
+    text-align: center; /* 중앙 정렬 */
+    margin: 0 20px;
+}
+
+/* 팀과 선수 정보 영역 스타일 */
+.schedule_team {
+    display: flex; /* 수평 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: space-evenly; /* 간격 조정 */
+    flex-grow: 1; /* 남은 공간을 차지 */
+    margin: 0 20px; /* 좌우 여백 추가 */
+}
+
+/* 선수 사진 및 팀 로고 스타일 */
+.team_info {
+    display: flex; /* 수평 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    margin-right: 60px; /* 팀 사이 간격 */
+}
+
+/* 이미지 크기 조정 */
+.team_logo {
+    width: 50px; /* 로고 및 선수 사진 너비 */
+    height: 50px; /* 로고 및 선수 사진 높이 */
+    object-fit: cover; /* 비율 유지하면서 크기 조정 */
+    margin: 0 70px; /* 이미지 간격 증가 */
+}
+
+.player_photo {
+    width: 50px; /* 로고 및 선수 사진 너비 */
+    height: 50px; /* 로고 및 선수 사진 높이 */
+    object-fit: cover; /* 비율 유지하면서 크기 조정 */
+    margin: 0 70px; /* 이미지 간격 증가 */
+}
+
+/* 경기 결과 스타일 */
+.schedule_score {
+    display: flex; /* 수평 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    font-weight: bold; /* 두꺼운 글씨 */
+    font-size: 16px; /* 점수 글자 크기 증가 */
+    margin-right: 70px;
+}
+
+/* 숫자 간격 조정 */
+.schedule_score span {
+    margin: 0 5px; /* 숫자 간격 */
+}
+
+/* 이긴 팀과 진 팀 색상 설정 */
+.schedule_score .win {
+    color: black; /* 이긴 팀 색상 */
+}
+
+.schedule_score .lose {
+    color: gray; /* 진 팀 색상 */
+}
+
+/* 버튼 스타일 */
+.more_info, .status {
+    margin-left: 10px; /* 간격 */
+    color: #007bff; /* 링크 색상 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+    padding: 5px 10px; /* 버튼 패딩 */
+    border: 1px solid #007bff; /* 버튼 테두리 */
+    border-radius: 4px; /* 둥근 모서리 */
+    background-color: white; /* 버튼 배경색 */
+    transition: background-color 0.3s, color 0.3s; /* 호버 시 색상 변화 애니메이션 */
+}
+
+.more_info:hover, .status:hover {
+    background-color: #007bff; /* 호버 시 배경색 변화 */
+    color: white; /* 호버 시 글자색 변화 */
+}
+
+/* 종료 버튼 스타일 */
+.status {
+    font-weight: bold; /* 두꺼운 글씨 */
+    color: rgb(25, 0, 255); /* 종료 색상 */
+    margin-left: 5px; /* 시간과 버튼 간격 */
+    padding: 5px 10px; /* 버튼 스타일 패딩 */
+    border: 1px solid rgb(25, 0, 255); /* 테두리 */
+    border-radius: 4px; /* 둥근 모서리 */
+    background-color: white; /* 배경색 */
+    transition: background-color 0.3s, color 0.3s; /* 호버 시 색상 변화 애니메이션 */
+}
+
+
+.status:hover {
+    background-color: rgb(25, 0, 255);
+    color: white;
+}
+
+/* 팀 이름 고정 너비 설정 */
+.team_name {
+    width: 100px;
+    text-align: left;
+    white-space: nowrap;
+}
+.stat-page-container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0px auto;
+    padding: 0px;
+    background-color: #343a40;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative; /* absolute 유지 */
+    z-index: 1; /* 초기에는 뒤에 숨김 */
+    opacity: 0;
+    max-height: 0;
+    visibility: hidden;
+    overflow: hidden; /* 내용이 넘칠 경우 숨김 */
+    transition: all 0.5s ease-in-out;
+}
+
+.stat-page-container.show {
+    max-height: 1800px;
+    opacity: 1; /* 불투명도 설정 */
+    visibility: visible;
+    transform: translateY(0);
+    padding: 20px; /* 패딩 */
+    margin: 20px auto; /* 위쪽 마진 */
+    overflow: visible; /* 내용이 넘칠 경우 보이도록 설정 */
+}

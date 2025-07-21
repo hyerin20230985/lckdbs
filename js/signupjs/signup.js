@@ -1,13 +1,13 @@
 import { validateId, displayIdValidation } from '../validate/id.js';
 import { validatePassword, displayPasswordValidation } from '../validate/password.js';
 import { validateNickname, displayNicknameValidation } from '../validate/nickname.js';
-import { validateEmail, displayEmailValidation } from '../validate/email.js';
+// import { validateEmail, displayEmailValidation } from '../validate/email.js';
 
  document.addEventListener("DOMContentLoaded", () => {
     displayIdValidation();
     displayPasswordValidation();
     displayNicknameValidation();
-    displayEmailValidation();
+    // displayEmailValidation();
 
     const signupForm = document.getElementById("signup-form");
     const agreePrivacy = document.getElementById("agree-privacy");
@@ -20,10 +20,10 @@ import { validateEmail, displayEmailValidation } from '../validate/email.js';
         const password = document.getElementById("passwd-input").value.trim();
         const repassword = document.getElementById("repasswd-input").value.trim();
         const nickname = document.getElementById("nickname-input").value.trim();
-        const emailId = document.getElementById("email-id").value.trim();
-        const emailText = document.getElementById("email-text").value.trim();
+        // const emailId = document.getElementById("email-id").value.trim();
+        // const emailText = document.getElementById("email-text").value.trim();
         const name = document.getElementById("name-input").value.trim();
-        const birth = `${document.getElementById("birth-year").value.trim()}-${document.getElementById("birth-month").value.trim()}-${document.getElementById("birth-day").value.trim()}`;
+        // const birth = `${document.getElementById("birth-year").value.trim()}-${document.getElementById("birth-month").value.trim()}-${document.getElementById("birth-day").value.trim()}`;
 
         const errors = [];
 
@@ -37,8 +37,8 @@ import { validateEmail, displayEmailValidation } from '../validate/email.js';
         const nicknameErrors = validateNickname(nickname);
         if (nicknameErrors.length) errors.push(...nicknameErrors);
 
-        const emailError = validateEmail(emailId, emailText);
-        if (emailError) errors.push(emailError);
+        // const emailError = validateEmail(emailId, emailText);
+        // if (emailError) errors.push(emailError);
 
         if (!agreePrivacy.checked || !agreeAge.checked) {
             errors.push("필수 약관에 모두 동의해주세요.");
@@ -54,8 +54,8 @@ import { validateEmail, displayEmailValidation } from '../validate/email.js';
             password,
             nickname,
             name,
-            email: `${emailId}@${emailText}`,
-            birth,
+            // email: `${emailId}@${emailText}`,
+            // birth,
         };
 
         try {

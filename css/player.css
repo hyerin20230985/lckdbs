@@ -7,6 +7,7 @@
     width: 250px;
     position: relative;
     aspect-ratio: 3/4;
+    border: 1px solid rgba(42, 95, 248, 0.42);
 }
 
 .player-card img {
@@ -17,10 +18,11 @@
 }
 
 .role-sidebar {
+    margin-top: 18px;
     width: 100px;
     height: 100px;
     margin-right: 20px;
-    background:#242d40;
+    background: var(--background-light);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     padding: 15px 0;
@@ -104,18 +106,17 @@
     padding: 16px 8px;
     color: white;
     text-align: left;
+    font-weight: bold;
 }
 
 .overlay .position {
     font-size: 14px;
-    font-weight: bold;
     opacity: 0.9;
     margin-left: 7px;
 }
 
 .overlay .nickname {
     font-size: 18px;
-    font-weight: bold;
     margin-top: 4px;
     margin-left: 7px;
     color: #edd12d;
@@ -165,6 +166,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid rgba(42, 95, 248, 0.42);
 }
 
 /* .detail-card {
@@ -201,7 +203,7 @@
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(42, 95, 248, 0.42);
     padding: 15px;
-    z-index: 9999;
+    z-index: 4;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -226,6 +228,11 @@
     color: white;
 }
 
+#year-select option:hover {
+    background-color: #060b40; 
+    color: white;
+}
+
 #close-detail {
     padding: 10px;
     width: 100%;
@@ -235,4 +242,107 @@
     border-radius: 6px;
     cursor: pointer;
     margin-top: auto;
+}
+
+/* 헤더 네비게이션 */
+header {
+    background-color: var(--primary-dark); /* style2.css에서 가져온 색상 */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0.8rem 2rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+.nav-center {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-item {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.nav-item:hover {
+    color: var(--text-primary);
+}
+
+.nav-item:hover::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color); /* style2.css에서 가져온 색상 */
+    transform: scaleX(1);
+    transition: transform 0.2s ease;
+}
+
+.nav-item.live {
+    color: #ff4655;
+    font-weight: 700;
+}
+
+.login-btn, .signup-btn {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.login-btn {
+    color: var(--text-primary);
+    margin-right: 0.5rem;
+}
+
+.login-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.signup-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.signup-btn:hover {
+    background-color: var(--primary-dark);
+}
+.logo {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(39, 76, 218, 0.5);
+}
+
+:root {
+    --primary-color: #1d1e4d; /* style2.css에서 가져온 색상 */
+    --primary-dark: #1a1a2e; /* style2.css에서 가져온 색상 */
+    --background-dark: #171727; /* style2.css에서 가져온 색상 */
+    --background-light: #1e1e2f; /* style2.css에서 가져온 색상 */
+    --text-primary: #ffffff; /* 유지 */
+    --text-secondary: #b0b7d6; /* 유지 */
+    --accent-color: #f7cf2d; /* 유지 */
+    --border-color: rgba(8, 6, 24, 0.1); /* 유지 */
+    --card-bg: rgba(17, 24, 39, 0.85); /* style2.css에서 가져온 색상 */
 }

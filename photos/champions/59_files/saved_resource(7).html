@@ -1,0 +1,56 @@
+
+<!-- saved from url=(0109)https://c0f525f5669c0a4987518b864e9c5c97.safeframe.googlesyndication.com/safeframe/1-0-45/html/container.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <style>
+        html, body {
+          margin: 0;
+          padding: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+        }
+        .str-thumbnail-body {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+        }
+        .str-thumbnail-content {
+          width: 300px;
+          height: 600px;
+          transform-origin: center;
+        }
+        .str-thumbnail-content-scale {
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+      <script>
+        function resize() {
+          const thumbnailBody = document.querySelector(".str-thumbnail-body");
+          const thumbnailContent = document.querySelector(".str-thumbnail-content");
+          const width = 300;
+          const height = 600;
+          
+          const containerWidth = thumbnailBody?.clientWidth;
+          const containerHeight = thumbnailBody?.clientHeight;
+
+          const heightScale = containerHeight / height;
+          const widthScale = containerWidth / width;
+          const scale = Math.min(heightScale, widthScale, 1);
+          
+          if (thumbnailContent) thumbnailContent.style.transform = 'scale(' + scale + ')';
+        }
+        window.addEventListener("DOMContentLoaded", resize);
+        window.addEventListener("resize", resize);
+        resize();
+      </script>
+    </head>
+    <body class="str-thumbnail-body">
+      <div class="str-thumbnail-content" style="transform: scale(0.75);">
+        <div class="str-thumbnail-content-scale"><iframe id="226263f2" name="226263f2" src="./saved_resource(9).html" framespacing="0" frameborder="no" scrolling="no" width="300" height="600"></iframe><img src="./sync(2)" alt=" " style="display:none"></div>
+      </div>
+    
+  
+</body></html>

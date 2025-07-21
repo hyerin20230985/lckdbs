@@ -1,0 +1,164 @@
+// schedule-script.js
+
+$(function() {
+    let statPageIdCounter = 0;
+    let currentTournament = null;
+
+    $("#dateSelect").datepicker({
+        dateFormat: "yy-mm-dd",
+        onSelect: function(dateText) {
+            updateSchedule(dateText, currentTournament);
+        }
+    });
+
+    $(".calendar_icon").on("click", function() {
+        $("#dateSelect").datepicker("show");
+    });
+
+    $(".tournament_logo").on("click", function() {
+        const $clickedLogo = $(this);
+        const $clickedWrapper = $clickedLogo.parent('.logo-item-wrapper');
+
+        $(".logo-item-wrapper").removeClass("selected");
+        $clickedWrapper.addClass("selected");
+
+        currentTournament = $clickedLogo.data("tournament");
+
+        const selectedDate = $("#dateSelect").val();
+        const dateToUse = selectedDate || new Date().toISOString().split('T')[0];
+        if (!selectedDate) {
+            $("#dateSelect").val(dateToUse);
+        }
+
+        updateSchedule(dateToUse, currentTournament);
+    });
+
+    $(".team_select_button").on("click", function(event) {
+        event.stopPropagation();
+        $(this).siblings(".team_list").toggle();
+    });
+
+    $(".team_list ul li").on("click", function() {
+        const teamName = $(this).text().trim();
+        const $img = $(this).find('img');
+        const src = $img.attr('src');
+        const alt = $img.attr('alt');
+
+        let teamWinRate = {
+            'T1': '123W 63L 승률 60%',
+            'Gen.G': '100W 50L 승률 66%',
+            'DK': '90W 70L 승률 56%',
+            'HLE': '85W 75L 승률 53%',
+            'KT': '70W 80L 승률 47%',
+            'DRX': '65W 85L 승률 43%',
+            'KDF': '50W 90L 승률 36%',
+            'BNK': '45W 95L 승률 32%',
+            'NS': '40W 100L 승률 28%',
+            'OK': '30W 110L 승률 21%',
+        }[teamName] || `[${teamName.replace(/로고/g, '').trim()}] 임의 승률: ??%`;
+
+        $("#teamStatsDisplay").text(teamWinRate);
+
+        const $button = $(".team_select_button").empty();
+        if (src) $button.append(`<img src="${src}" alt="${alt}" style="height: 20px; vertical-align: middle; margin-right: 5px;">`);
+        $button.append(teamName);
+
+        $(".team_list").hide();
+    });
+
+    $(document).on("click", function(e) {
+        if (!$(e.target).closest(".team_select_container, .team_select_dropdown").length) {
+            $(".team_list").hide();
+        }
+    });
+
+    window.updateSchedule = function(selectedDate, tournament) {
+        const scheduleTableBody = document.getElementById('scheduleTableBody');
+        scheduleTableBody.innerHTML = '';
+
+        if (!selectedDate || !tournament || !schedules || !schedules[tournament]) {
+            scheduleTableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;">선택된 대회 로고와 날짜의 일정을 찾을 수 없습니다.<br>대회 로고와 날짜를 선택해 주세요.</td></tr>`;
+            return;
+        }
+
+        let dateObject = (typeof selectedDate === 'string') ? new Date(`${selectedDate}T00:00:00`) : selectedDate;
+        const selectedDateString = dateObject.toISOString().split('T')[0];
+        const now = new Date();
+        const dailySchedules = schedules[tournament].filter(s => s.date === selectedDateString);
+
+        if (dailySchedules.length === 0) {
+            scheduleTableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;">선택하신 날짜 (${selectedDateString})에 ${tournament} 일정이 없습니다.</td></tr>`;
+            return;
+        }
+
+        dailySchedules.forEach(schedule => {
+            const matchDateTime = new Date(`${schedule.date}T${schedule.time}`);
+            const isEnded = now > matchDateTime;
+            const statPageId = `statPage-${statPageIdCounter++}`;
+
+            const row = document.createElement('tr');
+            row.dataset.statPageId = statPageId;
+            row.dataset.tournament = tournament;
+            row.dataset.date = schedule.date;
+            row.dataset.matchTime = schedule.time;
+
+            row.innerHTML = `
+                <td>${schedule.time} ${isEnded ? '<span class="status">종료</span>' : ''}</td>
+                <td>${schedule.round}</td>
+                <td class="team-cell">
+                    ${schedule.team1Logo ? `<img src="${schedule.team1Logo}" alt="${schedule.team1} 로고" class="team_logo">` : ''}
+                    <span class="team_name">${schedule.team1}</span>
+                    ${schedule.team1Player ? `<img src="${schedule.team1Player}" alt="${schedule.team1} 선수" class="player_photo">` : ''}
+                </td>
+                <td>vs</td>
+                <td class="team-cell">
+                    ${schedule.team2Player ? `<img src="${schedule.team2Player}" alt="${schedule.team2} 선수" class="player_photo">` : ''}
+                    <span class="team_name">${schedule.team2}</span>
+                    ${schedule.team2Logo ? `<img src="${schedule.team2Logo}" alt="${schedule.team2} 로고" class="team_logo">` : ''}
+                </td>
+                <td>${schedule.score}</td>
+                <td>${schedule.link ? `<a href="${schedule.link}" class="more_info" target="_blank">다시보기</a>` : ''}</td>
+            `;
+            scheduleTableBody.appendChild(row);
+
+            const statRow = document.createElement('tr');
+            statRow.classList.add('stat-row');
+            statRow.id = statPageId;
+            statRow.style.display = 'none';
+            statRow.innerHTML = `<td colspan="7"><div class="stat-container"></div></td>`;
+            scheduleTableBody.appendChild(statRow);
+        });
+    };
+
+    $('#scheduleTableBody').on('click', 'tr', function() {
+        const statPageContainerId = $(this).data('statPageId');
+        if (!statPageContainerId) return;
+
+        const $statRow = $('#' + statPageContainerId);
+        const isVisible = $statRow.hasClass('show');
+
+        $('.stat-row.show').removeClass('show').hide();
+
+        if (!isVisible) {
+            $statRow.addClass('show').show();
+
+            if ($statRow.find('.stat-container').html().trim() === '') {
+                const tournament = $(this).data('tournament');
+                const date = $(this).data('date');
+                const matchTime = $(this).data('matchTime');
+
+                $.ajax({
+                    url: `stat.html?tournament=${tournament}&date=${date}&matchTime=${matchTime}`,
+                    dataType: 'html',
+                    success: function(data) {
+                        $statRow.find('.stat-container').html(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error loading stat.html:", status, error);
+                        $statRow.find('.stat-container').html('<div style="color:red;">통계 정보를 불러올 수 없습니다.</div>');
+                    }
+                });
+            }
+        }
+    });
+});

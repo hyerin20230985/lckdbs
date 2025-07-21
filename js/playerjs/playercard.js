@@ -41,3 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+const scrollBtn = document.getElementById('scrollTopBtn');
+
+  // 스크롤 위치가 300px 이상 내려가면 버튼 보이기
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      scrollBtn.classList.remove('hidden');
+    } else {
+      scrollBtn.classList.add('hidden');
+    }
+  });

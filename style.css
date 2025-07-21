@@ -1,0 +1,1261 @@
+/* 기본 설정 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Gmarket Sans', 'Noto Sans KR', sans-serif;
+}
+
+:root {
+    --primary-color: #1d1e4d; /* style2.css에서 가져온 색상 */
+    --primary-dark: #1a1a2e; /* style2.css에서 가져온 색상 */
+    --background-dark: #171727; /* style2.css에서 가져온 색상 */
+    --background-light: #1e1e2f; /* style2.css에서 가져온 색상 */
+    --text-primary: #ffffff; /* 유지 */
+    --text-secondary: #b0b7d6; /* 유지 */
+    --accent-color: #f7cf2d; /* 유지 */
+    --border-color: rgba(8, 6, 24, 0.1); /* 유지 */
+    --card-bg: rgba(17, 24, 39, 0.85); /* style2.css에서 가져온 색상 */
+}
+
+.matches-empty {
+    padding: 4rem;
+    text-align: center;
+    color: #aaa;
+    font-size: 1.25rem;
+}
+
+.no-grid {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;  /* 적당히 높이 확보 */
+}
+
+/* body 배경색 변경 */
+body {
+    background-color: var(--background-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+/* 헤더 네비게이션 */
+header {
+    background-color: var(--primary-dark); /* style2.css에서 가져온 색상 */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0.8rem 2rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(39, 76, 218, 0.5);
+}
+
+.nav-center {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-item {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.nav-item:hover {
+    color: var(--text-primary);
+}
+
+.nav-item:hover::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color); /* style2.css에서 가져온 색상 */
+    transform: scaleX(1);
+    transition: transform 0.2s ease;
+}
+
+.nav-item.live {
+    color: #ff4655;
+    font-weight: 700;
+}
+
+.login-btn, .signup-btn {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.login-btn {
+    color: var(--text-primary);
+    margin-right: 0.5rem;
+}
+
+.login-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.signup-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.signup-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+/* 섹션 제목 스타일 */
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* 카드 공통 스타일 */
+/* 카드 공통 스타일 */
+.card-like {
+    background-color: var(--card-bg); /* style2.css에서 가져온 색상 */
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-like:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-like-nested {
+    background-color: rgba(25, 33, 57, 0.4); /* 유지 */
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.card-like-nested:hover {
+    transform: translateY(-2px);
+    background-color: rgba(25, 33, 57, 0.6);
+}
+
+/* 메인 레이아웃 */
+main {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    background-color: var(--background-light); /* style2.css에서 가져온 색상 */
+
+}
+
+/* 메인 레이아웃: 좌우 2단 구성 */
+.main-container {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.main-left {
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+/* 상단 & 하단 영역 공통 */
+.up,
+.down {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    height: auto;
+}
+
+/* 상단 구성 */
+.upsection-left {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-self: center;
+    /* min-height: 300px; */
+}
+
+.upsection-right {
+    position: relative;
+    background-color: var(--background-light);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    /* updiv의 높이를 내용에 맞게 자동으로 조절하도록 합니다. */
+    /* height: 680px; 와 같이 고정 높이가 있다면 제거하거나 auto로 변경합니다. */
+    height: auto; /* 변경: 내용에 따라 높이 자동 조절 */
+}
+
+.updiv {
+    position: relative;
+    background-color: var(--background-light);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+}
+
+.updiv-right {
+    position: relative;
+    background-color: var(--background-light);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    height: auto;
+}
+
+/* 하단 구성 */
+.downsection-left {
+    position: relative;
+    flex: 1;
+    background-color: var(--background-light);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    height: auto;
+    padding: 15px;
+}
+
+.downsection-right {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.downdiv-up,
+.downdiv-down {
+    position: relative;
+    height: 200px;
+    background-color: var(--background-light);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+}
+
+/* 포지션별 선수 순위 */
+.grid-container {
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 15px;
+    padding: 5px;
+}
+
+.bottom-container {
+    grid-column: 1 / span 3;
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 100px;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.item-4,
+.item-7 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.item-1,
+.item-2,
+.item-3,
+.item-5,
+.item-6 {
+    position: relative;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* 선수 랭킹 테이블 */
+.player-ranking {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    background-color: rgba(2, 2, 5, 0.7); /* 유지 */
+    border-radius: 8px;
+    table-layout: fixed; /* 테이블 셀 크기를 고정 */
+}
+.player-ranking caption {
+    background-color: var(--primary-color); /* style2.css에서 가져온 색상 */
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    border: none;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+.player-ranking td {
+    border: none;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center; /* 텍스트 정렬 */
+    word-wrap: break-word; /* 긴 텍스트 줄바꿈 */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트에 ... 표시 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.player-ranking tr:last-child td {
+    border-bottom: none;
+}
+
+.player-ranking tr:hover {
+    background-color: rgba(39, 76, 218, 0.1);
+}
+
+.rank-col {
+    width: 15%;
+    text-align: center;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.data-col-left {
+    width: auto; /* 너비를 자동으로 조정 */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 이미지와 텍스트 사이 간격 */
+    overflow: visible; /* 텍스트가 잘리지 않도록 설정 */
+}
+
+.data-col-right {
+    width: 20%;
+    text-align: right;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.data-col-left img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    flex-shrink: 0; /* 이미지 크기 고정 */
+}
+
+.data-col-left:hover img {
+    transform: scale(1.1);
+}
+
+.player-name {
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: normal; /* 텍스트 줄바꿈 허용 */
+    overflow: visible; /* 텍스트가 잘리지 않도록 설정 */
+    text-overflow: clip; /* 텍스트 잘림 방지 */
+}
+
+.position-label {
+    position: absolute;
+    top: 10px; /* 테이블 상단에 위치 */
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: var(--accent-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+/* 순위표 */
+.ranking-container {
+    width: 100%;
+    background-color: var(--card-bg); /* style2.css에서 가져온 색상 */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    margin: 0;
+}
+
+.ranking-container h1 {
+    font-size: 1.2rem;
+    padding: 1rem;
+    margin: 0;
+    background-color: var(--primary-color); /* style2.css에서 가져온 색상 */
+    color: white;
+    border-bottom: none;
+}
+
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ranking-table th {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ranking-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+.ranking-table tr:hover {
+    background-color: rgba(39, 76, 218, 0.1);
+}
+
+.ranking-table tr:nth-child(1) td:first-child,
+.ranking-table tr:nth-child(2) td:first-child,
+.ranking-table tr:nth-child(3) td:first-child {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.ranking-table img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 8px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.ranking-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* 포지션별 챔피언 랭킹 */
+.outer-container {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.card-header {
+    height: auto;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+.ranking-wrapper {
+    padding: 0.5rem;
+}
+
+.ranking-row {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    position: relative;
+    display: flex;
+    gap: 5px;
+}
+
+.ranking-row::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-color), transparent);
+}
+
+.ranking-row:last-child::after {
+    display: none;
+}
+
+.card {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: calc(100% / 3);
+    aspect-ratio: 1 / 1;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.card:nth-child(2) {
+    transform: scale(1.05);
+    z-index: 2;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--primary-color);
+}
+
+.card:nth-child(2):hover {
+    transform: scale(1.1);
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.rank-number {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--accent-color);
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    z-index: 5;
+}
+
+
+/* 경기 일정 컨테이너 - 프로 디자인 */
+.match-schedule-container {
+    width: 100%;
+    margin-top: 20px;
+    font-family: 'Gmarket Sans', sans-serif;
+}
+
+.match-schedule-wrapper {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* 상단 네비게이션 탭 */
+.match-nav {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.match-nav-item {
+    padding: 15px 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    letter-spacing: 0.5px;
+}
+
+.match-nav-item.active {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.match-nav-item.active:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+.match-nav-item:hover:not(.active) {
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* 날짜/대회 정보 스트립 */
+.match-info-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.match-tournament {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tournament-logo {
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tournament-logo img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.tournament-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.tournament-name {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.tournament-stage {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.match-filter {
+    display: flex;
+}
+
+.filter-btn {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+/* 경기 그리드 */
+.matches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+/* 경기 카드 */
+.match-card {
+    background: linear-gradient(180deg, rgba(39, 51, 89, 0.5) 0%, rgba(17, 24, 39, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.match-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* 경기 시간 정보 */
+.match-time-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.match-time {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.match-status {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.match-status.upcoming {
+    background-color: rgba(39, 76, 218, 0.2);
+    color: #5d87ff;
+}
+
+.match-status.live {
+    background-color: rgba(255, 70, 85, 0.2);
+    color: #ff4655;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+.match-status.completed {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+}
+
+/* 경기 내용 */
+.match-content {
+    display: flex;
+    padding: 20px 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+    transition: transform 0.2s ease;
+}
+
+.team:hover {
+    transform: scale(1.05);
+}
+
+.team-logo {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.team-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.team:hover .team-logo img {
+    transform: scale(1.1);
+}
+
+.team-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.team-record {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* 경기 중앙 영역 */
+.match-center {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.match-vs {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.match-odds {
+    width: 100%;
+}
+
+.odds-bar {
+    height: 6px;
+    background-color: rgba(255, 70, 85, 0.3);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.odds-fill {
+    height: 100%;
+    background-color: #5d87ff;
+    border-radius: 3px;
+}
+
+.odds-numbers {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* 경기 액션 버튼 */
+.match-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.action-btn {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.action-btn.watch {
+    background-color: rgba(39, 76, 218, 0.2);
+    color: #5d87ff;
+}
+
+.action-btn.watch:hover {
+    background-color: rgba(39, 76, 218, 0.4);
+}
+
+.action-btn.details {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+}
+
+.action-btn.details:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+/* 푸터 */
+.matches-footer {
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.view-all {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+}
+
+.view-all i {
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+.view-all:hover i {
+    transform: translateX(3px);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 992px) {
+    .matches-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .match-nav {
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none; /* Firefox */
+    }
+    
+    .match-nav::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+    
+    .match-content {
+        padding: 15px 10px;
+    }
+    
+    .team-logo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .team-name {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* 픽/밴 섹션 스타일 */
+.pick-ban-container {
+    width: 100%;
+    height: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.pb-section {
+    padding: 0.75rem;
+    flex: 1;
+}
+
+.pb-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    text-align: left;
+    padding-left: 0.5rem;
+}
+
+.pb-champions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.pb-champion {
+    position: relative;
+    width: calc(12.5% - 10px);
+    min-width: 45px;
+    aspect-ratio: 1/1;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+/* 밴 섹션은 9개의 챔피언을 표시합니다 */
+.pb-section:nth-child(3) .pb-champion {
+    width: calc(11.11% - 10px);
+}
+
+.pb-champion:hover {
+    transform: scale(1.1);
+    z-index: 5;
+}
+
+.pb-champion img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pb-rate {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--text-primary);
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 0;
+    text-align: center;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .pb-champion {
+        width: calc(25% - 10px);
+    }
+    
+    .pb-section:nth-child(3) .pb-champion {
+        width: calc(25% - 10px);
+    }
+}
+
+@media (max-width: 480px) {
+    .pb-champion {
+        width: calc(33.33% - 10px);
+    }
+    
+    .pb-section:nth-child(3) .pb-champion {
+        width: calc(33.33% - 10px);
+    }
+}
+
+/* 기존 downdiv-up 높이 조정 */
+.downdiv-up {
+    height: auto;
+    min-height: 350px;
+}
+
+
+
+
+/* 커뮤니티 HOT 게시판 스타일 */
+.community-container {
+    width: 100%;
+    height: 100%;
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.community-posts {
+    flex: 1;
+    padding: 0;
+    overflow: hidden;
+}
+
+.post-item {
+    position: relative;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background-color 0.2s;
+    cursor: pointer;
+    display: block; /* flex 대신 block 사용 */
+}
+
+
+.post-item:last-child {
+    border-bottom: none;
+}
+
+.post-item:hover {
+    background-color: rgba(39, 76, 218, 0.1);
+}
+
+.post-left {
+    flex: 1;
+    min-width: 0;
+}
+
+.post-category {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: bold;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 2;
+}
+
+
+.post-title {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 2;
+}
+.post-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 120px;
+    margin-left: 10px;
+}
+
+.post-info {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin-bottom: 3px;
+}
+
+.post-author {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-right: 8px;
+    position: relative;
+    z-index: 2;
+}
+
+.post-time {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    position: relative;
+    z-index: 2;
+}
+
+
+.post-stats {
+    margin-top: 5px;
+    display: flex;
+    gap: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+
+.post-views, .post-likes {
+    display: flex;
+    align-items: center;
+}
+
+.post-views i, .post-likes i {
+    margin-right: 4px;
+    font-size: 0.7rem;
+}
+
+.post-likes i {
+    color: #ff4655;
+}
+
+.community-footer {
+    padding: 0.75rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.more-btn {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    padding: 0.3rem 1rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.more-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--background-dark);
+}
+
+/* downdiv-down 높이 조정 */
+/* 게시판 전체 높이 조정 */
+.downdiv-down {
+    height: auto;
+    min-height: 320px;
+    padding: 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .post-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .post-right {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-right {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .post-stats {
+        margin-top: 4px;
+    }
+}
+
+
+

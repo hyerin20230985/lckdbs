@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시물 작성</title>
+  <link rel="stylesheet" href="../css/com.css">
+  <link rel="stylesheet" href="../css/write.css">
+</head>
+<body>
+  <div id="wrap">
+    <div id="container">
+      <div class="Wrapper">
+        <div id="main-content-area">
+          <div class="content_dummy">
+            <div id="bd" class="bd">
+              <div class="bd_hd clear">
+                <div class="bd_bc fl">
+                  <a href="/html/com.html"><strong>Home</strong></a>
+                </div>
+              </div>
+
+              <form action="./" method="post" onsubmit="return false;" class="bd_wrt bd_wrt_main clear" id="postForm">
+                <input type="hidden" name="mid" value="fm24free">
+                <input type="hidden" name="document_srl" value="0">
+                <input type="hidden" id="postId"> 
+                <div class="form-group">
+                  <label for="postTitle">제목</label>
+                  <input type="text" id="postTitle" name="title" placeholder="제목" maxlength="90" required>
+                </div>
+
+                <div class="get_editor">
+                  <div class="xpress-editor">
+                    <div class="tool">
+                      <ul class="category-select-toolbar">
+                        <li>
+                          <label for="postCategory" class="blind">카테고리</label>
+                          <select id="postCategory" name="category" required>
+                            <option value="">카테고리 선택</option>
+                            <option value="자유">자유</option>
+                            <option value="KT">KT</option>
+                            <option value="BNK">BNK</option>
+                            <option value="T1">T1</option>
+                            <option value="GEN.G">GEN.G</option>
+                            <option value="DNF">DNF</option>
+                            <option value="DRX">DRX</option>
+                            <option value="HLE">HLE</option>
+                            <option value="BRO">BRO</option>
+                            <option value="DK">DK</option>
+                          </select>
+                        </li>
+                      </ul>
+                    </div>
+                    <div id="xe-editor-container-1" class="input_area xpress_xeditor_editing_area_container">
+                      <textarea id="postContent" name="content" cols="10" rows="10" class="input_syntax" required style="width: 100%; height: 100%; display: block;"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="postAuthor">작성자</label>
+                  <input type="text" id="postAuthor" name="author" placeholder="작성자" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="imageUpload">이미지 첨부 (최대 3개)</label>
+                  <div class="xefu-dropzone">
+                    <span class="xefu-btn fileinput-button">
+                      <span>사진, 움짤, 동영상 등 파일 첨부</span>
+                      <input id="imageUpload" type="file" name="Filedata" multiple="" accept="image/*">
+                    </span>
+                  </div>
+                  <ul id="fileList" class="file-list"></ul>
+                </div>
+
+                <div class="regist">
+                  <div class="form-group password-input-group">
+                    <label for="postPassword" class="blind">비밀번호</label>
+                    <input type="password" id="postPassword" name="postPassword" placeholder="비밀번호">
+                  </div>
+                  <button type="button" class="bd_btn" onclick="window.location.href='/html/com.html'">돌아가기</button>
+                  <button type="submit" class="bd_btn blue">등록</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/communityjs/write.js"></script>
+</body>
+</html>

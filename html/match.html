@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>매치 히스토리</title>
+    <link rel="stylesheet" href="../css/match-history.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 대회 필터 -->
+        <div class="tournament-filter">
+            <select id="tournament-select">
+                <option value="all">전체 경기</option>
+                <option value="2401">2024 LCK SPRING</option>
+                <option value="2402">2024 MSI</option>
+                <option value="2403">2024 LCK SUMMER</option>
+                <option value="2404">2024 WORLDS</option>
+            </select>
+        </div>
+
+        <!-- 요약 통계 섹션 -->
+        <div class="stats-summary">
+            <div class="summary-container">
+                <div class="win-rate-section">
+                    <div class="total-games">
+                        <span id="total-games">0</span>
+                        <span class="label">경기</span>
+                    </div>
+                    <div class="win-loss">
+                        <span id="wins">0</span>승 <span id="losses">0</span>패
+                    </div>
+                    <div class="win-rate">
+                        승률 <span id="win-rate">0%</span>
+                    </div>
+                </div>
+                <div class="average-stats">
+                    <div class="stat-item">
+                        <span class="label">KDA</span>
+                        <span id="avg-kda">0.00</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">DPM</span>
+                        <span id="avg-dpm">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">KP</span>
+                        <span id="avg-kp">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">CSM</span>
+                        <span id="avg-csm">0.0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">GPM</span>
+                        <span id="avg-gpm">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 매치 리스트 테이블 -->
+        <div class="match-history">
+            <table class="match-table">
+                <thead>
+                    <tr>
+                        <th>날짜</th>
+                        <th>Result</th>
+                        <th>세트</th>
+                        <th>팀</th>
+                        <th>챔피언</th>
+                        <th>K/D/A</th>
+                        <th>KDA</th>
+                        <th>DPM</th>
+                        <th>KP</th>
+                        <th>CSM</th>
+                        <th>GPM</th>
+                    </tr>
+                </thead>
+                <tbody id="match-list">
+                    <!-- JavaScript로 동적으로 추가될 매치 데이터 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../js/match-history.js"></script>
+</body>
+</html>

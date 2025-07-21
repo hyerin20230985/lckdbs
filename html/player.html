@@ -8,47 +8,79 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>선수분석페이지</title>
 </head>
-<body class="flex bg-[#2a2a3e]">
+<body class=" bg-[#2a2a3e]">
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="../index.html" class="logo">LCKDBS</a>
+            </div>
+            <div class="nav-center">
+                <a href="/html/player.html" class="nav-item">선수</a>
+                <a href="/html/team.html" class="nav-item">팀</a>
+                <a href="/html/champion.html" class="nav-item">챔피언</a>
+                <a href="/html/schedule2.html" class="nav-item">일정</a>
+                <a href="#" class="nav-item">순위</a>
+                <a href="#" class="nav-item">스탯</a>
+                <a href="#" class="nav-item">분석</a>
+                <a href="/html/com.html" class="nav-item">커뮤니티</a>
+                <a href="#" class="nav-item live">LIVE</a>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="login-btn">로그인</a>
+                <a href="/html/signup.html" class="signup-btn">회원가입</a>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="flex">
     <!--사이드바-->
     <div class="role-sidebar">
             <ul class="role-list">
                 <li data-role="ALL">
                     <a>
-                        <img src="/images/icon/all.png" alt="올 아이콘"> ALL
+                        <img src="../images/icons/all.png" alt="올 아이콘"> ALL
                     </a>
                 </li>
                 <li data-role="TOP">
                     <a>
-                        <img src="/images/icon/top.webp" alt="탑 아이콘"> 탑
+                        <img src="../images/icons/top.webp" alt="탑 아이콘"> 탑
                     </a>
                 </li>
                 <li data-role="JUNGLE">
                     <a>
-                        <img src="/images/icon/jungle.webp" alt="정글 아이콘"> 정글
+                        <img src="../images/icons/jungle.webp" alt="정글 아이콘"> 정글
                     </a>
                 </li>
                 <li data-role="MID">
                     <a>
-                        <img src="/images/icon/mid.webp" alt="미드 아이콘"> 미드
+                        <img src="../images/icons/mid.webp" alt="미드 아이콘"> 미드
                     </a>
                 </li>
                 <li data-role="ADC">
                     <a>
-                        <img src="/images/icon/adc.webp" alt="원딜 아이콘"> 원딜
+                        <img src="../images/icons/adc.webp" alt="원딜 아이콘"> 원딜
                     </a>
                 </li>
                 <li data-role="SUP">
                     <a>
-                        <img src="/images/icon/sup.webp" alt="서폿 아이콘"> 서폿
+                        <img src="../images/icons/sup.webp" alt="서폿 아이콘"> 서폿
                     </a>
                 </li>
             </ul>
         </div>
+    
+        <!-- 선수 카드 컨테이너 -->
+        <div id="player-list-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-5 p-4">
+            <!-- 선수 카드는 여기에 동적으로 추가됩니다. -->
+        </div>
 
-    <!-- 선수 카드 컨테이너 -->
-    <div id="player-list-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 p-4">
-        <!-- 선수 카드는 여기에 동적으로 추가됩니다. -->
-    </div>
+        <button
+            id="scrollTopBtn"
+            type="button"
+            class="hidden fixed bottom-6 right-6 bg-[#edd12d] text-white p-3 w-[60px] h-[60px] rounded-full shadow-lg hover:bg-[#d3a855]/90 transition z-50"
+            onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
+        ><i class="fa-solid fa-arrow-up fa-lg"></i></button>
+    </main>
 
     <script src="/js/playerjs/player-data.js"></script>
     <script src="/js/playerjs/detailcard.js"></script>

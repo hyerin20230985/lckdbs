@@ -1,0 +1,194 @@
+
+<!-- saved from url=(0201)https://player.aniview.com/ssync/60095c900c0799791c46d8d4/ssync.html?pid=60095c900c0799791c46d8d4&gdpr=&consent=&ccpa=&r=https%3A%2F%2Fsync.pmbmonetize.live%2Fpsync%3Ft%3Dd%26e%3D128%26u%3D%5BAV_UID%5D -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</head>
+<body>
+<script>
+  (function (w) {
+    var syncs = [{
+        "url": "https://cm.adform.net/cookie?redirect_url=https%3A%2F%2Fservs.modoro360.com%2Fcookiesyncendpoint%3Fpid%3D60095c900c0799791c46d8d4%26biddername%3D46%26auid%3D[AV_UID]%26key%3D%24UID",
+        "e": "sync",
+        "pr": "46",
+        "t": 3
+      },
+      {
+        "url": "https://csync.loopme.me/?pubid=&gdpr=0&gdpr_consent=&redirect=https%3A%2F%2Fservs.modoro360.com%2Fcookiesyncendpoint%3Fpid%3D60095c900c0799791c46d8d4%26biddername%3D56%26auid%3D[AV_UID]%26key%3D%7Bdevice_id%7D",
+        "e": "sync",
+        "pr": "56",
+        "t": 3
+      },
+      {
+        "url": "https://ads.stickyadstv.com/user-matching?id=&_fw_gdpr=0&_fw_gdpr_consent=",
+        "e": "sync",
+        "pr": "9",
+        "t": 3
+      },
+      {
+        "url": "https://ads.stickyadstv.com/auto-user-sync?px=1953&_fw_gdpr=0&_fw_gdpr_consent=",
+        "e": "sync",
+        "pr": "9",
+        "t": 3
+      },
+      {
+        "url": "https://onetag-sys.com/usync/?pubId=60095c900c0799791c46d8d4&gdpr=0&gdpr_consent=&us_privacy=1---",
+        "e": "sync",
+        "pr": "20",
+        "t": 3
+      },
+      {
+        "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?p=160993&gdpr=0&gdpr_consent=&predirect=https%3A%2F%2Fservs.modoro360.com%2Fcookiesyncendpoint%3Fpid%3D59c9148628a0612da3689288%26biddername%3D1%26auid%3D[AV_UID]%26key%3D",
+        "e": "sync",
+        "pr": "1",
+        "t": 3
+      },
+      {
+        "url": "https://u.openx.net/w/1.0/cm?id=ec4c2ec9-18b8-454e-98be-3ee1e6bfea65&gdpr=0&gdpr_consent=&r=https%3A%2F%2Fservs.modoro360.com%2Fcookiesyncendpoint%3Fpid%3D59c9148628a0612da3689288%26biddername%3D23%26auid%3D[AV_UID]%26key%3D",
+        "e": "sync",
+        "pr": "23",
+        "t": 3
+      },
+      {
+        "url": "https://sync.1rx.io/usersync2/rmpssp?sub=aniview&gdpr=0&gdpr_pd=0&gdpr_consent=&redir=https%3A%2F%2Fservs.modoro360.com%2Fcookiesyncendpoint%3Fpid%3D59c9148628a0612da3689288%26biddername%3D200%26auid%3D[AV_UID]%26key%3D%5BRX_UUID%5D",
+        "e": "sync",
+        "pr": "200",
+        "t": 3
+      },
+      {
+        "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?gdpr=0&gdpr_consent=&us_privacy=1---&predirect=https%3A%2F%2Fpbs.aniview.com%2Fsetuid%3Fbidder%3Dpubmatic%26gdpr%3D0%26gdpr_consent%3D%26uid%3D",
+        "t": 3,
+        "e": "sync",
+        "pr": 1
+      },
+      {
+        "url": "https://secure.adnxs.com/getuid?https%3A%2F%2Fservs.modoro360.com%2Fcookiesyncendpoint%3Fpid%3D59c9148628a0612da3689288%26biddername%3D55%26auid%3D[AV_UID]%26key%3D%24UID",
+        "e": "sync",
+        "pr": "55",
+        "t": 3
+      },
+      {
+        "url": "https://ap.lijit.com/pixel?us_privacy=1---&gdpr=0&gdpr_consent=&redir=https%3A%2F%2Fservs.modoro360.com%2Fcookiesyncendpoint%3Fpid%3D59c9148628a0612da3689288%26biddername%3D18%26auid%3D[AV_UID]%26key%3D%24UID",
+        "e": "sync",
+        "pr": "18",
+        "t": 3
+      }];
+    var syncTimeout = 1000 * 60 * 60 * 4; //4 hours
+    function getParams() {
+      var params = {};
+      var search = location.search.replace("?", "");
+      search.split("&").forEach(function (keyVal) {
+        var param = keyVal.split("=");
+        if (param.length == 2) {
+          params[param[0]] = param[1];
+        }
+      });
+
+      return params;
+    }
+
+    function canStore() {
+      try {
+        var testKey = "av_testStorage";
+        localStorage.setItem(testKey, "test");
+        localStorage.removeItem(testKey);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    var configKey = "av_sd_"
+
+    function getConfig(pid) {
+      try {
+        var key = configKey + pid;
+        var configStr = localStorage.getItem(key);
+        return JSON.parse(configStr) || {};
+        return true;
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveConfig(config, pid) {
+      try {
+        var key = configKey + pid;
+        var configStr = JSON.stringify(config);
+        localStorage.setItem(key, configStr);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    var aniCRegex = new RegExp('(^| )' + 'aniC' + '=([^;]+)');
+
+    function getAvUid() {
+      var match = document.cookie.match(aniCRegex);
+      if (match)
+        return match[2];
+      return "";
+    }
+
+    var syncCalled = false;
+
+    function syncPixels() {
+      if (syncCalled)
+        return;
+      syncCalled = true;
+      syncs.forEach(function (sync) {
+        if (sync && sync.url) {
+          var url = sync.url.replace("[AV_UID]", getAvUid());
+          if (sync.t == 1) {
+            (new Image).src = url;
+          } else {
+            var elType = sync.t == 2 ? "script" : "iframe";
+            var el = document.createElement(elType);
+            el.style.display = "none";
+            el.src = url;
+            document.body.appendChild(el);
+          }
+        }
+      })
+    }
+
+    function syncSupply() {
+      var img = document.createElement("img");
+      img.src = "https://servs.modoro360.com/ssync" + location.search;
+      img.onload = syncPixels;
+      document.body.appendChild(img);
+      setTimeout(syncPixels, 500);
+    }
+
+    function start() {
+      var params = getParams();
+      var syncMap = [];
+      if (!params.pid || !params.r || params.r.indexOf("https") != 0) {
+        return;
+      }
+
+      var sync = false;
+      if (canStore()) {
+        var config = getConfig(params.pid);
+        config.lastSync = config.lastSync || 0
+        if (Date.now() - config.lastSync > syncTimeout) {
+          sync = true;
+        }
+      } else {
+        if (Math.random() <= 0.1) {
+          sync = true;
+        }
+      }
+
+      if (sync) {
+        saveConfig({lastSync: Date.now()}, params.pid);
+        syncSupply();
+      }
+    }
+
+    start();
+  })(window);
+
+</script>
+
+
+</body></html>

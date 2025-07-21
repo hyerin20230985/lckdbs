@@ -1,0 +1,375 @@
+/* champion-styles.css */
+
+body {
+    font-family: 'NanumSquare', 'Nanum Gothic', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #111827; /* 전체 페이지 배경색: 짙은 남색 */
+    color: #E0E0E0; /* 기본 글자색을 밝은 회색으로 설정 */
+}
+
+.main-container {
+    display: flex; /* 사이드바와 콘텐츠가 나란히 놓이도록 함 */
+    justify-content: center; /* 전체 컨테이너 중앙 정렬 */
+    padding: 20px; /* 전체 컨테이너 주변 패딩 */
+    max-width: 1200px; /* 원하는 최대 너비 */
+    margin: 0 auto; /* 컨테이너 중앙 정렬 */
+    min-height: 680px; /* 사이드바와 콘텐츠 영역의 최소 높이 맞춤 */
+}
+
+/* 역할 사이드바 스타일 */
+.role-sidebar {
+    width: 100px;
+    margin-right: 20px;
+    background: #242d40; /* 사이드바 배경색: 중간 남색 (잘 보임) */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4); /* 그림자 강화 */
+    padding: 15px 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 680px; /* 챔피언 상세 영역의 최소 높이에 맞춰 설정 */
+    flex-shrink: 0; /* 공간이 부족해도 너비 유지 */
+}
+
+.role-sidebar ul.role-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    flex-grow: 1; /* 목록이 사용 가능한 공간을 차지하도록 허용 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* 목록 항목들을 고르게 배치 */
+    align-items: center;
+}
+
+.role-sidebar li {
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.role-sidebar li a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    padding: 5px 0;
+}
+
+.role-sidebar li img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+}
+
+.role-sidebar li:hover,
+.role-sidebar li.selected {
+    background-color: #007bff; /* 파란색으로 선택 강조 */
+    color: #ffffff;
+}
+
+/* --- 오른쪽 챔피언 상세 콘텐츠 영역 스타일 --- */
+
+.content-area {
+    flex-grow: 1; /* 남은 공간을 채우도록 확장 */
+    display: flex;
+    flex-direction: column;
+    background: #1E293B; /* body 배경색보다 훨씬 밝게 설정하여 명확하게 구분 */
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6); /* 그림자 훨씬 더 강하게 */
+    border: 1px solid #3F51B5; /* 테두리 색상을 눈에 띄는 파란색 계열로 추가 */
+    min-height: 680px; /* 사이드바와 최소 높이 맞춤 */
+    overflow: hidden; /* 내부 스크롤을 위해 오버플로우 숨김 */
+}
+.champion-fixed-header {
+    position: relative;
+    /* Other styles for your header go here */
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    color: #fff;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 10;
+    display: flex; /* Helps vertically center the icon */
+    align-items: center; /* Helps vertically center the icon */
+    justify-content: center; /* Helps horizontally center the icon */
+}
+
+.back-button .fas { /* Targeting the Font Awesome icon specifically */
+    font-size: 20px; /* Adjust icon size as needed */
+    line-height: 1; /* Prevents extra space around the icon */
+}
+
+.back-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+/* 챔피언 고정 헤더 */
+.champion-fixed-header {
+    padding: 20px 30px;
+    text-align: center;
+    background-color: #2F3D57; /* 헤더 배경색을 content-area보다 약간 어둡지만 구별되게 */
+    border-bottom: 1px solid #4A5675; /* 헤더 하단 구분선도 좀 더 뚜렷하게 */
+    flex-shrink: 0; /* 헤더가 줄어들지 않도록 고정 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* 헤더 그림자 강화 */
+    z-index: 10;
+    position: relative;
+}
+
+.champion-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #007bff; /* 파란색 테두리 (챔피언 강조) */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* 그림자 강화 */
+    margin-bottom: 10px;
+}
+
+.champion-name {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #ffffff; /* 흰색 텍스트 */
+    margin-bottom: 5px;
+}
+
+.champion-description {
+    font-size: 0.9em;
+    color: #C0C0C0; /* 설명 글자색을 약간 더 밝은 회색으로 변경 */
+}
+
+/* 경기 기록 스크롤 영역 */
+.match-records-scroll-area {
+    flex-grow: 1; /* 남은 공간을 모두 차지하도록 확장 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤바 생성 */
+    padding: 20px 30px; /* 패딩 추가 */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* 경기 기록 아이템 간 간격 */
+}
+
+/* 각 경기 기록 아이템 */
+.match-record-item {
+    background-color: #273445; /* 경기 기록 카드 배경색을 content-area보다 약간 더 어둡게 */
+    border: 1px solid #4A5568; /* 카드 테두리 색상 추가 */
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 카드 그림자 강화 */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.player-info-section {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* 작은 화면에서 줄바꿈 허용 */
+    gap: 15px;
+}
+
+.player-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.player-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #5cb85c; /* 승패에 따라 색상 변경 가능 (기본 녹색) */
+}
+
+.player-name {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 1.1em;
+}
+
+.win-lose {
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    min-width: 40px;
+    text-align: center;
+}
+
+.win {
+    background-color: #5cb85c; /* 승리 색상 */
+    color: white;
+}
+
+.lose {
+    background-color: #d9534f; /* 패배 색상 */
+    color: white;
+}
+
+.kda {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #F0F0F0; /* KDA 글자색을 더 밝게 */
+    flex-shrink: 0;
+}
+
+.item-list {
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+}
+
+.item-image {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.item-image.ward {
+    border: 1px solid #888;
+}
+
+.match-details-text {
+    font-size: 0.85em;
+    color: #B0B0B0; /* 경기 상세 텍스트 색상 */
+    margin-left: auto; /* 오른쪽 정렬 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+/* 스크롤바 스타일 */
+.match-records-scroll-area::-webkit-scrollbar {
+    width: 8px;
+}
+
+.match-records-scroll-area::-webkit-scrollbar-thumb {
+    background-color: #4A5568; /* 스크롤바 색상을 더 밝게 */
+    border-radius: 4px;
+}
+
+.match-records-scroll-area::-webkit-scrollbar-track {
+    background-color: #2F3D57; /* 스크롤 트랙 색상을 헤더 배경색과 유사하게 */
+}
+
+/* --- 미디어 쿼리 - 작은 화면에서 레이아웃 변경 --- */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        min-height: unset;
+    }
+
+    .role-sidebar {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+        flex-direction: row;
+        justify-content: center;
+        padding: 10px;
+        height: auto;
+        min-height: unset;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* 모바일에서도 그림자 강화 */
+    }
+
+    .role-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .role-list li {
+        padding: 5px 10px;
+        margin: 0 5px;
+        width: auto;
+    }
+
+    .content-area {
+        height: auto;
+        min-height: unset;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.4); /* 모바일에서도 그림자 강화 */
+    }
+
+    .champion-fixed-header {
+        padding: 15px 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* 모바일에서도 그림자 강화 */
+    }
+
+    .champion-image {
+        width: 100px;
+        height: 100px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 모바일에서도 그림자 강화 */
+    }
+
+    .match-records-scroll-area {
+        padding: 15px 20px;
+        overflow-y: visible; /* 모바일에서는 스크롤바 없애고 페이지 전체 스크롤 */
+        height: auto; /* 높이 고정 해제 */
+    }
+
+    .match-record-item {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* 모바일에서도 그림자 강화 */
+    }
+
+    .player-info-section {
+        flex-direction: column; /* 세로로 나열 */
+        align-items: flex-start; /* 왼쪽 정렬 */
+        gap: 8px;
+    }
+
+    .kda {
+        align-self: flex-start; /* KDA도 왼쪽 정렬 */
+    }
+
+    .item-list {
+        justify-content: flex-start; /* 아이템 목록 왼쪽 정렬 */
+    }
+
+    .match-details-text {
+        margin-left: 0; /* 모바일에서는 왼쪽 정렬 */
+        text-align: left;
+        width: 100%; /* 너비 100% */
+    }
+}
+
+@media (max-width: 500px) {
+    .champion-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .player-image {
+        width: 40px;
+        height: 40px;
+    }
+
+    .item-image {
+        width: 30px;
+        height: 30px;
+    }
+}

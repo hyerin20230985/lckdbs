@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>포지션별 랭킹</title>
+  
+  <!-- 퀄리티 상승용 Gmarket Sans 폰트 불러오기 -->
+  <link href="https://fonts.googleapis.com/css2?family=Gmarket+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* 전체 요소에 기본 여백 제거 및 박스 사이즈 설정 */
+    * * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* 바디 스타일 설정 */
+    body {
+      font-family: 'Gmarket Sans', sans-serif; /* 한글 폰트 */
+      background: #1e1e1e; /* 어두운 배경 */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+      color: #e5e7eb; /* 밝은 텍스트 색상 */
+    }
+
+    /* 전체 카드 컨테이너 */
+    .outer-container {
+      width: 640px;
+      background: rgba(17, 24, 39, 0.85); /* 반투명한 다크 배경 */
+      backdrop-filter: blur(8px); /* 흐림 효과 */
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* 그림자 */
+      overflow: hidden;
+    }
+
+    /* 상단 제목 */
+    .header {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+      background: #1f2937; /* 딥그레이 배경, 기존에 메인페이지에 맞게끔 */
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+
+    /* 랭킹 전체 래퍼 (열마다 하나씩) */
+    .ranking-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 한 줄(ROW) 안의 3개 카드 */
+    .ranking-row {
+      position: relative;
+      display: flex;
+      gap: 2px;
+      padding: 0;
+      background-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    /* 각 행 아래에 흐릿한 선 추가 */
+    .ranking-row::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 5%;
+      width: 90%;
+      height: 1px;
+      background: linear-gradient(to right, rgba(255,255,255,0.04), rgba(255,255,255,0));
+    }
+
+    /* 개별 카드 */
+    .card {
+      position: relative;
+      width: calc(100% / 3); /* 3등분 */
+      aspect-ratio: 1 / 1; /* 정사각형 비율 유지 */
+      box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.04), inset -1px 0 0 rgba(255, 255, 255, 0.04);
+      transition: transform 0.3s ease;
+      font-size: initial;
+    }
+
+/* 마우스를 올렸을 때 살짝 확대되게 끔  */
+    .card:hover {
+      transform: scale(1.02);
+      z-index: 1;
+    }
+
+    /* 가운데 카드 숫자 (1등) 강조 효과 */
+    .card:nth-child(2) {
+      backdrop-filter: brightness(1.05) saturate(1.2);
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    /* 이미지 스타일 */
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* 이미지 비율 유지하며 채우기 */
+      display: block;
+    }
+
+    /* 랭킹 숫자 표시 */
+    .rank-number {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* 포지션명 라벨임 탑, 정글, 미드등 */
+    .position-label {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.08);
+      color: #e5e7eb;
+      padding: 5px 15px;
+      border-radius: 9999px;
+      font-weight: bold;
+      font-size: 13px;
+      letter-spacing: 1px;
+      backdrop-filter: blur(4px);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <!-- 전체 랭킹 카드 박스 -->
+  <div class="outer-container">
+    <div class="header">포지션별 랭킹</div>
+
+    <!-- 여러 포지션에 대한 랭킹 열들 -->
+    <div class="ranking-wrapper">
+      
+      <!-- TOP -->
+      <div class="ranking-row">
+        <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
+        <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">TOP</div></div>
+        <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
+      </div>
+
+      <!-- JG -->
+      <div class="ranking-row">
+        <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
+        <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">JG</div></div>
+        <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
+      </div>
+
+      <!-- MID -->
+      <div class="ranking-row">
+        <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
+        <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">MID</div></div>
+        <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
+      </div>
+
+      <!-- ADC -->
+      <div class="ranking-row">
+        <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
+        <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">ADC</div></div>
+        <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
+      </div>
+
+      <!-- SPT -->
+      <div class="ranking-row">
+        <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
+        <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">SPT</div></div>
+        <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
+      </div>
+      
+    </div>
+  </div>
+</body>
+</html>

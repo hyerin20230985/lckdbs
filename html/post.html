@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시물 제목</title>
+    <link rel="stylesheet" href="../css/com.css">
+    <link rel="stylesheet" href="../css/post.css">
+</head>
+
+<body>
+    <div class="ce center ko_" style="height: auto !important;">
+        <div id="wrap" style="height: auto !important;">
+            <div id="container" class="content_padding_true" style="height: auto !important;">
+                <div class="Wrapper" style="height: auto !important;">
+                    <div id="content">
+                        <div class="content_dummy">
+                            <div id="bd" class="bd">
+                                <div class="bd_hd clear">
+                                    <div class="bd_bc fl">
+                                        <a href="/html/com.html"><strong>Home</strong></a>
+                                    </div>
+                                </div>
+
+                                <div class="rd rd_nav_style2 clear" data-docsrl="8566403133">
+                                    <div id="bd_capture">
+                                        <div class="rd_hd clear">
+                                            <div class="board clear">
+                                                <div class="top_area ngeb">
+                                                    <span class="date m_no" id="post-date">시간</span>
+                                                    <h1 class="np_18px">
+                                                        <span class="np_18px_span" id="post-title">제목</span>
+                                                    </h1>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                <div class="btm_area clear">
+                                                    <div class="side">
+                                                        <a href="#" class="member_plate"><strong id="author-name">이름</strong></a>
+                                                    </div>
+                                                    <div class="side fr">
+                                                        <span>조회 수 <b><span id="post-view-count">0</span></b></span>
+                                                        <span>추천 수 <b><span id="post-vote-count">0</span></b></span>
+                                                        <span>댓글 <b><span id="post-comment-count">0</span></b></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="rd_body clear">
+                                        <article>
+                                            <div class="document_content xe_content" id="post-text">
+                                                </div>
+                                        </article>
+                                    </div>
+                                    <div class="post-actions" style="text-align: right; margin-top: 20px;">
+                                        <button type="button" class="button action-button" id="editPostButton">게시물 수정</button>
+                                        <button type="button" class="button action-button" id="deletePostButton">게시물 삭제</button>
+                                    </div>
+                                </div>
+
+                                <div id="comment" class="fdb_lst_wrp">
+                                    <div id="comment_section" class="fdb_lst clear cmt_wrt_btm">
+                                        <div class="socket_button"><a><span></span></a></div>
+                                        <div class="cmt_editor">
+                                            <label for="new-comment" class="cmt_editor_tl fl"><strong>댓글 쓰기</strong></label>
+                                            <form id="comment-form" class="bd_wrt cmt_wrt clear">
+                                                <input type="hidden" name="use_html" value="Y">
+                                                <div class="simple_wrt">
+                                                    <div class="text">
+                                                        <textarea id="new-comment" cols="50" rows="4" class="keyup_alt" placeholder="해당 게시물이 불편하시면 뒤로가기 눌러주시길 바랍니다."></textarea>
+                                                    </div>
+                                                    <div class="comment-input-actions">
+                                                        <div class="form-group comment-password-group">
+                                                            <label for="comment-password" class="blind">비밀번호</label>
+                                                            <input type="password" id="comment-password" placeholder="비밀번호" required>
+                                                        </div>
+                                                        <button type="submit" class="bd_btn blue">등록</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <ul id="comment-list" class="cmt_list">
+                                            </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer id="footer">
+                <div class="Wrapper">
+                    <div class="copyright">
+                        <address>
+                            <span style="width:100%">Copyright © 2025 My Community. All rights reserved.</span>
+                        </address>
+                        <div style="float:right;">
+                            <span id="ga_counter">동시 접속자: <span id="online-users">0</span>명</span>
+                        </div>
+                        <div id="about-us">My Community 운영팀: contact@mycommunity.com | <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a> | <a href="#">청소년보호정책</a> | <a href="#">문의/신고</a> | <a href="#">게시글 중단 요청</a></div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <div id="password-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>비밀번호를 입력하세요</h3>
+            <input type="password" id="modal-password" placeholder="비밀번호">
+            <button id="modal-confirm-button">확인</button>
+            <button id="modal-cancel-button">취소</button>
+        </div>
+    </div>
+
+    <script src="../js/communityjs/post.jsf"></script>
+</body>
+
+</html>

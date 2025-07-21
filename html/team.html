@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/team-styles.css">
+    <title>LCK 팀 및 선수 목록</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="../index.html" class="logo">LCKDBS</a>
+            </div>
+            <div class="nav-center">
+                <a href="/html/player.html" class="nav-item">선수</a>
+                <a href="/html/team.html" class="nav-item">팀</a>
+                <a href="/html/champion.html" class="nav-item">챔피언</a>
+                <a href="/html/schedule2.html" class="nav-item">일정</a>
+                <a href="#" class="nav-item">순위</a>
+                <a href="#" class="nav-item">스탯</a>
+                <a href="#" class="nav-item">분석</a>
+                <a href="/html/com.html" class="nav-item">커뮤니티</a>
+                <a href="#" class="nav-item live">LIVE</a>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="login-btn">로그인</a>
+                <a href="/html/signup.html" class="signup-btn">회원가입</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <!-- 팀 정보 영역 -->
+        <section class="team-section">
+            <div class="content-grid">
+                <!-- 오른쪽: LCK 팀 목록 -->
+                <div class="teams-section">
+                    <h2 class="section-title" id="teamTitle">
+                        2025 LCK 참가팀 
+                        <button class="dropdown-button" id="dropdownButton">▼</button>
+                        <div class="dropdown-list" id="yearDropdown">
+                            <a href="#" data-year="2025">2025</a>
+                            <a href="#" data-year="2024">2024</a>
+                            <a href="#" data-year="2023">2023</a>
+                            <a href="#" data-year="2022">2022</a>
+                            <a href="#" data-year="2021">2021</a>
+                            <a href="#" data-year="2020">2020</a>
+                        </div>
+                    </h2>
+                    <ul class="teams-list active" id="lck2025">
+                        <li class="team-item" data-team="HLE">
+                            <img src="../images/photos/assets/HLE.svg" alt="HLE" class="team-icon">
+                            <span>HLE</span>
+                        </li>
+                        <li class="team-item" data-team="GEN.G">
+                            <img src="../images/photos/assets/GEN.G.svg" alt="GEN.G" class="team-icon">
+                            <span>GEN.G</span>
+                        </li>
+                        <li class="team-item active" data-team="T1">
+                            <img src="../images/photos/assets/T1.svg" alt="T1" class="team-icon1">
+                            <span>T1</span>
+                        </li>
+                        <li class="team-item" data-team="DK">
+                            <img src="../images/photos/assets/DK.svg" alt="DK" class="team-icon">
+                            <span>Dplus KIA</span>
+                        </li>
+                        <li class="team-item" data-team="KT">
+                            <img src="../images/photos/assets/KT.svg" alt="KT" class="team-icon">
+                            <span>KT</span>
+                        </li>
+                        <li class="team-item" data-team="BNK">
+                            <img src="../images/photos/assets/BNK.png" alt="BNK" class="team-icon">
+                            <span>BNK</span>
+                        </li>
+                        <li class="team-item" data-team="DNF">
+                            <img src="../images/photos/assets/DNF.svg" alt="DNF" class="team-icon">
+                            <span>DNF</span>
+                        </li>
+                        <li class="team-item" data-team="NS">
+                            <img src="../images/photos/assets/NS.svg" alt="NS" class="team-icon">
+                            <span>NS</span>
+                        </li>
+                        <li class="team-item" data-team="DRX">
+                            <img src="../images/photos/assets/DRX.svg" alt="DRX" class="team-icon">
+                            <span>DRX</span>
+                        </li>
+                        <li class="team-item" data-team="BRION">
+                            <img src="../images/photos/assets/BRO.svg" alt="BRION" class="team-icon">
+                            <span>BRION</span>
+                        </li>
+                    </ul>
+                </div>
+     
+         <!-- 왼쪽: 선수 명단 -->
+         <section class="players-section" style="display: none;">
+            <h2 class="section-title">선수 라인업</h2>
+            <div class="player-grid" id="playerGrid">
+                <!-- 선수 카드가 여기에 동적으로 추가됩니다. -->
+            </div>
+        </section>
+    </div>
+</section>
+</div>
+
+    <script>
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownList = document.getElementById('yearDropdown');
+        const teamTitle = document.getElementById('teamTitle');
+        const teamsList = document.getElementById('lck2025'); // 초기 팀 목록
+    
+        const teams = {
+            2025: [
+                { name: "HLE", logo: "../images/photos/assets/HLE.svg", players: [{ name: "Zeus", image: "../images/photos/players/Zeus.jpg", position: "TOP", nameKr: "최우제"  }, { name: "Peanut", image: "../images/photos/players/Peanut.jpg" , position: "JUG", nameKr: "한왕호" }, { name: "Zeka", image: "../images/photos/players/Zeka.jpg", position: "MID", nameKr: "김건우"  }, { name: "Viper", image: "../images/photos/players/Viper.jpg", position: "BOT", nameKr: "박도현"  },{ name: "Delight", image: "../images/photos/players/Delight.jpg", position: "SUP", nameKr: "유환중"  }] },
+                { name: "GEN.G", logo: "../images/photos/assets/GEN.G.svg", players: [{name: "Kiin", image: "../images/photos/players/kiin.jpg", position: "TOP", nameKr: "김기인" }, { name: "Canyon", image: "../images/photos/players/canyon.jpg", position: "JUG", nameKr: "김건부" }, { name: "Chovy", image: "../images/photos/players/Chovy.jpg", position: "MID", nameKr: "정지훈" }, { name: "Ruler", image: "../images/photos/players/ruler.jpg", position: "BOT", nameKr: "박재혁" }, { name: "Duro", image: "../images/photos/players/duro.jpg", position: "SUP", nameKr: "주민규" }] },
+                { name: "T1", logo: "../images/photos/assets/T1.svg", players: [{ name: "Doran", image: "../images/photos/players/Doran.jpg", position: "TOP", nameKr: "최현준" }, { name: "Oner", image: "../images/photos/players/ONER.jpg", position: "JUG", nameKr: "문현준" },  { name: "Faker", image: "../images/photos/players/Faker.jpg", position: "MID", nameKr: "이상혁"  },   { name: "Smash", image: "../images/photos/players/Smash.jpg" , position: "BOT", nameKr: "신금재" },  { name: "Keria", image: "../images/photos/players/KERIA.jpg", position: "SUP", nameKr: "류민석"  }]},
+                { name: "Dplus KIA", logo: "../images/photos/assets/DK.svg", players: [{ name: "Siwoo", image: "../images/photos/players/siwoo.jpg",position: "TOP", nameKr: "전시우" }, { name: "Lucid", image: "../images/photos/players/lucid.jpg",position: "JUG", nameKr: "최용혁" }, { name: "ShowMaker", image: "../images/photos/players/showmaker.jpg",position: "MID", nameKr: "허수" }, { name: "Aiming", image: "../images/photos/players/aiming.jpg",position: "BOT", nameKr: "김하람" }, { name: "BeryL", image: "../images/photos/players/beryl.jpg",position: "SUP", nameKr: "조건희" }] },
+                { name: "KT", logo: "../images/photos/assets/KT.svg", players: [{ name: "PerfecT", image: "../images/photos/players/perfect.jpg", position: "TOP", nameKr: "이승민" }, { name: "Cuzz", image: "../images/photos/players/cuzz.jpg", position: "JUG", nameKr: "문우찬" }, { name: "Bdd", image: "../images/photos/players/bdd.jpg", position: "MID", nameKr: "곽보성" }, { name: "Deokdam", image: "../images/photos/players/deokdam.jpg", position: "BOT", nameKr: "서대길" }, { name: "Way", image: "../images/photos/players/way.jpg", position: "SUP", nameKr: "한길" }] },
+                { name: "BNK", logo: "../images/photos/assets/BNK.png", players: [{ name: "Clear", image: "../images/photos/players/clear.jpg", position: "TOP", nameKr: "송현민" }, { name: "Raptor", image: "../images/photos/players/raptor.jpg", position: "JUG", nameKr: "전어진" }, { name: "VicLa", image: "../images/photos/players/vicla.jpg", position: "MID", nameKr: "이대광" }, { name: "Diable", image: "../images/photos/players/diable.jpg", position: "BOT", nameKr: "남대근" }, { name: "Kellin", image: "../images/photos/players/kellin.jpg", position: "SUP", nameKr: "김형규" }] },
+                { name: "DNF", logo: "../images/photos/assets/DNF.svg", players: [{ name: "DuDu", image: "../images/photos/players/dudu.jpg", position: "TOP", nameKr: "이동주" }, { name: "Pyosik", image: "../images/photos/players/pyosik.jpg", position: "JUG", nameKr: "홍창현" }, { name: "BuLLDoG", image: "../images/photos/players/bulldog.jpg", position: "MID", nameKr: "이태영" }, { name: "Berserker", image: "../images/photos/players/berserker.jpg", position: "BOT", nameKr: "김민철" }, { name: "Life", image: "../images/photos/players/life.jpg", position: "SUP", nameKr: "김정민" }] },
+                { name: "NS", logo: "../images/photos/assets/NS.svg", players: [{ name: "Kingen", image: "../images/photos/players/kingen.jpg", position: "TOP", nameKr: "황성훈" }, { name: "GIDEON", image: "../images/photos/players/gideon.jpg", position: "JUG", nameKr: "김민성" }, { name: "Fisher", image: "../images/photos/players/fisher.jpg", position: "MID", nameKr: "이정태" }, { name: "Jiwoo", image: "../images/photos/players/jiwoo.jpg", position: "BOT", nameKr: "정지우" }, { name: "Lehends", image: "../images/photos/players/lehends.jpg", position: "SUP", nameKr: "손시우" }] },
+                { name: "DRX", logo: "../images/photos/assets/DRX.svg", players: [{ name: "Rich", image: "../images/photos/players/rich.jpg", position: "TOP", nameKr: "이재원" }, { name: "Sponge", image: "../images/photos/players/sponge.jpg", position: "JUG", nameKr: "배영준" }, { name: "Ucal", image: "../images/photos/players/Ucal.jpg", position: "MID", nameKr: "손우현" }, { name: "teddy", image: "../images/photos/players/teddy.jpg", position: "BOT", nameKr: "박진성" }, { name: "Andil", image: "../images/photos/players/andil.jpg", position: "SUP", nameKr: "문관빈" }] },
+                { name: "BRION", logo: "../images/photos/assets/BRO.svg", players: [{ name: "Morgan", image: "../images/photos/players/morgan.jpg", position: "TOP", nameKr: "박루한" }, { name: "HamBak", image: "../images/photos/players/hambak.jpg", position: "JUG", nameKr: "함유진" }, { name: "Clozer", image: "../images/photos/players/clozer.jpg", position: "MID", nameKr: "이주현" }, { name: "Hype", image: "../images/photos/players/hype.jpg", position: "BOT", nameKr: "변정현" }, { name: "Pollu", image: "../images/photos/players/pollu.jpg", position: "SUP", nameKr: "오동규" }] },
+               
+            ],
+            2024: [
+                { name: "GEN.G", logo: "../images/photos/assets/GEN.G.svg", players: [{  name: "Kiin", image: "../images/photos/players/kiin.jpg", position: "TOP", nameKr: "김기인"  }, { name: "Canyon", image: "../images/photos/players/Canyon.jpg" , position: "JUG", nameKr: "김건부" }, { name: "Chovy", image: "../images/photos/players/Zeka.jpg", position: "MID", nameKr: "정지훈"  }, { name: "Peyz", image: "../images/photos/players/peyz.jpg", position: "BOT", nameKr: "김수환"  },{ name: "Lehends", image: "../images/photos/players/lehends.jpg", position: "SUP", nameKr: "손시우"  }] },
+                { name: "T1", logo: "../images/photos/assets/T1.svg", players: [{  name: "Zeus", image: "../images/photos/players/Zeus.jpg", position: "TOP", nameKr: "최우제"  }, { name: "Oner", image: "../images/photos/players/oner.jpg" , position: "JUG", nameKr: "문현준" }, { name: "Faker", image: "../images/photos/players/faker.jpg", position: "MID", nameKr: "이상혁"  }, { name: "Gumayusi", image: "../images/photos/players/gumayusi.jpg", position: "BOT", nameKr: "이민형"  },{ name: "Keria", image: "../images/photos/players/keria.jpg", position: "SUP", nameKr: "류민석"  }] },
+                { name: "HLE", logo: "../images/photos/assets/HLE.svg", players: [{ name: "Doran", image: "../images/photos/players/doran.jpg", position: "TOP", nameKr: "최현준"  }, { name: "Peanut", image: "../images/photos/players/Peanut.jpg" , position: "JUG", nameKr: "한왕호" }, { name: "Zeka", image: "../images/photos/players/Zeka.jpg", position: "MID", nameKr: "김건우"  }, { name: "Viper", image: "../images/photos/players/Viper.jpg", position: "BOT", nameKr: "박도현"  },{ name: "Delight", image: "../images/photos/players/Delight.jpg", position: "SUP", nameKr: "유환중"  }] },
+                { name: "KT", logo: "../images/photos/assets/KT.svg", players: [{  name: "PerfecT", image: "../images/photos/players/perfect.jpg", position: "TOP", nameKr: "이승민"  }, { name: "Pyosik", image: "../images/photos/players/pyosik.jpg" , position: "JUG", nameKr: "홍창현" }, { name: "Bdd", image: "../images/photos/players/bdd.jpg", position: "MID", nameKr: "곽보성"  }, { name: "Deft", image: "../images/photos/players/deft.jpg", position: "BOT", nameKr: "김혁규"  },{ name: "BeryL", image: "../images/photos/players/beryl.jpg", position: "SUP", nameKr: "조건희"  }] },
+                { name: "Dplus KIA", logo: "../images/photos/assets/DK.svg", players: [{ name: "Kingen", image: "../images/photos/players/Kingen.jpg", position: "TOP", nameKr: "황성훈"  }, { name: "Lucid", image: "../images/photos/players/lucid.jpg" , position: "JUG", nameKr: "최용혁" }, { name: "ShowMaker", image: "../images/photos/players/showmaker.jpg", position: "MID", nameKr: "허수"  }, { name: "Aiming", image: "../images/photos/players/Aiming.jpg", position: "BOT", nameKr: "김하람"  },{ name: "Keliing", image: "../images/photos/players/Kellin.jpg", position: "SUP", nameKr: "김형규"  }] },
+                { name: "KDF", logo: "../images/photos/assets/KDF.svg", players: [{ name: "DuDu", image: "../images/photos/players/dudu.jpg", position: "TOP", nameKr: "이동주"  }, { name: "Cuzz", image: "../images/photos/players/cuzz.jpg" , position: "JUG", nameKr: "문우찬" }, { name: "BullDog", image: "../images/photos/players/bulldog.jpg", position: "MID", nameKr: "이태영"  }, { name: "Bull", image: "../images/photos/players/Bull.jpg", position: "BOT", nameKr: "송선규"  },{ name: "quantam", image: "../images/photos/players/quantam.jpg", position: "SUP", nameKr: "손정환"  }] },
+                { name: "FOX", logo: "../images/photos/assets/2024 BNK.svg", players: [{  name: "Clear", image: "../images/photos/players/clear.jpg", position: "TOP", nameKr: "송현민"  }, { name: "Willer", image: "../images/photos/players/willer.jpg" , position: "JUG", nameKr: "김정현" }, { name: "Clozer", image: "../images/photos/players/clozer.jpg", position: "MID", nameKr: "이주현"  }, { name: "Hena", image: "../images/photos/players/hena.jpg", position: "BOT", nameKr: "박증환"  },{ name: "Execute", image: "../images/photos/players/execute.jpg", position: "SUP", nameKr: "이정훈"  }] },
+                { name: "NS", logo: "../images/photos/assets/NS.svg", players: [{  name: "DnDn", image: "../images/photos/players/dndn.jpg", position: "TOP", nameKr: "박근우"  }, { name: "Sylvie", image: "../images/photos/players/sylvie.jpg" , position: "JUG", nameKr: "이승복" }, { name: "Callme", image: "../images/photos/players/callme.jpg", position: "MID", nameKr: "오지훈"  }, { name: "jiwoo", image: "../images/photos/players/jiwoo.jpg", position: "BOT", nameKr: "정지우" },{ name: "Peter", image: "../images/photos/players/peter.jpg", position: "SUP", nameKr: "정윤수"  }] },
+                { name: "DRX", logo: "../images/photos/assets/DRX.svg", players: [{  name: "Rascal", image: "../images/photos/players/rascal.jpg", position: "TOP", nameKr: "김광희"  }, { name: "Sponge", image: "../images/photos/players/sponge.jpg" , position: "JUG", nameKr: "배영준" }, { name: "Kyeahoo", image: "../images/photos/players/Kyeahoo.jpg", position: "MID", nameKr: "강예후"  }, { name: "Teddy", image: "../images/photos/players/teddy.jpg", position: "BOT", nameKr: "박진성"  },{ name: "Pleata", image: "../images/photos/players/Pleata.jpg", position: "SUP", nameKr: "손민우"  }] },
+                { name: "BRION", logo: "../images/photos/assets/BRO.svg", players: [{ name: "Morgan", image: "../images/photos/players/morgan.jpg", position: "TOP", nameKr: "박루한"  }, { name: "GIDEON", image: "../images/photos/players/gideon.jpg" , position: "JUG", nameKr: "김민성" }, { name: "Karis", image: "../images/photos/players/karis.jpg", position: "MID", nameKr: "김홍조"  }, { name: "Envy", image: "../images/photos/players/envy.jpg", position: "BOT", nameKr: "이명준"  },{ name: "Pollu", image: "../images/photos/players/pollu.jpg", position: "SUP", nameKr: "오동규"  }] },
+            ],
+            2023: [
+                { name: "T1", logo: "../images/photos/assets/T1.svg", players: [{  name: "Zeus", image: "../images/photos/players/Zeus.jpg", position: "TOP", nameKr: "최우제"  }, { name: "Oner", image: "../images/photos/players/oner.jpg" , position: "JUG", nameKr: "문현준" }, { name: "Faker", image: "../images/photos/players/faker.jpg", position: "MID", nameKr: "이상혁"  }, { name: "Gumayusi", image: "../images/photos/players/gumayusi.jpg", position: "BOT", nameKr: "이민형"  },{ name: "Keria", image: "../images/photos/players/keria.jpg", position: "SUP", nameKr: "류민석"  }] },
+                { name: "GEN.G", logo: "../images/photos/assets/GEN.G.svg", players: [{  name: "Doran", image: "../images/photos/players/Doran.jpg", position: "TOP", nameKr: "최현준"  }, { name: "Peanut", image: "../images/photos/players/Peanut.jpg" , position: "JUG", nameKr: "한왕호" }, { name: "Chovy", image: "../images/photos/players/chovy.jpg", position: "MID", nameKr: "정지훈"  }, { name: "Peyz", image: "../images/photos/players/peyz.jpg", position: "BOT", nameKr: "김수환"  },{ name: "Delight", image: "../images/photos/players/Delight.jpg", position: "SUP", nameKr: "유환중"  }] },
+                { name: "KT", logo: "../images/photos/assets/KT.svg", players: [{ name: "Kiin", image: "../images/photos/players/kiin.jpg", position: "TOP", nameKr: "김기인"  }, { name: "Cuzz", image: "../images/photos/players/cuzz.jpg" , position: "JUG", nameKr: "문우찬" }, { name: "Bdd", image: "../images/photos/players/bdd.jpg", position: "MID", nameKr: "곽보성"  }, { name: "Aiming", image: "../images/photos/players/aiming.jpg", position: "BOT", nameKr: "김하람"  },{ name: "Lehends", image: "../images/photos/players/lehends.jpg", position: "SUP", nameKr: "손시우"  }] },
+                { name: "Dplus KIA", logo: "../images/photos/assets/DK.svg", players: [{  name: "Canna", image: "../images/photos/players/canna.jpg", position: "TOP", nameKr: "김창동"  }, { name: "Canyon", image: "../images/photos/players/canyon.jpg" , position: "JUG", nameKr: "김건부" }, { name: "ShowMaker", image: "../images/photos/players/showmaker.jpg", position: "MID", nameKr: "허수"  }, { name: "Deft", image: "../images/photos/players/deft.jpg", position: "BOT", nameKr: "김혁규"  },{ name: "Kellin", image: "../images/photos/players/kellin.jpg", position: "SUP", nameKr: "김형규"  }] },
+                { name: "HLE", logo: "../images/photos/assets/HLE.svg", players: [{  name: "Kingen", image: "../images/photos/players/kingen.jpg", position: "TOP", nameKr: "황성훈"  }, { name: "Clid", image: "../images/photos/players/clid.jpg" , position: "JUG", nameKr: "김태민" }, { name: "Zeka", image: "../images/photos/players/Zeka.jpg", position: "MID", nameKr: "김건우"  }, { name: "Viper", image: "../images/photos/players/Viper.jpg", position: "BOT", nameKr: "박도현"  },{ name: "Life", image: "../images/photos/players/life.jpg", position: "SUP", nameKr: "김정민"  }] },
+                { name: "LSB", logo: "../images/photos/assets/2023 BNK.svg", players: [{  name: "Burdol", image: "../images/photos/players/burdol.jpg", position: "TOP", nameKr: "노태윤"  }, { name: "Willer", image: "../images/photos/players/willer.jpg" , position: "JUG", nameKr: "김정현" }, { name: "Clozer", image: "../images/photos/players/clozer.jpg", position: "MID", nameKr: "이주현"  }, { name: "Envy", image: "../images/photos/players/envy.jpg", position: "BOT", nameKr: "이명준"  },{ name: "Kael", image: "../images/photos/players/kael.jpg", position: "SUP", nameKr: "김진홍"  }] },
+                { name: "KDF", logo: "../images/photos/assets/KDF.svg", players: [{  name: "dudu", image: "../images/photos/players/dudu.jpg", position: "TOP", nameKr: "이동주"  }, { name: "YoungJae", image: "../images/photos/players/youngjae.jpg" , position: "JUG", nameKr: "고영재" }, { name: "Bulldog", image: "../images/photos/players/bulldog.jpg", position: "MID", nameKr: "이태영"  }, { name: "Taeyoon", image: "../images/photos/players/taeyoon.jpg", position: "BOT", nameKr: "김태윤"  },{ name: "JUN", image: "../images/photos/players/jun.jpg", position: "SUP", nameKr: "윤세준"  }] },
+                { name: "BRO", logo: "../images/photos/assets/2023 BRO.svg", players: [{  name: "Morgan", image: "../images/photos/players/morgan.jpg", position: "TOP", nameKr: "박루한"  }, { name: "Umti", image: "../images/photos/players/umti.jpg" , position: "JUG", nameKr: "엄성현" }, { name: "Karis", image: "../images/photos/players/karis.jpg", position: "MID", nameKr: "김홍조"  }, { name: "Hena", image: "../images/photos/players/hena.jpg", position: "BOT", nameKr: "박증환"  },{ name: "Effort", image: "../images/photos/players/effort.jpg", position: "SUP", nameKr: "이상호"  }] },
+                { name: "DRX", logo: "../images/photos/assets/DRX.svg", players: [{  name: "Rascal", image: "../images/photos/players/rascal.jpg", position: "TOP", nameKr: "김광희"  }, { name: "Croco", image: "../images/photos/players/Croco.jpg" , position: "JUG", nameKr: "김동범" }, { name: "Fate", image: "../images/photos/players/fate.jpg", position: "MID", nameKr: "유수혁"  }, { name: "Deokdam", image: "../images/photos/players/deokdam.jpg", position: "BOT", nameKr: "서대길"  },{ name: "BeryL", image: "../images/photos/players/beryl.jpg", position: "SUP", nameKr: "조건희"  }] },
+                { name: "NS", logo: "../images/photos/assets/NS.svg", players: [{  name: "DnDn", image: "../images/photos/players/dndn.jpg", position: "TOP", nameKr: "박근우"  }, { name: "Sylvie", image: "../images/photos/players/sylvie.jpg" , position: "JUG", nameKr: "이승복" }, { name: "Fiesta", image: "../images/photos/players/fiesta.jpg", position: "MID", nameKr: "안현서"  }, { name: "Vital", image: "../images/photos/players/Vital.jpg", position: "BOT", nameKr: "하인성"  },{ name: "peter", image: "../images/photos/players/peter.jpg", position: "SUP", nameKr: "정윤수"  }] },
+            ],
+            2022: [
+                { name: "T1", logo: "../images/photos/assets/T1.svg", players: [{ name: "Zeus", image: "../images/photos/players/Zeus.jpg", position: "TOP", nameKr: "최우제"  }, { name: "Oner", image: "../images/photos/players/oner.jpg" , position: "JUG", nameKr: "문현준" }, { name: "Faker", image: "../images/photos/players/faker.jpg", position: "MID", nameKr: "이상혁"  }, { name: "Gumayusi", image: "../images/photos/players/gumayusi.jpg", position: "BOT", nameKr: "이민형"  },{ name: "Keria", image: "../images/photos/players/keria.jpg", position: "SUP", nameKr: "류민석"  }] },
+                { name: "GEN.G", logo: "../images/photos/assets/GEN.G.svg", players: [{  name: "Doran", image: "../images/photos/players/doran.jpg", position: "TOP", nameKr: "최현준"  }, { name: "Peanut", image: "../images/photos/players/Peanut.jpg" , position: "JUG", nameKr: "한왕호" }, { name: "Chovy", image: "../images/photos/players/chovy.jpg", position: "MID", nameKr: "정지훈"  }, { name: "Ruler", image: "../images/photos/players/ruler.jpg", position: "BOT", nameKr: "박재혁"  },{ name: "Lehends", image: "../images/photos/players/lehends.jpg", position: "SUP", nameKr: "손시우"  }] },
+                { name: "Dplus KIA", logo: "../images/photos/assets/2022 DK.svg", players: [{  name: "Burdol", image: "../images/photos/players/burdol.jpg", position: "TOP", nameKr: "노태윤"  }, { name: "Canyon", image: "../images/photos/players/canyon.jpg" , position: "JUG", nameKr: "김건부" }, { name: "ShowMaker", image: "../images/photos/players/showmaker.jpg", position: "MID", nameKr: "허수"  }, { name: "Deokdam", image: "../images/photos/players/deokdam.jpg", position: "BOT", nameKr: "서대길"  },{ name: "Kellin", image: "../images/photos/players/kellin.jpg", position: "SUP", nameKr: "김형규"  }] },
+                { name: "DRX", logo: "../images/photos/assets/DRX.svg", players: [{  name: "Kingen", image: "../images/photos/players/kingen.jpg", position: "TOP", nameKr: "황성훈"  }, { name: "Pyosik", image: "../images/photos/players/pyosik.jpg" , position: "JUG", nameKr: "홍창현" }, { name: "Zeka", image: "../images/photos/players/Zeka.jpg", position: "MID", nameKr: "김건우"  }, { name: "Deft", image: "../images/photos/players/deft.jpg", position: "BOT", nameKr: "김혁규"  },{ name: "BeryL", image: "../images/photos/players/beryl.jpg", position: "SUP", nameKr: "조건희"  }] },
+                { name: "KDF", logo: "../images/photos/assets/KDF.svg", players: [{  name: "Kiin", image: "../images/photos/players/kiin.jpg", position: "TOP", nameKr: "김기인"  }, { name: "Elim", image: "../images/photos/players/elim.jpg" , position: "JUG", nameKr: "최엘림" }, { name: "Fate", image: "../images/photos/players/fate.jpg", position: "MID", nameKr: "유수혁"  }, { name: "Teddy", image: "../images/photos/players/teddy.jpg", position: "BOT", nameKr: "박진성"  },{ name: "Hoit", image: "../images/photos/players/hoit.jpg", position: "SUP", nameKr: "류호성"  }] },
+                { name: "BRO", logo: "../images/photos/assets/2022 BRO.svg", players: [{  name: "morgan", image: "../images/photos/players/morgan.jpg", position: "TOP", nameKr: "박루한"  }, { name: "Umti", image: "../images/photos/players/umti.jpg" , position: "JUG", nameKr: "엄성현" }, { name: "Lava", image: "../images/photos/players/lava.jpg", position: "MID", nameKr: "김태훈"  }, { name: "Hena", image: "../images/photos/players/hena.jpg", position: "BOT", nameKr: "박증환"  },{ name: "Delight", image: "../images/photos/players/Delight.jpg", position: "SUP", nameKr: "유환중"  }] },
+                { name: "KT", logo: "../images/photos/assets/KT.svg", players: [{  name: "Rascal", image: "../images/photos/players/rascal.jpg", position: "TOP", nameKr: "김광희"  }, { name: "Cuzz", image: "../images/photos/players/cuzz.jpg" , position: "JUG", nameKr: "문우찬" }, { name: "VicLa", image: "../images/photos/players/vicla.jpg", position: "MID", nameKr: "이대광"  }, { name: "Aiming", image: "../images/photos/players/aiming.jpg", position: "BOT", nameKr: "김하람"  },{ name: "Life", image: "../images/photos/players/life.jpg", position: "SUP", nameKr: "김정민"  }] },
+                { name: "NS", logo: "../images/photos/assets/NS.svg", players: [{  name: "Canna", image: "../images/photos/players/canna.jpg", position: "TOP", nameKr: "김창동"  }, { name: "Dread", image: "../images/photos/players/dread.jpg" , position: "JUG", nameKr: "이진혁" }, { name: "Bdd", image: "../images/photos/players/bdd.jpg", position: "MID", nameKr: "곽보성"  }, { name: "Ghost", image: "../images/photos/players/ghost.jpg", position: "BOT", nameKr: "장용준"  },{ name: "Effort", image: "../images/photos/players/effort.jpg", position: "SUP", nameKr: "이상호"  }] },
+                { name: "LSB", logo: "../images/photos/assets/2023 BNK.svg", players: [{  name: "Dove", image: "../images/photos/players/dove.jpg", position: "TOP", nameKr: "김재연"  }, { name: "Croco", image: "../images/photos/players/croco.jpg" , position: "JUG", nameKr: "김동범" }, { name: "Clozer", image: "../images/photos/players/clozer.jpg", position: "MID", nameKr: "이주현"  }, { name: "Ice", image: "../images/photos/players/ice.jpg", position: "BOT", nameKr: "윤상훈"  },{ name: "Kael", image: "../images/photos/players/kael.jpg", position: "SUP", nameKr: "김진홍"  }] },
+                { name: "HLE", logo: "../images/photos/assets/HLE.svg", players: [{  name: "DuDu", image: "../images/photos/players/dudu.jpg", position: "TOP", nameKr: "이동주"  }, { name: "Onfleek", image: "../images/photos/players/onfleek.jpg" , position: "JUG", nameKr: "김장겸" }, { name: "Karis", image: "../images/photos/players/karis.jpg", position: "MID", nameKr: "김홍조"  }, { name: "SamD", image: "../images/photos/players/samd.jpg", position: "BOT", nameKr: "이재훈"  },{ name: "Vsta", image: "../images/photos/players/vsta.jpg", position: "SUP", nameKr: "오효성"  }] },
+            ],
+            2021: [
+                { name: "Dplus KIA", logo: "../images/photos/assets/2022 DK.svg", players: [{  name: "Khan", image: "../images/photos/players/Khan.jpg", position: "TOP", nameKr: "김동하"  }, { name: "Canyon", image: "../images/photos/players/canyon.jpg" , position: "JUG", nameKr: "김건부" }, { name: "ShowMaker", image: "../images/photos/players/showmaker.jpg", position: "MID", nameKr: "허수"  }, { name: "Ghost", image: "../images/photos/players/ghost.jpg", position: "BOT", nameKr: "장용준"  },{ name: "BeryL", image: "../images/photos/players/beryl.jpg", position: "SUP", nameKr: "조건희"  }] },
+                { name: "GEN.G", logo: "../images/photos/assets/GEN.G.svg", players: [{  name: "Rascal", image: "../images/photos/players/rascal.jpg", position: "TOP", nameKr: "김광희"  }, { name: "Clid", image: "../images/photos/players/clid.jpg" , position: "JUG", nameKr: "김태민" }, { name: "Bdd", image: "../images/photos/players/bdd.jpg", position: "MID", nameKr: "곽보성"  }, { name: "Ruler", image: "../images/photos/players/ruler.jpg", position: "BOT", nameKr: "박재혁"  },{ name: "Life", image: "../images/photos/players/life.jpg", position: "SUP", nameKr: "김정민"  }] },
+                { name: "HLE", logo: "../images/photos/assets/HLE.svg", players: [{  name: "Morgan", image: "../images/photos/players/morgan.jpg", position: "TOP", nameKr: "박루한"  }, { name: "Arthur", image: "../images/photos/players/arthur.jpg" , position: "JUG", nameKr: "박미르" }, { name: "Chovy", image: "../images/photos/players/chovy.jpg", position: "MID", nameKr: "정지훈"  }, { name: "Deft", image: "../images/photos/players/deft.jpg", position: "BOT", nameKr: "김혁규"  },{ name: "Vsta", image: "../images/photos/players/vsta.jpg", position: "SUP", nameKr: "오효성"  }] },
+                { name: "T1", logo: "../images/photos/assets/T1.svg", players: [{  name: "Canna", image: "../images/photos/players/canna.jpg", position: "TOP", nameKr: "김창동"  }, { name: "CuzZ", image: "../images/photos/players/cuzz.jpg" , position: "JUG", nameKr: "문우찬" }, { name: "Faker", image: "../images/photos/players/faker.jpg", position: "MID", nameKr: "이상혁"  }, { name: "Teddy", image: "../images/photos/players/teddy.jpg", position: "BOT", nameKr: "박진성"  },{ name: "Keria", image: "../images/photos/players/keria.jpg", position: "SUP", nameKr: "류민석"  }] },
+                { name: "DRX", logo: "../images/photos/assets/DRX.svg", players: [{  name: "Kingen", image: "../images/photos/players/kingen.jpg", position: "TOP", nameKr: "황성훈"  }, { name: "Pyosik", image: "../images/photos/players/pyosik.jpg" , position: "JUG", nameKr: "홍창현" }, { name: "Solka", image: "../images/photos/players/solka.jpg", position: "MID", nameKr: "송수형"  }, { name: "Bao", image: "../images/photos/players/bao.jpg", position: "BOT", nameKr: "정현우"  },{ name: "Pleata", image: "../images/photos/players/pleata.jpg", position: "SUP", nameKr: "손민우"  }] },
+                { name: "NS", logo: "../images/photos/assets/NS.svg", players: [{  name: "Rich", image: "../images/photos/players/rich.jpg", position: "TOP", nameKr: "이재원"  }, { name: "Peanut", image: "../images/photos/players/Peanut.jpg" , position: "JUG", nameKr: "한왕호" }, { name: "Bay", image: "../images/photos/players/bay.jpg", position: "MID", nameKr: "박준병"  }, { name: "Deokdam", image: "../images/photos/players/deokdam.jpg", position: "BOT", nameKr: "서대길"  },{ name: "Kellin", image: "../images/photos/players/kellin.jpg", position: "SUP", nameKr: "김형규"  }] },
+                { name: "KT", logo: "../images/photos/assets/KT.svg", players: [{  name: "Doran", image: "../images/photos/players/doran.jpg", position: "TOP", nameKr: "최현준"  }, { name: "GIDEON", image: "../images/photos/players/gideon.jpg" , position: "JUG", nameKr: "김민성" }, { name: "Dove", image: "../images/photos/players/dove.jpg", position: "MID", nameKr: "김재연"  }, { name: "Noah", image: "../images/photos/players/noah.jpg", position: "BOT", nameKr: "오현택"  },{ name: "Zzus", image: "../images/photos/players/zzus.jpg", position: "SUP", nameKr: "장준수"  }] },
+                { name: "LSB", logo: "../images/photos/assets/2023 BNK.svg", players: [{  name: "Summit", image: "../images/photos/players/summit.jpg", position: "TOP", nameKr: "박우태"  }, { name: "Croco", image: "../images/photos/players/croco.jpg" , position: "JUG", nameKr: "김동범" }, { name: "Fate", image: "../images/photos/players/fate.jpg", position: "MID", nameKr: "유수혁"  }, { name: "Route", image: "../images/photos/players/route.jpg", position: "BOT", nameKr: "문검수"  },{ name: "Effort", image: "../images/photos/players/effort.jpg", position: "SUP", nameKr: "이상호"  }] },
+                { name: "AF", logo: "../images/photos/assets/AF.png", players: [{  name: "Kiin", image: "../images/photos/players/kiin.jpg", position: "TOP", nameKr: "김기인"  }, { name: "Dread", image: "../images/photos/players/dread.jpg" , position: "JUG", nameKr: "이진혁" }, { name: "Fly", image: "../images/photos/players/fly.jpg", position: "MID", nameKr: "송용준"  }, { name: "Bang", image: "../images/photos/players/bang.jpg", position: "BOT", nameKr: "배준식"  },{ name: "Lehends", image: "../images/photos/players/lehends.jpg", position: "SUP", nameKr: "손시우"  }] },
+                { name: "BRO", logo: "../images/photos/assets/2022 BRO.svg", players: [{  name: "Hoya", image: "../images/photos/players/hoya.jpg", position: "TOP", nameKr: "윤용호"  }, { name: "Umti", image: "../images/photos/players/umti.jpg" , position: "JUG", nameKr: "엄성현" }, { name: "Lava", image: "../images/photos/players/lava.jpg", position: "MID", nameKr: "김태훈"  }, { name: "Hena", image: "../images/photos/players/hena.jpg", position: "BOT", nameKr: "박증환"  },{ name: "Delight", image: "../images/photos/players/Delight.jpg", position: "SUP", nameKr: "유환중"  }] },
+        ],
+        2020: [
+                { name: "GEN.G", logo: "../images/photos/assets/GEN.G.svg", players: [{  name: "Rascal", image: "../images/photos/players/rascal.jpg", position: "TOP", nameKr: "김광희"  }, { name: "Clid", image: "../images/photos/players/clid.jpg" , position: "JUG", nameKr: "김태민" }, { name: "Bdd", image: "../images/photos/players/bdd.jpg", position: "MID", nameKr: "곽보성"  }, { name: "Ruler", image: "../images/photos/players/ruler.jpg", position: "BOT", nameKr: "박재혁"  },{ name: "Life", image: "../images/photos/players/life.jpg", position: "SUP", nameKr: "김정민민"  }] },
+                { name: "T1", logo: "../images/photos/assets/T1.svg", players: [{  name: "Cannna", image: "../images/photos/players/canna.jpg", position: "TOP", nameKr: "김창동"  }, { name: "Cuzz", image: "../images/photos/players/cuzz.jpg" , position: "JUG", nameKr: "문우찬" }, { name: "Faker", image: "../images/photos/players/faker.jpg", position: "MID", nameKr: "이상혁"  }, { name: "Teddy", image: "../images/photos/players/teddy.jpg", position: "BOT", nameKr: "박진성"  },{ name: "Effort", image: "../images/photos/players/effort.jpg", position: "SUP", nameKr: "이상호"  }] },
+                { name: "DRX", logo: "../images/photos/assets/DRX.svg", players: [{  name: "Doran", image: "../images/photos/players/doran.jpg", position: "TOP", nameKr: "최현준"  }, { name: "Pyosik", image: "../images/photos/players/pyosik.jpg" , position: "JUG", nameKr: "홍창현" }, { name: "Chovy", image: "../images/photos/players/chovy.jpg", position: "MID", nameKr: "정지훈"  }, { name: "Deft", image: "../images/photos/players/deft.jpg", position: "BOT", nameKr: "김혁규"  },{ name: "Keria", image: "../images/photos/players/keria.jpg", position: "SUP", nameKr: "류민석"  }] },
+                { name: "KT", logo: "../images/photos/assets/KT.svg", players: [{  name: "SoHwan", image: "../images/photos/players/sohwan.jpg", position: "TOP", nameKr: "김준영"  }, { name: "BonO", image: "../images/photos/players/bono.jpg" , position: "JUG", nameKr: "김기범" }, { name: "Kuro", image: "../images/photos/players/kuro.jpg", position: "MID", nameKr: "이서행"  }, { name: "Aiming", image: "../images/photos/players/aiming.jpg", position: "BOT", nameKr: "김하람"  },{ name: "Tusin", image: "../images/photos/players/tusin.jpg", position: "SUP", nameKr: "박종익"  }] },
+                { name: "DWG", logo: "../images/photos/assets/DWG.jpg", players: [{  name: "Nuguri", image: "../images/photos/players/nuguri.jpg", position: "TOP", nameKr: "장하권"  }, { name: "Canyon", image: "../images/photos/players/canyon.jpg" , position: "JUG", nameKr: "김건부" }, { name: "ShowMaker", image: "../images/photos/players/showmaker.jpg", position: "MID", nameKr: "허수"  }, { name: "Nuclear", image: "../images/photos/players/nuclear.jpg", position: "BOT", nameKr: "신정현"  },{ name: "BeryL", image: "../images/photos/players/beryl.jpg", position: "SUP", nameKr: "조건희"  }] },
+                { name: "AF", logo: "../images/photos/assets/2020 AF.jpg", players: [{  name: "Kiin", image: "../images/photos/players/kiin.jpg", position: "TOP", nameKr: "김기인"  }, { name: "Spirit", image: "../images/photos/players/spirit.jpg" , position: "JUG", nameKr: "이다윤" }, { name: "Fly", image: "../images/photos/players/fly.jpg", position: "MID", nameKr: "송용준"  }, { name: "Mystic", image: "../images/photos/players/mystic.jpg", position: "BOT", nameKr: "진성준"  },{ name: "Jelly", image: "../images/photos/players/jelly.jpg", position: "SUP", nameKr: "손호경"  }] },
+                { name: "APK", logo: "../images/photos/assets/APK.jpg", players: [{  name: "Ikssu", image: "../images/photos/players/ikssu.jpg", position: "TOP", nameKr: "전익수"  }, { name: "Flawless", image: "../images/photos/players/flawless.jpg" , position: "JUG", nameKr: "성영준" }, { name: "Cover", image: "../images/photos/players/cover.jpg", position: "MID", nameKr: "김주언"  }, { name: "HybriD", image: "../images/photos/players/hybrid.jpg", position: "BOT", nameKr: "이우진"  },{ name: "Secret", image: "../images/photos/players/secret.jpg", position: "SUP", nameKr: "박기선"  }] },
+                { name: "HLE", logo: "../images/photos/assets/HLE.svg", players: [{  name: "Cuvee", image: "../images/photos/players/cuvee.jpg", position: "TOP", nameKr: "이성진"  }, { name: "Haru", image: "../images/photos/players/haru.jpg" , position: "JUG", nameKr: "강민승" }, { name: "Tempt", image: "../images/photos/players/tempt.jpg", position: "MID", nameKr: "강명구"  }, { name: "Vsta", image: "../images/photos/players/Vsta.jpg", position: "BOT", nameKr: "오효성"  },{ name: "Lehends", image: "../images/photos/players/lehends.jpg", position: "SUP", nameKr: "손시우"  }] },
+                { name: "SB", logo: "../images/photos/assets/2020 SB.jpg", players: [{  name: "Summit", image: "../images/photos/players/summit.jpg", position: "TOP", nameKr: "박우태"  }, { name: "Onfleek", image: "../images/photos/players/onfleek.jpg" , position: "JUG", nameKr: "김장겸" }, { name: "Dove", image: "../images/photos/players/dove.jpg", position: "MID", nameKr: "김재연"  }, { name: "Route", image: "../images/photos/players/route.jpg", position: "BOT", nameKr: "문검수"  },{ name: "GorlliA", image: "../images/photos/players/gorllia.jpg", position: "SUP", nameKr: "강범현"  }] },
+                { name: "GRF", logo: "../images/photos/assets/GRIFFIN.jpg", players: [{  name: "Sword", image: "../images/photos/players/sword.jpg", position: "TOP", nameKr: "최성원"  }, { name: "Tarzan", image: "../images/photos/players/tarzan.jpg" , position: "JUG", nameKr: "이승용" }, { name: "Ucal", image: "../images/photos/players/ucal.jpg", position: "MID", nameKr: "손우현"  }, { name: "Viper", image: "../images/photos/players/Viper.jpg", position: "BOT", nameKr: "박도현"  },{ name: "Irove", image: "../images/photos/players/irove.jpg", position: "SUP", nameKr: "정상현"  }] },
+        ]};
+
+        dropdownButton.addEventListener('click', function() {
+            dropdownList.classList.toggle('active');
+        });
+
+        dropdownList.querySelectorAll('a').forEach(option => {
+            option.addEventListener('click', function(event) {
+                event.preventDefault(); // 기본 링크 동작 방지
+                const year = this.getAttribute('data-year');
+                teamTitle.firstChild.textContent = `${year} LCK 참가팀`; // 제목 변경
+
+                // 팀 목록 업데이트
+                teamsList.innerHTML = ''; // 목록 초기화
+
+                teams[year].forEach(team => {
+                    const teamItem = document.createElement('li');
+                    teamItem.className = 'team-item';
+                    teamItem.innerHTML = `<img src="${team.logo}" alt="${team.name}" class="team-icon"><span>${team.name}</span>`;
+
+                    teamsList.appendChild(teamItem); // 팀 추가
+
+                    teamItem.addEventListener('click', () => {
+                        const playerGrid = document.getElementById('playerGrid'); // 선수 목록을 표시할 그리드 선택
+                        playerGrid.innerHTML = ''; // 이전 선수 목록 초기화
+                        team.players.forEach(player => {
+                            const playerCard = document.createElement('div');
+                            playerCard.className = 'player-card';
+                            playerCard.innerHTML = `
+                                <img src="${player.image}" alt="${player.name}" class="player-image">
+                                <div class="player-info">
+                                    <span class="position">${player.position}</span>
+                                    <span class="player-name">${player.name}</span>
+                                    <span class="player-name-kr">${player.nameKr}</span>
+                                </div>
+                            `;
+                            playerGrid.appendChild(playerCard); // 선수 카드 추가
+                        });
+                        document.querySelector('.players-section').style.display = 'block'; // 선수 섹션 표시
+                    });
+                });
+
+                // 드롭다운 닫기
+                dropdownList.classList.remove('active');
+            });
+        });
+
+        // 드롭다운 외부 클릭 시 닫기
+        window.addEventListener('click', function(event) {
+            if (!dropdownButton.contains(event.target)) {
+                dropdownList.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

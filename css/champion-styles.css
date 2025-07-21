@@ -1,0 +1,377 @@
+/* 헤더 네비게이션 */
+header {
+    background-color: var(--primary-dark); /* style2.css에서 가져온 색상 */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0.8rem 2rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+.nav-center {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-item {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.nav-item:hover {
+    color: var(--text-primary);
+}
+
+.nav-item:hover::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color); /* style2.css에서 가져온 색상 */
+    transform: scaleX(1);
+    transition: transform 0.2s ease;
+}
+
+.nav-item.live {
+    color: #ff4655;
+    font-weight: 700;
+}
+
+.login-btn, .signup-btn {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.login-btn {
+    color: var(--text-primary);
+    margin-right: 0.5rem;
+}
+
+.login-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.signup-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.signup-btn:hover {
+    background-color: var(--primary-dark);
+}
+.logo {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(39, 76, 218, 0.5);
+}
+
+:root {
+    --primary-color: #1d1e4d; /* style2.css에서 가져온 색상 */
+    --primary-dark: #1a1a2e; /* style2.css에서 가져온 색상 */
+    --background-dark: #171727; /* style2.css에서 가져온 색상 */
+    --background-light: #1e1e2f; /* style2.css에서 가져온 색상 */
+    --text-primary: #ffffff; /* 유지 */
+    --text-secondary: #b0b7d6; /* 유지 */
+    --accent-color: #f7cf2d; /* 유지 */
+    --border-color: rgba(8, 6, 24, 0.1); /* 유지 */
+    --card-bg: rgba(17, 24, 39, 0.85); /* style2.css에서 가져온 색상 */
+}
+
+/* champion-styles.css */
+
+body {
+    font-family: 'NanumSquare', 'Nanum Gothic', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #111827;
+}
+.main-container {
+    display: flex; /* This is crucial for sidebar and content to sit side-by-side */
+    justify-content: center; /* Adjust as needed */
+    padding: 20px; /* Add some padding around the whole content */
+    max-width: 1200px; /* Or whatever maximum width you desire */
+    margin: 0 auto; /* Center the container */
+}
+
+/* 역할 사이드바 스타일 */
+.role-sidebar {
+    width: 100px;
+    margin-right: 20px;
+    background:#242d40;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Distribute items evenly vertically */
+    align-items: center;
+    min-height: 680px; /* 챔피언 목록의 최소 높이에 맞춰 설정, 필요에 따라 조절 */
+    flex-shrink: 0;
+}
+
+/* Add a ul element for the role list inside the sidebar */
+.role-sidebar ul.role-list { /* Assuming you add a ul with class role-list in HTML */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    flex-grow: 1; /* Allow the list to take available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Distribute list items */
+    align-items: center;
+}
+
+.role-sidebar li { /* Targeting li elements directly inside role-sidebar or role-list */
+    padding: 0; /* Changed to 0 as padding will be on the <a> tag */
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    text-align: center;
+    width: 100%; /* Take full width of its parent (role-sidebar or role-list) */
+    box-sizing: border-box;
+    /* Removed flex properties from li, now handled by its child <a> */
+}
+
+.role-sidebar li a {
+    text-decoration: none;
+    color: inherit;
+    display: flex; /* Make the anchor tag a flex container */
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center horizontally */
+    gap: 5px; /* Space between image and text */
+    width: 100%; /* Ensure the anchor takes full width for hover effects */
+    padding: 10px 0; /* Add some vertical padding inside the clickable area */
+}
+
+/* Crucial: Control the size of the images inside the role sidebar */
+.role-sidebar li img {
+    width: 40px; /* Set a fixed width for the icons */
+    height: 40px; /* Set a fixed height for the icons */
+    object-fit: contain; /* Ensure the image scales down without cropping */
+    display: block; /* Remove any extra space below the image */
+}
+
+.role-sidebar li:hover,
+.role-sidebar li.selected {
+    background-color: #e9ecef;
+    color: #007bff;
+}
+
+/* Adjust colors for selected state to fit dark background, if desired */
+.role-sidebar li.selected {
+    background-color: #007bff; /* Example: blue background for selected */
+    color: #ffffff; /* White text for selected */
+}
+
+
+/* 챔피언 목록 컨테이너 스타일 */
+.champListWrap1 {
+    flex-grow: 1; /* 남은 공간을 채우도록 확장 */
+    background:#242d40;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 680px; /* 사이드바와 최소 높이를 맞춤 */
+}
+
+.champListWrap2 {
+    flex-grow: 1; /* 이 div가 남은 공간을 채우도록 */
+    display: flex;
+    flex-direction: column;
+}
+
+.ganada {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+    flex-shrink: 0; /* 간하다 목록은 크기가 줄어들지 않도록 고정 */
+}
+
+.ganada li {
+    margin-right: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.ganada li a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 5px 0;
+    transition: color 0.2s ease-in-out;
+}
+
+.ganada li a:hover,
+.ganada li.selected a {
+    color: #007bff;
+}
+
+.scrollingList {
+    max-height: 600px; /* 스크롤바가 나타날 최대 높이 지정 - 이 값을 핵심으로 사용 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤바 생성 */
+    padding-right: 10px; /* 스크롤바가 내용 가리지 않도록 여백 추가 */
+    padding-top: 5px; /* Add padding to prevent clipping when items lift up */
+}
+
+.champList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+}
+
+.champList li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0; /* Padding moved to the <a> tag inside */
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background:#ffffff00;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    position: relative; /* Create a new stacking context for the hover effect */
+    z-index: 1; /* Ensure hovered item is above others (optional, but good practice) */
+}
+
+/* 챔피언 항목 내부의 <a> 태그 스타일 */
+.champList li a {
+    display: flex; /* Use flexbox for image and text alignment */
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center horizontally */
+    text-decoration: none; /* Remove underline from link */
+    color: inherit; /* Inherit text color from parent */
+    padding: 5px; /* Padding for the clickable area */
+    width: 100%; /* Make the link fill the list item */
+    height: 100%; /* Make the link fill the list item */
+    box-sizing: border-box; /* Include padding in width/height */
+}
+
+
+.champList li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 2; /* Make sure the hovered item appears above non-hovered items */
+}
+
+.champImage { /* This targets the div around the img */
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.champImage img { /* This targets the actual img tag */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 챔피언 이름 스타일 */
+.champName {
+    font-size: 12px;
+    color: #ffffff; /* Text color inside the link */
+    word-break: keep-all;
+    /* text-decoration is already none on the <a> parent */
+}
+
+/* Hover for the name is now applied to the <a> tag */
+.champList li a:hover .champName {
+    color: #007bff; /* Hover color for text when the whole link is hovered */
+}
+
+
+.scrollingList::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollingList::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.scrollingList::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+/* 미디어 쿼리 - 작은 화면에서 레이아웃 변경 */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .role-sidebar {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+        flex-direction: row;
+        justify-content: center;
+        padding: 10px;
+        height: auto; /* 작은 화면에서는 높이 고정 해제 */
+        min-height: unset; /* 작은 화면에서는 최소 높이도 해제 */
+    }
+
+    .role-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .role-list li {
+        padding: 0; /* Padding moved to the <a> tag */
+        margin: 0 5px;
+        width: auto;
+    }
+
+    /* Adjust the <a> tag within role-list for small screens */
+    .role-list li a {
+        padding: 5px 10px; /* Adjust padding for smaller buttons */
+    }
+
+    .champListWrap1 {
+        width: 100%;
+        height: auto; /* 작은 화면에서는 높이 고정 해제 */
+        min-height: unset; /* 작은 화면에서는 최소 높이도 해제 */
+    }
+}
