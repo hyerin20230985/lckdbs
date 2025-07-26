@@ -1,19 +1,21 @@
 // schedule-script.js
+const IMG_BASE_URL = 'https://d30q0nmfm6z0r7.cloudfront.net/photos/';
+
 const schedules = {
     '퍼스트 스탠드 토너먼트': [
-        { date: '2025-03-10', time: '17:00', round: '1라운드', team1: 'Team Liquid', team1Player: '/photos/players/umti.jpg', team1Logo: '/photos/assets/team liquid.png', team2: 'Karmine Corp', team2Logo: '/photos/assets/karmine corp.png', team2Player: '/photos/players/canna.jpg', score: '2 : 1', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044679' },
-        { date: '2025-03-10', time: '20:00', round: '1라운드', team1: '한화생명 E스포츠', team1Player: '/photos/players/zeus.jpg', team1Logo: '/photos/assets/HLE.svg', team2: 'TOP E-sports', team2Logo: '/photos/assets/top esports.png', team2Player: '/photos/players/369.jpg', score: '2 : 0', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044684' },
+        { date: '2025-03-10', time: '17:00', round: '1라운드', team1: 'Team Liquid', team1Player: `${IMG_BASE_URL}playerjpg/Umti.jpg`, team1Logo: `${IMG_BASE_URL}assets/team liquid.png`, team2: 'Karmine Corp', team2Logo: `${IMG_BASE_URL}assets/karmine corp.png`, team2Player: `${IMG_BASE_URL}playerjpg/canna.jpg`, score: '2 : 1', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044679' },
+        { date: '2025-03-10', time: '20:00', round: '1라운드', team1: '한화생명 E스포츠', team1Player: `${IMG_BASE_URL}playerspng/Zeus.png`, team1Logo: `${IMG_BASE_URL}assets/HLE.svg`, team2: 'TOP E-sports', team2Logo: `${IMG_BASE_URL}assets/top esports.png`, team2Player: `${IMG_BASE_URL}playerjpg/369.jpg`, score: '2 : 0', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044684' },
     ],
     'LCK': [
-        { date: '2025-04-15', time: '18:00', round: '정규 시즌', team1: 'T1', team1Player: '/photos/players/faker.jpg', team1Logo: '/photos/assets/t1.png', team2: 'Gen.G', team2Logo: '/photos/assets/gen.g.svg', team2Player: '/photos/players/chovy.jpg', score: '3 : 1', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044690' },
-        { date: '2025-05-11', time: '17:00', round: '정규 시즌', team1: 'DRX', team1Player: '/photos/players/deft.jpg', team1Logo: '/photos/assets/drx.svg', team2: 'KDF', team2Logo: '/photos/assets/kdf.svg', team2Player: '/photos/players/bdd.jpg', score: '2 : 0', link: 'https://game.naver.com/esports/League_of_Legends/videos/xxxxxxx' },
-        { date: '2025-05-11', time: '20:00', round: '정규 시즌', team1: 'T1', team1Player: '/photos/players/faker.jpg', team1Logo: '/photos/assets/t1.png', team2: 'HLE', team2Logo: '/photos/assets/HLE.svg', team2Player: '/photos/players/chovy.jpg', score: '1 : 2', link: 'https://game.naver.com/esports/League_of_Legends/videos/yyyyyyy' },
+        { date: '2025-04-15', time: '18:00', round: '정규 시즌', team1: 'T1', team1Player: `${IMG_BASE_URL}playerpng/Faker.png`, team1Logo: `${IMG_BASE_URL}assets/T1.png`, team2: 'Gen.G', team2Logo: `${IMG_BASE_URL}assets/GEN.G.svg`, team2Player: `${IMG_BASE_URL}playerpng/chovy.png`, score: '3 : 1', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044690' },
+        { date: '2025-05-11', time: '17:00', round: '정규 시즌', team1: 'DRX', team1Player: `${IMG_BASE_URL}playerpng/Deft.png`, team1Logo: `${IMG_BASE_URL}assets/drx.svg`, team2: 'KDF', team2Logo: `${IMG_BASE_URL}assets/kdf.png`, team2Player: `${IMG_BASE_URL}playerpng/Bdd.png`, score: '2 : 0', link: 'https://game.naver.com/esports/League_of_Legends/videos/xxxxxxx' },
+        { date: '2025-05-11', time: '20:00', round: '정규 시즌', team1: 'T1', team1Player: `${IMG_BASE_URL}playerpng/Faker.png`, team1Logo: `${IMG_BASE_URL}assets/T1.png`, team2: 'HLE', team2Logo: `${IMG_BASE_URL}assets/HLE.png`, team2Player: `${IMG_BASE_URL}playerpng/chovy.png`, score: '1 : 2', link: 'https://game.naver.com/esports/League_of_Legends/videos/yyyyyyy' },
     ],
     'MSI': [
-        { date: '2025-05-05', time: '19:00', round: '그룹 스테이지', team1: 'DWG KIA', team1Player: '/photos/players/showmaker.jpg', team1Logo: '/photos/assets/dk.svg', team2: 'T1', team2Logo: '/photos/assets/T1.png', team2Player: '/photos/players/FAKER.jpg', score: '3 : 2', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044695' },
+        { date: '2025-05-05', time: '19:00', round: '그룹 스테이지', team1: 'DWG KIA', team1Player: `${IMG_BASE_URL}playerpng/ShowMaker.png`, team1Logo: `${IMG_BASE_URL}assets/dk.png`, team2: 'T1', team2Logo: `${IMG_BASE_URL}assets/T1.png`, team2Player: `${IMG_BASE_URL}playerpng/Faker.png`, score: '3 : 2', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044695' },
     ],
     '롤드컵': [
-        { date: '2025-10-10', time: '17:00', round: '8강', team1: 'T1', team1Player: '/photos/players/faker.png', team1Logo: '/photos/assets/T1.png', team2: 'DWG KIA', team2Logo: '/photos/assets/2022 DK.svg', team2Player: '/photos/players/showmaker.jpg', score: '3 : 1', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044700' },
+        { date: '2025-10-10', time: '17:00', round: '8강', team1: 'T1', team1Player: `${IMG_BASE_URL}playerpng/Faker.png`, team1Logo: `${IMG_BASE_URL}assets/T1.png`, team2: 'DWG KIA', team2Logo: `${IMG_BASE_URL}assets/2022 DK.svg`, team2Player: `${IMG_BASE_URL}playerpng/ShowMaker.png`, score: '3 : 1', link: 'https://game.naver.com/esports/League_of_Legends/videos/1044700' },
     ],
 };
 $(function() {
