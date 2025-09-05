@@ -1,0 +1,282 @@
+.icons {
+    width: 40px;
+}
+
+.icon {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.profile-image {
+    width: 100%;
+    border-radius: 4px; /* rounded */
+    margin-bottom: 10px; /* mb-5 */
+    padding: 0;
+    border: #111827 solid 2px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px; /* p-5 */
+}
+
+.grdaition {
+    background: radial-gradient(at top right, #809CC1, transparent 50%),
+                   radial-gradient(at top left, #261E3E, transparent 50%),
+                   radial-gradient(at bottom left, #414A6C, transparent 50%),
+                   radial-gradient(at bottom right, #0C0516, transparent 50%);
+       background-color: #1e1e2e;
+}
+
+/* 탭 스타일링 */
+.tab-btn {
+    background: transparent;
+    color: #8b9dc3;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-btn:hover {
+    background: rgba(247, 207, 45, 0.1);
+    color: #b0b7d6;
+    transform: translateY(-1px);
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #f7cf2d, #e6b800);
+    color: #171727;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(247, 207, 45, 0.3);
+}
+
+.tab-btn.active span {
+    color: #171727;
+}
+
+/* 탭 패널 애니메이션 */
+.tab-pane {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-pane.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 탭 콘텐츠 컨테이너 */
+.tab-content {
+    min-height: 500px;
+    position: relative;
+}
+
+/* 탭 버튼 호버 효과 */
+.tab-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(247, 207, 45, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.tab-btn:hover::before {
+    left: 100%;
+}
+
+/* 활성 탭 표시 */
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #f7cf2d, #e6b800);
+    border-radius: 2px;
+    transform: translateX(-50%);
+    animation: expandLine 0.3s ease-out forwards;
+}
+
+@keyframes expandLine {
+    to {
+        width: 80%;
+    }
+}
+
+/* 선수 코멘트 섹션 스타일 */
+.player-comment-section {
+    position: relative;
+}
+
+.player-comment-section .comment-avatar {
+    transition: transform 0.3s ease;
+}
+
+.player-comment-section .comment-avatar:hover {
+    transform: scale(1.05);
+}
+
+.player-comment-section blockquote {
+    position: relative;
+}
+
+.player-comment-section blockquote::before {
+    content: '"';
+    font-size: 3rem;
+    color: rgba(247, 207, 45, 0.3);
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+/* 요약 통계 섹션 스타일 */
+.stats-summary-container {
+    width: 100%;
+}
+
+.win-rate-section-custom,
+.average-stats-custom {
+    flex: 1;
+}
+
+.win-rate-section-custom {
+    margin-right: 20px;
+}
+
+.total-games-custom span:first-child {
+    font-family: 'Consolas', monospace;
+}
+
+.win-loss-custom span {
+    font-family: 'Consolas', monospace;
+}
+
+.win-rate-custom span {
+    font-family: 'Consolas', monospace;
+}
+
+.stat-item-custom span:last-child {
+    font-family: 'Consolas', monospace;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .stats-summary-container .flex {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .win-rate-section-custom {
+        margin-right: 0;
+        width: 100%;
+    }
+    
+    .win-rate-section-custom .flex {
+        justify-content: space-around;
+    }
+    
+    .average-stats-custom .flex {
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 768px) {
+    .tab-btn {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+    
+    .tab-btn span {
+        font-size: 12px;
+    }
+    
+    .tab-pane {
+        padding: 16px;
+    }
+    
+    /* 선수 코멘트 섹션 모바일 스타일 */
+    .player-comment-section .flex.items-center.justify-between {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .player-comment-section .flex.items-start.space-x-4 {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .player-comment-section blockquote {
+        font-size: 14px;
+        text-align: left;
+    }
+    
+    .player-comment-section .flex.justify-end {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .player-comment-section button {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+    
+    .win-rate-section-custom .flex {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .average-stats-custom .flex {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .stat-item-custom {
+        min-width: 60px;
+    }
+    
+    .total-games-custom span:first-child {
+        font-size: 2rem;
+    }
+    
+    .win-loss-custom,
+    .win-rate-custom {
+        font-size: 16px;
+    }
+    
+    .stat-item-custom span:last-child {
+        font-size: 18px;
+    }
+}

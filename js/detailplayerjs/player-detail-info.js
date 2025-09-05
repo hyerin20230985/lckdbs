@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
    let statsChart = null;
    let currentPage = 1;
 
+
    // 선수 기본 정보 로드
    async function loadPlayerDetails() {
        try {
