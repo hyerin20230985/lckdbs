@@ -1,95 +1,127 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LCK 갤러리</title>
-  <link rel="stylesheet" href="../css/com.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티 사이트</title>
+    <link rel="stylesheet" href="/css/com.css">
 </head>
-
 <body>
-  <header>
-        <nav>
-            <div class="nav-left">
-                <a href="../index.html" class="logo">LCKDBS</a>
+    <div class="container">
+        <!-- 게시물 목록 페이지 -->
+        <main id="list-page" class="page">
+            <header>
+                <h1>게시판</h1>
+            </header>
+            <nav id="category-bar">
+                <!-- 카테고리는 JS로 동적 생성 -->
+            </nav>
+            <div id="post-list-container">
+                <!-- 게시물 목록은 JS로 동적 생성 -->
             </div>
-            <div class="nav-center">
-                <a href="/html/player.html" class="nav-item">선수</a>
-                <a href="/html/team.html" class="nav-item">팀</a>
-                <a href="/html/champion.html" class="nav-item">챔피언</a>
-                <a href="/html/schedule2.html" class="nav-item">일정</a>
-                <a href="#" class="nav-item">순위</a>
-                <a href="#" class="nav-item">스탯</a>
-                <a href="#" class="nav-item">분석</a>
-                <a href="/html/com.html" class="nav-item">커뮤니티</a>
-                <a href="#" class="nav-item live">LIVE</a>
+            <div class="page-actions">
+                <button id="write-post-btn">게시물 작성</button>
+                <button id="manage-posts-btn">수정/삭제</button>
             </div>
-            <div class="nav-right">
-                <a href="#" class="login-btn">로그인</a>
-                <a href="/html/signup.html" class="signup-btn">회원가입</a>
-            </div>
-        </nav>
-    </header>
+        </main>
 
-  <main class="main">
+        <!-- 게시물 작성/수정 페이지 -->
+        <section id="write-page" class="page hidden">
+            <header>
+                <h1 id="write-page-title">게시물 작성</h1>
+            </header>
+            <form id="write-form">
+                <input type="hidden" id="post-id-input">
+                <div class="form-group">
+                    <label for="post-category">카테고리</label>
+                    <select id="post-category" required>
+                        <!-- 카테고리 옵션은 JS로 동적 생성 -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="post-author">작성자</label>
+                    <input type="text" id="post-author" placeholder="작성자명을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-title">제목</label>
+                    <input type="text" id="post-title" placeholder="제목을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-content">내용</label>
+                    <textarea id="post-content" rows="10" placeholder="내용을 입력하세요" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="post-attachment">파일 첨부</label>
+                    <input type="file" id="post-attachment" accept="image/*">
+                    <div id="image-preview-container"></div>
+                </div>
+                <div class="form-group">
+                    <label for="post-password">비밀번호</label>
+                    <input type="password" id="post-password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+                <div class="page-actions">
+                    <button type="button" id="cancel-write-btn">취소</button>
+                    <button type="submit" id="submit-post-btn">등록</button>
+                </div>
+            </form>
+        </section>
 
-    <div class="cate-area">
-      <a href="#" data-category="인기" id="category-인기">인기</a>
-      <a href="#" data-category="자유" id="category-자유">자유</a>
-      <a href="#" data-category="T1" id="category-T1">T1</a>
-      <a href="#" data-category="GEN.G" id="category-GEN.G">GEN.G</a>
-      <a href="#" data-category="HLE" id="category-HLE">HLE</a>
-      <a href="#" data-category="DK" id="category-DK">DK</a>
-      <a href="#" data-category="BNK" id="category-BNK">BNK</a>
-      <a href="#" data-category="DRX" id="category-DRX">DRX</a>
-      <a href="#" data-category="BRO" id="category-BRO">BRO</a>
-      <a href="#" data-category="KT" id="category-KT">KT</a>
-      <a href="#" data-category="NS" id="category-NS">NS</a>
-      <a href="#" data-category="DNF" id="category-DNF">DNF</a>
+        <!-- 게시물 상세 페이지 -->
+        <section id="post-page" class="page hidden">
+            <header>
+                <button id="back-to-list-btn">목록으로</button>
+            </header>
+            <article id="post-detail-container">
+                <!-- 게시물 상세 내용은 JS로 동적 생성 -->
+            </article>
+            <section id="comment-section">
+                <h3>댓글</h3>
+                <form id="comment-form">
+                    <div class="comment-input-area">
+                        <input type="text" id="comment-author" placeholder="작성자" required>
+                        <input type="password" id="comment-password" placeholder="비밀번호" required>
+                    </div>
+                    <textarea id="comment-content" placeholder="댓글을 입력하세요..." required></textarea>
+                    <button type="submit">댓글 작성</button>
+                </form>
+                <div id="comment-list">
+                    <!-- 댓글 목록은 JS로 동적 생성 -->
+                </div>
+            </section>
+        </section>
     </div>
 
-    <section class="board-list" id="postContainer"></section>
-    <section class="search-pagination">
-      <form class="search-box" id="searchForm">
-        <label for="searchInput" class="blind" aria-label="검색어 입력">검색어 입력</label>
-        <input type="text" id="searchInput" placeholder="검색어 입력">
-        <label for="searchType" class="blind" aria-label="검색 유형 선택">검색 유형 선택</label>
-        <select id="searchType">
-          <option value="title_content">제목+내용</option>
-          <option value="title">제목</option>
-          <option value="content">내용</option>
-          <option value="comment">댓글</option>
-          <option value="nick_name">닉네임</option>
-        </select>
-        <button type="submit" id="searchButton">검색</button>
-      </form>
-
-      <div class="bd_pg clear">
-        <fieldset>
-          <legend class="blind">게시판 목록 페이징</legend>
-          <div id="pagination" class="pagination pagination-centered" style="text-align:center;"></div>
-          <div class="bd_go_page tg_cnt2 wrp" style="text-align:center;">
-            <button type="button" class="go-prev tg_blur2" aria-label="이전 페이지">←</button>
-            <label for="goPageInput" class="blind" aria-label="페이지 번호 입력">페이지 번호 입력</label>
-            <input type="number" id="goPageInput" class="itx" value="1" min="1">
-            <span class="total-pages">/ 10,000 이상</span>
-            <button type="button" id="goPageButton" class="bd_btn">페이지 이동</button>
-            <button type="button" class="go-next tg_blur2" aria-label="다음 페이지">→</button>
-          </div>
-        </fieldset>
-      </div>
-    </section>
-    <div style="text-align: right; margin-top: 20px;">
-      <a href="/html/write.html" class="button">글쓰기</a>
+    <!-- 수정/삭제용 모달 -->
+    <div id="manage-modal" class="modal-wrapper hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>게시물 관리</h2>
+            <p>작성자명과 비밀번호를 입력하세요.</p>
+            <form id="manage-auth-form">
+                <input type="text" id="manage-author" placeholder="작성자명" required>
+                <input type="password" id="manage-password" placeholder="비밀번호" required>
+                <button type="submit">확인</button>
+            </form>
+            <div id="user-post-list-container" class="hidden">
+                <h3>내 게시물 목록</h3>
+                <div id="user-post-list"></div>
+                <div class="page-actions">
+                    <button id="delete-selected-btn">선택 삭제</button>
+                    <button id="edit-selected-btn">선택 수정</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </main>
+    
+    <!-- 알림용 모달 -->
+    <div id="alert-modal" class="modal-wrapper hidden">
+        <div class="modal-content">
+            <span class="close-alert-btn">&times;</span>
+            <p id="alert-message"></p>
+            <button class="close-alert-btn">확인</button>
+        </div>
+    </div>
 
-  <footer class="footer">
-    <p>&copy; 2025 LCK 갤러리</p>
-  </footer>
-
-  <script src="../js/communityjs/com.js"></script>
+    <script src="/js/com.js"></script>
 </body>
-
 </html>
