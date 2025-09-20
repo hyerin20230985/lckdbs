@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 데이터베이스 역할
     let posts = JSON.parse(localStorage.getItem('posts')) || [];
+    let userVotes = JSON.parse(localStorage.getItem('userVotes')) || {}; // 사용자 투표 기록
     let state = {
         currentPage: 'list',
         currentCategory: '전체',
@@ -29,6 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 유틸리티 함수 ---
     const savePosts = () => {
         localStorage.setItem('posts', JSON.stringify(posts));
+    };
+
+    const saveUserVotes = () => {
+        localStorage.setItem('userVotes', JSON.stringify(userVotes));
     };
 
     const showAlert = (message) => {
@@ -124,6 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
             attachmentHTML = `<div class="post-attachment"><img src="${post.attachmentURL}" alt="첨부 이미지"></div>`;
         }
 
+        const upvoteBtnClass = userVotes[post.id] === 'up' ? 'voted' : '';
+        const downvoteBtnClass = userVotes[post.id] === 'down' ? 'voted' : '';
+
         container.innerHTML = `
             <h1>${post.title}</h1>
             <div class="post-detail-meta">
@@ -134,8 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ${attachmentHTML}
             <div class="post-detail-content">${post.content.replace(/\n/g, '<br>')}</div>
             <div class="post-vote">
-                <button class="vote-btn" id="upvote-btn">추천 👍 ${post.upvotes}</button>
-                <button class="vote-btn" id="downvote-btn">싫어요 👎 ${post.downvotes}</button>
+                <button class="vote-btn ${upvoteBtnClass}" id="upvote-btn">추천 👍 ${post.upvotes}</button>
+                <button class="vote-btn ${downvoteBtnClass}" id="downvote-btn">싫어요 👎 ${post.downvotes}</button>
             </div>
         `;
 
@@ -252,7 +260,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const post = posts.find(p => p.id === postId);
             if (post) {
-                // BUG FIX: post.comments가 없을 경우를 대비하여 초기화
                 if (!post.comments) {
                     post.comments = [];
                 }
@@ -379,17 +386,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    const handleVote = (postId, type) => {
-        const post = posts.find(p => p.id === postId);
-        if (post) {
-            if (type === 'up') post.upvotes++;
-            else if (type === 'down') post.downvotes++;
-            savePosts();
-            renderPostDetail();
-            if (state.currentPage !== 'list') {
-                renderPostList();
-            }
+    const handleVote = (postId, voteType) => {
+        const post = posts.find(p => p.id === parseInt(postId));
+        if (!post) return;
+    
+        const currentVote = userVotes[postId];
+    
+        // Case 1: 투표 취소
+        if (currentVote === voteType) {
+            if (voteType === 'up') post.upvotes--;
+            else post.downvotes--;
+            delete userVotes[postId];
+        } 
+        // Case 2: 투표 변경
+        else if (currentVote) {
+            if (currentVote === 'up') post.upvotes--;
+            else post.downvotes--;
+            
+            if (voteType === 'up') post.upvotes++;
+            else post.downvotes++;
+            userVotes[postId] = voteType;
         }
+        // Case 3: 새로운 투표
+        else {
+            if (voteType === 'up') post.upvotes++;
+            else post.downvotes++;
+            userVotes[postId] = voteType;
+        }
+    
+        savePosts();
+        saveUserVotes();
+        renderPostDetail();
+        renderPostList(); 
     };
 
     const openWriteForm = (postToEdit = null) => {

@@ -260,10 +260,25 @@ input[type="file"] {
 .vote-btn {
     font-size: 1rem;
     padding: 0.6rem 1.2rem;
+    background-color: var(--bar-bg-color);
+    color: var(--primary-text-color);
 }
 
-.vote-btn#upvote-btn { background-color: var(--success-color); border-color: var(--success-color); color: var(--primary-text-color); }
-.vote-btn#downvote-btn { background-color: var(--danger-color); border-color: var(--danger-color); color: var(--primary-text-color); }
+.vote-btn:hover {
+    background-color: #4a4f60;
+}
+
+.vote-btn.voted#upvote-btn {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+    color: var(--primary-text-color);
+}
+
+.vote-btn.voted#downvote-btn {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+    color: var(--primary-text-color);
+}
 
 /* 댓글 */
 #comment-section {
@@ -306,7 +321,7 @@ input[type="file"] {
     background-color: var(--bar-bg-color);
     padding: 1rem 1.2rem;
     border-radius: 5px;
-    border: 1px solid var(--border-colo);
+    border: 1px solid var(--border-color);
 }
 
 .comment-item p {
