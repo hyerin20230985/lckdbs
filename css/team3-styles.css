@@ -1,0 +1,289 @@
+/* team-styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #111827; /* Tailwind bg-gray-800 */
+    color: #edf2f4; /* Tailwind text-gray-200 */
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 팀 헤더 */
+.team-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.team-logo {
+    width: 120px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.team-name {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* 메인 컨텐츠 그리드 */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    gap: 40px;
+}
+
+/* 선수 섹션 */
+.player-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    gap: 20px;
+}
+
+.player-card {
+    width: 300px; /* 카드의 너비 고정 */
+    height: 350px; /* 카드의 높이 고정 */
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+     /* Tailwind bg-gray-700 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    /* perspective: 1000px; */
+}
+
+.player-card-inner {
+  width: 100%;  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.player-card.is-flipped .player-card-inner {
+    transform: rotateY(180deg);
+}
+
+.player-card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+    /* background: #ffffff; */
+}
+
+.element {
+  background: linear-gradient(
+    45deg,
+    #112250 0%,   /* from 로얄블루 */
+    #3C507D 50%,  /* via 소라색 */
+    #112250 100%  /* to 로얄블루 */
+  );
+}
+
+
+.player-card-face--back {
+    transform: rotateY(180deg);
+    background-color: #ffffff; /* Tailwind bg-gray-700 */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 위쪽부터 채우기 */
+    align-items: flex-start;
+}
+
+.player-card-face--front { z-index: 2; }
+.player-card-face--back  { z-index: 1; }
+
+/* 뒷면 .player-info 재정의 */
+.player-card-face--back .player-info {
+  position: static;
+  margin: 0;
+  background: none;
+}
+
+.player-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.player-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: #edf2f4; /* Tailwind text-gray-200 */
+    font-weight: bold;
+}
+
+.position {
+    display: inline-block;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    font-size: 12px;
+    margin-bottom: 8px;
+    
+}
+
+.player-name {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 4px;
+    color: #edd12d;
+}
+
+.player-name-kr {
+    display: block;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* 팀 리스트 섹션 */
+.teams-section {
+    background:#242d40; /* Tailwind bg-gray-700 */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4a5568; /* Tailwind border-gray-600 */
+}
+
+.teams-list {
+    list-style: none;
+}
+
+.team-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.team-item:hover {
+    background: #4a5568; /* Tailwind bg-gray-600 */
+}
+
+.team-item.active {
+    background: #4a5568; /* Tailwind bg-gray-600 */
+}
+
+.team-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+    object-fit: contain;
+}
+
+
+
+.dropdown-list {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1;
+    width: auto; /* 자동 너비 설정 */
+    max-width: 180px; /* 최대 너비 설정 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 (선택 사항) */
+}
+
+.dropdown-list a {
+    padding: 8px 10px; /* 드롭다운 항목의 패딩 조정 */
+    text-decoration: none;
+    display: block;
+    color: black;
+    font-size: 18px; /* 글씨 크기 조정 */
+}
+
+.dropdown-list a:hover {
+    background-color: #f0f0f0; /* hover 시 배경색 조정 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .player-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.player-list {
+    display: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.dropdown-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px; /* 제목과 같은 크기 */
+    padding: 0; /* 버튼 패딩 제거 */
+}
+
+.dropdown-button:hover {
+    color: #007bff; /* Hover 시 색상 변경 */
+}
+
+.dropdown-list {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1;
+    width: 100%;
+}
+
+.dropdown-list.active {
+    display: block;
+}
+
+.dropdown-list a {
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+
+.dropdown-list a:hover {
+    background-color: #f0f0f0;
+}
+
+.players-section {
+    display: none; /* 기본적으로 숨김 */
+}
+
+.players-section.active {
+    display: block; /* 활성화된 섹션만 표시 */
+}
