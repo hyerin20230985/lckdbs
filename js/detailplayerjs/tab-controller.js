@@ -1,199 +1,165 @@
-// tab-controller.js - 탭 전환 전용 컨트롤러
+/**
+ * 탭 컨트롤러 - 선수 상세 페이지의 탭 전환을 담당
+ * 
+ * 주요 기능:
+ * 1. 탭 버튼 클릭 시 해당 콘텐츠 표시
+ * 2. URL 파라미터로 초기 탭 설정 가능
+ * 3. 브라우저 뒤로가기/앞으로가기 지원
+ * 
+ * 사용법:
+ * - HTML에서 data-tab 속성으로 탭 버튼과 콘텐츠 연결
+ * - 탭 버튼: <button data-tab="stats">통계</button>
+ * - 탭 콘텐츠: <div id="stats-content">...</div>
+ */
+
 class TabController {
     constructor() {
-        this.activeTab = 'stats'; // 기본 활성 탭
-        this.tabButtons = null;
-        this.tabPanes = null;
-        this.initialized = false;
+        this.currentTab = 'stats'; // 기본 활성 탭
+        this.isInitialized = false;
     }
 
-    // 탭 컨트롤러 초기화
+    /**
+     * 탭 컨트롤러 초기화
+     * DOM에서 탭 요소들을 찾고 이벤트를 바인딩
+     */
     init() {
-        if (this.initialized) return;
+        if (this.isInitialized) return;
 
-        this.tabButtons = document.querySelectorAll('.tab-btn');
-        this.tabPanes = document.querySelectorAll('.tab-pane');
+        // 탭 요소들 찾기
+        const tabButtons = document.querySelectorAll('[data-tab]');
+        const tabContents = document.querySelectorAll('[id$="-content"]');
 
-        if (this.tabButtons.length === 0 || this.tabPanes.length === 0) {
-            console.warn('탭 요소를 찾을 수 없습니다.');
+        if (tabButtons.length === 0) {
+            console.warn('탭 버튼을 찾을 수 없습니다.');
             return;
         }
 
-        this.bindEvents();
-        this.setInitialState();
-        this.initialized = true;
-
-        console.log('탭 컨트롤러가 초기화되었습니다.');
-    }
-
-    // 이벤트 바인딩
-    bindEvents() {
-        this.tabButtons.forEach(button => {
+        // 탭 버튼에 클릭 이벤트 추가
+        tabButtons.forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetTab = button.getAttribute('data-tab');
-                this.switchTab(targetTab);
-            });
-
-            // 키보드 접근성 추가
-            button.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    const targetTab = button.getAttribute('data-tab');
-                    this.switchTab(targetTab);
-                }
+                this.switchToTab(targetTab);
             });
         });
+
+        // URL에서 초기 탭 설정
+        this.setInitialTab();
+        
+        // 브라우저 뒤로가기/앞으로가기 처리
+        window.addEventListener('popstate', (e) => {
+            if (e.state && e.state.tab) {
+                this.switchToTab(e.state.tab, false); // URL 업데이트 없이
+            }
+        });
+
+        this.isInitialized = true;
+        console.log('탭 컨트롤러 초기화 완료');
     }
 
-    // 초기 상태 설정
-    setInitialState() {
-        // URL 파라미터에서 탭 정보 확인
+    /**
+     * URL 파라미터에서 초기 탭 설정
+     * ?tab=career 같은 형태로 초기 탭 지정 가능
+     */
+    setInitialTab() {
         const urlParams = new URLSearchParams(window.location.search);
         const urlTab = urlParams.get('tab');
         
         if (urlTab && this.isValidTab(urlTab)) {
-            this.activeTab = urlTab;
+            this.currentTab = urlTab;
         }
-
-        this.updateTabDisplay();
+        
+        this.updateDisplay();
     }
 
-    // 유효한 탭인지 확인
+    /**
+     * 유효한 탭인지 확인
+     * 해당 탭의 콘텐츠 요소가 존재하는지 체크
+     */
     isValidTab(tabName) {
         return document.getElementById(`${tabName}-content`) !== null;
     }
 
-    // 탭 전환 메인 함수
-    switchTab(targetTab) {
-        if (!targetTab || targetTab === this.activeTab) return;
+    /**
+     * 탭 전환 메인 함수
+     * @param {string} targetTab - 전환할 탭 이름
+     * @param {boolean} updateUrl - URL 업데이트 여부 (기본값: true)
+     */
+    switchToTab(targetTab, updateUrl = true) {
+        // 유효성 검사
+        if (!targetTab || targetTab === this.currentTab) return;
         
         if (!this.isValidTab(targetTab)) {
-            console.warn(`유효하지 않은 탭: ${targetTab}`);
+            console.warn(`존재하지 않는 탭: ${targetTab}`);
             return;
         }
 
-        // 이전 탭 비활성화 애니메이션
-        this.deactivateCurrentTab(() => {
-            this.activeTab = targetTab;
-            this.updateTabDisplay();
-            this.activateNewTab();
+        // 탭 전환
+        this.currentTab = targetTab;
+        this.updateDisplay();
+        
+        // URL 업데이트 (뒤로가기 지원)
+        if (updateUrl) {
             this.updateURL();
-        });
-    }
-
-    // 현재 탭 비활성화
-    deactivateCurrentTab(callback) {
-        const currentPane = document.getElementById(`${this.activeTab}-content`);
-        
-        if (currentPane && currentPane.classList.contains('active')) {
-            currentPane.style.opacity = '0';
-            currentPane.style.transform = 'translateY(-10px)';
-            
-            setTimeout(() => {
-                currentPane.classList.remove('active');
-                if (callback) callback();
-            }, 200);
-        } else {
-            if (callback) callback();
         }
     }
 
-    // 새 탭 활성화
-    activateNewTab() {
-        const newPane = document.getElementById(`${this.activeTab}-content`);
-        
-        if (newPane) {
-            newPane.style.opacity = '0';
-            newPane.style.transform = 'translateY(20px)';
-            newPane.classList.add('active');
-            
-            // 강제 리플로우
-            newPane.offsetHeight;
-            
-            setTimeout(() => {
-                newPane.style.opacity = '1';
-                newPane.style.transform = 'translateY(0)';
-            }, 50);
-        }
-    }
-
-    // 탭 버튼과 패널 상태 업데이트
-    updateTabDisplay() {
-        // 모든 탭 버튼 비활성화
-        this.tabButtons.forEach(btn => {
-            btn.classList.remove('active');
-            btn.setAttribute('aria-selected', 'false');
+    /**
+     * 탭 버튼과 콘텐츠의 표시 상태 업데이트
+     */
+    updateDisplay() {
+        // 모든 탭 버튼에서 active 클래스 제거
+        document.querySelectorAll('[data-tab]').forEach(button => {
+            button.classList.remove('active');
         });
 
-        // 모든 탭 패널 숨김
-        this.tabPanes.forEach(pane => {
-            if (pane.classList.contains('active')) {
-                pane.classList.remove('active');
-            }
+        // 모든 탭 콘텐츠 숨김
+        document.querySelectorAll('[id$="-content"]').forEach(content => {
+            content.classList.remove('active');
         });
 
-        // 활성 탭 버튼 설정
-        const activeButton = document.querySelector(`[data-tab="${this.activeTab}"]`);
+        // 현재 탭 버튼 활성화
+        const activeButton = document.querySelector(`[data-tab="${this.currentTab}"]`);
         if (activeButton) {
             activeButton.classList.add('active');
-            activeButton.setAttribute('aria-selected', 'true');
         }
 
-        // 활성 탭 패널 표시
-        const activePane = document.getElementById(`${this.activeTab}-content`);
-        if (activePane) {
-            activePane.classList.add('active');
+        // 현재 탭 콘텐츠 표시
+        const activeContent = document.getElementById(`${this.currentTab}-content`);
+        if (activeContent) {
+            activeContent.classList.add('active');
         }
     }
 
-    // URL 업데이트 (브라우저 히스토리에 추가)
+    /**
+     * 브라우저 URL 업데이트
+     * 뒤로가기/앞으로가기 지원을 위해 히스토리에 추가
+     */
     updateURL() {
         const url = new URL(window.location);
-        url.searchParams.set('tab', this.activeTab);
-        window.history.pushState({ tab: this.activeTab }, '', url);
+        url.searchParams.set('tab', this.currentTab);
+        window.history.pushState({ tab: this.currentTab }, '', url);
     }
 
-    // 프로그래매틱 탭 전환 (외부에서 호출 가능)
+    /**
+     * 외부에서 탭 전환할 때 사용
+     * @param {string} tabName - 전환할 탭 이름
+     * @returns {boolean} - 전환 성공 여부
+     */
     goToTab(tabName) {
         if (this.isValidTab(tabName)) {
-            this.switchTab(tabName);
+            this.switchToTab(tabName);
             return true;
         }
         return false;
     }
 
-    // 현재 활성 탭 반환
+    /**
+     * 현재 활성 탭 반환
+     * @returns {string} - 현재 탭 이름
+     */
     getCurrentTab() {
-        return this.activeTab;
-    }
-
-    // 사용 가능한 모든 탭 목록 반환
-    getAvailableTabs() {
-        return Array.from(this.tabButtons).map(btn => btn.getAttribute('data-tab'));
-    }
-
-    // 탭 컨트롤러 재초기화 (동적 콘텐츠 로딩 후 사용)
-    reinitialize() {
-        this.initialized = false;
-        this.init();
-    }
-
-    // 탭 전환 이벤트 리스너 추가
-    onTabChange(callback) {
-        if (typeof callback === 'function') {
-            document.addEventListener('tabChanged', (e) => {
-                callback(e.detail.newTab, e.detail.oldTab);
-            });
-        }
-    }
-
-    // 커스텀 이벤트 발생
-    dispatchTabChangeEvent(newTab, oldTab) {
-        const event = new CustomEvent('tabChanged', {
-            detail: { newTab, oldTab }
-        });
-        document.dispatchEvent(event);
+        return this.currentTab;
     }
 }
 
@@ -204,15 +170,7 @@ let tabController = null;
 document.addEventListener('DOMContentLoaded', function() {
     tabController = new TabController();
     tabController.init();
-
-    // 브라우저 뒤로가기/앞으로가기 처리
-    window.addEventListener('popstate', function(e) {
-        if (e.state && e.state.tab) {
-            tabController.goToTab(e.state.tab);
-        }
-    });
 });
 
-// 전역 접근을 위한 함수들
-window.TabController = TabController;
+// 외부에서 접근 가능하도록 전역 함수 제공
 window.getTabController = () => tabController;

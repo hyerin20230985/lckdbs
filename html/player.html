@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/1bc25b8666.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="/css/player.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>선수분석페이지</title>
@@ -19,20 +20,14 @@
                 <a href="/html/team.html" class="nav-item">팀</a>
                 <a href="/html/champion.html" class="nav-item">챔피언</a>
                 <a href="/html/schedule2.html" class="nav-item">일정</a>
-                <a href="#" class="nav-item">순위</a>
                 <a href="#" class="nav-item">스탯</a>
                 <a href="#" class="nav-item">분석</a>
                 <a href="/html/com.html" class="nav-item">커뮤니티</a>
-                <a href="#" class="nav-item live">LIVE</a>
-            </div>
-            <div class="nav-right">
-                <a href="#" class="login-btn">로그인</a>
-                <a href="/html/signup.html" class="signup-btn">회원가입</a>
             </div>
         </nav>
     </header>
 
-    <main class="flex">
+    <main>
     <!--사이드바-->
     <div class="role-sidebar">
             <ul class="role-list">
@@ -70,7 +65,7 @@
         </div>
     
         <!-- 선수 카드 컨테이너 -->
-        <div id="player-list-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-5 p-4">
+        <div id="player-list-container">
             <!-- 선수 카드는 여기에 동적으로 추가됩니다. -->
         </div>
 

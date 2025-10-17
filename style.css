@@ -38,95 +38,170 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
 }
-/* 헤더 네비게이션 */
+/* 헤더 네비게이션 - 글래스모피즘 효과 */
 header {
-    background-color: var(--primary-dark); /* style2.css에서 가져온 색상 */
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 100;
-    padding: 0.8rem 2rem;
+    width: auto;
+    max-width: 90%;
 }
 
 nav {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
+    min-width: 600px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    gap: 2rem;
 }
 
 .logo {
-    color: var(--text-primary);
+    color: #ffffff;
     font-size: 1.5rem;
     font-weight: 700;
     text-decoration: none;
     letter-spacing: 1px;
     text-shadow: 0 0 10px rgba(39, 76, 218, 0.5);
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    text-shadow: 0 0 20px rgba(39, 76, 218, 0.8);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-divider {
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 300;
+    font-size: 1.2rem;
 }
 
 .nav-center {
     display: flex;
-    gap: 1.5rem;
+    gap: 3rem;
+    align-items: center;
 }
 
 .nav-item {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     padding: 0.5rem 0;
     position: relative;
-    transition: color 0.2s;
+    transition: all 0.3s ease;
 }
 
 .nav-item:hover {
-    color: var(--text-primary);
-}
-
-.nav-item:hover::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--primary-color); /* style2.css에서 가져온 색상 */
-    transform: scaleX(1);
-    transition: transform 0.2s ease;
-}
-
-.nav-item.live {
-    color: #ff4655;
+    color: #ffffff;
     font-weight: 700;
 }
 
-.login-btn, .signup-btn {
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: all 0.2s;
+.nav-item.live {
+    color: #ffffff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.login-btn {
-    color: var(--text-primary);
-    margin-right: 0.5rem;
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ff4655;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
 }
 
-.login-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 70, 85, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 70, 85, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 70, 85, 0);
+    }
 }
 
-.signup-btn {
-    background-color: var(--primary-color);
-    color: white;
+.nav-right {
+    display: flex;
+    align-items: center;
 }
 
-.signup-btn:hover {
-    background-color: var(--primary-dark);
+/* 메인 컨테이너에 상단 여백 추가 */
+main {
+    margin-top: 100px;
+}
+
+/* 반응형 네비게이션 */
+@media (max-width: 768px) {
+    header {
+        top: 10px;
+        max-width: 95%;
+    }
+    
+    nav {
+        padding: 0.5rem 1rem;
+        min-width: auto;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .nav-center {
+        gap: 1rem;
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+    
+    .nav-item {
+        font-size: 0.8rem;
+    }
+    
+    .logo {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .nav-center {
+        order: 2;
+        margin-top: 0;
+    }
+    
+    .nav-right {
+        order: 3;
+    }
+    
+    .nav-item {
+        font-size: 0.75rem;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
 }
 
 /* 섹션 제목 스타일 */
@@ -146,11 +221,9 @@ nav {
     border: 1px solid var(--border-color);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-like:hover {
-    transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -158,20 +231,17 @@ nav {
     background-color: rgba(25, 33, 57, 0.4); /* 유지 */
     border-radius: 4px;
     overflow: hidden;
-    transition: transform 0.2s ease;
 }
 
 .card-like-nested:hover {
-    transform: translateY(-2px);
     background-color: rgba(25, 33, 57, 0.6);
 }
 
 /* 메인 레이아웃 */
 main {
-    max-width: 1400px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-    background-color: var(--background-light); /* style2.css에서 가져온 색상 */
+    max-width: 1200px;
+    margin: 8rem auto 2rem auto;
+    padding: 0 3rem;
 
 }
 
@@ -181,6 +251,7 @@ main {
     width: 100%;
     gap: 20px;
     align-items: flex-start;
+    margin-top: 6rem;
 }
 
 .main-left {
@@ -212,31 +283,21 @@ main {
 
 .upsection-right {
     position: relative;
-    background-color: var(--background-light);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     padding: 15px;
     /* updiv의 높이를 내용에 맞게 자동으로 조절하도록 합니다. */
     /* height: 680px; 와 같이 고정 높이가 있다면 제거하거나 auto로 변경합니다. */
     height: auto; /* 변경: 내용에 따라 높이 자동 조절 */
+    margin-top: 60px; /* 포지션별 랭킹 제목 아래로 이동 */
+    transform: translateX(20px); /* 아래쪽 챔피언 랭킹과 위치 맞추기 위해 오른쪽으로 이동 */
 }
 
 .updiv {
     position: relative;
-    background-color: var(--background-light);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     padding: 15px;
 }
 
 .updiv-right {
     position: relative;
-    background-color: var(--background-light);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     padding: 15px;
     height: auto;
 }
@@ -245,10 +306,6 @@ main {
 .downsection-left {
     position: relative;
     flex: 1;
-    background-color: var(--background-light);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     height: auto;
     padding: 15px;
 }
@@ -264,10 +321,6 @@ main {
 .downdiv-down {
     position: relative;
     height: 200px;
-    background-color: var(--background-light);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     padding: 15px;
 }
 
@@ -298,7 +351,6 @@ main {
     align-items: center;
     font-size: 1rem;
     font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
     border: 1px solid var(--border-color);
 }
@@ -323,7 +375,6 @@ main {
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.3s ease;
 }
 
 /* 선수 랭킹 테이블 */
@@ -397,7 +448,6 @@ main {
 }
 
 .data-col-left:hover img {
-    transform: scale(1.1);
 }
 
 .player-name {
@@ -539,23 +589,19 @@ main {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     width: calc(100% / 3);
     aspect-ratio: 1 / 1;
-    transition: transform 0.3s ease;
 }
 
 .card:hover {
-    transform: scale(1.05);
     z-index: 2;
 }
 
 .card:nth-child(2) {
-    transform: scale(1.05);
     z-index: 2;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border: 1px solid var(--primary-color);
 }
 
 .card:nth-child(2):hover {
-    transform: scale(1.1);
 }
 
 .card img {
@@ -607,7 +653,6 @@ main {
     font-weight: 500;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: all 0.2s ease;
     position: relative;
     letter-spacing: 0.5px;
 }
@@ -695,7 +740,6 @@ main {
     padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .filter-btn:hover {
@@ -717,11 +761,9 @@ main {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .match-card:hover {
-    transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
     border-color: rgba(255, 255, 255, 0.15);
 }
@@ -759,13 +801,6 @@ main {
 .match-status.live {
     background-color: rgba(255, 70, 85, 0.2);
     color: #ff4655;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { opacity: 0.8; }
-    50% { opacity: 1; }
-    100% { opacity: 0.8; }
 }
 
 .match-status.completed {
@@ -786,11 +821,6 @@ main {
     flex-direction: column;
     align-items: center;
     width: 35%;
-    transition: transform 0.2s ease;
-}
-
-.team:hover {
-    transform: scale(1.05);
 }
 
 .team-logo {
@@ -807,11 +837,9 @@ main {
     height: 100%;
     object-fit: contain;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
-    transition: transform 0.3s ease;
 }
 
 .team:hover .team-logo img {
-    transform: scale(1.1);
 }
 
 .team-name {
@@ -884,7 +912,6 @@ main {
     border: none;
     cursor: pointer;
     font-weight: 500;
-    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -921,7 +948,6 @@ main {
     text-decoration: none;
     font-size: 0.85rem;
     font-weight: 500;
-    transition: all 0.2s ease;
     display: inline-flex;
     align-items: center;
     gap: 5px;
@@ -934,11 +960,9 @@ main {
 
 .view-all i {
     font-size: 0.8rem;
-    transition: transform 0.2s ease;
 }
 
 .view-all:hover i {
-    transform: translateX(3px);
 }
 
 /* 반응형 디자인 */
@@ -1016,7 +1040,6 @@ main {
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease;
 }
 
 /* 밴 섹션은 9개의 챔피언을 표시합니다 */
@@ -1025,7 +1048,6 @@ main {
 }
 
 .pb-champion:hover {
-    transform: scale(1.1);
     z-index: 5;
 }
 
@@ -1100,7 +1122,6 @@ main {
     position: relative;
     padding: 15px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    transition: background-color 0.2s;
     cursor: pointer;
     display: block; /* flex 대신 block 사용 */
 }
@@ -1213,7 +1234,6 @@ main {
     padding: 0.3rem 1rem;
     border: 1px solid var(--accent-color);
     border-radius: 4px;
-    transition: all 0.2s;
 }
 
 .more-btn:hover {

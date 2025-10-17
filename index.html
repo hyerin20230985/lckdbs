@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LCKDBS - League of Legends Champions Korea Database System</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Gmarket+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" type="image/png" href="favicon.png"> <!--이거 뭐지--> 
@@ -15,21 +16,19 @@
         <nav>
             <div class="nav-left">
                 <a href="index.html" class="logo">LCKDBS</a>
+                <span class="nav-divider">|</span>
             </div>
             <div class="nav-center">
                 <a href="/html/player.html" class="nav-item">선수</a>
                 <a href="/html/team.html" class="nav-item">팀</a>
                 <a href="/html/champion.html" class="nav-item">챔피언</a>
                 <a href="/html/schedule2.html" class="nav-item">일정</a>
-                <a href="#" class="nav-item">순위</a>
                 <a href="#" class="nav-item">스탯</a>
                 <a href="#" class="nav-item">분석</a>
                 <a href="/html/com.html" class="nav-item">커뮤니티</a>
-                <a href="#" class="nav-item live">LIVE</a>
             </div>
             <div class="nav-right">
-                <a href="#" class="login-btn">로그인</a>
-                <a href="/html/signup.html" class="signup-btn">회원가입</a>
+                <a href="#" class="nav-item live">LIVE <span class="live-dot"></span></a>
             </div>
         </nav>
     </header>
@@ -37,7 +36,136 @@
     <main>
 
 
-
+        <section >
+            <div class="match-schedule-container">
+                <div class="text-3xl font-bold mb-6">경기 일정 / 결과</div>
+                <div class="match-schedule-wrapper">
+                    <!-- 상단 네비게이션 탭 -->
+                    <div class="match-nav">
+                        <div class="match-nav-item active" data-tab="today">오늘의 경기</div>
+                        <div class="match-nav-item" data-tab="upcoming">예정된 경기</div>
+                        <div class="match-nav-item" data-tab="recent">최근 경기 결과</div>
+                    </div>
+                    
+                    <!-- 날짜/대회 정보 -->
+                    <div class="match-info-strip mb-4">
+                        <div class="match-tournament">
+                            <div class="tournament-logo">
+                                <img src="https://s-qwer.op.gg/images/lol/league/lck-color.svg" alt="LCK">
+                            </div>
+                            <div class="tournament-details">
+                                <div class="tournament-name">2025 LCK CUP</div>
+                                <div class="tournament-stage">1라운드 | 03.10 월요일</div>
+                            </div>
+                        </div>
+                        <div class="match-filter">
+                            <button class="filter-btn">
+                                <i class="fas fa-filter"></i> 필터
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 경기 목록 -->
+                    <div class="grid grid-cols-2 gap-4" id="matchesGrid">
+                        <!-- 경기 1 -->
+                        <div class="match-card">
+                            <div class="match-time-info">
+                                <div class="match-time">17:00</div>
+                                <div class="match-status upcoming">UPCOMING</div>
+                            </div>
+                            
+                            <div class="match-content">
+                                <div class="team team-left">
+                                    <div class="team-logo">
+                                        <img src="https://s-qwer.op.gg/images/teams/white/LCK/T1.png" alt="T1">
+                                    </div>
+                                    <div class="team-name">T1</div>
+                                    <div class="team-record">12W 2L</div>
+                                </div>
+                                
+                                <div class="match-center">
+                                    <div class="match-vs">VS</div>
+                                    <div class="match-odds">
+                                        <div class="odds-bar">
+                                            <div class="odds-fill" style="width: 65%"></div>
+                                        </div>
+                                        <div class="odds-numbers">
+                                            <span>65%</span>
+                                            <span>35%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="team team-right">
+                                    <div class="team-logo">
+                                        <img src="https://s-qwer.op.gg/images/teams/white/LCK/GEN.png" alt="GEN.G">
+                                    </div>
+                                    <div class="team-name">GEN.G</div>
+                                    <div class="team-record">9W 6L</div>
+                                </div>
+                            </div>
+                            
+                            <div class="match-actions">
+                                <button class="action-btn watch"><i class="fas fa-bell"></i> 알림설정</button>
+                                <button class="action-btn details"><i class="fas fa-info-circle"></i> 상세정보</button>
+                            </div>
+                        </div>
+                        
+                        <!-- 경기 2 -->
+                        <div class="match-card">
+                            <div class="match-time-info">
+                                <div class="match-time">20:00</div>
+                                <div class="match-status upcoming">UPCOMING</div>
+                            </div>
+                            
+                            <div class="match-content">
+                                <div class="team team-left">
+                                    <div class="team-logo">
+                                        <img src="https://s-qwer.op.gg/images/teams/white/LCK/HLE.png" alt="HLE">
+                                    </div>
+                                    <div class="team-name">HLE</div>
+                                    <div class="team-record">7W 8L</div>
+                                </div>
+                                
+                                <div class="match-center">
+                                    <div class="match-vs">VS</div>
+                                    <div class="match-odds">
+                                        <div class="odds-bar">
+                                            <div class="odds-fill" style="width: 45%"></div>
+                                        </div>
+                                        <div class="odds-numbers">
+                                            <span>45%</span>
+                                            <span>55%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="team team-right">
+                                    <div class="team-logo">
+                                        <img src="https://s-qwer.op.gg/images/teams/white/LCK/DK.png" alt="DK">
+                                    </div>
+                                    <div class="team-name">DK</div>
+                                    <div class="team-record">10W 5L</div>
+                                </div>
+                            </div>
+                            
+                            <div class="match-actions">
+                                <button class="action-btn watch"><i class="fas fa-bell"></i> 알림설정</button>
+                                <button class="action-btn details"><i class="fas fa-info-circle"></i> 상세정보</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="matches-footer">
+                        <a href="/html/schedule2.html" class="view-all">모든 경기 일정 보기 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+                </section>
 
 
 
@@ -46,7 +174,7 @@
             <div class="main-left">
                 <div class="up">
                     <section class="upsection-left">
-                        <div class="section-title">포지션별 랭킹</div>
+                        <div class="text-3xl font-bold mb-6">포지션별 랭킹</div>
                         <div class="updiv">
                             <div class="grid-container">
                                 <div class="grid-item item-1 card-like">
@@ -115,7 +243,7 @@
 
 
                                 <div class="bottom-container">
-                                    <div class="grid-item item-4">사진4</div>
+                                    <div class="grid-item item-4"></div>
 
                                     <div class="grid-item item-5 card-like">
                                         <table class="player-ranking">
@@ -161,7 +289,6 @@
                                         <div class="position-label">Score</div>
                                     </div>
 
-                                    <div class="grid-item item-7">사진7</div>
                                 </div>
                             
                             </div>
@@ -252,181 +379,8 @@
                     </section>
                 </div>
 
-                        
-<section class="middle-section">
-<div class="match-schedule-container">
-    <div class="section-title">경기 일정 / 결과</div>
-    <div class="match-schedule-wrapper">
-        <!-- 상단 네비게이션 탭 -->
-        <div class="match-nav">
-            <div class="match-nav-item active" data-tab="today">오늘의 경기</div>
-            <div class="match-nav-item" data-tab="upcoming">예정된 경기</div>
-            <div class="match-nav-item" data-tab="recent">최근 경기 결과</div>
-        </div>
-        
-        <!-- 날짜/대회 정보 -->
-        <div class="match-info-strip">
-            <div class="match-tournament">
-                <div class="tournament-logo">
-                    <img src="https://s-qwer.op.gg/images/lol/league/lck-color.svg" alt="LCK">
-                </div>
-                <div class="tournament-details">
-                    <div class="tournament-name">2025 LCK CUP</div>
-                    <div class="tournament-stage">1라운드 | 03.10 월요일</div>
-                </div>
-            </div>
-            <div class="match-filter">
-                <button class="filter-btn">
-                    <i class="fas fa-filter"></i> 필터
-                </button>
-            </div>
-        </div>
-        
-        <!-- 경기 목록 -->
-        <div class="matches-grid" id="matchesGrid">
-            <!-- 경기 1 -->
-            <div class="match-card">
-                <div class="match-time-info">
-                    <div class="match-time">17:00</div>
-                    <div class="match-status upcoming">UPCOMING</div>
-                </div>
-                
-                <div class="match-content">
-                    <div class="team team-left">
-                        <div class="team-logo">
-                            <img src="https://s-qwer.op.gg/images/teams/white/LCK/T1.png" alt="T1">
-                        </div>
-                        <div class="team-name">T1</div>
-                        <div class="team-record">12W 2L</div>
-                    </div>
-                    
-                    <div class="match-center">
-                        <div class="match-vs">VS</div>
-                        <div class="match-odds">
-                            <div class="odds-bar">
-                                <div class="odds-fill" style="width: 65%"></div>
-                            </div>
-                            <div class="odds-numbers">
-                                <span>65%</span>
-                                <span>35%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="team team-right">
-                        <div class="team-logo">
-                            <img src="https://s-qwer.op.gg/images/teams/white/LCK/GEN.png" alt="GEN.G">
-                        </div>
-                        <div class="team-name">GEN.G</div>
-                        <div class="team-record">9W 6L</div>
-                    </div>
-                </div>
-                
-                <div class="match-actions">
-                    <button class="action-btn watch"><i class="fas fa-bell"></i> 알림설정</button>
-                    <button class="action-btn details"><i class="fas fa-info-circle"></i> 상세정보</button>
-                </div>
-            </div>
-            
-            <!-- 경기 2 -->
-            <div class="match-card">
-                <div class="match-time-info">
-                    <div class="match-time">20:00</div>
-                    <div class="match-status upcoming">UPCOMING</div>
-                </div>
-                
-                <div class="match-content">
-                    <div class="team team-left">
-                        <div class="team-logo">
-                            <img src="https://s-qwer.op.gg/images/teams/white/LCK/HLE.png" alt="HLE">
-                        </div>
-                        <div class="team-name">HLE</div>
-                        <div class="team-record">7W 8L</div>
-                    </div>
-                    
-                    <div class="match-center">
-                        <div class="match-vs">VS</div>
-                        <div class="match-odds">
-                            <div class="odds-bar">
-                                <div class="odds-fill" style="width: 45%"></div>
-                            </div>
-                            <div class="odds-numbers">
-                                <span>45%</span>
-                                <span>55%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="team team-right">
-                        <div class="team-logo">
-                            <img src="https://s-qwer.op.gg/images/teams/white/LCK/DK.png" alt="DK">
-                        </div>
-                        <div class="team-name">DK</div>
-                        <div class="team-record">10W 5L</div>
-                    </div>
-                </div>
-                
-                <div class="match-actions">
-                    <button class="action-btn watch"><i class="fas fa-bell"></i> 알림설정</button>
-                    <button class="action-btn details"><i class="fas fa-info-circle"></i> 상세정보</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="matches-footer">
-            <a href="/html/schedule2.html" class="view-all">모든 경기 일정 보기 <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </div>
-</div>
-
-
-
-
-    </section>
-
-
-
 
                 <div class="down">
-                    <section class="downsection-left">
-                        <div class="outer-container">
-                            <div class="card-header">포지션별 챔피언 랭킹</div>
-
-                            <div class="ranking-wrapper">
-
-                                <div class="ranking-row">
-                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
-                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">TOP</div></div>
-                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
-                                </div>
-
-                                <div class="ranking-row">
-                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
-                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">JG</div></div>
-                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
-                                </div>
-
-                                <div class="ranking-row">
-                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
-                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">MID</div></div>
-                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
-                                </div>
-
-                                <div class="ranking-row">
-                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
-                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">ADC</div></div>
-                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
-                                </div>
-
-                                <div class="ranking-row">
-                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
-                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">SPT</div></div>
-                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </section>
                     <section class="downsection-right">
                         <div class="downdiv-up">
                             <div class="pick-ban-container">
@@ -550,6 +504,45 @@
                                 <div class="community-footer">
                                    <a href="/html/com.html" class="more-btn">더보기</a>
                                 </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="downsection-left">
+                        <div class="outer-container">
+                            <div class="card-header">포지션별 챔피언 랭킹</div>
+
+                            <div class="ranking-wrapper">
+
+                                <div class="ranking-row">
+                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
+                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">TOP</div></div>
+                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
+                                </div>
+
+                                <div class="ranking-row">
+                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
+                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">JG</div></div>
+                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
+                                </div>
+
+                                <div class="ranking-row">
+                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
+                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">MID</div></div>
+                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
+                                </div>
+
+                                <div class="ranking-row">
+                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
+                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">ADC</div></div>
+                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
+                                </div>
+
+                                <div class="ranking-row">
+                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
+                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">SPT</div></div>
+                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
+                                </div>
+
                             </div>
                         </div>
                     </section>

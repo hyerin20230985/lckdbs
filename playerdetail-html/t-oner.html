@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선수 상세 정보: Oner</title>
+    <link rel="stylesheet" href="../css/detailplayer.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/1bc25b8666.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-[#171727]">
+    <div class="container mx-auto p-20">
+    <div class="flex">
+        <!-- 왼쪽: 프로필 -->
+            <div class="w-[300px] bg-gradient-to-br from-[#1e1e2f] to-[#1a1a2e] rounded-2xl shadow-2xl p-6 mr-5 border border-[#3a3a4f]">
+                <div class="relative">
+                    <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/T1.svg" alt="T1" class="absolute inset-0 m-auto object-contain opacity-10">
+                    <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Oner.png" alt="선수 프로필" class="profile-image rounded-xl mb-6 relative z-10 border-2 border-[#f7cf2d] shadow-lg">
+                </div>
+                <div class="px-2">
+                    <div class="text-center mb-6">
+                        <h1 id="player-name" class="text-3xl font-bold mb-2 text-[#f7cf2d]">Oner</h1>
+                        <h2 id="player-realname" class="text-lg text-[#b0b7d6] mb-1">문현준</h2>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-[#2d2d3f] to-[#1a1a2e] rounded-xl p-4 mb-6 border border-[#3a3a4f]">
+                        <h3 class="text-[#f7cf2d] font-bold text-lg mb-3 flex items-center">
+                            <div class="w-2 h-6 bg-gradient-to-b from-[#f7cf2d] to-[#e6b800] rounded-full mr-2"></div>
+                            기본 정보
+                        </h3>
+                        <div class="info-details text-[#b0b7d6] space-y-2">
+                            <div class="flex justify-between items-center py-1 border-b border-[#3a3a4f]">
+                                <span class="text-[#8b9dc3]">역할군:</span>
+                                <span class="font-semibold">정글<span>
+                            </div>
+                            <div class="flex justify-between items-center py-1 border-b border-[#3a3a4f]">
+                                <span class="text-[#8b9dc3]">소속팀:</span>
+                                <a href="team.html" class="text-[#f7cf2d] hover:text-[#e6b800] font-bold transition-colors duration-200">T1</a>
+                            </div>
+                            <div class="flex justify-between items-center py-1 border-b border-[#3a3a4f]">
+                                <span class="text-[#8b9dc3]">생년월일:</span>
+                                <span class="font-semibold">2002-12-24</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1 border-b border-[#3a3a4f]">
+                                <span class="text-[#8b9dc3]">데뷔년도:</span>
+                                <span class="font-semibold">2021-02-21</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1">
+                                <span class="text-[#8b9dc3]">선수 평점:</span>
+                                <span class="text-[#f7cf2d] font-bold text-lg">9.8</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="awards">
+                        <div class="bg-gradient-to-br from-[#2d2d3f] to-[#1a1a2e] rounded-xl p-4 border border-[#3a3a4f]">
+                            <h3 class="text-[#f7cf2d] font-bold text-lg mb-4 flex items-center">
+                                <div class="w-2 h-6 bg-gradient-to-b from-[#f7cf2d] to-[#e6b800] rounded-full mr-2"></div>
+                                개인 수상 이력
+                            </h3>
+                            
+                            <!-- LCK 우승 -->
+                            <div class="mb-4">
+                                <div class="mb-2">
+                                    <span class="text-[#b0b7d6] font-semibold">LCK 우승</span>
+                                </div>
+                                <div class="icon flex flex-wrap gap-1 mb-2">
+                                    <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/LCK.svg" alt="lck" class="icons w-8 h-8">
+                                </div>
+                                <p class="text-[#8b9dc3] text-xs leading-relaxed">2022 SPRING</p>
+                            </div>
+                            
+                            <!-- 롤드컵 우승 -->
+                            <div class="mb-2">
+                                <div class="mb-2">
+                                    <span class="text-[#b0b7d6] font-semibold">롤드컵 우승</span>
+                                </div>
+                                <div class="icon flex gap-1 mb-2">
+                                    <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/롤드컵.svg" alt="worlds" class="icons w-8 h-8">
+                                    <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/롤드컵.svg" alt="worlds" class="icons w-8 h-8">
+                                </div>
+                                <p class="text-[#8b9dc3] text-xs">2023, 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 오른쪽: 선수 정보 -->
+            <div class="flex-1 px-8 py-6">
+                <!-- 페이지 제목 -->
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-[#f7cf2d] mb-2">선수 정보</h2>
+                    <div class="h-1 w-24 bg-gradient-to-r from-[#f7cf2d] to-[#e6b800] rounded-full"></div>
+                </div>
+
+                <!-- 선수 코멘트 섹션 -->
+                <div class="mb-8 bg-gradient-to-br from-[#1e1e2f] to-[#1a1a2e] rounded-xl p-6 shadow-xl border border-[#3a3a4f] relative overflow-hidden">
+                    
+                    <div class="relative z-10">
+                        <!-- 헤더 -->
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-quote-left text-[#f7cf2d] text-xl mr-3"></i>
+                                <h3 class="text-lg font-bold text-white">선수 한마디</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 코멘트 내용 -->
+                        <div class="bg-gradient-to-r from-[#2d2d3f] to-[#252538] rounded-lg p-5 border-l-4 border-[#f7cf2d]">
+                            <div class="flex items-start space-x-4">
+                                <!-- 선수 아바타 -->
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-[#f7cf2d] to-[#e6b800] rounded-full flex items-center justify-center">
+                                        <i class="fa-solid fa-user text-[#1a1a2e] text-lg"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- 코멘트 텍스트 -->
+                                <div class="flex-1">
+                                    <div class="mb-2">
+                                        <span class="text-[#f7cf2d] font-semibold text-sm">Oner</span>
+                                    </div>
+                                    <blockquote class="text-[#b0b7d6] leading-relaxed text-base italic">
+                                        "가장 예쁜 꽃은 우여곡절 끝에 피는 꽃"
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 탭 네비게이션 -->
+                <div class="mb-8">
+                    <div class="flex space-x-1 bg-gradient-to-r from-[#1e1e2f] to-[#1a1a2e] rounded-xl p-2 border border-[#3a3a4f]">
+                        <button class="tab-btn active flex-1 py-3 px-6 rounded-lg font-semibold transition-all duration-300 text-center" data-tab="stats">
+                            <span class="block text-sm">통산승률</span>
+                            <span class="block text-xs text-[#8b9dc3] mt-1">승률 & KDA</span>
+                        </button>
+                        <button class="tab-btn flex-1 py-3 px-6 rounded-lg font-semibold transition-all duration-300 text-center" data-tab="career">
+                            <span class="block text-sm">선수 스탯</span>
+                            <span class="block text-xs text-[#8b9dc3] mt-1">육각형차트</span>
+                        </button>
+                        <button class="tab-btn flex-1 py-3 px-6 rounded-lg font-semibold transition-all duration-300 text-center" data-tab="abilities">
+                            <span class="block text-sm">모스트 챔피언</span>
+                            <span class="block text-xs text-[#8b9dc3] mt-1">템트리 & 챔피언</span>
+                        </button>
+                        <button class="tab-btn flex-1 py-3 px-6 rounded-lg font-semibold transition-all duration-300 text-center" data-tab="performance">
+                            <span class="block text-sm">활약 지표</span>
+                            <span class="block text-xs text-[#8b9dc3] mt-1">킬, 어시, 출장 수</span>
+                        </button>
+                        
+                    </div>
+                </div>
+
+                <!-- 탭 콘텐츠 -->
+                <div class="tab-content">
+                    <!-- 통계 탭 -->
+                    <div id="stats-content" class="tab-pane active">
+                        <section class="mb-12">
+                            
+                            <!-- Total Winning Percentage 섹션 -->
+                            <div class="flex items-center mb-6">
+                                <div class="w-1 h-8 bg-[#f7cf2d] rounded-full mr-3"></div>
+                                <h3 class="text-2xl font-bold text-white">통산승률</h3>
+                                <a href="match.html" class="text-white mx-4 mt-2"><span>자세히보기 <i class="fa-solid fa-arrow-up-right-from-square fa-sm"></i></span></a>
+                            </div>
+                            <!-- 요약 통계 섹션 (match.html에서 가져옴) -->
+                            <div class="mt-8 bg-gradient-to-br from-[#1e1e2f] to-[#1a1a2e] rounded-xl p-6 shadow-xl border border-[#3a3a4f]">
+                                <div class="flex items-center mb-6">
+                                    <i class="fa-solid fa-chart-line text-[#f7cf2d] text-2xl mr-3"></i>
+                                    <h4 class="text-xl font-bold text-white">요약 통계</h4>
+                                </div>
+                                
+                                <div class="stats-summary-container">
+                                    <div class="flex justify-between items-center">
+                                        <!-- 승률 섹션 -->
+                                        <div class="win-rate-section-custom">
+                                            <div class="flex items-center gap-8 bg-gradient-to-br from-[#2d2d3f] to-[#1a1a2e] rounded-xl p-6 border border-[#3a3a4f]">
+                                                <div class="total-games-custom text-center">
+                                                    <span id="total-games" class="text-3xl font-bold text-[#f7cf2d] block">0</span>
+                                                    <span class="text-sm text-[#8b9dc3] mt-1">경기</span>
+                                                </div>
+                                                <div class="win-loss-custom text-lg text-[#b0b7d6]">
+                                                    <span id="wins" class="text-green-400 font-bold">0</span>승 
+                                                    <span id="losses" class="text-red-400 font-bold">0</span>패
+                                                </div>
+                                                <div class="win-rate-custom text-lg text-[#b0b7d6]">
+                                                    승률 <span id="win-rate" class="text-[#f7cf2d] font-bold text-xl">00.0%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 평균 스탯 섹션 -->
+                                        <div class="average-stats-custom">
+                                            <div class="flex gap-6 bg-gradient-to-br from-[#2d2d3f] to-[#1a1a2e] rounded-xl p-6 border border-[#3a3a4f]">
+                                                <div class="stat-item-custom text-center min-w-[70px]">
+                                                    <span class="block text-[#8b9dc3] text-sm mb-1">KDA</span>
+                                                    <span id="avg-kda" class="text-xl text-white font-bold">0.0</span>
+                                                </div>
+                                                <div class="stat-item-custom text-center min-w-[70px]">
+                                                    <span class="block text-[#8b9dc3] text-sm mb-1">DPM</span>
+                                                    <span id="avg-dpm" class="text-xl text-white font-bold">0</span>
+                                                </div>
+                                                <div class="stat-item-custom text-center min-w-[70px]">
+                                                    <span class="block text-[#8b9dc3] text-sm mb-1">KP</span>
+                                                    <span id="avg-kp" class="text-xl text-white font-bold">0%</span>
+                                                </div>
+                                                <div class="stat-item-custom text-center min-w-[70px]">
+                                                    <span class="block text-[#8b9dc3] text-sm mb-1">CSM</span>
+                                                    <span id="avg-csm" class="text-xl text-white font-bold">0.0</span>
+                                                </div>
+                                                <div class="stat-item-custom text-center min-w-[70px]">
+                                                    <span class="block text-[#8b9dc3] text-sm mb-1">GPM</span>
+                                                    <span id="avg-gpm" class="text-xl text-white font-bold">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 시각적 승률 카드들 -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                                <!-- 2024 시즌 카드 -->
+                                <div class="bg-gradient-to-br from-[#1e1e2f] to-[#1a1a2e] rounded-xl p-6 shadow-xl border border-[#3a3a4f]">
+                                    <div>
+                                        <div class="flex items-center justify-between mb-4">
+                                            <div class="flex items-center">
+                                                <i class="fa-solid fa-trophy text-[#f7cf2d] text-2xl mr-3"></i>
+                                                <h4 class="text-lg font-bold text-white">2024-00-00</h4>
+                                            </div>
+                                            <span class="text-xs text-[#8b9dc3] bg-[#2d2d3f] px-2 py-1 rounded-full">WIN</span>
+                                        </div>
+                                        
+                                        <div class="text-center mb-4">
+                                            <div class="text-4xl font-bold text-[#f7cf2d] mb-1">00.0%</div>
+                                            <div class="text-sm text-[#8b9dc3]">승률</div>
+                                        </div>
+                                        
+                                        <div class="grid grid-cols-2 gap-4 text-center">
+                                            <div>
+                                                <div class="text-xl font-bold text-green-400">0</div>
+                                                <div class="text-xs text-[#8b9dc3]">승</div>
+                                            </div>
+                                            <div>
+                                                <div class="text-xl font-bold text-red-400">0</div>
+                                                <div class="text-xs text-[#8b9dc3]">패</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mt-4">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <span class="text-sm text-[#8b9dc3]">KDA</span>
+                                                <span class="text-lg font-bold text-[#f7cf2d]">0.0</span>
+                                            </div>
+                                            <div class="w-full h-2 bg-[#2d2d3f] rounded-full overflow-hidden">
+                                                <div class="h-full w-[91%] bg-gradient-to-r from-green-400 to-green-600 rounded-full"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2023 시즌 카드 -->
+                                <div class="bg-gradient-to-br from-[#1e1e2f] to-[#1a1a2e] rounded-xl p-6 shadow-xl border border-[#3a3a4f]">
+                                    <div>
+                                        <div class="flex items-center justify-between mb-4">
+                                            <div class="flex items-center">
+                                                <i class="fa-solid fa-trophy text-[#f7cf2d] text-2xl mr-3"></i>
+                                                <h4 class="text-lg font-bold text-white">2023-00-00</h4>
+                                            </div>
+                                            <span class="text-xs text-[#8b9dc3] bg-[#2d2d3f] px-2 py-1 rounded-full">WIN</span>
+                                        </div>
+                                        
+                                        <div class="text-center mb-4">
+                                            <div class="text-4xl font-bold text-[#f7cf2d] mb-1">00.0%</div>
+                                            <div class="text-sm text-[#8b9dc3]">승률</div>
+                                        </div>
+                                        
+                                        <div class="grid grid-cols-2 gap-4 text-center">
+                                            <div>
+                                                <div class="text-xl font-bold text-green-400">0</div>
+                                                <div class="text-xs text-[#8b9dc3]">승</div>
+                                            </div>
+                                            <div>
+                                                <div class="text-xl font-bold text-red-400">0</div>
+                                                <div class="text-xs text-[#8b9dc3]">패</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mt-4">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <span class="text-sm text-[#8b9dc3]">KDA</span>
+                                                <span class="text-lg font-bold text-[#f7cf2d]">0.0</span>
+                                            </div>
+                                            <div class="w-full h-2 bg-[#2d2d3f] rounded-full overflow-hidden">
+                                                <div class="h-full w-[82%] bg-gradient-to-r from-green-400 to-green-500 rounded-full"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2022 시즌 카드 -->
+                                <div class="bg-gradient-to-br from-[#1e1e2f] to-[#1a1a2e] rounded-xl p-6 shadow-xl border border-[#3a3a4f]">
+                                    <div>
+                                        <div class="flex items-center justify-between mb-4">
+                                            <div class="flex items-center">
+                                                <i class="fa-solid fa-trophy text-[#f7cf2d] text-2xl mr-3"></i>
+                                                <h4 class="text-lg font-bold text-white">2022-00-00</h4>
+                                            </div>
+                                            <span class="text-xs text-[#8b9dc3] bg-[#2d2d3f] px-2 py-1 rounded-full">LOSE</span>
+                                        </div>
+                                        
+                                        <div class="text-center mb-4">
+                                            <div class="text-4xl font-bold text-[#f7cf2d] mb-1">00.0%</div>
+                                            <div class="text-sm text-[#8b9dc3]">승률</div>
+                                        </div>
+                                        
+                                        <div class="grid grid-cols-2 gap-4 text-center">
+                                            <div>
+                                                <div class="text-xl font-bold text-green-400">0</div>
+                                                <div class="text-xs text-[#8b9dc3]">승</div>
+                                            </div>
+                                            <div>
+                                                <div class="text-xl font-bold text-red-400">0</div>
+                                                <div class="text-xs text-[#8b9dc3]">패</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mt-4">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <span class="text-sm text-[#8b9dc3]">KDA</span>
+                                                <span class="text-lg font-bold text-[#f7cf2d]">0.0</span>
+                                            </div>
+                                            <div class="w-full h-2 bg-[#2d2d3f] rounded-full overflow-hidden">
+                                                <div class="h-full w-[75%] bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </section>
+                    </div>
+
+                    <!-- 챔피언 탭 -->
+                    <div id="abilities-content" class="tab-pane">
+                        <section>
+                            <!-- Most Champions -->
+                            <div class="flex items-center mb-6">
+                                <div class="w-1 h-8 bg-[#f7cf2d] rounded-full mr-3"></div>
+                                <h3 class="text-2xl font-bold text-white">모스트 챔피언</h3>
+                            </div>
+                            <div class="bg-gradient-to-br from-[#1e1e2f] to-[#1a1a2e] rounded-xl p-8 shadow-xl border border-[#3a3a4f]">
+                                <div class="flex items-center gap-6">
+                                    <!-- 챔피언 선택 버튼 -->
+                                    <div class="flex-shrink-0">
+                                        <button id="champion-selector-btn" class="bg-gradient-to-br from-[#f7cf2d] to-[#e6b800] hover:from-[#e6b800] hover:to-[#d4a700] text-[#1a1a2e] px-4 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg">
+                                            <i class="fa-solid fa-list text-lg"></i>
+                                            <span>챔피언 선택</span>
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- 현재 모스트 챔피언들 -->
+                                    <div id="most-champions-container" class="flex justify-center space-x-12 flex-1">
+                                        <div class="group cursor-pointer relative" data-champion-id="109" data-champion-name="바이">
+                                            <div class="bg-gradient-to-br from-[#171727] to-[#1a1a2e] p-6 rounded-xl border border-[#3a3a4f] group-hover:scale-105 transition-all duration-300 group-hover:border-gray-500">
+                                                <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Vi.png" alt="바이" class="w-20 h-20 object-cover rounded-lg mb-3" />
+                                                <p class="text-center text-[#b0b7d6] text-base font-medium">바이</p>
+                                            </div>
+                                            <div class="absolute -top-2 -right-2">
+                                                <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/secondmost.png" class="w-10 h-10">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="group cursor-pointer relative" data-champion-id="91" data-champion-name="세주아니">
+                                            <div class="bg-gradient-to-br from-[#171727] to-[#1a1a2e] p-6 rounded-xl border-2 border-[#f7cf2d] group-hover:scale-105 transition-all duration-300 shadow-lg">
+                                                <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Sejuani.png" alt="세주아니" class="w-20 h-20 object-cover rounded-lg mb-3" />
+                                                <p class="text-center text-[#f7cf2d] text-base font-bold">세주아니</p>
+                                            </div>
+                                            <div class="absolute -top-2 -right-2">
+                                                <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/firstmost.png" class="w-10 h-10">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="group cursor-pointer relative" data-champion-id="154" data-champion-name="비에고">
+                                            <div class="bg-gradient-to-br from-[#171727] to-[#1a1a2e] p-6 rounded-xl border border-[#3a3a4f] group-hover:scale-105 transition-all duration-300 group-hover:border-gray-500">
+                                                <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Viego.png" alt="비에고" class="w-20 h-20 object-cover rounded-lg mb-3" />
+                                                <p class="text-center text-[#b0b7d6] text-base font-medium">비에고</p>
+                                            </div>
+                                            <div class="absolute -top-2 -right-2">
+                                                <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/thirdmost.png" class="w-10 h-10">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 챔피언 선택 패널 (숨겨진 상태) -->
+                                <div id="champion-selection-panel" class="mt-6 bg-gradient-to-br from-[#2d2d3f] to-[#252538] rounded-xl p-6 shadow-xl border border-[#3a3a4f] hidden">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-lg font-bold text-white flex items-center">
+                                            <i class="fa-solid fa-crown text-[#f7cf2d] mr-2"></i>
+                                            챔피언 목록
+                                        </h4>
+                                        <button id="close-champion-panel" class="text-[#8b9dc3] hover:text-white transition-colors">
+                                            <i class="fa-solid fa-times text-lg"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- 챔피언 그리드 -->
+                                    <div id="champion-grid" class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-10 gap-4">
+                                        <!-- 챔피언들이 JavaScript로 동적 생성됨 -->
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- 활약지표 탭 -->
+                    <div id="performance-content" class="tab-pane">
+                        <section>
+                            <div class="flex items-center mb-6">
+                                <div class="w-1 h-8 bg-[#f7cf2d] rounded-full mr-3"></div>
+                                <h3 class="text-2xl font-bold text-white">활약 지표</h3>
+                            </div>
+                            
+                            <!-- 메인 통계 카드들 -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                                <!-- 팀 기여도 카드 -->
+                                <div id="team-contribution-card" class="bg-gradient-to-br from-[#1e1e2f] to-[#1a1a2e] rounded-xl p-6 shadow-xl border border-[#3a3a4f] hover:border-[#f7cf2d] transition-all duration-300 group cursor-pointer">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div class="flex items-center">
+                                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mr-3">
+                                                <i class="fa-solid fa-users text-white text-lg"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="text-white font-semibold">팀 기여도</h4>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="text-2xl font-bold text-purple-400 group-hover:text-purple-300 transition-colors">0%</div>
+                                            <div class="text-xs text-[#8b9dc3]">전체 평균 대비</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 진행률 바 -->
+                                    <div class="mb-3">
+                                        <div class="flex justify-between text-xs text-[#8b9dc3] mb-1">
+                                            <span>기여도 점수</span>
+                                            <span>0 / 1000</span>
+                                        </div>
+                                        <div class="w-full h-2 bg-[#2d2d3f] rounded-full overflow-hidden">
+                                            <div class="h-full w-[0%] bg-gradient-to-r from-purple-400 to-purple-500 rounded-full"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 상세 정보 -->
+                                    <div class="grid grid-cols-2 gap-3 text-center">
+                                        <div class="bg-[#2d2d3f] rounded-lg p-2">
+                                            <div class="text-sm font-bold text-white">0%</div>
+                                            <div class="text-xs text-[#8b9dc3]">킬 관여율</div>
+                                        </div>
+                                        <div class="bg-[#2d2d3f] rounded-lg p-2">
+                                            <div class="text-sm font-bold text-white">0%</div>
+                                            <div class="text-xs text-[#8b9dc3]">데미지 비중</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 클릭 안내 -->
+                                    <div class="mt-3 text-center">
+                                        <span class="text-xs text-[#8b9dc3] opacity-60">클릭하여 상세 수식 보기</span>
+                                        <i class="fa-solid fa-chevron-down text-[#8b9dc3] text-xs ml-1 opacity-60"></i>
+                                    </div>
+                                </div>
+
+                                <!-- 라인 이해도 카드 -->
+                                <div id="lane-understanding-card" class="bg-gradient-to-br from-[#1e1e2f] to-[#1a1a2e] rounded-xl p-6 shadow-xl border border-[#3a3a4f] hover:border-[#f7cf2d] transition-all duration-300 group cursor-pointer" data-lane="mid">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div class="flex items-center">
+                                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-3">
+                                                <i class="fa-solid fa-map text-white text-lg"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="text-white font-semibold">라인 이해도</h4>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="text-2xl font-bold text-blue-400 group-hover:text-blue-300 transition-colors">0%</div>
+                                            <div class="text-xs text-[#8b9dc3]">정글라인 특화</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 진행률 바 -->
+                                    <div class="mb-3">
+                                        <div class="flex justify-between text-xs text-[#8b9dc3] mb-1">
+                                            <span>이해도 점수</span>
+                                            <span>0 / 1000</span>
+                                        </div>
+                                        <div class="w-full h-2 bg-[#2d2d3f] rounded-full overflow-hidden">
+                                            <div class="h-full w-[0%] bg-gradient-to-r from-blue-400 to-blue-500 rounded-full"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 상세 정보 -->
+                                    <div class="grid grid-cols-2 gap-3 text-center">
+                                        <div class="bg-[#2d2d3f] rounded-lg p-2">
+                                            <div class="text-sm font-bold text-white">0</div>
+                                            <div class="text-xs text-[#8b9dc3]">분당 CS</div>
+                                        </div>
+                                        <div class="bg-[#2d2d3f] rounded-lg p-2">
+                                            <div class="text-sm font-bold text-white">0</div>
+                                            <div class="text-xs text-[#8b9dc3]">15분 골드차</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 클릭 안내 -->
+                                    <div class="mt-3 text-center">
+                                        <span class="text-xs text-[#8b9dc3] opacity-60">클릭하여 라인별 수식 보기</span>
+                                        <i class="fa-solid fa-chevron-down text-[#8b9dc3] text-xs ml-1 opacity-60"></i>
+                                    </div>
+                                </div>
+
+                                <!-- 출장 수 카드 -->
+                                <div class="bg-gradient-to-br from-[#1e1e2f] to-[#1a1a2e] rounded-xl p-6 shadow-xl border border-[#3a3a4f] hover:border-[#f7cf2d] transition-all duration-300 group">
+                                    <div class="flex items-center justify-between mb-6">
+                                        <div class="flex items-center">
+                                            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mr-3">
+                                                <i class="fa-solid fa-calendar-check text-white text-lg"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="text-white font-semibold">총 출장 수</h4>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="text-2xl font-bold text-green-400 group-hover:text-green-300 transition-colors">0</div>
+                                            <div class="text-xs text-[#8b9dc3]">20XX 시즌</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 상세 정보 -->
+                                    <div class="grid grid-cols-2 gap-3 text-center">
+                                        <div class="bg-[#2d2d3f] rounded-lg p-2">
+                                            <div class="text-sm font-bold text-white">00</div>
+                                            <div class="text-xs text-[#8b9dc3]">승리 경기</div>
+                                        </div>
+                                        <div class="bg-[#2d2d3f] rounded-lg p-2">
+                                            <div class="text-sm font-bold text-white">00</div>
+                                            <div class="text-xs text-[#8b9dc3]">패배 경기</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 팀 기여도 상세 정보 (숨겨진 패널) -->
+                            <div id="team-contribution-details" class="mt-6 bg-gradient-to-br from-[#2d2d3f] to-[#252538] rounded-xl p-6 shadow-xl border border-[#3a3a4f] hidden">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-lg font-bold text-white flex items-center">
+                                        <i class="fa-solid fa-calculator text-purple-400 mr-2"></i>
+                                        팀 기여도 계산 수식
+                                    </h4>
+                                    <button id="close-team-details" class="text-[#8b9dc3] hover:text-white transition-colors">
+                                        <i class="fa-solid fa-times"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                    <!-- 수식 -->
+                                    <div class="bg-[#1e1e2f] rounded-lg p-4 border border-[#3a3a4f]">
+                                        <h5 class="text-purple-400 font-semibold mb-3">계산 공식</h5>
+                                        <div class="text-[#b0b7d6] text-sm space-y-2">
+                                            <p><strong>팀 기여도 = A + B + C + D</strong></p>
+                                            <div class="mt-3 text-xs text-[#8b9dc3]">
+                                                <p>• A: 킬 관여율 점수</p>
+                                                <p>• B: 데미지 비중 점수</p>
+                                                <p>• C: 시야 점수</p>
+                                                <p>• D: 오브젝트 관여 점수</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 실제 수치 -->
+                                    <div class="bg-[#1e1e2f] rounded-lg p-4 border border-[#3a3a4f]">
+                                        <h5 class="text-purple-400 font-semibold mb-3">현재 스탯</h5>
+                                        <div class="space-y-3">
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-[#b0b7d6]">A (킬 관여율)</span>
+                                                <div class="text-right">
+                                                    <span class="text-white font-bold">0</span>
+                                                    <div class="text-xs text-purple-400">(A = 0점)</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-[#b0b7d6]">B (데미지 비중)</span>
+                                                <div class="text-right">
+                                                    <span class="text-white font-bold">0</span>
+                                                    <div class="text-xs text-purple-400">(B = 0점)</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-[#b0b7d6]">C (시야 점수)</span>
+                                                <div class="text-right">
+                                                    <span class="text-white font-bold">0</span>
+                                                    <div class="text-xs text-purple-400">(C = 0점)</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-[#b0b7d6]">D (오브젝트 관여)</span>
+                                                <div class="text-right">
+                                                    <span class="text-white font-bold">0</span>
+                                                    <div class="text-xs text-purple-400">(D = 0점)</div>
+                                                </div>
+                                            </div>
+                                            <hr class="border-[#3a3a4f]">
+                                            <div class="flex justify-between items-center text-lg">
+                                                <span class="text-purple-400 font-bold">총합</span>
+                                                <span class="text-purple-400 font-bold">0점 (0%)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 라인 이해도 상세 정보 (숨겨진 패널) -->
+                            <div id="lane-understanding-details" class="mt-6 bg-gradient-to-br from-[#2d2d3f] to-[#252538] rounded-xl p-6 shadow-xl border border-[#3a3a4f] hidden" data-lane="mid">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-lg font-bold text-white flex items-center">
+                                        <i class="fa-solid fa-calculator text-blue-400 mr-2"></i>
+                                        정글라인 이해도 계산 수식
+                                    </h4>
+                                    <button id="close-lane-details" class="text-[#8b9dc3] hover:text-white transition-colors">
+                                        <i class="fa-solid fa-times"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                    <!-- 수식 -->
+                                    <div class="bg-[#1e1e2f] rounded-lg p-4 border border-[#3a3a4f]">
+                                        <h5 class="text-blue-400 font-semibold mb-3">정글라인 공식</h5>
+                                        <div class="text-[#b0b7d6] text-sm space-y-2">
+                                            <p><strong>라인 이해도 = A + B + C + D</strong></p>
+                                            <div class="mt-3 text-xs text-[#8b9dc3]">
+                                                <p>• A: CS 효율성 점수</p>
+                                                <p>• B: 로밍 기여도 점수</p>
+                                                <p>• C: 라인 우위 점수</p>
+                                                <p>• D: 맵 컨트롤 점수</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 실제 수치 -->
+                                    <div class="bg-[#1e1e2f] rounded-lg p-4 border border-[#3a3a4f]">
+                                        <h5 class="text-blue-400 font-semibold mb-3">현재 스탯</h5>
+                                        <div class="space-y-3">
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-[#b0b7d6]">A (CS 효율성)</span>
+                                                <div class="text-right">
+                                                    <span class="text-white font-bold">0</span>
+                                                    <div class="text-xs text-blue-400">(A = 0점)</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-[#b0b7d6]">B (로밍 기여도)</span>
+                                                <div class="text-right">
+                                                    <span class="text-white font-bold">0</span>
+                                                    <div class="text-xs text-blue-400">(B = 0점)</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-[#b0b7d6]">C (라인 우위)</span>
+                                                <div class="text-right">
+                                                    <span class="text-white font-bold">0</span>
+                                                    <div class="text-xs text-blue-400">(C = 0점)</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-[#b0b7d6]">D (맵 컨트롤)</span>
+                                                <div class="text-right">
+                                                    <span class="text-white font-bold">0</span>
+                                                    <div class="text-xs text-blue-400">(D = 0점)</div>
+                                                </div>
+                                            </div>
+                                            <hr class="border-[#3a3a4f]">
+                                            <div class="flex justify-between items-center text-lg">
+                                                <span class="text-blue-400 font-bold">총합</span>
+                                                <span class="text-blue-400 font-bold">0점 (0%)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- 선수 스탯 탭 (커리어) -->
+                    <div id="career-content" class="tab-pane">
+                        <section>
+                        </section>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+
+    <script src="../js/detailplayerjs/tab-controller.js"></script>
+    <script src="../js/detailplayerjs/player-detail-info.js"></script>
+    <script src="../js/detailplayerjs/performance-details.js"></script>
+    <script src="../js/detailplayerjs/champion-selector.js"></script>
+</body>
+</html>
