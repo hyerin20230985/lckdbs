@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선수 정보 없음</title>
+    <link rel="stylesheet" href="../css/nav.css">
+    <style>
+        body { margin:0; background:#050509; color:#fff; font-family:'Pretendard','Inter',system-ui,sans-serif; }
+        .wrap { max-width:640px; margin:140px auto 0; padding:24px; text-align:center; }
+        .card {
+            padding:28px;
+            border-radius:24px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+            border:1px solid rgba(255,255,255,0.14);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.12);
+        }
+        .card h1 { margin:0 0 10px; font-size:1.6rem; }
+        .card p { margin:0 0 18px; color:rgba(255,255,255,0.75); }
+        .card a { display:inline-flex; gap:8px; align-items:center; padding:12px 18px; border-radius:14px;
+                  background: rgba(168,85,247,0.9); color:#fff; font-weight:700; text-decoration:none; }
+        .card a:hover { background: rgba(168,85,247,1); }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="/index.html" class="logo">LCKDBS</a>
+                <span class="nav-divider">|</span>
+            </div>
+            <div class="nav-center">
+                <a href="/html/player-new.html" class="nav-item">선수 목록</a>
+            </div>
+        </nav>
+    </header>
+    <main class="wrap">
+        <div class="card">
+            <h1>선수 정보를 찾을 수 없습니다</h1>
+            <p>요청하신 선수 상세 페이지가 준비되지 않았습니다.</p>
+            <a href="/html/player-new.html">선수 목록으로 돌아가기</a>
+        </div>
+    </main>
+</body>
+</html>
