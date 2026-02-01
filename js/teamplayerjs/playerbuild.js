@@ -1,6 +1,6 @@
 ﻿// Build players overlay on team card click
             (function(){
-                const altToTeam = { 'T1':'T1', 'GEN.G':'Gen.G', 'HLE':'HLE', 'KT':'KT', 'DK':'DK', 'KDF':'KDF', 'FOX':'FOX', 'BRO':'BRO', 'DRX':'DRX', 'NS':'NS' };
+                const altToTeam = { 'T1':'T1', 'GEN.G':'GEN.G', 'HLE':'HLE', 'KT':'KT', 'DK':'DK', 'KDF':'KDF', 'FOX':'FOX', 'BRO':'BRO', 'DRX':'DRX', 'NS':'NS' };
                 const fallback = [
                     { nickname:'Player1', image:'' },
                     { nickname:'Player2', image:'' },

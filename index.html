@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LCKDBS - League of Legends Champions Korea Database System</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/nav.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Gmarket+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="icon" type="image/png" href="favicon.png"> <!--이거 뭐지--> 
+    <link rel="stylesheet" href="css/home.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Gmarket Sans', 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+    </style>
     <meta name="description" content="LCK 선수, 팀, 챔피언 데이터베이스 및 통계 사이트">
 </head>
 <body>
@@ -20,7 +30,7 @@
                 <span class="nav-divider">|</span>
             </div>
             <div class="nav-center">
-                <a href="/html/team.html" class="nav-item">팀</a>
+                <a href="/html/player-new.html" class="nav-item">팀</a>
                 <a href="/html/champion.html" class="nav-item">챔피언</a>
                 <a href="/html/schedule2.html" class="nav-item">일정</a>
                 <a href="#" class="nav-item">스탯</a>
@@ -33,523 +43,417 @@
         </nav>
     </header>
 
-    <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="heroSection">
+        <!-- Dynamic Background -->
+        <div class="hero-background"></div>
 
+        <!-- Left Content -->
+        <div class="hero-content">
+            <div class="live-badge" id="liveBadge">LIVE MATCH</div>
+            <h1 class="hero-title" id="heroTitle">숙명의<br>라이벌전</h1>
+            <p class="hero-subtitle" id="heroSubtitle">2026 LCK 썸머 스플릿 1위 결정전</p>
+            <p class="hero-description" id="heroDescription">T1 과 젠지의 자존심을 건 승부가 지금 시작됩니다.</p>
+            
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary" id="btnWatch">중계 보기</a>
+                <a href="#" class="btn btn-secondary" id="btnDetails">상세 보기</a>
+            </div>
+        </div>
 
-        <section >
-            <div class="match-schedule-container">
-                <div class="text-3xl font-bold mb-6">경기 일정 / 결과</div>
-                <div class="match-schedule-wrapper">
-                    <!-- 상단 네비게이션 탭 -->
-                    <div class="match-nav">
-                        <div class="match-nav-item active" data-tab="today">오늘의 경기</div>
-                        <div class="match-nav-item" data-tab="upcoming">예정된 경기</div>
-                        <div class="match-nav-item" data-tab="recent">최근 경기 결과</div>
+        <!-- Right Content - Team Logos -->
+        <div class="hero-teams">
+            <div class="team-logo-container">
+                <img src="photos/assets/T1.svg" alt="T1" class="team-logo" id="team1Logo">
+            </div>
+            <div class="vs-text">VS</div>
+            <div class="team-logo-container">
+                <img src="photos/assets/GEN.G.svg" alt="Gen.G" class="team-logo" id="team2Logo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Grid Section -->
+    <section class="content-grid">
+        <div class="schedule-header">
+            <h2 class="main-section-title">경기 일정</h2>
+            <div class="schedule-date-tabs">
+                <button class="date-tab">어제</button>
+                <button class="date-tab active">오늘</button>
+                <button class="date-tab">내일</button>
+            </div>
+        </div>
+        
+        <!-- Row 1: Match Schedule -->
+        <div class="grid-row-1">
+            <!-- Box 1: LIVE Match -->
+            <div class="grid-box match-box">
+                <div class="match-status">LIVE</div>
+                <div class="match-teams">
+                    <div class="match-team">
+                        <img src="photos/assets/GEN.G.svg" alt="GEN" class="match-team-logo">
+                        <span class="team-name">GEN</span>
                     </div>
-                    
-                    <!-- 날짜/대회 정보 -->
-                    <div class="match-info-strip mb-4">
-                        <div class="match-tournament">
-                            <div class="tournament-logo">
-                                <img src="https://s-qwer.op.gg/images/lol/league/lck-color.svg" alt="LCK">
-                            </div>
-                            <div class="tournament-details">
-                                <div class="tournament-name">2025 LCK CUP</div>
-                                <div class="tournament-stage">1라운드 | 03.10 월요일</div>
-                            </div>
-                        </div>
-                        <div class="match-filter">
-                            <button class="filter-btn">
-                                <i class="fas fa-filter"></i> 필터
-                            </button>
-                        </div>
+                    <div class="match-vs">VS</div>
+                    <div class="match-team">
+                        <img src="photos/assets/T1.svg" alt="T1" class="match-team-logo">
+                        <span class="team-name">T1</span>
                     </div>
-                    
-                    <!-- 경기 목록 -->
-                    <div class="grid grid-cols-2 gap-4" id="matchesGrid">
-                        <!-- 경기 1 -->
-                        <div class="match-card">
-                            <div class="match-time-info">
-                                <div class="match-time">17:00</div>
-                                <div class="match-status upcoming">UPCOMING</div>
-                            </div>
-                            
-                            <div class="match-content">
-                                <div class="team team-left">
-                                    <div class="team-logo">
-                                        <img src="https://s-qwer.op.gg/images/teams/white/LCK/T1.png" alt="T1">
-                                    </div>
-                                    <div class="team-name">T1</div>
-                                    <div class="team-record">12W 2L</div>
-                                </div>
-                                
-                                <div class="match-center">
-                                    <div class="match-vs">VS</div>
-                                    <div class="match-odds">
-                                        <div class="odds-bar">
-                                            <div class="odds-fill" style="width: 65%"></div>
-                                        </div>
-                                        <div class="odds-numbers">
-                                            <span>65%</span>
-                                            <span>35%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="team team-right">
-                                    <div class="team-logo">
-                                        <img src="https://s-qwer.op.gg/images/teams/white/LCK/GEN.png" alt="GEN.G">
-                                    </div>
-                                    <div class="team-name">GEN.G</div>
-                                    <div class="team-record">9W 6L</div>
-                                </div>
-                            </div>
-                            
-                            <div class="match-actions">
-                                <button class="action-btn watch"><i class="fas fa-bell"></i> 알림설정</button>
-                                <button class="action-btn details"><i class="fas fa-info-circle"></i> 상세정보</button>
-                            </div>
-                        </div>
-                        
-                        <!-- 경기 2 -->
-                        <div class="match-card">
-                            <div class="match-time-info">
-                                <div class="match-time">20:00</div>
-                                <div class="match-status upcoming">UPCOMING</div>
-                            </div>
-                            
-                            <div class="match-content">
-                                <div class="team team-left">
-                                    <div class="team-logo">
-                                        <img src="https://s-qwer.op.gg/images/teams/white/LCK/HLE.png" alt="HLE">
-                                    </div>
-                                    <div class="team-name">HLE</div>
-                                    <div class="team-record">7W 8L</div>
-                                </div>
-                                
-                                <div class="match-center">
-                                    <div class="match-vs">VS</div>
-                                    <div class="match-odds">
-                                        <div class="odds-bar">
-                                            <div class="odds-fill" style="width: 45%"></div>
-                                        </div>
-                                        <div class="odds-numbers">
-                                            <span>45%</span>
-                                            <span>55%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="team team-right">
-                                    <div class="team-logo">
-                                        <img src="https://s-qwer.op.gg/images/teams/white/LCK/DK.png" alt="DK">
-                                    </div>
-                                    <div class="team-name">DK</div>
-                                    <div class="team-record">10W 5L</div>
-                                </div>
-                            </div>
-                            
-                            <div class="match-actions">
-                                <button class="action-btn watch"><i class="fas fa-bell"></i> 알림설정</button>
-                                <button class="action-btn details"><i class="fas fa-info-circle"></i> 상세정보</button>
-                            </div>
-                        </div>
+                </div>
+                <div class="match-time">17:00</div>
+            </div>
+
+            <!-- Box 2: UPCOMING Match -->
+            <div class="grid-box match-box">
+                <div class="match-status upcoming">UPCOMING</div>
+                <div class="match-teams">
+                    <div class="match-team">
+                        <img src="photos/assets/DK.svg" alt="DK" class="match-team-logo">
+                        <span class="team-name">DK</span>
                     </div>
-                    
-                    <div class="matches-footer">
-                        <a href="/html/schedule2.html" class="view-all">모든 경기 일정 보기 <i class="fas fa-arrow-right"></i></a>
+                    <div class="match-vs">VS</div>
+                    <div class="match-team">
+                        <img src="photos/assets/KT.svg" alt="KT" class="match-team-logo">
+                        <span class="team-name">KT</span>
+                    </div>
+                </div>
+                <div class="match-time">19:00</div>
+            </div>
+
+            <!-- Box 3: View All Schedule -->
+            <div class="grid-box view-all-box">
+                <a href="/html/schedule2.html" class="view-all-content">
+                    <span>View All Schedule</span>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+
+            <!-- Box 4: Hidden (for spacing) -->
+            <div class="grid-box hidden-box"></div>
+        </div>
+
+        <!-- Row 2: Rankings, Player, Meta -->
+        <div class="grid-row-2">
+            <!-- Box 4: Team Rankings -->
+            <div class="grid-box rankings-box">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <svg class="title-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 11V3H8v6H2v12h20V11h-6zm-6-6h4v14h-4V5zm-6 6h4v8H4v-8zm16 8h-4v-6h4v6z"/>
+                        </svg>
+                        팀 순위
+                    </h3>
+                </div>
+                <div class="trophy-background"></div>
+                <div class="rankings-list">
+                    <div class="rank-item rank-1">
+                        <span class="rank-num">1</span>
+                        <img src="photos/assets/GEN.G.svg" alt="GEN" class="rank-logo">
+                        <span class="rank-name">GEN</span>
+                        <span class="rank-record">14 - 1</span>
+                    </div>
+                    <div class="rank-item rank-2">
+                        <span class="rank-num">2</span>
+                        <img src="photos/assets/T1.svg" alt="T1" class="rank-logo">
+                        <span class="rank-name">T1</span>
+                        <span class="rank-record">17 - 2</span>
+                    </div>
+                    <div class="rank-item rank-3">
+                        <span class="rank-num">3</span>
+                        <img src="photos/assets/HLE.svg" alt="HLE" class="rank-logo">
+                        <span class="rank-name">HLE</span>
+                        <span class="rank-record">10 - 4</span>
+                    </div>
+                    <div class="rank-item rank-4">
+                        <span class="rank-num">4</span>
+                        <img src="photos/assets/KT.svg" alt="KT" class="rank-logo">
+                        <span class="rank-name">KT</span>
+                        <span class="rank-record">8 - 6</span>
                     </div>
                 </div>
             </div>
-            
-            
-            
-            
-                </section>
 
-
-
-        
-        <div class="main-container">
-            <div class="main-left">
-                <div class="up">
-                    <section class="upsection-left">
-                        <div class="text-3xl font-bold mb-6">포지션별 랭킹</div>
-                        <div class="updiv">
-                            <div class="grid-container">
-                                <div class="grid-item item-1 card-like">
-                                    <table class="player-ranking">
-                                        <caption>TOP</caption>
-                                        <tr>
-                                            <td class="rank-col">1</td>
-                                            <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Zeus.png" alt="Zeus"><div class="player-name">Zeus</div></div></td>
-                                            <td class="data-col-right">99</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="rank-col">2</td>
-                                            <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Doran.png" alt="Doran"><div class="player-name">Doran</div></div></td>
-                                            <td class="data-col-right">98</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="rank-col">3</td>
-                                            <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Kiin.png" alt="Kiin"><div class="player-name">Kiin</div></div></td>
-                                            <td class="data-col-right">97</td>
-                                        </tr>
-                                    </table>
-                                    <div class="position-label">score</div>
-                                </div>
-                                <div class="grid-item item-2 card-like">
-                                    <table class="player-ranking">
-                                        <caption>MID</caption>
-                                        <tr>
-                                            <td class="rank-col">1</td>
-                                            <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Chovy.png" alt="chovy"><div class="player-name">Chovy</div></div></td>
-                                            <td class="data-col-right"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="rank-col">2</td>
-                                            <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Zeka.png" alt="Zeka"><div class="player-name">Zeka</div></div></td>
-                                            <td class="data-col-right"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="rank-col">3</td>
-                                            <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Faker.png" alt="Faker"><div class="player-name"><a href="/html/detailplayer.html">Faker</a></div></div></td>
-                                            <td class="data-col-right"></td>
-                                        </tr>
-                                    </table>
-                                    <div class="position-label">Score</div>
-                                </div>
-                                <div class="grid-item item-3 card-like">
-                                    <table class="player-ranking">
-                                        <caption>JGL</caption>
-                                        <tr>
-                                            <td class="rank-col">1</td>
-                                            <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Peanut.png" alt="Peanut"><div class="player-name">Peanut</div></div></td>
-                                            <td class="data-col-right"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="rank-col">2</td>
-                                            <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Oner.png" alt="Oner"><div class="player-name">Oner</div></div></td>
-                                            <td class="data-col-right"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="rank-col">3</td>
-                                            <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Canyon.png" alt="Canyon"><div class="player-name">Canyon</div></div></td>
-                                            <td class="data-col-right"></td>
-                                        </tr>
-                                    </table>
-                                    <div class="position-label">Score</div>
-                                </div>
-
-
-                                <div class="bottom-container">
-                                    <div class="grid-item item-4"></div>
-
-                                    <div class="grid-item item-5 card-like">
-                                        <table class="player-ranking">
-                                            <caption>ADC</caption>
-                                            <tr>
-                                                <td class="rank-col">1</td>
-                                                <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Viper.png" alt="Viper"><div class="player-name">Viper</div></div></td>
-                                                <td class="data-col-right"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="rank-col">2</td>
-                                                <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Smash.png" alt="Smash"><div class="player-name">Smash</div></div></td>
-                                                <td class="data-col-right"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="rank-col">3</td>
-                                                <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Ruler.png" alt="Ruler"><div class="player-name">Ruler</div></div></td>
-                                                <td class="data-col-right"></td>
-                                            </tr>
-                                        </table>
-                                        <div class="position-label">Score</div>
-                                    </div>
-
-                                    <div class="grid-item item-6 card-like">
-                                        <table class="player-ranking">
-                                            <caption>SUP</caption>
-                                            <tr>
-                                                <td class="rank-col">1</td>
-                                                <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Keria.png" alt="Keria"><div class="player-name">Keria</div></div></td>
-                                                <td class="data-col-right"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="rank-col">2</td>
-                                                <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Delight.png" alt="Delight"><div class="player-name">Delight</div></div></td>
-                                                <td class="data-col-right"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="rank-col">3</td>
-                                                <td class="data-col-left card-like-nested"><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Beryl.png" alt="Beryl"><div class="player-name">Beryl</div></div></td>
-                                                <td class="data-col-right"></td>
-                                            </tr>
-                                        </table>
-                                        <div class="position-label">Score</div>
-                                    </div>
-
-                                </div>
-                            
-                            </div>
-                        </div>
-                               
-
-                            </section>
-
-                            
-                    <section class="upsection-right">
-                        <div class="updiv-right">
-                            <div class="ranking-container">
-                                <h1>순위</h1>
-                                <table class="ranking-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Rank</th>
-                                            <th>Team</th>
-                                            <th>W-L</th>
-                                            <th>Point</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1 -</td>
-                                            <td><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/T1.svg" alt="T1">T1</td>
-                                            <td>1W 0L 100%</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1 -</td>
-                                            <td><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/GEN.G.svg" alt="Gen.G">Gen.G</td>
-                                            <td>1W 0L 100%</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3 -</td>
-                                            <td><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/HLE.svg" alt="HLE">HLE</td>
-                                            <td>1W 0L 100%</td>
-                                            <td>1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4 -</td>
-                                            <td><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/DK.svg" alt="DK">DK</td>
-                                            <td>0W 0L 0%</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4 -</td>
-                                            <td><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/KT.svg" alt="KT">KT</td>
-                                            <td>0W 0L 0%</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4 -</td>
-                                            <td><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/BNK.png" alt="LSB">LSB</td>
-                                            <td>0W 0L 0%</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4 -</td>
-                                            <td><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/DNF.svg" alt="DNF">DNF</td>
-                                            <td>0W 0L 0%</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8 -</td>
-                                            <td><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/DRX.svg" alt="DRX">DRX</td>
-                                            <td>0W 1L 0%</td>
-                                            <td>-1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9 -</td>
-                                            <td><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/BRO.svg" alt="BRO">BRO</td>
-                                            <td>0W 1L 0%</td>
-                                            <td>-2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9 -</td>
-                                            <td><img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/NS.svg" alt="NS">NS</td>
-                                            <td>0W 1L 0%</td>
-                                            <td>-2</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </section>
+            <!-- Box 5: Strategy Page Placeholder -->
+            <div class="grid-box player-box empty">
+                <div class="placeholder-text">
+                    전략페이지와 연동하거나<br>전략페이지로 이동할 수 있게 하는 게 좋을듯
                 </div>
+            </div>
 
-
-                <div class="down">
-                    <section class="downsection-right">
-                        <div class="downdiv-up">
-                            <div class="pick-ban-container">
-                                <div class="card-header">LCK 챔피언 픽/밴 현황</div>
-                                
-                                <div class="pb-section">
-                                    <div class="pb-title">TOP PICKS</div>
-                                    <div class="pb-champions">
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_1.jpg" alt="챔피언">
-                                            <div class="pb-rate">86%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_2.jpg" alt="챔피언">
-                                            <div class="pb-rate">82%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_3.jpg" alt="챔피언">
-                                            <div class="pb-rate">75%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_4.jpg" alt="챔피언">
-                                            <div class="pb-rate">68%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_5.jpg" alt="챔피언">
-                                            <div class="pb-rate">60%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_6.jpg" alt="챔피언">
-                                            <div class="pb-rate">55%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_7.jpg" alt="챔피언">
-                                            <div class="pb-rate">52%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_8.jpg" alt="챔피언">
-                                            <div class="pb-rate">48%</div>
-                                        </div>
-                                    </div>
+            <!-- Box 6: Meta Trends -->
+            <div class="grid-box meta-box">
+                <div class="box-header">
+                    <h3 class="box-title">⚡ 메타 트렌드</h3>
+                    <span class="patch-info">Patch 14.27</span>
+                </div>
+                <div class="meta-champions">
+                    <!-- Champion 1 -->
+                    <div class="champion-item">
+                        <img src="photos/champions/Skarner.png" alt="Skarner" class="champion-img">
+                        <div class="champion-details">
+                            <span class="champion-name">Skarner</span>
+                            <div class="champion-stat">
+                                <div class="stat-bar">
+                                    <div class="stat-fill pick" style="width: 54.73%"></div>
                                 </div>
-                                
-                                <div class="pb-section">
-                                    <div class="pb-title">TOP BANS</div>
-                                    <div class="pb-champions">
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_9.jpg" alt="챔피언">
-                                            <div class="pb-rate">95%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_10.jpg" alt="챔피언">
-                                            <div class="pb-rate">92%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_11.jpg" alt="챔피언">
-                                            <div class="pb-rate">88%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_12.jpg" alt="챔피언">
-                                            <div class="pb-rate">82%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_13.jpg" alt="챔피언">
-                                            <div class="pb-rate">75%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_14.jpg" alt="챔피언">
-                                            <div class="pb-rate">70%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_15.jpg" alt="챔피언">
-                                            <div class="pb-rate">65%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_16.jpg" alt="챔피언">
-                                            <div class="pb-rate">58%</div>
-                                        </div>
-                                        <div class="pb-champion">
-                                            <img src="./placeholder_champion_17.jpg" alt="챔피언">
-                                            <div class="pb-rate">53%</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <span class="stat-value pick-rate">54.73</span>
                             </div>
                         </div>
-                        <div class="downdiv-down">
-                            <div class="community-container">
-                                <div class="card-header">커뮤니티 HOT 게시판</div>
-                                
-                                <div class="community-posts">
-                                    <div class="post-item">
-                                        <a href="#" class="post-link" aria-label="게시물로 이동"></a>
-                                        <div class="post-category">자유</div>
-                                        <div class="post-title">T1 vs GEN 경기 미친 대역전 ㄷㄷㄷㄷ</div>
-                                        <div class="post-author">운영자</div>
-                                        <span class="post-time">2시간 전</span>
-                                        <div class="post-stats">
-                                            <span class="post-views"><i class="fas fa-eye"></i> 1.2k</span>
-                                            <span class="post-likes"><i class="fas fa-heart"></i> 232</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="post-item">
-                                        <a href="#" class="post-link" aria-label="게시물로 이동"></a>
-                                        <div class="post-category">자유</div>
-                                        <div class="post-title">T1 vs GEN 경기 미친 대역전 ㄷㄷㄷㄷ</div>
-                                        <div class="post-author">운영자</div>
-                                        <span class="post-time">2시간 전</span>
-                                        <div class="post-stats">
-                                            <span class="post-views"><i class="fas fa-eye"></i> 1.2k</span>
-                                            <span class="post-likes"><i class="fas fa-heart"></i> 232</span>
-                                        </div>
-                                    </div>
-                                    
-                            
-                                    
-                                    
+                    </div>
+                    <!-- Champion 2 -->
+                    <div class="champion-item">
+                        <img src="photos/champions/K'Sante.png" alt="K'Sante" class="champion-img">
+                        <div class="champion-details">
+                            <span class="champion-name">K'Sante</span>
+                            <div class="champion-stat">
+                                <div class="stat-bar">
+                                    <div class="stat-fill ban" style="width: 47.15%"></div>
                                 </div>
-                                
-                                <div class="community-footer">
-                                   <a href="/html/com.html" class="more-btn">더보기</a>
-                                </div>
+                                <span class="stat-value ban-rate">47.15</span>
                             </div>
                         </div>
-                    </section>
-                    <section class="downsection-left">
-                        <div class="outer-container">
-                            <div class="card-header">포지션별 챔피언 랭킹</div>
-
-                            <div class="ranking-wrapper">
-
-                                <div class="ranking-row">
-                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
-                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">TOP</div></div>
-                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
-                                </div>
-
-                                <div class="ranking-row">
-                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
-                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">JG</div></div>
-                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
-                                </div>
-
-                                <div class="ranking-row">
-                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
-                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">MID</div></div>
-                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
-                                </div>
-
-                                <div class="ranking-row">
-                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
-                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">ADC</div></div>
-                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
-                                </div>
-
-                                <div class="ranking-row">
-                                    <div class="card"><div class="rank-number">3</div><img src="./placeholder_image_3.jpg" alt=""></div>
-                                    <div class="card"><div class="rank-number">1</div><img src="./placeholder_image_1.jpg" alt=""><div class="position-label">SPT</div></div>
-                                    <div class="card"><div class="rank-number">2</div><img src="./placeholder_image_2.jpg" alt=""></div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </section>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
-    <script src="/js/index.js"></script>
+
+        <!-- Row 3: Standings and OP Champions/News -->
+        <div class="grid-row-3">
+            <!-- Left: Standings Section -->
+            <div class="standings-section">
+                <!-- Header outside the box -->
+                <div class="standings-header-outer">
+                    <h2 class="standings-title">상세 데이터</h2>
+                    <div class="standings-tabs">
+                        <button class="tab-btn active" data-tab="team">팀</button>
+                        <button class="tab-btn" data-tab="player">선수</button>
+                    </div>
+                </div>
+
+                <!-- Team Table -->
+                <div class="grid-box standings-table-box" id="teamTable">
+                    <div class="standings-table">
+                        <div class="table-header">
+                            <span class="col-rank">RANK</span>
+                            <span class="col-team">TEAM</span>
+                            <span class="col-wl">W-L</span>
+                            <span class="col-point">POINT</span>
+                            <span class="col-recent">RECENT</span>
+                        </div>
+
+                        <div class="table-body">
+                            <!-- Rank 1 -->
+                            <div class="table-row rank-1">
+                                <span class="col-rank">
+                                    <span class="rank-number">1</span>
+                                </span>
+                                <span class="col-team">
+                                    <img src="photos/assets/GEN.G.svg" alt="Gen.G" class="team-logo-small">
+                                    <span class="team-name-text">Gen.G</span>
+                                </span>
+                                <span class="col-wl">14 - 1</span>
+                                <span class="col-point">+24</span>
+                                <span class="col-recent">
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                </span>
+                            </div>
+
+                            <!-- Rank 2 -->
+                            <div class="table-row rank-2">
+                                <span class="col-rank">
+                                    <span class="rank-number">2</span>
+                                </span>
+                                <span class="col-team">
+                                    <img src="photos/assets/T1.svg" alt="T1" class="team-logo-small">
+                                    <span class="team-name-text">T1</span>
+                                </span>
+                                <span class="col-wl">12 - 2</span>
+                                <span class="col-point">+18</span>
+                                <span class="col-recent">
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge loss">L</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                </span>
+                            </div>
+
+                            <!-- Rank 3 -->
+                            <div class="table-row rank-3">
+                                <span class="col-rank">
+                                    <span class="rank-number">3</span>
+                                </span>
+                                <span class="col-team">
+                                    <img src="photos/assets/HLE.svg" alt="HLE" class="team-logo-small">
+                                    <span class="team-name-text">HLE</span>
+                                </span>
+                                <span class="col-wl">10 - 5</span>
+                                <span class="col-point">+12</span>
+                                <span class="col-recent">
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge loss">L</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge loss">L</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="view-full-standings">View Full Standings</a>
+                </div>
+
+                <!-- Player Table (Hidden by default) -->
+                <div class="grid-box standings-table-box" id="playerTable" style="display: none;">
+                    <div class="standings-table">
+                        <div class="table-header">
+                            <span class="col-rank">RANK</span>
+                            <span class="col-team">PLAYER</span>
+                            <span class="col-wl">KDA</span>
+                            <span class="col-point">RATING</span>
+                            <span class="col-recent">RECENT</span>
+                        </div>
+
+                        <div class="table-body">
+                            <!-- Rank 1 -->
+                            <div class="table-row rank-1">
+                                <span class="col-rank">
+                                    <span class="rank-number">1</span>
+                                </span>
+                                <span class="col-team">
+                                    <img src="photos/playerspng/Chovy.png" alt="Chovy" class="team-logo-small player-img">
+                                    <span class="team-name-text">Chovy</span>
+                                </span>
+                                <span class="col-wl">5.2</span>
+                                <span class="col-point">9.8</span>
+                                <span class="col-recent">
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                </span>
+                            </div>
+
+                            <!-- Rank 2 -->
+                            <div class="table-row rank-2">
+                                <span class="col-rank">
+                                    <span class="rank-number">2</span>
+                                </span>
+                                <span class="col-team">
+                                    <img src="photos/playerspng/Faker.png" alt="Faker" class="team-logo-small player-img">
+                                    <span class="team-name-text">Faker</span>
+                                </span>
+                                <span class="col-wl">4.8</span>
+                                <span class="col-point">9.5</span>
+                                <span class="col-recent">
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge loss">L</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                </span>
+                            </div>
+
+                            <!-- Rank 3 -->
+                            <div class="table-row rank-3">
+                                <span class="col-rank">
+                                    <span class="rank-number">3</span>
+                                </span>
+                                <span class="col-team">
+                                    <img src="photos/playerspng/Kingen.png" alt="Kingen" class="team-logo-small player-img">
+                                    <span class="team-name-text">Kingen</span>
+                                </span>
+                                <span class="col-wl">4.5</span>
+                                <span class="col-point">9.2</span>
+                                <span class="col-recent">
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge loss">L</span>
+                                    <span class="recent-badge win">W</span>
+                                    <span class="recent-badge loss">L</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="/html/ranking.html" class="view-full-standings">View Full Rankings</a>
+                </div>
+            </div>
+
+            <!-- Right: OP Champions and News Feed -->
+            <div class="right-column">
+                <!-- OP Champions -->
+                <div class="grid-box op-champions-box">
+                    <h3 class="section-title">OP 챔피언</h3>
+                    <div class="champions-grid">
+                        <!-- Champion 1: Rumble -->
+                        <div class="champion-card">
+                            <div class="champion-image-wrapper">
+                                <img src="photos/champions/champions-detail/Rumble.png" alt="Rumble" class="champion-portrait">
+                                <div class="tier-badge tier-s">S</div>
+                            </div>
+                            <div class="champion-info">
+                                <span class="champion-name-small">RUMBLE</span>
+                                <span class="win-rate">승률 55%</span>
+                            </div>
+                        </div>
+
+                        <!-- Champion 2: Tristana -->
+                        <div class="champion-card">
+                            <div class="champion-image-wrapper">
+                                <img src="photos/champions/champions-detail/Tristana.png" alt="Tristana" class="champion-portrait">
+                                <div class="tier-badge tier-s">S</div>
+                            </div>
+                            <div class="champion-info">
+                                <span class="champion-name-small">TRISTANA</span>
+                                <span class="win-rate">승률 53%</span>
+                            </div>
+                        </div>
+
+                        <!-- Champion 3: Neeko -->
+                        <div class="champion-card">
+                            <div class="champion-image-wrapper">
+                                <img src="photos/champions/champions-detail/Neeko.png" alt="Neeko" class="champion-portrait">
+                                <div class="tier-badge tier-s">S</div>
+                            </div>
+                            <div class="champion-info">
+                                <span class="champion-name-small">NEEKO</span>
+                                <span class="win-rate">승률 52%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Talk Wave (News Feed) -->
+                <div class="grid-box talk-wave-box">
+                    <div class="talk-wave-header">
+                        <h3 class="section-title">토크 웨이브</h3>
+                        <a href="/html/com.html" class="more-link">더보기 ></a>
+                    </div>
+                    <div class="news-feed">
+                        <!-- News Item 1 -->
+                        <div class="news-item">
+                            <span class="news-tag hot">HOT</span>
+                            <span class="news-time">2시간 전</span>
+                            <p class="news-text">쵸비 오늘 폼 미쳤다 ㅋㅋㅋ</p>
+                        </div>
+
+                        <!-- News Item 2 -->
+                        <div class="news-item">
+                            <span class="news-time">12시간 전</span>
+                            <p class="news-text">T1 조합 분석이랑 우리 팀 상대 전략 분석</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/home.js"></script>
 </body>
 </html>

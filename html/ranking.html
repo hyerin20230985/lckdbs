@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Rankings - LCKDBS</title>
+    <link rel="stylesheet" href="../css/nav.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #171717; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #404040; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #525252; 
+        }
+    </style>
+</head>
+<body class="bg-[#0a0a0a] text-white min-h-screen font-sans">
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="index.html" class="logo">LCKDBS</a>
+                <span class="nav-divider">|</span>
+            </div>
+            <div class="nav-center">
+                <a href="/html/player-new.html" class="nav-item">팀</a>
+                <a href="/html/champion.html" class="nav-item">챔피언</a>
+                <a href="/html/schedule2.html" class="nav-item">일정</a>
+                <a href="#" class="nav-item">스탯</a>
+                <a href="#" class="nav-item">분석</a>
+                <a href="/html/com.html" class="nav-item">커뮤니티</a>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="nav-item live">LIVE <span class="live-dot"></span></a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-[1600px] mx-auto px-6 py-2 mt-40">
+        <!-- Header Section -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <h1 class="text-4xl font-bold text-white">Power Rankings</h1>
+                    <span class="px-3 py-1 rounded-full bg-purple-900/50 text-purple-300 text-xs font-bold border border-purple-500/30">Season 2024</span>
+                </div>
+                <p class="text-neutral-400 text-sm">KDA, DPM, 시야 점수 등 핵심 지표 종합 분석</p>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <!-- Year Dropdown -->
+                <div class="relative">
+                    <button id="year-dropdown-btn" class="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 border border-white/10 hover:bg-neutral-800 transition-colors min-w-[140px] justify-between">
+                        <span id="year-dropdown-text" class="text-sm font-medium">2024 Spring</span>
+                        <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="year-dropdown-menu" class="hidden absolute top-full mt-2 w-full bg-neutral-900 border border-white/10 rounded-xl overflow-hidden shadow-xl z-50 py-1">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Position Filters -->
+                <div id="position-filters" class="flex items-center bg-neutral-900 rounded-full p-1 border border-white/10">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Left Column: Podium & List -->
+            <div class="flex-1">
+                <!-- Podium -->
+                <div id="podium-container" class="flex justify-center items-end gap-8 mb-16 min-h-[300px]">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Ranking Table -->
+                <div class="bg-neutral-900/30 rounded-3xl border border-white/5 overflow-hidden">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-white/5 text-xs text-neutral-500 uppercase tracking-wider">
+                                <th class="py-4 px-4 font-medium w-16 text-center">#</th>
+                                <th class="py-4 px-4 font-medium text-left">Player</th>
+                                <th class="py-4 px-4 font-medium text-left">Score</th>
+                                <th class="py-4 px-4 font-medium text-center">KDA</th>
+                                <th class="py-4 px-4 font-medium text-center">DPM</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ranking-table-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Right Column: Detail View -->
+            <div class="w-full lg:w-[480px] shrink-0">
+                <div id="detail-container">
+                    <!-- Default State -->
+                    <div class="bg-neutral-900/50 border border-white/10 rounded-3xl p-12 text-center h-[700px] flex flex-col items-center justify-center sticky top-8">
+                        <div class="w-20 h-20 rounded-full bg-neutral-800 flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">선수를 선택해주세요</h3>
+                        <p class="text-neutral-400 text-sm">왼쪽 리스트에서 선수를 클릭하면<br>상세 스탯과 팬 반응을 확인할 수 있습니다.</p>
+                        
+                        <button class="w-full mt-auto py-4 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold transition-colors">
+                            상세 정보 전체보기 →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../js/team.js"></script>
+    <script src="../js/power_rankings.js"></script>
+</body>
+</html>
