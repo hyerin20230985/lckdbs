@@ -21,6 +21,15 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #525252; 
         }
+        
+        /* Hide scrollbar for position filters */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="bg-[#0a0a0a] text-white min-h-screen font-sans">
@@ -46,20 +55,20 @@
 
     <main class="max-w-[1600px] mx-auto px-6 py-2 mt-40">
         <!-- Header Section -->
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-12 gap-4 md:gap-6">
             <div>
                 <div class="flex items-center gap-3 mb-2">
                     <h1 class="text-4xl font-bold text-white">Power Rankings</h1>
-                    <span class="px-3 py-1 rounded-full bg-purple-900/50 text-purple-300 text-xs font-bold border border-purple-500/30">Season 2024</span>
+                    <span class="px-3 py-1 rounded-full bg-purple-900/50 text-purple-300 text-xs font-bold border border-purple-500/30">Season 2026</span>
                 </div>
                 <p class="text-neutral-400 text-sm">KDA, DPM, 시야 점수 등 핵심 지표 종합 분석</p>
             </div>
 
-            <div class="flex items-center gap-4">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
                 <!-- Year Dropdown -->
-                <div class="relative">
-                    <button id="year-dropdown-btn" class="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 border border-white/10 hover:bg-neutral-800 transition-colors min-w-[140px] justify-between">
-                        <span id="year-dropdown-text" class="text-sm font-medium">2024 Spring</span>
+                <div class="relative w-full sm:w-auto">
+                    <button id="year-dropdown-btn" class="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 border border-white/10 hover:bg-neutral-800 transition-colors w-full sm:min-w-[140px] justify-between">
+                        <span id="year-dropdown-text" class="text-sm font-medium">2026</span>
                         <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div id="year-dropdown-menu" class="hidden absolute top-full mt-2 w-full bg-neutral-900 border border-white/10 rounded-xl overflow-hidden shadow-xl z-50 py-1">
@@ -68,7 +77,7 @@
                 </div>
 
                 <!-- Position Filters -->
-                <div id="position-filters" class="flex items-center bg-neutral-900 rounded-full p-1 border border-white/10">
+                <div id="position-filters" class="flex items-center bg-neutral-900 rounded-full p-1 border border-white/10 overflow-x-auto scrollbar-hide">
                     <!-- Populated by JS -->
                 </div>
             </div>
@@ -79,13 +88,13 @@
             <!-- Left Column: Podium & List -->
             <div class="flex-1">
                 <!-- Podium -->
-                <div id="podium-container" class="flex justify-center items-end gap-8 mb-16 min-h-[300px]">
+                <div id="podium-container" class="flex justify-center items-end gap-4 md:gap-8 mb-8 md:mb-16 min-h-[240px] md:min-h-[300px]">
                     <!-- Populated by JS -->
                 </div>
 
                 <!-- Ranking Table -->
-                <div class="bg-neutral-900/30 rounded-3xl border border-white/5 overflow-hidden">
-                    <table class="w-full">
+                <div class="bg-neutral-900/30 rounded-3xl border border-white/5 overflow-hidden overflow-x-auto">
+                    <table class="w-full min-w-[600px]">
                         <thead>
                             <tr class="border-b border-white/5 text-xs text-neutral-500 uppercase tracking-wider">
                                 <th class="py-4 px-4 font-medium w-16 text-center">#</th>
@@ -103,10 +112,10 @@
             </div>
 
             <!-- Right Column: Detail View -->
-            <div class="w-full lg:w-[480px] shrink-0">
+            <div class="w-full lg:w-[480px] lg:shrink-0">
                 <div id="detail-container">
                     <!-- Default State -->
-                    <div class="bg-neutral-900/50 border border-white/10 rounded-3xl p-12 text-center h-[700px] flex flex-col items-center justify-center sticky top-8">
+                    <div class="bg-neutral-900/50 border border-white/10 rounded-3xl p-6 md:p-12 text-center h-auto md:h-[700px] flex flex-col items-center justify-center lg:sticky lg:top-8">
                         <div class="w-20 h-20 rounded-full bg-neutral-800 flex items-center justify-center mb-6">
                             <svg class="w-8 h-8 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
                         </div>

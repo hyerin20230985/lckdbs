@@ -42,16 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const dropdownText = document.getElementById('year-dropdown-text');
 
         // Years 2024 to 2020
-        const years = [2024, 2023, 2022, 2021, 2020];
+        const years = [2026, 2025, 2024, 2023, 2022, 2021, 2020];
         
         dropdownMenu.innerHTML = '';
         years.forEach(year => {
             const item = document.createElement('div');
             item.className = 'px-4 py-2 hover:bg-neutral-800 cursor-pointer text-sm';
-            item.textContent = `${year} Spring`; // Assuming Spring for all as per prompt "2024 Spring" example
+            item.textContent = `${year}`; // Assuming Spring for all as per prompt "2024 Spring" example
             item.onclick = () => {
                 currentYear = year;
-                dropdownText.textContent = `${year} Spring`;
+                dropdownText.textContent = `${year}`;
                 dropdownMenu.classList.add('hidden');
                 loadData(currentYear);
             };
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         positions.forEach(pos => {
             const btn = document.createElement('button');
             btn.textContent = pos;
-            btn.className = `px-6 py-2 rounded-full text-base font-medium transition-colors ${pos === currentPosition ? 'bg-purple-600 text-white' : 'text-neutral-400 hover:text-white'}`;
+            btn.className = `px-4 md:px-6 py-2 rounded-full text-sm md:text-base font-medium transition-colors whitespace-nowrap ${pos === currentPosition ? 'bg-purple-600 text-white' : 'text-neutral-400 hover:text-white'}`;
             btn.onclick = () => {
                 currentPosition = pos;
                 updatePositionButtons();
@@ -92,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('position-filters');
         Array.from(container.children).forEach(btn => {
             if (btn.textContent === currentPosition) {
-                btn.className = 'px-6 py-2 rounded-full text-base font-medium transition-colors bg-purple-600 text-white';
+                btn.className = 'px-4 md:px-6 py-2 rounded-full text-sm md:text-base font-medium transition-colors whitespace-nowrap bg-purple-600 text-white';
             } else {
-                btn.className = 'px-6 py-2 rounded-full text-base font-medium transition-colors text-neutral-400 hover:text-white';
+                btn.className = 'px-4 md:px-6 py-2 rounded-full text-sm md:text-base font-medium transition-colors whitespace-nowrap text-neutral-400 hover:text-white';
             }
         });
     }
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             const card = document.createElement('div');
-            card.className = `flex flex-col items-center ${marginTop} cursor-pointer transition-transform duration-300 hover:scale-110`;
+            card.className = `flex flex-col items-center ${marginTop} cursor-pointer transition-transform duration-300 hover:scale-105 md:hover:scale-110`;
             card.onclick = () => selectPlayer(player.name);
             
             // Colors based on rank
@@ -208,21 +208,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             card.innerHTML = `
-                <div class="relative mb-4 group">
-                    <div class="w-24 h-24 ${isFirst ? 'w-32 h-32' : ''} rounded-full border-4 ${ringColor} overflow-hidden bg-neutral-900 relative z-0">
+                <div class="relative mb-3 md:mb-4 group">
+                    <div class="w-16 h-16 md:w-24 md:h-24 ${isFirst ? 'md:w-32 md:h-32' : ''} rounded-full border-2 md:border-4 ${ringColor} overflow-hidden bg-neutral-900 relative z-0">
                         <img src="${player.image}" alt="${player.name}" class="w-full h-full object-cover object-top">
                     </div>
-                    <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 ${badgeColor} text-black font-bold rounded-full w-8 h-8 flex items-center justify-center border-2 border-neutral-900 z-10">
+                    <div class="absolute -bottom-2 md:-bottom-3 left-1/2 -translate-x-1/2 ${badgeColor} text-black font-bold rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center text-xs md:text-base border-2 border-neutral-900 z-10">
                         ${player.displayRank}
                     </div>
-                    <div class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-neutral-900 p-1 z-20">
+                    <div class="absolute bottom-0 right-0 w-6 h-6 md:w-8 md:h-8 rounded-full bg-neutral-900 p-1 z-20">
                         <img src="${player.teamLogo}" alt="${player.teamName}" class="w-full h-full object-contain">
                     </div>
                 </div>
-                <div class="relative w-48 ${boxHeight} bg-gradient-to-b ${gradientColor} rounded-3xl p-6 pt-6 pb-5 flex items-center justify-center">
+                <div class="relative w-32 md:w-48 ${boxHeight} bg-gradient-to-b ${gradientColor} rounded-2xl md:rounded-3xl p-4 md:p-6 pt-4 md:pt-6 pb-4 md:pb-5 flex items-center justify-center">
                     <div class="text-center">
-                        <div class="text-xl font-bold text-white mb-2">${player.name}</div>
-                        <div class="inline-block px-3 py-1 rounded-full bg-black/40 text-white font-bold text-sm">
+                        <div class="text-base md:text-xl font-bold text-white mb-1 md:mb-2">${player.name}</div>
+                        <div class="inline-block px-2 md:px-3 py-1 rounded-full bg-black/40 text-white font-bold text-xs md:text-sm">
                             ${player.score}
                         </div>
                     </div>
@@ -285,18 +285,18 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const detailContainer = document.getElementById('detail-container');
         detailContainer.innerHTML = `
-            <div class="bg-gradient-to-b from-purple-900/70 from-10% to-neutral-900/95 to-90% rounded-3xl p-8 sticky top-8">
+            <div class="bg-gradient-to-b from-purple-900/70 from-10% to-neutral-900/95 to-90% rounded-3xl p-6 md:p-8 lg:sticky lg:top-8">
                 <!-- Player Header -->
-                <div class="flex flex-col items-center mb-6">
-                    <div class="w-28 h-28 rounded-full border-4 border-purple-500/50 p-1 mb-4 relative">
+                <div class="flex flex-col items-center mb-4 md:mb-6">
+                    <div class="w-20 h-20 md:w-28 md:h-28 rounded-full border-2 md:border-4 border-purple-500/50 p-1 mb-3 md:mb-4 relative">
                         <div class="w-full h-full rounded-full overflow-hidden bg-[#0a0a0a]">
                              <img src="${player.image}" alt="${player.name}" class="w-full h-full object-cover object-top">
                         </div>
-                        <div class="absolute bottom-0 right-0 w-9 h-9 bg-neutral-900 rounded-full border-2 border-purple-500/30 p-1.5">
+                        <div class="absolute bottom-0 right-0 w-7 h-7 md:w-9 md:h-9 bg-neutral-900 rounded-full border-2 border-purple-500/30 p-1.5">
                              <img src="${player.teamLogo}" class="w-full h-full object-contain">
                         </div>
                     </div>
-                    <h2 class="text-2xl font-bold text-white mb-1">${player.name}</h2>
+                    <h2 class="text-xl md:text-2xl font-bold text-white mb-1">${player.name}</h2>
                     <div class="flex items-center gap-2 mb-3">
                         <span class="px-3 py-1 rounded-full bg-purple-600 text-white text-xs font-bold">${player.position}</span>
                         <span class="px-3 py-1 rounded-full bg-neutral-800 text-white text-xs font-bold">${player.teamName}</span>
@@ -304,23 +304,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <!-- Stats Grid -->
-                <div class="grid grid-cols-3 gap-3 mb-6">
+                <div class="grid grid-cols-3 gap-2 md:gap-3 mb-4 md:mb-6">
                     <div class="bg-neutral-900/60 rounded-2xl p-4 text-center border border-white/5">
                         <div class="text-xs text-neutral-400 mb-1">Win Rate</div>
-                        <div class="text-2xl font-bold text-white">${winRate}%</div>
+                        <div class="text-2xl md:text-2xl font-bold text-white">${winRate}%</div>
                     </div>
                     <div class="bg-neutral-900/60 rounded-2xl p-4 text-center border border-white/5">
                         <div class="text-xs text-neutral-400 mb-1">KDA</div>
-                        <div class="text-2xl font-bold text-white">${player.kda}</div>
+                        <div class="text-2xl md:text-2xl font-bold text-white">${player.kda}</div>
                     </div>
                     <div class="bg-neutral-900/60 rounded-2xl p-4 text-center border border-white/5">
                         <div class="text-xs text-neutral-400 mb-1">DPM</div>
-                        <div class="text-2xl font-bold text-white">${player.dpm}</div>
+                        <div class="text-2xl md:text-2xl font-bold text-white">${player.dpm}</div>
                     </div>
                 </div>
 
                 <!-- Radar Chart Placeholder -->
-                <div class="bg-neutral-900/60 rounded-2xl p-6 mb-6 border border-white/5">
+                <div class="bg-neutral-900/60 rounded-2xl p-4 md:p-6 mb-4 md:mb-6 border border-white/5">
                     <div class="relative w-full h-48 flex items-center justify-center">
                         <!-- Hexagon SVG -->
                         <svg viewBox="0 0 200 200" class="w-full h-full">
