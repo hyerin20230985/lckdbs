@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCKDBS - Champion Tier List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+            overflow-x: hidden; /* 가로 스크롤 방지 */
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .glow-effect {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .champion-card:hover .glow-effect, .hero-stage:hover .glow-effect {
+            opacity: 1;
+            box-shadow: inset 0 0 20px rgba(168,85,247,0.6), 0 0 30px rgba(168,85,247,0.4);
+        }
+        
+        .glass-noise::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+            opacity: 0.025;
+            pointer-events: none;
+        }
+
+        .hero-card-premium {
+            transition: all 0.3s ease;
+        }
+
+        .hero-card-premium:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 0 2px rgba(168,85,247,0.5);
+        }
+
+        .champion-card-premium {
+            background: rgba(168,85,247,0.05);
+            border: 1px solid rgba(168,85,247,0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .champion-card-premium:hover {
+            background: rgba(168,85,247,0.15);
+            border-color: rgba(168,85,247,0.6);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(168,85,247,0.4);
+        }
+
+        .purple-text { color: #A855F7; }
+        .purple-accent {
+            background: rgba(168,85,247,0.1);
+            border-color: rgba(168,85,247,0.3);
+        }
+
+        #search-input:focus {
+            box-shadow: 0 0 0 2px rgba(168,85,247,0.7);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-black">
+
+    <div id="app-container" class="relative w-full h-screen flex overflow-hidden">
+        <div id="background-container" class="absolute inset-0 z-0"></div>
+
+      <header id="main-header" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] translate-y-[-100px]">
+    <nav class="flex items-center gap-2 bg-black/30 backdrop-blur-2xl p-2 rounded-full border border-white/10 shadow-lg">
+        
+        <a href="../index.html" class="text-xl font-black text-white tracking-wider px-4 hover:text-gray-200 transition-colors">
+            LCKDBS
+        </a>
+
+        <div class="h-6 w-px bg-white/20"></div>
+
+        <div id="nav-items" class="flex items-center gap-1">
+            <a href="/html/player.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">선수</a>
+            <a href="/html/team3.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">팀</a>
+            <a href="/html/champion4.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">챔피언</a>
+            <a href="/html/schedule3.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">일정</a>
+            <a href="/html/rating2.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">순위</a>
+            <a href="/html/mainstat.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">스탯</a>
+            <a href="#" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">분석</a>
+            <a href="/html/com.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">커뮤니티</a>
+            <a href="#" class="px-3 py-1.5 text-sm font-bold text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-full transition-all flex items-center gap-1">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                </span>
+                LIVE
+            </a>
+        </div>
+
+        <div class="h-6 w-px bg-white/20 mx-1"></div>
+
+        <div class="flex items-center gap-1 pr-1">
+            <a href="#" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">
+                로그인
+            </a>
+            <a href="/html/signup.html" class="px-4 py-1.5 text-sm font-bold text-black bg-white hover:bg-gray-200 rounded-full transition-colors">
+                회원가입
+            </a>
+        </div>
+
+    </nav>
+</header>
+
+        <main id="main-content" class="relative z-10 w-full h-full flex pt-32 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            
+            <aside id="left-sidebar" class="w-72 flex-shrink-0 flex flex-col items-center justify-center gap-12 transition-transform duration-500 ease-out translate-x-[-100%] pl-6">
+                
+                <div class="relative w-full px-2">
+                    <div class="relative w-full">
+                        <input id="search-input" type="text" placeholder="챔피언 검색..." class="w-full bg-white/10 text-white placeholder-gray-400 text-lg h-14 pl-6 pr-14 rounded-full outline-none transition-all duration-300 ease-in-out shadow-lg focus:bg-white/20" />
+                        <button id="search-icon-btn" class="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 text-gray-400 hover:text-white transition-colors">
+                            <svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.5 17.5L13.875 13.875M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="lane-filters" class="w-full flex flex-col items-center gap-6 px-2"></div>
+            </aside>
+
+            <section id="tier-content-container" class="flex-grow overflow-y-auto no-scrollbar px-8 pb-16">
+                </section>
+        </main>
+        
+        <div id="panel-container" class="fixed inset-y-0 right-0 z-40 pointer-events-none">
+            </div>
+    </div>
+
+    <script>
+    // --- [데이터 부분은 동일하여 생략하지 않고 유지합니다] ---
+    const championsData = {
+            'Aatrox':{id:"Aatrox",name:"아트록스",title:"다르킨의 검",splashUrl:"/photos/champions/Aatrox.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Aatrox.png", tags: ['Fighter', 'Tank']},
+            'Ahri':{id:"Ahri",name:"아리",title:"구미호",splashUrl:"/photos/champions/Ahri.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Ahri.png", tags: ['Mage', 'Assassin']},
+            'Akali':{id:"Akali",name:"아칼리",title:"섬기는 이 없는 암살자",splashUrl:"/photos/champions/Akali.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Akali.png", tags: ['Assassin']},
+            'Akshan':{id:"Akshan",name:"아크샨",title:"떠도는 감시자",splashUrl:"/photos/champions/Akshan.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Akshan.png", tags: ['Marksman', 'Assassin']},
+            'Alistar':{id:"Alistar",name:"알리스타",title:"미노타우로스",splashUrl:"/photos/champions/Alistar.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Alistar.png", tags: ['Tank', 'Support']},
+            'Amumu':{id:"Amumu",name:"아무무",title:"슬픈 미라",splashUrl:"/photos/champions/Amumu.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Amumu.png", tags: ['Tank', 'Mage']},
+            'Anivia':{id:"Anivia",name:"애니비아",title:"얼음불사조",splashUrl:"/photos/champions/Anivia.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Anivia.png", tags: ['Mage', 'Support']},
+            'Annie':{id:"Annie",name:"애니",title:"어둠의 아이",splashUrl:"/photos/champions/Annie.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Annie.png", tags: ['Mage']},
+            'Aphelios':{id:"Aphelios",name:"아펠리오스",title:"신념의 무기",splashUrl:"/photos/champions/Aphelios.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Aphelios.png", tags: ['Marksman']},
+            'Ashe':{id:"Ashe",name:"애쉬",title:"서리 궁수",splashUrl:"/photos/champions/Ashe.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Ashe.png", tags: ['Marksman', 'Support']},
+            'AurelionSol':{id:"AurelionSol",name:"아우렐리온 솔",title:"별의 창조자",splashUrl:"/photos/champions/AurelionSol.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/AurelionSol.png", tags: ['Mage']},
+            'Azir':{id:"Azir",name:"아지르",title:"사막의 황제",splashUrl:"/photos/champions/Azir.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Azir.png", tags: ['Mage', 'Marksman']},
+            'Bard':{id:"Bard",name:"바드",title:"영겁의 수호자",splashUrl:"/photos/champions/Bard.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Bard.png", tags: ['Support', 'Mage']},
+            'Belveth':{id:"Belveth",name:"벨베스",title:"공허의 여제",splashUrl:"/photos/champions/BelVeth.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/BelVeth.png", tags: ['Fighter']},
+            'Blitzcrank':{id:"Blitzcrank",name:"블리츠크랭크",title:"거대 증기 골렘",splashUrl:"/photos/champions/Blitzcrank.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Blitzcrank.png", tags: ['Tank', 'Support']},
+            'Brand':{id:"Brand",name:"브랜드",title:"타오르는 복수",splashUrl:"/photos/champions/Brand.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Brand.png", tags: ['Mage']},
+            'Braum':{id:"Braum",name:"브라움",title:"프렐요드의 심장",splashUrl:"/photos/champions/Braum.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Braum.png", tags: ['Support', 'Tank']},
+            'Briar':{id:"Briar",name:"브라이어",title:"구속된 허기",splashUrl:"/photos/champions/Briar.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Briar.png", tags: ['Fighter', 'Assassin']},
+            'Caitlyn':{id:"Caitlyn",name:"케이틀린",title:"필트오버의 보안관",splashUrl:"/photos/champions/Caitlyn.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Caitlyn.png", tags: ['Marksman']},
+            'Camille':{id:"Camille",name:"카밀",title:"강철의 그림자",splashUrl:"/photos/champions/Camille.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Camille.png", tags: ['Fighter', 'Tank']},
+            'Cassiopeia':{id:"Cassiopeia",name:"카시오페아",title:"독사의 포옹",splashUrl:"/photos/champions/Cassiopeia.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Cassiopeia.png", tags: ['Mage']},
+            'Chogath':{id:"Chogath",name:"초가스",title:"공허의 공포",splashUrl:"/photos/champions/ChoGath.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/ChoGath.png", tags: ['Tank', 'Mage']},
+            'Corki':{id:"Corki",name:"코르키",title:"대담한 폭격수",splashUrl:"/photos/champions/Corki.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Corki.png", tags: ['Marksman']},
+            'Darius':{id:"Darius",name:"다리우스",title:"녹서스의 실력자",splashUrl:"/photos/champions/Darius.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Darius.png", tags: ['Fighter', 'Tank']},
+            'Diana':{id:"Diana",name:"다이애나",title:"차가운 달의 분노",splashUrl:"/photos/champions/Diana.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Diana.png", tags: ['Fighter', 'Mage']},
+            'Draven':{id:"Draven",name:"드레이븐",title:"화려한 처형자",splashUrl:"/photos/champions/Draven.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Draven.png", tags: ['Marksman']},
+            'DrMundo':{id:"DrMundo",name:"문도 박사",title:"자운의 광인",splashUrl:"/photos/champions/Dr.Mundo.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Dr.Mundo.png", tags: ['Fighter', 'Tank']},
+            'Ekko':{id:"Ekko",name:"에코",title:"시간을 달리는 소년",splashUrl:"/photos/champions/Ekko.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Ekko.png", tags: ['Assassin', 'Fighter']},
+            'Elise':{id:"Elise",name:"엘리스",title:"거미 여왕",splashUrl:"/photos/champions/Elise.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Elise.png", tags: ['Mage', 'Fighter']},
+            'Evelynn':{id:"Evelynn",name:"이블린",title:"고통스러운 포옹",splashUrl:"/photos/champions/Evelynn.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Evelynn.png", tags: ['Assassin', 'Mage']},
+            'Ezreal':{id:"Ezreal",name:"이즈리얼",title:"무모한 탐험가",splashUrl:"/photos/champions/Ezreal.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Ezreal.png", tags: ['Marksman', 'Mage']},
+            'Fiddlesticks':{id:"Fiddlesticks",name:"피들스틱",title:"오래된 공포",splashUrl:"/photos/champions/Fiddlesticks.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Fiddlesticks.png", tags: ['Mage', 'Support']},
+            'Fiora':{id:"Fiora",name:"피오라",title:"결투의 대가",splashUrl:"/photos/champions/Fiora.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Fiora.png", tags: ['Fighter', 'Assassin']},
+            'Fizz':{id:"Fizz",name:"피즈",title:"대양의 말썽꾼",splashUrl:"/photos/champions/Fizz.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Fizz.png", tags: ['Assassin', 'Fighter']},
+            'Galio':{id:"Galio",name:"갈리오",title:"위대한 석상",splashUrl:"/photos/champions/Galio.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Galio.png", tags: ['Tank', 'Mage']},
+            'Gangplank':{id:"Gangplank",name:"갱플랭크",title:"바다의 무법자",splashUrl:"/photos/champions/Gangplank.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Gangplank.png", tags: ['Fighter']},
+            'Garen':{id:"Garen",name:"가렌",title:"데마시아의 힘",splashUrl:"/photos/champions/Garen.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Garen.png", tags: ['Fighter', 'Tank']},
+            'Gnar':{id:"Gnar",name:"나르",title:"잃어버린 고리",splashUrl:"/photos/champions/Gnar.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Gnar.png", tags: ['Fighter', 'Tank']},
+            'Gragas':{id:"Gragas",name:"그라가스",title:"술취한 난동꾼",splashUrl:"/photos/champions/Gragas.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Gragas.png", tags: ['Fighter', 'Mage']},
+            'Graves':{id:"Graves",name:"그레이브즈",title:"무법자",splashUrl:"/photos/champions/Graves.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Graves.png", tags: ['Marksman']},
+            'Gwen':{id:"Gwen",name:"그웬",title:"신성한 재봉사",splashUrl:"/photos/champions/Gwen.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Gwen.png", tags: ['Fighter', 'Assassin']},
+            'Hecarim':{id:"Hecarim",name:"헤카림",title:"전쟁의 전조",splashUrl:"/photos/champions/Hecarim.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Hecarim.png", tags: ['Fighter', 'Tank']},
+            'Heimerdinger':{id:"Heimerdinger",name:"하이머딩거",title:"위대한 발명가",splashUrl:"/photos/champions/Heimerdinger.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Heimerdinger.png", tags: ['Mage', 'Support']},
+            'Hwei':{id:"Hwei",name:"흐웨이",title:"환상화가",splashUrl:"/photos/champions/Hwei.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Hwei.png", tags: ['Mage']},
+            'Illaoi':{id:"Illaoi",name:"일라오이",title:"크라켄의 여사제",splashUrl:"/photos/champions/Illaoi.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Illaoi.png", tags: ['Fighter', 'Tank']},
+            'Irelia':{id:"Irelia",name:"이렐리아",title:"칼날 무희",splashUrl:"/photos/champions/Irelia.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Irelia.png", tags: ['Fighter', 'Assassin']},
+            'Ivern':{id:"Ivern",name:"아이번",title:"자연의 아버지",splashUrl:"/photos/champions/Ivern.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Ivern.png", tags: ['Support', 'Mage']},
+            'Janna':{id:"Janna",name:"잔나",title:"폭풍의 분노",splashUrl:"/photos/champions/Janna.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Janna.png", tags: ['Support', 'Mage']},
+            'JarvanIV':{id:"JarvanIV",name:"자르반 4세",title:"데마시아의 귀감",splashUrl:"/photos/champions/JarvanIV.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/JarvanIV.png", tags: ['Tank', 'Fighter']},
+            'Jax':{id:"Jax",name:"잭스",title:"무기의 달인",splashUrl:"/photos/champions/Jax.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Jax.png", tags: ['Fighter', 'Assassin']},
+            'Jayce':{id:"Jayce",name:"제이스",title:"미래의 수호자",splashUrl:"/photos/champions/Jayce.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Jayce.png", tags: ['Fighter', 'Marksman']},
+            'Jhin':{id:"Jhin",name:"진",title:"잔혹한 명사수",splashUrl:"/photos/champions/Jhin.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Jhin.png", tags: ['Marksman', 'Mage']},
+            'Jinx':{id:"Jinx",name:"징크스",title:"난폭한 말괄량이",splashUrl:"/photos/champions/Jinx.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Jinx.png", tags: ['Marksman']},
+            'Kaisa':{id:"Kaisa",name:"카이사",title:"공허의 딸",splashUrl:"/photos/champions/KaiSa.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/KaiSa.png", tags: ['Marksman']},
+            'Kalista':{id:"Kalista",name:"칼리스타",title:"복수의 화신",splashUrl:"/photos/champions/Kalista.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Kalista.png", tags: ['Marksman']},
+            'Karma':{id:"Karma",name:"카르마",title:"깨우친 자",splashUrl:"/photos/champions/Karma.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Karma.png", tags: ['Mage', 'Support']},
+            'Karthus':{id:"Karthus",name:"카서스",title:"죽음을 노래하는 자",splashUrl:"/photos/champions/Karthus.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Karthus.png", tags: ['Mage']},
+            'Kassadin':{id:"Kassadin",name:"카사딘",title:"공허의 방랑자",splashUrl:"/photos/champions/Kassadin.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Kassadin.png", tags: ['Assassin', 'Mage']},
+            'Katarina':{id:"Katarina",name:"카타리나",title:"사악한 칼날",splashUrl:"/photos/champions/Katarina.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Katarina.png", tags: ['Assassin', 'Mage']},
+            'Kayle':{id:"Kayle",name:"케일",title:"정의",splashUrl:"/photos/champions/Kayle.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Kayle.png", tags: ['Fighter', 'Support']},
+            'Kayn':{id:"Kayn",name:"케인",title:"그림자 사신",splashUrl:"/photos/champions/Kayn.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Kayn.png", tags: ['Fighter', 'Assassin']},
+            'Kennen':{id:"Kennen",name:"케넨",title:"폭풍의 심장",splashUrl:"/photos/champions/Kennen.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Kennen.png", tags: ['Mage', 'Marksman']},
+            'Khazix':{id:"Khazix",name:"카직스",title:"공허의 약탈자",splashUrl:"/photos/champions/KhaZix.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/KhaZix.png", tags: ['Assassin']},
+            'Kindred':{id:"Kindred",name:"킨드레드",title:"영겁의 사냥꾼",splashUrl:"/photos/champions/Kindred.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Kindred.png", tags: ['Marksman']},
+            'Kled':{id:"Kled",name:"클레드",title:"흉포한 기사",splashUrl:"/photos/champions/Kled.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Kled.png", tags: ['Fighter', 'Tank']},
+            'KogMaw':{id:"KogMaw",name:"코그모",title:"심연의 아귀",splashUrl:"/photos/champions/KogMaw.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/KogMaw.png", tags: ['Marksman', 'Mage']},
+            'KSante':{id:"KSante",name:"크산테",title:"나주마의 긍지",splashUrl:"/photos/champions/KSante.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/KSante.png", tags: ['Tank', 'Fighter']},
+            'Leblanc':{id:"Leblanc",name:"르블랑",title:"환술사",splashUrl:"/photos/champions/LeBlanc.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/LeBlanc.png", tags: ['Assassin', 'Mage']},
+            'LeeSin':{id:"LeeSin",name:"리 신",title:"눈 먼 수도승",splashUrl:"/photos/champions/LeeSin.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/LeeSin.png", tags: ['Fighter', 'Assassin']},
+            'Leona':{id:"Leona",name:"레오나",title:"여명의 빛",splashUrl:"/photos/champions/Leona.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Leona.png", tags: ['Tank', 'Support']},
+            'Lillia':{id:"Lillia",name:"릴리아",title:"수줍은 꽃",splashUrl:"/photos/champions/Lillia.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Lillia.png", tags: ['Fighter', 'Mage']},
+            'Lissandra':{id:"Lissandra",name:"리산드라",title:"얼음 마녀",splashUrl:"/photos/champions/Lissandra.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Lissandra.png", tags: ['Mage']},
+            'Lucian':{id:"Lucian",name:"루시안",title:"정화의 사도",splashUrl:"/photos/champions/Lucian.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Lucian.png", tags: ['Marksman']},
+            'Lulu':{id:"Lulu",name:"룰루",title:"요정 마법사",splashUrl:"/photos/champions/Lulu.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Lulu.png", tags: ['Support', 'Mage']},
+            'Lux':{id:"Lux",name:"럭스",title:"광명의 소녀",splashUrl:"/photos/champions/Lux.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Lux.png", tags: ['Mage', 'Support']},
+            'Malphite':{id:"Malphite",name:"말파이트",title:"중력의 파편",splashUrl:"/photos/champions/Malphite.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Malphite.png", tags: ['Tank', 'Fighter']},
+            'Malzahar':{id:"Malzahar",name:"말자하",title:"공허의 선지자",splashUrl:"/photos/champions/Malzahar.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Malzahar.png", tags: ['Mage', 'Assassin']},
+            'Maokai':{id:"Maokai",name:"마오카이",title:"뒤틀린 나무 정령",splashUrl:"/photos/champions/Maokai.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Maokai.png", tags: ['Tank', 'Mage']},
+            'MasterYi':{id:"MasterYi",name:"마스터 이",title:"우주 검사",splashUrl:"/photos/champions/MasterYi.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/MasterYi.png", tags: ['Assassin', 'Fighter']},
+            'Milio':{id:"Milio",name:"밀리오",title:"온화한 불꽃",splashUrl:"/photos/champions/Milio.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Milio.png", tags: ['Support']},
+            'MissFortune':{id:"MissFortune",name:"미스 포츈",title:"현상금 사냥꾼",splashUrl:"/photos/champions/MissFortune.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/MissFortune.png", tags: ['Marksman']},
+            'Mordekaiser':{id:"Mordekaiser",name:"모데카이저",title:"강철의 망령",splashUrl:"/photos/champions/Mordekaiser.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Mordekaiser.png", tags: ['Fighter']},
+            'Morgana':{id:"Morgana",name:"모르가나",title:"타락한 자",splashUrl:"/photos/champions/Morgana.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Morgana.png", tags: ['Mage', 'Support']},
+            'Naafiri':{id:"Naafiri",name:"나피리",title:"백 번 무는 단검",splashUrl:"/photos/champions/Naafiri.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Naafiri.png", tags: ['Assassin']},
+            'Nami':{id:"Nami",name:"나미",title:"파도 소환사",splashUrl:"/photos/champions/Nami.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Nami.png", tags: ['Support', 'Mage']},
+            'Nasus':{id:"Nasus",name:"나서스",title:"사막의 관리자",splashUrl:"/photos/champions/Nasus.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Nasus.png", tags: ['Fighter', 'Tank']},
+            'Nautilus':{id:"Nautilus",name:"노틸러스",title:"심해의 타이탄",splashUrl:"/photos/champions/Nautilus.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Nautilus.png", tags: ['Tank', 'Support']},
+            'Neeko':{id:"Neeko",name:"니코",title:"알쏭달쏭 카멜레온",splashUrl:"/photos/champions/Neeko.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Neeko.png", tags: ['Mage', 'Support']},
+            'Nidalee':{id:"Nidalee",name:"니달리",title:"야성의 사냥꾼",splashUrl:"/photos/champions/Nidalee.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Nidalee.png", tags: ['Assassin', 'Mage']},
+            'Nilah':{id:"Nilah",name:"닐라",title:"해방된 기쁨",splashUrl:"/photos/champions/Nilah.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Nilah.png", tags: ['Fighter', 'Assassin']},
+            'Nocturne':{id:"Nocturne",name:"녹턴",title:"영원한 악몽",splashUrl:"/photos/champions/Nocturne.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Nocturne.png", tags: ['Assassin', 'Fighter']},
+            'Nunu':{id:"Nunu",name:"누누와 윌럼프",title:"소년과 설인",splashUrl:"/photos/champions/Nunu&Willump.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Nunu&Willump.png", tags: ['Tank', 'Fighter']},
+            'Olaf':{id:"Olaf",name:"올라프",title:"광전사",splashUrl:"/photos/champions/Olaf.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Olaf.png", tags: ['Fighter', 'Tank']},
+            'Orianna':{id:"Orianna",name:"오리아나",title:"시계태엽 소녀",splashUrl:"/photos/champions/Orianna.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Orianna.png", tags: ['Mage', 'Support']},
+            'Ornn':{id:"Ornn",name:"오른",title:"거산의 화염",splashUrl:"/photos/champions/Ornn.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Ornn.png", tags: ['Tank', 'Fighter']},
+            'Pantheon':{id:"Pantheon",name:"판테온",title:"불굴의 창",splashUrl:"/photos/champions/Pantheon.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Pantheon.png", tags: ['Fighter', 'Assassin']},
+            'Poppy':{id:"Poppy",name:"뽀삐",title:"망치의 수호자",splashUrl:"/photos/champions/Poppy.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Poppy.png", tags: ['Tank', 'Fighter']},
+            'Pyke':{id:"Pyke",name:"파이크",title:"핏빛 항구의 학살자",splashUrl:"/photos/champions/Pyke.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Pyke.png", tags: ['Support', 'Assassin']},
+            'Qiyana':{id:"Qiyana",name:"키아나",title:"원소의 여왕",splashUrl:"/photos/champions/Qiyana.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Qiyana.png", tags: ['Assassin', 'Fighter']},
+            'Quinn':{id:"Quinn",name:"퀸",title:"데마시아의 날개",splashUrl:"/photos/champions/Quinn.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Quinn.png", tags: ['Marksman', 'Assassin']},
+            'Rakan':{id:"Rakan",name:"라칸",title:"매혹하는 자",splashUrl:"/photos/champions/Rakan.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Rakan.png", tags: ['Support']},
+            'Rammus':{id:"Rammus",name:"람머스",title:"중무장 아르마딜로",splashUrl:"/photos/champions/Rammus.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Rammus.png", tags: ['Tank', 'Fighter']},
+            'RekSai':{id:"RekSai",name:"렉사이",title:"공허의 복병",splashUrl:"/photos/champions/RekSai.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/RekSai.png", tags: ['Fighter']},
+            'Rell':{id:"Rell",name:"렐",title:"철의 여인",splashUrl:"/photos/champions/Rell.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Rell.png", tags: ['Tank', 'Support']},
+            'Renata':{id:"Renata",name:"레나타 글라스크",title:"화학 남작",splashUrl:"/photos/champions/RenataGlasc.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/RenataGlasc.png", tags: ['Support', 'Mage']},
+            'Renekton':{id:"Renekton",name:"레넥톤",title:"사막의 도살자",splashUrl:"/photos/champions/Renekton.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Renekton.png", tags: ['Fighter', 'Tank']},
+            'Rengar':{id:"Rengar",name:"렝가",title:"추적하는 사자",splashUrl:"/photos/champions/Rengar.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Rengar.png", tags: ['Assassin', 'Fighter']},
+            'Riven':{id:"Riven",name:"리븐",title:"추방자",splashUrl:"/photos/champions/Riven.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Riven.png", tags: ['Fighter', 'Assassin']},
+            'Rumble':{id:"Rumble",name:"럼블",title:"기계 악동",splashUrl:"/photos/champions/Rumble.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Rumble.png", tags: ['Fighter', 'Mage']},
+            'Ryze':{id:"Ryze",name:"라이즈",title:"룬 마법사",splashUrl:"/photos/champions/Ryze.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Ryze.png", tags: ['Mage', 'Fighter']},
+            'Samira':{id:"Samira",name:"사미라",title:"사막의 장미",splashUrl:"/photos/champions/Samira.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Samira.png", tags: ['Marksman']},
+            'Sejuani':{id:"Sejuani",name:"세주아니",title:"혹한의 분노",splashUrl:"/photos/champions/Sejuani.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Sejuani.png", tags: ['Tank', 'Fighter']},
+            'Senna':{id:"Senna",name:"세나",title:"해방된 구원자",splashUrl:"/photos/champions/Senna.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Senna.png", tags: ['Marksman', 'Support']},
+            'Seraphine':{id:"Seraphine",name:"세라핀",title:"노래하는 별",splashUrl:"/photos/champions/Seraphine.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Seraphine.png", tags: ['Mage', 'Support']},
+            'Sett':{id:"Sett",name:"세트",title:"우두머리",splashUrl:"/photos/champions/Sett.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Sett.png", tags: ['Fighter', 'Tank']},
+            'Shaco':{id:"Shaco",name:"샤코",title:"악마 어릿광대",splashUrl:"/photos/champions/Shaco.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Shaco.png", tags: ['Assassin']},
+            'Shen':{id:"Shen",name:"쉔",title:"황혼의 눈",splashUrl:"/photos/champions/Shen.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Shen.png", tags: ['Tank']},
+            'Shyvana':{id:"Shyvana",name:"쉬바나",title:"하프 드래곤",splashUrl:"/photos/champions/Shyvana.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Shyvana.png", tags: ['Fighter', 'Tank']},
+            'Singed':{id:"Singed",name:"신지드",title:"미친 화학자",splashUrl:"/photos/champions/Singed.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Singed.png", tags: ['Tank', 'Fighter']},
+            'Sion':{id:"Sion",name:"사이온",title:"언데드 학살병기",splashUrl:"/photos/champions/Sion.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Sion.png", tags: ['Tank', 'Fighter']},
+            'Sivir':{id:"Sivir",name:"시비르",title:"전장의 여제",splashUrl:"/photos/champions/Sivir.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Sivir.png", tags: ['Marksman']},
+            'Skarner':{id:"Skarner",name:"스카너",title:"태초의 지배자",splashUrl:"/photos/champions/Skarner.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Skarner.png", tags: ['Fighter', 'Tank']},
+            'Smolder':{id:"Smolder",name:"스몰더",title:"불꽃의 어린 용",splashUrl:"/photos/champions/Smolder.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Smolder.png", tags: ['Marksman']},
+            'Sona':{id:"Sona",name:"소나",title:"현의 명인",splashUrl:"/photos/champions/Sona.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Sona.png", tags: ['Support', 'Mage']},
+            'Soraka':{id:"Soraka",name:"소라카",title:"별의 아이",splashUrl:"/photos/champions/Soraka.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Soraka.png", tags: ['Support', 'Mage']},
+            'Swain':{id:"Swain",name:"스웨인",title:"녹서스 대장군",splashUrl:"/photos/champions/Swain.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Swain.png", tags: ['Mage', 'Fighter']},
+            'Sylas':{id:"Sylas",name:"사일러스",title:"해방된 자",splashUrl:"/photos/champions/Sylas.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Sylas.png", tags: ['Mage', 'Assassin']},
+            'Syndra':{id:"Syndra",name:"신드라",title:"어둠의 여제",splashUrl:"/photos/champions/Syndra.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Syndra.png", tags: ['Mage']},
+            'TahmKench':{id:"TahmKench",name:"탐 켄치",title:"강의 폭군",splashUrl:"/photos/champions/TahmKench.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/TahmKench.png", tags: ['Support', 'Tank']},
+            'Taliyah':{id:"Taliyah",name:"탈리야",title:"바위술사",splashUrl:"/photos/champions/Taliyah.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Taliyah.png", tags: ['Mage', 'Support']},
+            'Talon':{id:"Talon",name:"탈론",title:"검의 그림자",splashUrl:"/photos/champions/Talon.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Talon.png", tags: ['Assassin']},
+            'Taric':{id:"Taric",name:"타릭",title:"발로란의 방패",splashUrl:"/photos/champions/Taric.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Taric.png", tags: ['Support', 'Fighter']},
+            'Teemo':{id:"Teemo",name:"티모",title:"날쌘 정찰병",splashUrl:"/photos/champions/Teemo.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Teemo.png", tags: ['Marksman', 'Assassin']},
+            'Thresh':{id:"Thresh",name:"쓰레쉬",title:"지옥의 간수",splashUrl:"/photos/champions/Thresh.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Thresh.png", tags: ['Support', 'Fighter']},
+            'Tristana':{id:"Tristana",name:"트리스타나",title:"요들 사수",splashUrl:"/photos/champions/Tristana.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Tristana.png", tags: ['Marksman', 'Assassin']},
+            'Trundle':{id:"Trundle",name:"트런들",title:"트롤 왕",splashUrl:"/photos/champions/Trundle.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Trundle.png", tags: ['Fighter', 'Tank']},
+            'Tryndamere':{id:"Tryndamere",name:"트린다미어",title:"야만전사 왕",splashUrl:"/photos/champions/Tryndamere.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Tryndamere.png", tags: ['Fighter', 'Assassin']},
+            'TwistedFate':{id:"TwistedFate",name:"트위스티드 페이트",title:"카드의 달인",splashUrl:"/photos/champions/TwistedFate.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/TwistedFate.png", tags: ['Mage']},
+            'Twitch':{id:"Twitch",name:"트위치",title:"역병 쥐",splashUrl:"/photos/champions/Twitch.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Twitch.png", tags: ['Marksman', 'Assassin']},
+            'Udyr':{id:"Udyr",name:"우디르",title:"정령 주술사",splashUrl:"/photos/champions/Udyr.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Udyr.png", tags: ['Fighter', 'Tank']},
+            'Urgot':{id:"Urgot",name:"우르곳",title:"되살아난 악몽",splashUrl:"/photos/champions/Urgot.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Urgot.png", tags: ['Fighter', 'Tank']},
+            'Varus':{id:"Varus",name:"바루스",title:"응징의 화살",splashUrl:"/photos/champions/Varus.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Varus.png", tags: ['Marksman', 'Mage']},
+            'Vayne':{id:"Vayne",name:"베인",title:"어둠 사냥꾼",splashUrl:"/photos/champions/Vayne.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Vayne.png", tags: ['Marksman', 'Assassin']},
+            'Veigar':{id:"Veigar",name:"베이가",title:"악의 작은 지배자",splashUrl:"/photos/champions/Veigar.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Veigar.png", tags: ['Mage']},
+            'Velkoz':{id:"Velkoz",name:"벨코즈",title:"공허의 눈",splashUrl:"/photos/champions/VelKoz.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/VelKoz.png", tags: ['Mage']},
+            'Vex':{id:"Vex",name:"벡스",title:"그림자의 주인",splashUrl:"/photos/champions/Vex.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Vex.png", tags: ['Mage']},
+            'Vi':{id:"Vi",name:"바이",title:"필트오버의 집행자",splashUrl:"/photos/champions/Vi.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Vi.png", tags: ['Fighter', 'Assassin']},
+            'Viego':{id:"Viego",name:"비에고",title:"몰락한 왕",splashUrl:"/photos/champions/Viego.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Viego.png", tags: ['Assassin', 'Fighter']},
+            'Viktor':{id:"Viktor",name:"빅토르",title:"기계화의 전령",splashUrl:"/photos/champions/Viktor.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Viktor.png", tags: ['Mage']},
+            'Vladimir':{id:"Vladimir",name:"블라디미르",title:"진홍빛 사신",splashUrl:"/photos/champions/Vladimir.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Vladimir.png", tags: ['Mage']},
+            'Volibear':{id:"Volibear",name:"볼리베어",title:"무자비한 폭풍",splashUrl:"/photos/champions/Volibear.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Volibear.png", tags: ['Fighter', 'Tank']},
+            'Warwick':{id:"Warwick",name:"워윅",title:"자운의 고삐 풀린 분노",splashUrl:"/photos/champions/Warwick.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Warwick.png", tags: ['Fighter', 'Tank']},
+            'Wukong':{id:"Wukong",name:"오공",title:"원숭이 왕",splashUrl:"/photos/champions/Wukong.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Wukong.png", tags: ['Fighter', 'Tank']},
+            'Xayah':{id:"Xayah",name:"자야",title:"저항의 칼날",splashUrl:"/photos/champions/Xayah.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Xayah.png", tags: ['Marksman']},
+            'Xerath':{id:"Xerath",name:"제라스",title:"초월한 마법사",splashUrl:"/photos/champions/Xerath.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Xerath.png", tags: ['Mage']},
+            'XinZhao':{id:"XinZhao",name:"신 짜오",title:"데마시아의 총관",splashUrl:"/photos/champions/XinZhao.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/XinZhao.png", tags: ['Fighter', 'Assassin']},
+            'Yasuo':{id:"Yasuo",name:"야스오",title:"용서받지 못한 자",splashUrl:"/photos/champions/Yasuo.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Yasuo.png", tags: ['Fighter', 'Assassin']},
+            'Yone':{id:"Yone",name:"요네",title:"잊히지 못한 자",splashUrl:"/photos/champions/Yone.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Yone.png", tags: ['Assassin', 'Fighter']},
+            'Yorick':{id:"Yorick",name:"요릭",title:"영혼의 길잡이",splashUrl:"/photos/champions/Yorick.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Yorick.png", tags: ['Fighter', 'Tank']},
+            'Yuumi':{id:"Yuumi",name:"유미",title:"마법 고양이",splashUrl:"/photos/champions/Yummi.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Yummi.png", tags: ['Support', 'Mage']},
+            'Zac':{id:"Zac",name:"자크",title:"비밀 병기",splashUrl:"/photos/champions/Zac.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Zac.png", tags: ['Tank', 'Fighter']},
+            'Zed':{id:"Zed",name:"제드",title:"그림자의 주인",splashUrl:"/photos/champions/Zed.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Zed.png", tags: ['Assassin']},
+            'Zeri':{id:"Zeri",name:"제리",title:"자운의 불꽃",splashUrl:"/photos/champions/Zeri.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Zeri.png", tags: ['Marksman']},
+            'Ziggs':{id:"Ziggs",name:"직스",title:"마법공학 폭파병",splashUrl:"/photos/champions/Ziggs.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Ziggs.png", tags: ['Mage']},
+            'Zilean':{id:"Zilean",name:"질리언",title:"시간의 수호자",splashUrl:"/photos/champions/Zilean.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Zilean.png", tags: ['Support', 'Mage']},
+            'Zoe':{id:"Zoe",name:"조이",title:"여명의 성위",splashUrl:"/photos/champions/Zoe.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Zoe.png", tags: ['Mage', 'Support']},
+            'Zyra':{id:"Zyra",name:"자이라",title:"가시 덩굴의 복수",splashUrl:"/photos/champions/Zyra.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Zyra.png", tags: ['Mage', 'Support']},
+            'Aurora':{id:"Aurora",name:"오로라",title:"세계의 경계에 선 마녀",splashUrl:"/photos/champions/Aurora.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Aurora.png", tags: ['Mage', 'Assassin']},
+            'Ambessa':{id:"Ambessa",name:"암베사",title:"메다르다 가문의 수장",splashUrl:"/photos/champions/Ambessa.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Ambessa.png", tags: ['Fighter', 'Assassin']},
+            'Mel':{id:"Mel",name:"멜",title:"메다르다",splashUrl:"/photos/champions/Mel.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Mel.png", tags: ['Mage', 'Support']},
+            'Yunara':{id:"Yunara",name:"유나라",title:"영혼 세계의 수호자",splashUrl:"/photos/champions/Yunara.png",avatarUrl:"https://d30q0nmfm6z0r7.cloudfront.net/photos/champions/Yunara.png", tags: ['Marksman']}
+        };
+   const tierListData = {
+            ALL: { 
+                1: Object.keys(championsData).slice(0, 34),   // 1~34
+                2: Object.keys(championsData).slice(34, 68),  // 35~68
+                3: Object.keys(championsData).slice(68, 102), // 69~102
+                4: Object.keys(championsData).slice(102, 137), // 103~137
+                5: Object.keys(championsData).slice(137)      // 138~171
+            },
+            TOP: { 
+                1: ['Aatrox', 'Darius', 'Fiora', 'Jax', 'Camille'], 
+                2: ['Irelia', 'Renekton', 'Gwen', 'Garen', 'Kled', 'Riven'],
+                3: ['Chogath', 'DrMundo', 'Gangplank', 'Gnar', 'Illaoi', 'Jayce', 'Kayle', 'Kennen', 'KSante', 'Malphite'],
+                4: ['Maokai', 'Mordekaiser', 'Nasus', 'Olaf', 'Ornn', 'Pantheon', 'Quinn', 'Rumble', 'Sett', 'Shen'],
+                5: ['Singed', 'Sion', 'TahmKench', 'Teemo', 'Trundle', 'Tryndamere', 'Urgot', 'Volibear', 'Yorick']
+            },
+            JUNGLE: { 
+                1: ['LeeSin', 'Vi', 'Khazix', 'Graves', 'Kindred'], 
+                2: ['XinZhao', 'JarvanIV', 'Wukong', 'Nocturne', 'Poppy'],
+                3: ['Amumu', 'Belveth', 'Briar', 'Diana', 'Ekko', 'Elise', 'Evelynn', 'Fiddlesticks', 'Gragas', 'Hecarim'],
+                4: ['Ivern', 'Karthus', 'Kayn', 'Lillia', 'MasterYi', 'Nidalee', 'Rammus', 'RekSai', 'Rengar', 'Sejuani'],
+                5: ['Shaco', 'Shyvana', 'Skarner', 'Udyr', 'Viego', 'Warwick', 'Zac', 'Ambessa']
+            },
+            MID: { 
+                1: ['Ahri', 'Yasuo', 'Syndra', 'Viktor', 'Azir'], 
+                2: ['Akali', 'Sylas', 'Taliyah', 'Ryze', 'Leblanc'],
+                3: ['Anivia', 'Annie', 'AurelionSol', 'Brand', 'Cassiopeia', 'Fizz', 'Galio', 'Hwei', 'Kassadin', 'Katarina'],
+                4: ['Lissandra', 'Lux', 'Malzahar', 'Morgana', 'Naafiri', 'Neeko', 'Orianna', 'Qiyana', 'Swain', 'Talon'],
+                5: ['TwistedFate', 'Veigar', 'Velkoz', 'Vex', 'Vladimir', 'Xerath', 'Yone', 'Zed', 'Ziggs', 'Zoe', 'Zyra', 'Aurora']
+            },
+            ADC: { 
+                1: ['Jinx', 'Caitlyn', 'Ezreal', 'Kaisa', 'Aphelios'], 
+                2: ['Varus', 'Lucian', 'Xayah', 'Sivir', 'Ashe'],
+                3: ['Akshan', 'Corki', 'Draven', 'Jhin', 'Kalista', 'KogMaw'],
+                4: ['MissFortune', 'Nilah', 'Samira', 'Smolder', 'Tristana'],
+                5: ['Twitch', 'Vayne', 'Zeri', 'Yunara']
+            },
+            SUPPORT: { 
+                1: ['Thresh', 'Leona', 'Nautilus', 'Lulu', 'Rakan'], 
+                2: ['Karma', 'Janna', 'Nami', 'Yuumi', 'Bard'],
+                3: ['Alistar', 'Blitzcrank', 'Braum', 'Heimerdinger', 'Milio', 'Pyke', 'Rell'],
+                4: ['Renata', 'Senna', 'Seraphine', 'Sona', 'Soraka', 'Taric', 'Zilean'],
+                5: ['Mel']
+            }
+        };
+        
+        const BASE_ITEM_URL = 'https://d30q0nmfm6z0r7.cloudfront.net/photos/items/';
+        const itemURL = (koreanName) => {
+            if (!koreanName || koreanName === '빈 슬롯') return ''; 
+            return `${BASE_ITEM_URL}${koreanName}.webp`;
+        };
+        
+        const matchHistoryDataByChampion = {
+            'Jinx': [ 
+                { id: 1, player: { name: "Gumayusi" }, result: "win", kda: "12/1/8", matchInfo: "2024 LCK Summer vs T1", 
+                items: ['불멸의 철갑궁', '광전사의 군화', '고속 연사포', '피바라기', '루난의 허리케인', '도미닉 경의 인사', '망원형 개조'] 
+                }, 
+                { id: 2, player: { name: "Viper" }, result: "win", kda: "9/2/5", matchInfo: "2024 LPL Spring vs JDG", 
+                items: ['크라켄 학살자', '광전사의 군화', '구인수의 격노검', '고속 연사포', '필멸자의 운명', '피바라기', '망원형 개조'] 
+                }, 
+                { id: 3, player: { name: "Peyz" }, result: "loss", kda: "4/3/3", matchInfo: "2024 LCK Summer vs GEN", 
+                items: ['크라켄 학살자', '광전사의 군화', '유령 무희', '피바라기', '도미닉 경의 인사', '수호 천사', '투명 와드'] 
+                } 
+            ],
+            'Fiora': [ { id: 1, player: { name: "Zeus" }, result: "win", kda: "10/2/5", matchInfo: "2024 LCK Spring", items: ['삼위일체', '굶주린 히드라', '발걸음 분쇄기', '판금 장화', '죽음의 무도', '맬모셔스의 아귀', '예언자의 렌즈'] } ],
+            'Aatrox': [ { id: 1, player: { name: "TheShy" }, result: "win", kda: "7/2/9", matchInfo: "2024 LPL Summer vs WBG", items: ['월식', '판금 장화', '칠흑의 양날 도끼', '세릴다의 원한', '죽음의 무도', '스테락의 도전', '예언자의 렌즈'] } ],
+            'LeeSin': [ { id: 1, player: { name: "Oner" }, result: "win", kda: "5/1/12", matchInfo: "2024 LCK Summer vs DK", items: ['월식', '명석함의 아이오니아 장화', '칠흑의 양날 도끼', '수호 천사', '맬모셔스의 아귀', '죽음의 무도', '예언자의 렌즈'] } ],
+            'Ahri': [ { id: 1, player: { name: "Faker" }, result: "win", kda: "8/0/7", matchInfo: "2024 LCK Summer vs HLE", items: ['루덴의 폭풍', '마법사의 신발', '그림자불꽃', '라바돈의 죽음모자', '존야의 모래시계', '공허의 지팡이', '예언자의 렌즈'] } ],
+            'Thresh': [ { id: 1, player: { name: "Keria" }, result: "win", kda: "2/3/15", matchInfo: "2024 LCK Summer vs KT", items: ['슈렐리아의 군가', '기동력의 장화', '기사의 맹세', '지크의 융합', '구원', '제어 와드', '예언자의 렌즈'] } ],
+        };
+        
+        let state = { selectedLane: 'ALL', searchTerm: '', selectedChampionId: null, isAllExpanded: false };
+        const DOMElements = { header: document.getElementById('main-header'), mainContent: document.getElementById('main-content'), sidebar: document.getElementById('left-sidebar'), backgroundContainer: document.getElementById('background-container'), navItemsContainer: document.getElementById('nav-items'), laneFiltersContainer: document.getElementById('lane-filters'), tierContentContainer: document.getElementById('tier-content-container'), panelContainer: document.getElementById('panel-container'), searchInput: document.getElementById('search-input'), searchIconBtn: document.getElementById('search-icon-btn') };
+
+        function renderNav() { const navItems = ['선수', '팀', '챔피언', '순위', '스탯', '분석', '커뮤니티', 'LIVE']; DOMElements.navItemsContainer.innerHTML = navItems.map((item, index) => `<a href="#" class="px-4 py-2 text-sm font-semibold rounded-full transition-colors ${index === 2 ? 'text-white' : 'text-gray-400 hover:text-white'}">${item}${index === 7 ? '<span class="ml-1.5 inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>' : ''}</a>`).join(''); }
+        function renderLaneFilters() { const lanes = ['ALL', 'TOP', 'JUNGLE', 'MID', 'ADC', 'SUPPORT']; DOMElements.laneFiltersContainer.innerHTML = lanes.map(lane => `<button data-lane="${lane}" class="lane-button relative w-full py-3 text-lg font-bold transition-colors duration-300 ${state.selectedLane === lane ? 'text-white active' : 'text-gray-400 hover:text-white'}"><span class="relative z-10">${lane}</span>${state.selectedLane === lane ? `<div class="active-lane-indicator absolute inset-0 bg-white/10 backdrop-blur-xl rounded-r-full border-r-4 border-[#A855F7]" style="box-shadow: 5px 0 25px rgba(168,85,247,0.3);"><div class="absolute inset-0 rounded-r-full" style="background: radial-gradient(circle at left, rgba(168, 85, 247, 0.2), transparent 70%);"></div></div>` : ''}</button>`).join(''); }
+        
+        function renderTierList() {
+            if (state.selectedLane === 'ALL') {
+                renderAllChampionsView();
+            } else {
+                renderLaneSpecificView();
+            }
+        }
+
+        function renderAllChampionsView() {
+            let tiersToRender = tierListData.ALL;
+            if (state.searchTerm) {
+                tiersToRender = {};
+                for (const tier in tierListData.ALL) {
+                    const filteredChampions = tierListData.ALL[tier].filter(id => 
+                        championsData[id] && championsData[id].name.toLowerCase().includes(state.searchTerm.toLowerCase())
+                    );
+                    if (filteredChampions.length > 0) {
+                        tiersToRender[tier] = filteredChampions;
+                    }
+                }
+            }
+        
+            const topChampions = [
+                { id: 'Aatrox', lane: 'TOP' },
+                { id: 'LeeSin', lane: 'JUNGLE' },
+                { id: 'Ahri', lane: 'MID' },
+                { id: 'Jinx', lane: 'ADC' },
+                { id: 'Thresh', lane: 'SUPPORT' }
+            ];
+
+            const tierRowsHTML = Object.entries(tiersToRender).map(([tier, champions], index) => `
+                <div class="tier-section mb-12 opacity-0 translate-y-[-50px]" style="transition: opacity 0.8s ${index * 0.15}s cubic-bezier(0.16,1,0.3,1), transform 0.8s ${index * 0.15}s cubic-bezier(0.16,1,0.3,1);">
+                    <div class="relative mb-6">
+                        <h2 class="text-6xl font-black purple-text tracking-wider relative z-10">TIER ${tier}</h2>
+                    </div>
+                    <div class="grid grid-cols-10 gap-2">
+                        ${champions.map((id, cardIndex) => {
+                            const champion = championsData[id];
+                            if (!champion) return '';
+                            return `
+                            <div class="champion-card champion-card-premium w-full aspect-square rounded-lg cursor-pointer group relative overflow-hidden transform transition-all duration-500 hover:scale-110 hover:-translate-y-2" 
+                                data-champion-id="${id}" 
+                                style="animation-delay: ${cardIndex * 0.05}s; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);">
+                                <div class="glow-effect absolute inset-0 rounded-lg transition-all duration-500 z-10 opacity-0"></div>
+                                <img src="${champion.avatarUrl}" alt="${champion.name}" class="relative w-full h-full object-cover transition-all duration-500 group-hover:scale-110 z-0"/>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end justify-center z-5">
+                                    <div class="text-center pb-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                                        <p class="text-xs text-white font-bold mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">${champion.name}</p>
+                                        <div class="w-6 h-0.5 bg-purple-400 mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        `}).join('')}
+                    </div>
+                </div>`).join('');
+
+            const heroesHTML = `
+                <div class="hero-showcase-section mb-12">
+                    <div class="text-center mb-12">
+                        <h1 class="text-6xl font-black purple-text mb-4 tracking-wider">
+                            CHAMPION SHOWCASE
+                        </h1>
+                        <div class="w-24 h-1 bg-purple-400 mx-auto rounded-full"></div>
+                        <p class="text-gray-400 mt-4 text-lg">각 라인별 최고 티어 챔피언</p>
+                    </div>
+                    
+                    <div class="hero-card-showcase grid grid-cols-5 gap-8 mb-12">
+                        ${topChampions.map((championInfo, index) => {
+                            const champion = championsData[championInfo.id];
+                            const match = matchHistoryDataByChampion[championInfo.id]?.[0];
+                            return `
+                            <div class="hero-card-premium champion-card relative rounded-3xl overflow-hidden purple-accent border shadow-2xl cursor-pointer group transform transition-all duration-700 hover:scale-105 hover:-translate-y-4" 
+                                data-champion-id="${championInfo.id}" 
+                                style="animation-delay: ${index * 0.1}s; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(168,85,247,0.2);">
+                                
+                                <div class="aspect-[3/4] relative overflow-hidden">
+                                    <div class="absolute inset-0 transition-all duration-700 group-hover:shadow-[inset_0_0_120px_rgba(168,85,247,0.4)]"></div>
+                                    <img src="${champion.splashUrl}" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" />
+                                    
+                                    <div class="absolute top-4 left-4 right-4 flex justify-between items-start">
+                                        <div class="bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+                                            <span class="text-xs font-bold text-white">${championInfo.lane}</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/95 via-black/70 to-transparent">
+                                        <h3 class="text-2xl font-black text-white mb-1" style="text-shadow: 0 2px 20px rgba(0,0,0,0.8);">${champion.name}</h3>
+                                        <p class="text-sm text-gray-300 mb-3">${champion.title}</p>
+                                        <div class="w-full h-0.5 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="p-6 bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-2xl">
+                                    ${match ? `
+                                    <div class="space-y-3">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center space-x-2">
+                                                <div class="w-2 h-2 rounded-full bg-purple-400"></div>
+                                                <span class="font-bold text-white text-sm">${match.player.name}</span>
+                                            </div>
+                                            <span class="font-bold text-xs px-3 py-1 rounded-full ${match.result === 'win' ? 'bg-green-500/20 text-green-400 border border-green-400/30' : 'bg-red-500/20 text-red-400 border border-red-400/30'}">
+                                                ${match.result === 'win' ? 'WIN' : 'LOSS'}
+                                            </span>
+                                        </div>
+                                        <div class="flex justify-between items-center text-gray-300">
+                                            <span class="font-mono text-lg font-bold text-white">${match.kda}</span>
+                                            <span class="text-xs text-gray-400">${match.matchInfo}</span>
+                                        </div>
+                                        <div class="flex gap-1.5">
+                                            ${match.items.slice(0, 6).map(item => `
+                                                <div class="w-8 h-8 bg-white/10 rounded-lg overflow-hidden border border-white/20 hover:border-purple-400/50 transition-colors duration-300">
+                                                    <img src="${itemURL(item)}" class="w-full h-full object-cover" />
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                    ` : `
+                                    <div class="text-center py-6">
+                                        <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-gray-800/50 flex items-center justify-center">
+                                            <svg class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="text-sm text-gray-500">선수 전적 정보 없음</p>
+                                    </div>
+                                    `}
+                                </div>
+                            </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+            
+            const shouldExpand = state.isAllExpanded || state.searchTerm;
+            const showMoreButtonHTML = `
+                <div class="flex justify-center mt-12">
+                    <button class="show-all-btn group relative px-12 py-4 rounded-2xl purple-accent backdrop-blur-md border text-white text-lg font-bold hover:bg-purple-600/20 transition-all duration-500 hover:scale-105 hover:-translate-y-1 shadow-2xl">
+                        <span class="relative z-10 flex items-center space-x-3">
+                            <span>${shouldExpand && !state.searchTerm ? '간략히 보기' : '전체 챔피언 보기'}</span>
+                            <svg class="w-5 h-5 transition-transform duration-300 ${shouldExpand ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            `;
+            
+            const mainContentHTML = state.searchTerm ? '' : heroesHTML;
+            const buttonHTML = state.searchTerm ? '' : showMoreButtonHTML;
+            
+            DOMElements.tierContentContainer.innerHTML = mainContentHTML + `<div id="all-tier-list-container" class="mt-16 transition-all duration-700" style="max-height: ${shouldExpand ? '5000px' : '0px'}; overflow:hidden;">${tierRowsHTML}</div>` + buttonHTML;
+            
+            if(shouldExpand) {
+                 setTimeout(() => { document.querySelectorAll('.tier-section').forEach(el => { el.classList.remove('opacity-0', 'translate-y-[-50px]'); }); }, 10);
+            }
+        }
+
+
+        function renderLaneSpecificView() {
+            const laneTiers = tierListData[state.selectedLane] || {};
+            let filteredTiers = laneTiers;
+             if (state.searchTerm) {
+                filteredTiers = {};
+                for (const tier in laneTiers) {
+                    const filteredChampions = laneTiers[tier].filter(id => 
+                        championsData[id] && championsData[id].name.toLowerCase().includes(state.searchTerm.toLowerCase())
+                    );
+                    if (filteredChampions.length > 0) filteredTiers[tier] = filteredChampions;
+                }
+            }
+            
+            const tierRowsHTML = Object.entries(filteredTiers).map(([tier, champions], index) => `
+                <div class="tier-row mb-10 opacity-0 translate-x-[-50px]" style="transition: opacity 0.5s ${index * 0.15}s ease-out, transform 0.5s ${index * 0.15}s ease-out;">
+                    <h2 class="text-7xl font-black text-white/20 tracking-widest relative -left-4 mb-2">TIER ${tier}</h2>
+                    <div class="grid grid-cols-10 gap-2">
+                        ${champions.map((id, cardIndex) => {
+                            const champion = championsData[id];
+                            if (!champion) return ''; 
+
+                            return `
+                            <div class="champion-card champion-card-premium w-full aspect-square rounded-lg cursor-pointer group relative overflow-hidden transform transition-all duration-500 hover:scale-110 hover:-translate-y-2" 
+                                data-champion-id="${id}" 
+                                style="animation-delay: ${cardIndex * 0.05}s; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);">
+                                <div class="glow-effect absolute inset-0 rounded-lg transition-all duration-500 z-10 opacity-0"></div>
+                                <img src="${champion.avatarUrl}" alt="${champion.name}" class="relative w-full h-full object-cover transition-all duration-500 group-hover:scale-110 z-0"/>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end justify-center z-5">
+                                    <div class="text-center pb-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                                        <p class="text-xs text-white font-bold mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">${champion.name}</p>
+                                        <div class="w-6 h-0.5 bg-purple-400 mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        `}).join('')}
+                    </div>
+                </div>`).join('');
+                
+            DOMElements.tierContentContainer.innerHTML = tierRowsHTML;
+            setTimeout(() => { document.querySelectorAll('.tier-row').forEach(el => { el.classList.remove('opacity-0', 'translate-x-[-50px]'); }); }, 10);
+        }
+
+        function renderBackground() {
+            let firstChampId = 'Aatrox'; 
+            let championPool = [];
+
+            if (state.selectedLane !== 'ALL') {
+                const laneTiers = tierListData[state.selectedLane];
+                championPool = Object.values(laneTiers).flat(); 
+            } else {
+                championPool = Object.keys(championsData);
+            }
+
+            if (championPool.length > 0) {
+                const randomIndex = Math.floor(Math.random() * championPool.length);
+                firstChampId = championPool[randomIndex];
+            }
+            
+            const bgUrl = championsData[firstChampId] ? championsData[firstChampId].splashUrl : championsData['Aatrox'].splashUrl;
+
+            const oldBg = DOMElements.backgroundContainer.querySelector('.bg-image');
+            if(oldBg) { oldBg.style.opacity = '0'; setTimeout(() => oldBg.remove(), 1500); }
+            const newBg = document.createElement('div');
+            newBg.className = 'bg-image absolute inset-0 transition-opacity duration-[1.5s] ease-in-out opacity-0';
+            newBg.innerHTML = `<img src="${bgUrl}" alt="background" class="w-full h-full object-cover scale-110" /><div class="absolute inset-0 bg-black/60 backdrop-blur-md"></div><div class="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent"></div>`;
+            DOMElements.backgroundContainer.appendChild(newBg);
+            setTimeout(() => newBg.style.opacity = '1', 10);
+        }
+
+        function renderStatsPanel() {
+    if (!state.selectedChampionId) { DOMElements.panelContainer.innerHTML = ''; return; }
+    
+    const champion = championsData[state.selectedChampionId];
+    if (!champion) return;
+
+    const matches = matchHistoryDataByChampion[state.selectedChampionId] || [];
+    
+    const panelHTML = `
+        <div id="stats-panel" class="fixed top-1/2 right-6 -translate-y-1/2 w-[440px] h-auto max-h-[85vh] bg-black/85 backdrop-blur-3xl border border-white/10 rounded-3xl flex flex-col shadow-2xl transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] translate-x-[150%] z-50 overflow-hidden">
+            
+            <div class="relative p-6 pb-4 border-b border-white/10 bg-gradient-to-b from-white/5 to-transparent shrink-0">
+                 <button class="close-btn absolute top-5 right-5 text-gray-400 hover:text-white transition-colors p-1 hover:bg-white/10 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                
+                <div class="flex flex-col items-center gap-4 pt-2">
+                    <img src="${champion.avatarUrl}" class="w-24 h-24 rounded-full border-4 border-purple-500/20 shadow-[0_0_20px_rgba(168,85,247,0.4)]" />
+                    <div class="text-center">
+                        <h2 class="text-3xl font-black text-white tracking-wider mb-1">${champion.name}</h2>
+                        <p class="text-purple-400 font-medium text-base tracking-wide">${champion.title}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overflow-y-auto no-scrollbar p-6 pt-4">
+                <div class="flex items-center mb-5 opacity-80">
+                    <div class="h-px flex-grow bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                    <span class="px-3 text-xs font-bold text-gray-400 uppercase tracking-[0.2em]">Recent Matches</span>
+                    <div class="h-px flex-grow bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                </div>
+                
+                <div class="flex flex-col gap-3">
+                    ${matches.length > 0 ? matches.map(match => `
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/5 hover:border-purple-500/30 transition-colors group hover:bg-white/10">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 rounded-full ${match.result === 'win' ? 'bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.6)]' : 'bg-red-400'}"></div>
+                                    <span class="font-bold text-gray-200 text-sm">${match.player.name}</span>
+                                </div>
+                                <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-white/10 text-gray-500 group-hover:bg-white/20 transition-colors">${match.matchInfo.split('vs')[0]}</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-end mb-3">
+                                <span class="font-mono text-xl font-bold text-white tracking-tight group-hover:text-purple-200 transition-colors">${match.kda}</span>
+                                <span class="text-xs font-bold ${match.result === 'win' ? 'text-green-400' : 'text-red-400'}">${match.result === 'win' ? 'VICTORY' : 'DEFEAT'}</span>
+                            </div>
+                            
+                            <div class="flex gap-1.5">
+                                ${match.items.map(item => `
+                                    <div class="w-9 h-9 bg-black/40 rounded overflow-hidden ring-1 ring-white/5 group-hover:ring-white/20 transition-all">
+                                        <img src="${itemURL(item)}" class="w-full h-full object-cover" />
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `).join('') : '<div class="text-center text-sm text-gray-600 py-10 border border-dashed border-white/5 rounded-xl">전적 데이터가 없습니다.</div>'}
+                </div>
+            </div>
+        </div>`;
+        
+    DOMElements.panelContainer.innerHTML = panelHTML;
+    
+    setTimeout(() => { 
+        const panel = document.getElementById('stats-panel'); 
+        if(panel) panel.classList.remove('translate-x-[150%]'); 
+    }, 50);
+}
+        // --- 이벤트 핸들러 ---
+        function handleLaneSelect(event) { const button = event.target.closest('.lane-button'); if (button) { state.selectedLane = button.dataset.lane; state.isAllExpanded = false; DOMElements.searchInput.value = ''; state.searchTerm = ''; renderLaneFilters(); renderTierList(); renderBackground(); } }
+        function handleSearchInput(event) { state.searchTerm = event.target.value; renderTierList(); }
+        function handleSearchSubmit(event) { event.preventDefault(); if (state.searchTerm.trim()) { renderTierList(); } }
+        
+        function handleContentClick(event) {
+            const championCard = event.target.closest('.champion-card');
+            if (championCard) { 
+                state.selectedChampionId = championCard.dataset.championId; 
+
+                // [핵심 로직 수정]
+                // 왼쪽으로 transform 하는게 아니라, 오른쪽 여백(marginRight)을 줍니다.
+                // 패널 너비(450px)만큼 여백을 주면, flex-grow인 main-content가 줄어듭니다.
+                DOMElements.mainContent.style.marginRight = '450px';
+                
+                // 헤더 위치 보정: 중앙(50%)에서 패널 너비의 절반(225px)만큼 왼쪽으로 이동
+                DOMElements.header.style.left = 'calc(50% - 225px)';
+                
+                renderStatsPanel(); 
+            }
+
+            const showAllBtn = event.target.closest('.show-all-btn');
+            if (showAllBtn) { 
+                state.isAllExpanded = !state.isAllExpanded; 
+                renderTierList(); 
+            }
+        }
+        
+        function handlePanelClose(event) {
+            // "열기" 버튼(champion-card) 클릭 시에는 닫기 동작 무시
+            const isClickOnCard = event.target.closest('.champion-card');
+            if (isClickOnCard) return;
+
+            // 닫기 버튼 혹은 패널 외부 클릭 시
+            if (event.target.closest('.close-btn') || !event.target.closest('#stats-panel')) {
+                const panel = document.getElementById('stats-panel');
+                
+                // 패널이 열려있을 때만 실행
+                if (panel && state.selectedChampionId) {
+                    panel.classList.add('translate-x-[100%]'); // 패널 퇴장 애니메이션
+
+                    // [핵심 로직 복구]
+                    // 여백을 제거하여 원래 너비로 복귀
+                    DOMElements.mainContent.style.marginRight = '0px';
+                    
+                    // 헤더 위치 원래대로
+                    DOMElements.header.style.left = '50%';
+                    
+                    state.selectedChampionId = null;
+
+                    setTimeout(() => {
+                        DOMElements.panelContainer.innerHTML = '';
+                    }, 700); // transition 시간과 맞춤
+                }
+            }
+        }
+
+        // --- 초기화 함수 ---
+        function init() {
+            renderNav();
+            renderLaneFilters();
+            renderTierList();
+            renderBackground();
+
+            DOMElements.laneFiltersContainer.addEventListener('click', handleLaneSelect);
+            DOMElements.searchInput.addEventListener('input', handleSearchInput);
+            DOMElements.searchIconBtn.addEventListener('click', handleSearchSubmit);
+            DOMElements.tierContentContainer.addEventListener('click', handleContentClick);
+            
+            // 패널 닫기 이벤트 (전역 클릭 감지)
+            document.addEventListener('click', handlePanelClose); 
+
+            // 진입 애니메이션
+            setTimeout(() => {
+                DOMElements.header.style.transform = 'translate(-50%, 0)';
+                DOMElements.sidebar.style.transform = 'translateX(0)';
+            }, 100);
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+
+    </script>
+</body>
+</html>
