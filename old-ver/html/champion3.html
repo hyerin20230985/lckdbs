@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCKDBS - CHAMPION SHOWCASE (New Theme)</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="/css/champion3-styles.css"> 
+    
+    <script>
+        // Custom Tailwind Configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    gridTemplateColumns: {
+                        '13': 'repeat(13, minmax(0, 1fr))',
+                        '14': 'repeat(14, minmax(0, 1fr))',
+                        '15': 'repeat(15, minmax(0, 1fr))',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased bg-black">
+
+<header class="sticky top-0 z-50 pt-5 pb-5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-black/30 backdrop-blur-2xl rounded-full h-12 flex items-center w-fit mx-auto px-8 border border-white/10">
+            
+            <div class="text-xl font-extrabold tracking-wider text-white pr-6 mr-6 border-r border-white/10">
+                LCKDBS
+            </div>
+            
+            <nav class="flex items-center space-x-6 text-sm font-medium">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-150">선수</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-150">팀</a>
+                <a href="#" class="text-white font-bold transition duration-150">챔피언</a> 
+                <a href="#" class="text-gray-400 hover:text-white transition duration-150">순위</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-150">스탯</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-150">분석</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-150">커뮤니티</a>
+                
+                <a href="#" class="flex items-center text-red-400 hover:text-red-300 font-semibold transition duration-150 ml-6 pl-6 border-l border-white/10">
+                    LIVE 
+                    <span class="w-2 h-2 bg-red-600 rounded-full inline-block ml-1 animate-pulse"></span>
+                </a>
+            </nav>
+        </div>
+    </div>
+</header>
+    
+<main class="w-full px-4 sm:px-6 pt-10 pb-20">
+
+    <div class="text-center mb-12">
+        <h1 class="text-5xl sm:text-6xl font-extrabold tracking-tight" style="color: var(--primary-purple);">
+            CHAMPION SHOWCASE
+        </h1>
+        <p class="mt-2 text-lg text-gray-400">각 라인별 최고 티어 챔피언</p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+
+        <aside class="w-full lg:w-64 flex-shrink-0">
+            <div class="sticky top-24"> 
+                
+                <div class="mb-4 px-4">
+                    <div class="relative">
+                        <input type="text" id="championSearch" oninput="filterChampions()" placeholder="챔피언 검색..." class="w-full py-2 pl-4 pr-10 rounded-full bg-white/10 text-white placeholder-gray-400 text-sm focus:ring-purple-600 focus:border-purple-600 border border-white/10 outline-none" />
+                        <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                </div>
+
+                <nav class="space-y-2"> 
+                    <button data-role="ALL" class="filter-button active w-full py-3 text-base font-bold transition duration-150 text-white">ALL</button>
+                    <button data-role="TOP" class="filter-button w-full py-3 text-base font-medium text-gray-400">TOP</button>
+                    <button data-role="JUNGLE" class="filter-button w-full py-3 text-base font-medium text-gray-400">JUNGLE</button>
+                    <button data-role="MID" class="filter-button w-full py-3 text-base font-medium text-gray-400">MID</button>
+                    <button data-role="ADC" class="filter-button w-full py-3 text-base font-medium text-gray-400">ADC</button>
+                    <button data-role="SUPPORT" class="filter-button w-full py-3 text-base font-medium text-gray-400">SUPPORT</button>
+                </nav>
+            </div>
+        </aside>
+            
+        <section id="championDisplay" class="flex-1 grid gap-6 lg:grid-cols-6 lg:items-start">
+            
+            <div id="leftContentContainer" class="col-span-full">
+                
+                <div id="championCardContainer" class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"> 
+                    </div>
+                
+                <div id="tierListContainer" class="mt-10" style="display: none;">
+                    </div>
+            </div>
+
+            <aside id="championDetailPanel" class="col-span-full lg:col-span-2 xl:col-span-1 bg-black/40 backdrop-blur-3xl p-6 rounded-3xl border-2 border-white/10 sticky top-24 glass-noise">
+                <div id="detailContent" class="relative" style="display: none;">
+                    
+                    <div class="flex justify-end mb-4 absolute top-2 right-2">
+                        <button onclick="hideChampionDetail()" class="text-purple-500 hover:text-white p-1 rounded-full hover:bg-white/10 transition duration-150 flex-shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+
+                    <div class="flex flex-col items-center pt-8 pb-4 mb-4 text-center">
+                        <img id="detailChampionIcon" src="" alt="챔피언 아이콘" class="w-24 h-24 rounded-full object-cover border-2 shadow-xl" style="border-color: var(--primary-purple)" />
+                        <h2 id="detailChampionNameKr" class="text-3xl font-extrabold mt-3 text-white"></h2>
+                        <p id="detailChampionRoleKr" class="text-sm text-gray-400"></p>
+                    </div>
+                    
+                    <h3 class="text-md font-bold text-gray-300 text-center uppercase tracking-wider mb-4 border-t border-b border-white/20 py-2">선수별 전적</h3>
+
+                    <div class="space-y-4" id="matchHistoryContainer">
+                        </div>
+                </div>
+                
+                <div id="noDetailSelected" class="text-center py-20 text-gray-400" style="display: block;">
+                    <p class="text-lg">챔피언을 선택해주세요.</p>
+                </div>
+            </aside>
+        </section>
+    </div>
+
+    <div class="text-center mt-12">
+        <button id="toggleDisplayButton" onclick="toggleDisplayMode()" 
+            class="main-toggle-btn px-8 py-3 text-sm font-semibold rounded-full 
+                   bg-purple-600/10 hover:bg-purple-600/20 border border-purple-600/30
+                   text-purple-300 hover:text-white
+                   transition-all duration-300 shadow-lg
+                   flex items-center justify-center mx-auto"
+        >
+            전체 챔피언 보기
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+    </div>
+</main>
+
+<script src="/js/champion3-scripts.js"></script>
+</body>
+</html>
