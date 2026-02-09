@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCK 일정</title>
+    <link rel="stylesheet" href="/css/schedule3-styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="../index.html" class="logo">LCKDBS</a>
+            </div>
+            <div class="nav-center">
+                <a href="#" class="nav-item">선수</a>
+                <a href="#" class="nav-item">팀</a>
+                <a href="#" class="nav-item">챔피언</a>
+                <a href="#" class="nav-item">일정</a>
+                <a href="#" class="nav-item">순위</a>
+                <a href="#" class="nav-item">스탯</a>
+                <a href="#" class="nav-item">분석</a>
+                <a href="#" class="nav-item">커뮤니티</a>
+                <a href="#" class="nav-item live">LIVE</a>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="login-btn">로그인</a>
+                <a href="/html/signup.html" class="signup-btn">회원가입</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h1>LoL e스포츠 경기 일정</h1>
+        <div class="logo_container">
+            <div class="logo-item-wrapper">
+                <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/퍼스트 스탠드.svg" alt="퍼스트 스탠드 토너먼트 로고" class="tournament_logo" data-tournament="퍼스트 스탠드 토너먼트">
+            </div>
+            <div class="logo-item-wrapper">
+                <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/LCK.svg" alt="LCK 로고" class="tournament_logo" data-tournament="LCK">
+            </div>
+            <div class="logo-item-wrapper">
+                <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/MSI.svg" alt="MSI 로고" class="tournament_logo" data-tournament="MSI">
+            </div>
+            <div class="logo-item-wrapper">
+                <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/롤드컵.svg" alt="롤드컵 로고" class="tournament_logo" data-tournament="롤드컵">
+            </div>
+        </div>
+        <div class="controls-container">
+            <div class="select-wrapper">
+                <label for="month-select">월 선택:</label>
+                <select id="month-select">
+                    <option value="all">전체</option>
+                    <option value="01">1월</option>
+                    <option value="02">2월</option>
+                    <option value="03">3월</option>
+                    <option value="04">4월</option>
+                    <option value="05">5월</option>
+                    <option value="06">6월</option>
+                    <option value="07">7월</option>
+                    <option value="08">8월</option>
+                    <option value="09">9월</option>
+                    <option value="10">10월</option>
+                    <option value="11">11월</option>
+                    <option value="12">12월</option>
+                </select>
+            </div>
+            
+            <div class="select-wrapper custom-select-wrapper">
+                <label for="team-select">팀 선택:</label>
+                <div class="custom-select" id="custom-team-select">
+                    <div class="select-selected">
+                        <img src="https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/LCK.svg" alt="전체" class="team-logo">
+                        전체
+                    </div>
+                    <ul class="select-items select-hide"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="schedule-display">
+            <h2>대회 로고를 클릭하여 일정을 확인하세요.</h2>
+        </div>
+    </main>
+
+    <script src="https://d30q0nmfm6z0r7.cloudfront.net/js/schedule3-script.js"></script>
+</body>
+</html>
