@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LCKDBS - Champion Tier List</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/nav.css">
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
@@ -71,50 +72,31 @@
     </style>
 </head>
 <body class="bg-black">
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="index.html" class="logo">LCKDBS</a>
+                <span class="nav-divider">|</span>
+            </div>
+            <div class="nav-center">
+                <a href="/html/player-new.html" class="nav-item">팀</a>
+                <a href="/html/champion4.html" class="nav-item">챔피언</a>
+                <a href="/html/schedule3.html" class="nav-item">일정</a>
+                <a href="/html/mainstat.html" class="nav-item">스탯</a>
+                <a href="#" class="nav-item">전략</a>
+                <a href="/html/ranking.html" class="nav-item">순위</a>
+                <a href="/html/com.html" class="nav-item">커뮤니티</a>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="nav-item live">LIVE <span class="live-dot"></span></a>
+            </div>
+        </nav>
+    </header>
 
     <div id="app-container" class="relative w-full h-screen flex overflow-hidden">
         <div id="background-container" class="absolute inset-0 z-0"></div>
 
-      <header id="main-header" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] translate-y-[-100px]">
-    <nav class="flex items-center gap-2 bg-black/30 backdrop-blur-2xl p-2 rounded-full border border-white/10 shadow-lg">
-        
-        <a href="../index.html" class="text-xl font-black text-white tracking-wider px-4 hover:text-gray-200 transition-colors">
-            LCKDBS
-        </a>
-
-        <div class="h-6 w-px bg-white/20"></div>
-
-        <div id="nav-items" class="flex items-center gap-1">
-            <a href="/html/player.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">선수</a>
-            <a href="/html/team3.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">팀</a>
-            <a href="/html/champion4.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">챔피언</a>
-            <a href="/html/schedule3.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">일정</a>
-            <a href="/html/rating2.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">순위</a>
-            <a href="/html/mainstat.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">스탯</a>
-            <a href="#" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">분석</a>
-            <a href="/html/com.html" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">커뮤니티</a>
-            <a href="#" class="px-3 py-1.5 text-sm font-bold text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-full transition-all flex items-center gap-1">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                </span>
-                LIVE
-            </a>
-        </div>
-
-        <div class="h-6 w-px bg-white/20 mx-1"></div>
-
-        <div class="flex items-center gap-1 pr-1">
-            <a href="#" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all">
-                로그인
-            </a>
-            <a href="/html/signup.html" class="px-4 py-1.5 text-sm font-bold text-black bg-white hover:bg-gray-200 rounded-full transition-colors">
-                회원가입
-            </a>
-        </div>
-
-    </nav>
-</header>
+      
 
         <main id="main-content" class="relative z-10 w-full h-full flex pt-32 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
             
@@ -388,9 +370,8 @@
         };
         
         let state = { selectedLane: 'ALL', searchTerm: '', selectedChampionId: null, isAllExpanded: false };
-        const DOMElements = { header: document.getElementById('main-header'), mainContent: document.getElementById('main-content'), sidebar: document.getElementById('left-sidebar'), backgroundContainer: document.getElementById('background-container'), navItemsContainer: document.getElementById('nav-items'), laneFiltersContainer: document.getElementById('lane-filters'), tierContentContainer: document.getElementById('tier-content-container'), panelContainer: document.getElementById('panel-container'), searchInput: document.getElementById('search-input'), searchIconBtn: document.getElementById('search-icon-btn') };
+        const DOMElements = { mainContent: document.getElementById('main-content'), sidebar: document.getElementById('left-sidebar'), backgroundContainer: document.getElementById('background-container'), laneFiltersContainer: document.getElementById('lane-filters'), tierContentContainer: document.getElementById('tier-content-container'), panelContainer: document.getElementById('panel-container'), searchInput: document.getElementById('search-input'), searchIconBtn: document.getElementById('search-icon-btn') };
 
-        function renderNav() { const navItems = ['선수', '팀', '챔피언', '순위', '스탯', '분석', '커뮤니티', 'LIVE']; DOMElements.navItemsContainer.innerHTML = navItems.map((item, index) => `<a href="#" class="px-4 py-2 text-sm font-semibold rounded-full transition-colors ${index === 2 ? 'text-white' : 'text-gray-400 hover:text-white'}">${item}${index === 7 ? '<span class="ml-1.5 inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>' : ''}</a>`).join(''); }
         function renderLaneFilters() { const lanes = ['ALL', 'TOP', 'JUNGLE', 'MID', 'ADC', 'SUPPORT']; DOMElements.laneFiltersContainer.innerHTML = lanes.map(lane => `<button data-lane="${lane}" class="lane-button relative w-full py-3 text-lg font-bold transition-colors duration-300 ${state.selectedLane === lane ? 'text-white active' : 'text-gray-400 hover:text-white'}"><span class="relative z-10">${lane}</span>${state.selectedLane === lane ? `<div class="active-lane-indicator absolute inset-0 bg-white/10 backdrop-blur-xl rounded-r-full border-r-4 border-[#A855F7]" style="box-shadow: 5px 0 25px rgba(168,85,247,0.3);"><div class="absolute inset-0 rounded-r-full" style="background: radial-gradient(circle at left, rgba(168, 85, 247, 0.2), transparent 70%);"></div></div>` : ''}</button>`).join(''); }
         
         function renderTierList() {
@@ -706,9 +687,6 @@
                 // 패널 너비(450px)만큼 여백을 주면, flex-grow인 main-content가 줄어듭니다.
                 DOMElements.mainContent.style.marginRight = '450px';
                 
-                // 헤더 위치 보정: 중앙(50%)에서 패널 너비의 절반(225px)만큼 왼쪽으로 이동
-                DOMElements.header.style.left = 'calc(50% - 225px)';
-                
                 renderStatsPanel(); 
             }
 
@@ -736,9 +714,6 @@
                     // 여백을 제거하여 원래 너비로 복귀
                     DOMElements.mainContent.style.marginRight = '0px';
                     
-                    // 헤더 위치 원래대로
-                    DOMElements.header.style.left = '50%';
-                    
                     state.selectedChampionId = null;
 
                     setTimeout(() => {
@@ -750,7 +725,6 @@
 
         // --- 초기화 함수 ---
         function init() {
-            renderNav();
             renderLaneFilters();
             renderTierList();
             renderBackground();
@@ -763,9 +737,8 @@
             // 패널 닫기 이벤트 (전역 클릭 감지)
             document.addEventListener('click', handlePanelClose); 
 
-            // 진입 애니메이션
+            // 진입 애니메이션 (사이드바만)
             setTimeout(() => {
-                DOMElements.header.style.transform = 'translate(-50%, 0)';
                 DOMElements.sidebar.style.transform = 'translateX(0)';
             }, 100);
         }
