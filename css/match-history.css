@@ -1,0 +1,304 @@
+/* match-history.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0A0A0A;
+    color: #FFF;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 대회 필터 스타일 */
+.tournament-filter {
+    margin-bottom: 20px;
+}
+
+.tournament-filter select {
+    padding: 8px 12px;
+    background: #1A1A1A;
+    color: #FFF;
+    border: 1px solid #333;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.tournament-filter select:hover {
+    border-color: #4A90E2;
+}
+
+/* 요약 통계 스타일 */
+.stats-summary {
+    background: #1A1A1A;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.summary-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.win-rate-section {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+}
+
+.total-games {
+    text-align: center;
+}
+
+.total-games span:first-child {
+    font-size: 28px;
+    font-weight: bold;
+    color: #FFF;
+    display: block;
+}
+
+.total-games .label {
+    font-size: 14px;
+    color: #888;
+    margin-top: 4px;
+}
+
+.win-loss {
+    font-size: 18px;
+    color: #CCC;
+}
+
+.win-loss span:first-child {
+    color: #4A90E2;
+}
+
+.win-loss span:nth-child(2) {
+    color: #E24A4A;
+}
+
+.win-rate {
+    font-size: 18px;
+}
+
+.win-rate span {
+    color: #4A90E2;
+    font-weight: bold;
+}
+
+.average-stats {
+    display: flex;
+    gap: 30px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+}
+
+.stat-item {
+    text-align: center;
+    min-width: 80px;
+}
+
+.stat-item .label {
+    display: block;
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.stat-item span:last-child {
+    font-size: 20px;
+    color: #FFF;
+    font-family: 'Consolas', monospace;
+    font-weight: bold;
+}
+
+/* 매치 테이블 스타일 */
+.match-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1A1A1A;
+    table-layout: fixed;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.match-table th,
+.match-table td {
+    padding: 12px 8px;
+    text-align: center;
+    border-bottom: 1px solid #333;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.match-table th {
+    background: #222;
+    font-size: 14px;
+    font-weight: normal;
+    color: #888;
+    padding: 15px 8px;
+    text-transform: uppercase;
+}
+
+/* 매치 행 스타일 */
+.match-row {
+    transition: background-color 0.2s;
+}
+
+.match-row:hover {
+    background: #2A2A2A;
+}
+
+/* 승패 표시 */
+.result {
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+.win {
+    color: #4A90E2;
+}
+
+.lose {
+    color: #E24A4A;
+}
+
+/* 챔피언 초상화 */
+.champion-portrait img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    vertical-align: middle;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+}
+
+.champion-portrait img:hover {
+    transform: scale(1.1);
+}
+
+/* KDA 스타일링 */
+.kda-stats {
+    white-space: nowrap;
+    text-align: center;
+    min-width: 90px;
+}
+
+.kda-stats .kill,
+.kda-stats .assist {
+    color: #4A90E2;
+    font-weight: bold;
+}
+
+.kda-stats .death {
+    color: #E24A4A;
+    font-weight: bold;
+}
+
+.kda-stats .separator {
+    color: #666;
+    margin: 0 2px;
+}
+
+/* 스탯 값들 */
+.stat-value {
+    font-family: 'Consolas', monospace;
+    color: #CCC;
+    font-size: 14px;
+}
+
+/* 팀명 */
+.team-name {
+    color: #CCC;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* 날짜 표시 */
+.match-date {
+    color: #888;
+    font-size: 12px;
+}
+
+/* 세트 표시 */
+.set-number {
+    color: #888;
+    font-size: 14px;
+}
+
+/* 컬럼 너비 조정 */
+.match-table {
+    table-layout: fixed;
+}
+
+.match-table td:nth-child(1) { width: 7%; }  /* 날짜 */
+.match-table td:nth-child(2) { width: 8%; }  /* Result */
+.match-table td:nth-child(3) { width: 5%; }  /* 세트 */
+.match-table td:nth-child(4) { width: 10%; } /* 팀 */
+.match-table td:nth-child(5) { width: 8%; }  /* 챔피언 */
+.match-table td:nth-child(6) { width: 12%; } /* K/D/A */
+.match-table td:nth-child(7) { width: 8%; }  /* KDA */
+.match-table td:nth-child(8) { width: 10%; } /* DPM */
+.match-table td:nth-child(9) { width: 10%; } /* KP */
+.match-table td:nth-child(10) { width: 10%; } /* CSM */
+.match-table td:nth-child(11) { width: 12%; } /* GPM */
+
+/* 반응형 디자인 */
+@media (max-width: 1200px) {
+    .container {
+        padding: 10px;
+        overflow-x: auto;
+    }
+
+    .match-table {
+        min-width: 900px;
+    }
+
+    .stats-summary {
+        margin: 10px;
+    }
+
+    .summary-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .win-rate-section,
+    .average-stats {
+        width: 100%;
+        justify-content: space-around;
+        padding: 10px;
+    }
+
+    .match-table th,
+    .match-table td {
+        padding: 8px 4px;
+        font-size: 13px;
+    }
+
+    .champion-portrait img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .stat-item {
+        font-size: 14px;
+    }
+
+    .stat-item span:last-child {
+        font-size: 16px;
+    }
+}

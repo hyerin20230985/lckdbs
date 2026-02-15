@@ -1,0 +1,486 @@
+/* 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS 변수 설정 */
+:root {
+    --primary-color: #1d1e4d;
+    --primary-dark: #1a1a2e;
+    --background-dark: #171727;
+    --background-light: #1e1e2f;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b7d6;
+    --accent-color: #f7cf2d;
+    --border-color: rgba(8, 6, 24, 0.1);
+    --card-bg: rgba(17, 24, 39, 0.85);
+}
+
+/* body 기본 스타일 */
+body {
+    background-color:var(--background-dark);
+    color: var(--text-primary);
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: var(--primary-dark);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0.8rem 2rem;
+    width: 100%;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    color: var(--text-primary);
+}
+
+.nav-center {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-item {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.nav-item:hover {
+    color: var(--text-primary);
+}
+
+.nav-item:hover::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(1);
+    transition: transform 0.2s ease;
+}
+
+.nav-item.live {
+    color: #ff4655;
+    font-weight: 700;
+}
+
+.login-btn,
+.signup-btn {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.login-btn {
+    color: var(--text-primary);
+    margin-right: 0.5rem;
+}
+
+.login-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.signup-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.signup-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.logo {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(39, 76, 218, 0.5);
+}
+
+.schedule-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.logo_container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    margin-bottom: 100px; 
+
+}.logo-item-wrapper {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+    /* 트랜지션 유지 */
+    transition: transform 0.2s, box-shadow 0.2s;
+    
+    border-radius: 10px;
+    background-color: white; /* 래퍼의 배경색 */
+
+    
+    /* 🌟 핵심: 3D 두께를 표현하는 그림자 🌟 */
+    box-shadow: 
+        /* 1. 두께를 만드는 그림자 (흰색/밝은 회색을 사용하여 돌출된 느낌) */
+        -4px -4px 0 0 white, 
+        -8px -8px 0 0 #ccc, /* 배경색보다 약간 어두운 회색으로 두께 표현 */
+        
+        /* 2. 요소 아래에 깊이감을 주는 그림자 */
+        0 8px 15px rgba(0, 0, 0, 0.3); 
+}
+
+.logo-item-wrapper:hover {
+    /* 호버 시: 누르는 듯한 효과와 함께 3D 두께가 사라지게 함 */
+    transform: translate(8px, 8px) scale(1.0); /* 오른쪽 아래로 8px 이동 (그림자 두께만큼) */
+    
+    /* 3D 두께 그림자를 모두 제거 (요소가 '눌린' 것처럼 보임) */
+    box-shadow: 
+        0 0 0 0 white, /* 그림자 제거 */
+        0 0 0 0 #ccc, /* 그림자 제거 */
+        
+        /* 눌린 상태에 맞게 바닥 그림자 조정 */
+        0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tournament_logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+main {
+    width: 100%;
+    max-width: 1200px; /* 900px에서 1200px로 변경 */
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#schedule-display {
+    width: 100%; /* 너비 100%로 변경 */
+    background-color: #2f2c3d;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-height: 400px;
+    max-height: 500px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.schedule-item {
+    padding: 15px;
+    border-left: 5px solid #000000;
+    background-color: #9a9aaa;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.schedule-item:hover {
+    background-color: #cdcce9;
+}
+
+.schedule-item h3 {
+    margin: 0 0 5px 0;
+    color: #000000;
+}
+
+.schedule-item p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* 90%에서 100%로 변경 */
+    max-width: 2000px;
+    margin: 10px auto;
+}
+
+.select-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#month-select {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.custom-select {
+    position: relative;
+    width: 200px;
+}
+
+.select-selected {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: black
+}
+
+.select-selected:after {
+    content: '▼';
+    font-size: 12px;
+    color: #555;
+}
+#schedule-display h2 {
+    text-align: center; /* 추가된 부분 */
+}
+.select-items {
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    color: black
+}
+
+.select-items li {
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.select-items li:hover {
+    background-color: #f1f1f1;
+}
+
+.select-hide {
+    display: none;
+}
+
+.team-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+.match-row {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    padding: 15px 10px; /* 패딩 증가 */
+    border-bottom: 1px solid #444; /* 경기 항목 간 구분선 (어두운 배경에 맞게 조정) */
+    font-size: 14px;
+    transition: background-color 0.2s;
+    width: 100%;
+    
+    /* 🌟 추가/수정: 어두운 배경에 맞게 스타일 조정 🌟 */
+    color: var(--text-primary); /* 텍스트 색상을 흰색으로 설정 */
+    background-color: var(--background-light); /* 항목 배경색 설정 */
+    border-radius: 8px; /* schedule-item의 둥근 모서리 유지 */
+}
+
+.match-row:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* 호버 시 배경색 조정 */
+}
+
+/* 시간 + 날짜 정보 (좌측 고정 영역) */
+.match-time-date {
+    display: flex;
+    flex-direction: column; /* 시간과 날짜를 세로로 정렬 */
+    width: 70px;
+    text-align: left; /* 좌측 정렬 */
+    margin-right: 25px; /* 오른쪽 마진 증가 */
+    flex-shrink: 0; /* 크기가 줄어들지 않도록 고정 */
+}
+.match-time {
+    font-weight: bold;
+    color: var(--text-primary); /* 흰색으로 통일 */
+    font-size: 16px; /* 폰트 크기 증가 */
+}
+.match-date {
+    font-size: 11px; /* 폰트 크기 조정 */
+    color: var(--text-secondary); /* 보조 텍스트 색상 */
+    margin-top: 2px;
+}
+
+/* 상태/라운드 (좌측 고정 영역) */
+.match-status-stage {
+    width: 120px;
+    display: flex;
+    flex-direction: column; /* ⭐️ 세로로 배치 (이미지 형태에 맞춤) */
+    line-height: 1.4;
+    margin-right: 30px;
+    flex-shrink: 0;
+}
+.match-status {
+    /* ⭐️ 상태 뱃지 스타일 */
+    color: #fff; /* 흰색 글자 */
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 3px;
+    width: fit-content;
+    margin-right: 0;
+    margin-bottom: 3px; /* 라운드명과 분리 */
+    background-color: var(--primary-color); /* 상태 기본 색상 */
+    border: none;
+}
+.match-stage {
+    color: var(--text-secondary); /* 보조 텍스트 색상 */
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* ⭐️ 중앙 그룹 컨테이너 (팀/스코어) ⭐️ */
+
+.match-center-group {
+    display: flex;
+    align-items: center; /* 수직 정렬 */
+    flex-grow: 1; /* 🌟 핵심: 남은 공간을 모두 차지하도록 강제 🌟 */
+    justify-content: center; /* 🌟 핵심: 내부 요소들을 이 넓은 공간의 중앙으로! 🌟 */
+    
+    /* ⚠️ 추가: 너비 확보를 위한 마진 제거 (혹시 모를 외부 마진 충돌 방지) */
+    margin: 0;
+}
+/* 🟢 팀 정보 정렬 */
+.team {
+    display: flex;
+    align-items: center;
+    width: 200px;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+.team-1 {
+    justify-content: flex-end;
+}
+.team-2 {
+    justify-content: flex-start;
+}
+.team-logo {
+    width: 28px; /* 로고 크기 증가 */
+    height: 28px;
+    margin: 0 10px; /* 마진 증가 */
+    object-fit: contain;
+}
+.team.winner {
+    font-weight: bold;
+}
+.team.winner .team-name {
+    color: var(--accent-color); /* 승리팀 이름 색상 강조 */
+}
+
+/* 🟢 스코어 섹션 (가운데) */
+.match-score {
+    width: 90px; /* 너비 조정 */
+    text-align: center;
+    font-size: 24px; /* 스코어 크기 강조 */
+    font-weight: 300;
+    margin: 0 20px; /* 마진 증가 */
+    font-family: 'Arial', sans-serif;
+    flex-shrink: 0;
+    color: var(--text-primary); /* 스코어 색상 설정 */
+}
+.winner-score {
+    color: var(--accent-color); /* 승리 스코어 강조 색상 */
+    font-weight: bold;
+}
+
+/* 버튼 및 장소 (우측 고정 영역) */
+.replay-btn {
+    /* ⭐️ 붉은색 버튼 스타일 */
+    margin-left: 50px; /* 중앙 그룹과 버튼 사이 간격 */
+    padding: 6px 18px;
+    border: 1px solid #ff4655; /* VALORANT 느낌의 붉은색 */
+    background-color: #ff4655; /* 붉은 배경 */
+    color: white; /* 흰색 글자 */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px; /* 폰트 크기 조정 */
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+.replay-btn:hover:not(:disabled) {
+    background-color: #d83d47;
+    border-color: #d83d47;
+}
+.replay-btn:disabled {
+    cursor: not-allowed;
+    background-color: #444; /* 어두운 배경에 맞게 조정 */
+    border-color: #444;
+    color: #888;
+    opacity: 1; /* 비활성화 시 회색으로 */
+}
+.match-location {
+    width: 120px; /* 너비 증가 */
+    text-align: right;
+    margin-left: 25px; /* 마진 증가 */
+    color: var(--text-secondary);
+    font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ⚠️ 기존의 .schedule-item 스타일은 .match-row로 대체되거나 제거되어야 함
+.schedule-item {
+    padding: 15px;
+    border-left: 5px solid #000000;
+    background-color: #9a9aaa; 
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+*/
