@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const dropdownButton = document.getElementById('dropdownButton');
-    const dropdownList = document.getElementById('yearDropdown');
+    const seasonSelect = document.getElementById('season-select');
     const teamTitle = document.getElementById('teamTitle');
     const teamsList = document.getElementById('teamsList');
     const teamLogoElement = document.getElementById('teamLogo');
@@ -12,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         2026: [
                 { name: "HLE", logo: "https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/HLE.svg", players: [{ name: "Zeus", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Zeus.png", position: "TOP", nameKr: "최우제", searchKeywords: ['한화','제우스']  }, { name: "Kanavi", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Kanavi.png" , position: "JUG", nameKr: "서진혁" , searchKeywords: ['한화','카나비']}, { name: "Zeka", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Zeka.png", position: "MID", nameKr: "김건우" , searchKeywords: ['한화','제카'] }, { name: "Gumayusi", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Gumayusi.png", position: "BOT", nameKr: "이민형" , searchKeywords: ['한화','구마유시'] }, { name: "Delight", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Delight.png", position: "SUP", nameKr: "유환중" , searchKeywords: ['한화','딜라이트'] }] },
                 { name: "GEN.G", logo: "https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/GEN.G.svg", players: [{name: "Kiin", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Kiin.png", position: "TOP", nameKr: "김기인" , searchKeywords: ['젠지','기인']}, { name: "Canyon", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Canyon.png", position: "JUG", nameKr: "김건부" , searchKeywords: ['젠지','케니언', '캐니언']}, { name: "Chovy", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/chovy.png", position: "MID", nameKr: "정지훈", searchKeywords: ['젠지','쵸비', '초비'] }, { name: "Ruler", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Ruler.png", position: "BOT", nameKr: "박재혁", searchKeywords: ['젠지','룰러'] }, { name: "Duro", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Duro.png", position: "SUP", nameKr: "주민규", searchKeywords: ['젠지','듀로','두로'] }] },
-                { name: "T1", logo: "https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/T1.svg", players: [{ name: "Doran", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Doran.png", position: "TOP", nameKr: "최현준", searchKeywords: ['t1','도란', '티원'] }, { name: "Oner", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Oner.png", position: "JUG", nameKr: "문현준", searchKeywords: ['t1','오너','티원'] },  { name: "Faker", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Faker.png", position: "MID", nameKr: "이상혁", searchKeywords: ['t1','페이커','티원']  }, { name: "Viper", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Viper.png", position: "BOT", nameKr: "박도현" , searchKeywords: ['티원','바이퍼','t1'] },  { name: "Keria", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Keria.png", position: "SUP", nameKr: "류민석" , searchKeywords: ['t1','케리아','티원']  }]},
+                { name: "T1", logo: "https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/T1.svg", players: [{ name: "Doran", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Doran.png", position: "TOP", nameKr: "최현준", searchKeywords: ['t1','도란', '티원'] }, { name: "Oner", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Oner.png", position: "JUG", nameKr: "문현준", searchKeywords: ['t1','오너','티원'] },  { name: "Faker", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Faker.png", position: "MID", nameKr: "이상혁", searchKeywords: ['t1','페이커','티원']  }, { name: "Peyz", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Peyz.png", position: "BOT", nameKr: "김수환" , searchKeywords: ['티원','페이즈','t1'] },  { name: "Keria", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Keria.png", position: "SUP", nameKr: "류민석" , searchKeywords: ['t1','케리아','티원']  }]},
                 { name: "Dplus KIA", logo: "https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/DK.svg", players: [{ name: "Siwoo", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Siwoo.png",position: "TOP", nameKr: "전시우" , searchKeywords: ['디플러스기아','디플','딮기','시우']}, { name: "Lucid", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Lucid.png",position: "JUG", nameKr: "최용혁", searchKeywords: ['디플러스기아','디플','딮기','루시드'] }, { name: "ShowMaker", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/ShowMaker.png",position: "MID", nameKr: "허수", searchKeywords: ['디플러스기아','디플','딮기','쇼메이커'] }, { name: "Smash", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Smash.png",position: "BOT", nameKr: "신금재" , searchKeywords: ['디플러스기아','디플','딮기','스매쉬','스메쉬']}, { name: "Career", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Career.png",position: "SUP", nameKr: "오형석" , searchKeywords: ['디플러스기아','디플','딮기','카리어','커리어']}] },
                 { name: "KT", logo: "https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/KT.svg", players: [{ name: "PerfecT", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/PerfecT.png", position: "TOP", nameKr: "이승민", searchKeywords: ['케이티','펄펙트','퍼펙트'] }, { name: "Cuzz", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Cuzz.png", position: "JUG", nameKr: "문우찬" }, { name: "Bdd", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Bdd.png", position: "MID", nameKr: "곽보성" }, { name: "Aiming", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Aiming.png",position: "BOT", nameKr: "김하람" , searchKeywords: ['케이티','에이밍','애이밍']}, { name: "Ghost", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Ghost.png", position: "SUP", nameKr: "장용준" }] },
                 { name: "BNK", logo: "https://d30q0nmfm6z0r7.cloudfront.net/photos/assets/BNK.png", players: [{ name: "Clear", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Clear.png", position: "TOP", nameKr: "송현민" }, { name: "Raptor", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Raptor.png", position: "JUG", nameKr: "전어진" }, { name: "VicLa", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/VicLa.png", position: "MID", nameKr: "이대광" }, { name: "Diable", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Diable.png", position: "BOT", nameKr: "남대근" }, { name: "Kellin", image: "https://d30q0nmfm6z0r7.cloudfront.net/photos/playerspng/Kellin.png", position: "SUP", nameKr: "김형규" }] },
@@ -197,8 +196,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.lckTeams = teams;
 
-    if (!dropdownButton || !dropdownList || !teamTitle || !teamsList || !teamLogoElement || !teamNameElement || !playerGrid || !playersSection) {
+    if (!seasonSelect || !teamsList || !playerGrid) {
+        console.error('Required DOM elements not found');
         return;
+    }
+
+    // Build window.players array from selected season
+    function buildPlayersArray(year) {
+        const allPlayers = [];
+        if (teams[year]) {
+            teams[year].forEach(team => {
+                if (team.players && Array.isArray(team.players)) {
+                    team.players.forEach(player => {
+                        allPlayers.push({
+                            ...player,
+                            team: team.name,
+                            role: player.position // playerbuild.js uses 'role' field
+                        });
+                    });
+                }
+            });
+        }
+        window.players = allPlayers;
+        // Dispatch event to notify other scripts that season has changed
+        document.dispatchEvent(new CustomEvent('seasonchange', { detail: { year } }));
     }
 
     function updateTeamAndPlayerInfo(team) {
@@ -240,6 +261,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateTeamList(year) {
+        // Build players array for the selected year
+        buildPlayersArray(year);
+        
         teamsList.innerHTML = '';
         teams[year].forEach(team => {
             const teamItem = document.createElement('li');
@@ -268,27 +292,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    dropdownButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        dropdownList.classList.toggle('active');
+    // Season select change event
+    seasonSelect.addEventListener('change', function() {
+        const year = this.value;
+        updateTeamList(year);
     });
 
-    dropdownList.querySelectorAll('a').forEach(option => {
-        option.addEventListener('click', function(event) {
-            event.preventDefault();
-            const year = this.getAttribute('data-year');
-            teamTitle.firstChild.textContent = `${year} LCK 참가팀`;
-            updateTeamList(year);
-            dropdownList.classList.remove('active');
-        });
-    });
-
-    window.addEventListener('click', (event) => {
-        if (!dropdownButton.contains(event.target)) {
-            dropdownList.classList.remove('active');
-        }
-    });
-
-    // Initial load
-    updateTeamList('2025');
+    // Initial load - 2026 LCK
+    updateTeamList('2026');
 });
