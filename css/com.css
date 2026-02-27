@@ -70,11 +70,14 @@ section > header h1 {
 /* 카테고리 바 (탭 스타일 적용) */
 #category-bar {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem; /* 버튼 간격 조정 */
+    flex-wrap: nowrap;       /* 한 줄 유지 */
+    overflow-x: auto;        /* 넘칠 경우 가로 스크롤 (최후 수단) */
+    gap: 1.2rem;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.5rem;
+    scrollbar-width: none;   /* Firefox: 스크롤바 숨김 */
 }
+#category-bar::-webkit-scrollbar { display: none; } /* Chrome: 스크롤바 숨김 */
 
 .category-btn {
     background-color: transparent;
@@ -84,8 +87,10 @@ section > header h1 {
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     font-size: 1rem;
+    white-space: nowrap;     /* 버튼 텍스트 줄바꿈 금지 */
+    flex-shrink: 0;          /* 버튼 자체가 찌그러지지 않도록 */
     position: relative;
-    border-bottom: 2px solid transparent; /* 기본 밑줄은 투명 */
+    border-bottom: 2px solid transparent;
 }
 
 .category-btn:hover {
@@ -95,7 +100,28 @@ section > header h1 {
 .category-btn.active {
     color: var(--point-color-yellow);
     font-weight: bold;
-    border-bottom: 2px solid var(--point-color-yellow); /* 활성 탭 밑줄 */
+    border-bottom: 2px solid var(--point-color-yellow);
+}
+
+/* 반응형: 화면이 좁아지면 글씨·간격 축소 */
+@media (max-width: 600px) {
+    #category-bar {
+        gap: 0.35rem;
+    }
+    .category-btn {
+        font-size: 0.65rem;
+        padding: 0.35rem 0.05rem;
+    }
+}
+
+@media (max-width: 400px) {
+    #category-bar {
+        gap: 0.2rem;
+    }
+    .category-btn {
+        font-size: 0.55rem;
+        padding: 0.3rem 0.05rem;
+    }
 }
 
 
@@ -381,3 +407,58 @@ input[type="file"] {
 }
 .post-attachment { margin-bottom: 1.5rem; }
 
+/* ── 모바일 반응형: 글씨·버튼 크기 축소 ── */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    /* 게시판 제목 */
+    .page > header h1,
+    main > header h1,
+    section > header h1,
+    #list-page h1 {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+
+    /* 게시물 제목 */
+    .post-item h2 {
+        font-size: 0.9rem;
+    }
+
+    /* 게시물 메타 */
+    .post-meta {
+        font-size: 0.72rem;
+        gap: 0.5rem;
+    }
+
+    /* 버튼 전체 */
+    button {
+        padding: 0.45rem 0.85rem;
+        font-size: 0.8rem;
+    }
+
+    /* 페이지 액션 간격 */
+    .page-actions {
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .page > header h1,
+    main > header h1,
+    section > header h1,
+    #list-page h1 {
+        font-size: 1rem;
+    }
+
+    .post-item h2 {
+        font-size: 0.82rem;
+    }
+
+    button {
+        padding: 0.35rem 0.65rem;
+        font-size: 0.72rem;
+    }
+}

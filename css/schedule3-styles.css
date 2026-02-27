@@ -130,8 +130,8 @@ nav {
     justify-content: center;
     gap: 30px;
     margin-top: 40px;
-    margin-bottom: 100px; 
-
+    margin-bottom: 100px;
+    flex-wrap: wrap;
 }.logo-item-wrapper {
     width: 80px;
     height: 80px;
@@ -246,7 +246,7 @@ main {
 
 .custom-select {
     position: relative;
-    width: 200px;
+    width: 140px;
 }
 
 .select-selected {
@@ -475,3 +475,142 @@ main {
     transition: background-color 0.3s;
 }
 */
+
+/* 반응형 - 로고 버튼 및 컨트롤 */
+@media (max-width: 600px) {
+    .logo_container {
+        gap: 15px;
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+
+    .logo-item-wrapper {
+        width: 55px;
+        height: 55px;
+        box-shadow:
+            -3px -3px 0 0 white,
+            -5px -5px 0 0 #ccc,
+            0 6px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .controls-container {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .select-wrapper label {
+        font-size: 0.8em;
+        white-space: nowrap;
+    }
+
+    .custom-select {
+        width: 110px;
+    }
+
+    #month-select {
+        padding: 6px 8px;
+        font-size: 0.85em;
+    }
+
+    /* ── match row 전체 폰트/패딩 축소 ── */
+    .match-row {
+        padding: 10px 6px;
+        font-size: 11px;
+    }
+
+    /* 시간·날짜 */
+    .match-time-date {
+        width: 46px;
+        margin-right: 8px;
+        flex-shrink: 1;
+    }
+    .match-time {
+        font-size: 12px;
+    }
+    .match-date {
+        font-size: 9px;
+    }
+
+    /* 상태·라운드 */
+    .match-status-stage {
+        width: 54px;
+        margin-right: 6px;
+        flex-shrink: 1;
+    }
+    .match-status {
+        font-size: 9px;
+        padding: 1px 3px;
+    }
+    .match-stage {
+        font-size: 9px;
+        white-space: normal;
+        word-break: keep-all;
+    }
+
+    /* 팀 */
+    .team {
+        width: auto;
+        min-width: 0;
+        flex-shrink: 1;
+    }
+    .team-name {
+        font-size: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 52px;
+    }
+    .team-logo {
+        width: 18px;
+        height: 18px;
+        margin: 0 4px;
+    }
+
+    /* 스코어 */
+    .match-score {
+        width: 44px;
+        font-size: 16px;
+        margin: 0 6px;
+        flex-shrink: 1;
+    }
+
+    /* VOD 버튼 */
+    .replay-btn {
+        margin-left: 6px;
+        padding: 4px 8px;
+        font-size: 10px;
+        flex-shrink: 1;
+    }
+
+    .match-location {
+        display: none; /* 장소는 공간 부족 시 숨김 */
+    }
+}
+
+@media (max-width: 400px) {
+    .logo-item-wrapper {
+        width: 44px;
+        height: 44px;
+    }
+
+    .custom-select {
+        width: 95px;
+    }
+
+    .match-row {
+        font-size: 10px;
+    }
+
+    .team-name {
+        max-width: 38px;
+    }
+
+    .match-time {
+        font-size: 11px;
+    }
+
+    .replay-btn {
+        padding: 3px 6px;
+        font-size: 9px;
+    }
+}
