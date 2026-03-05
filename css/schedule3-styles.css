@@ -30,6 +30,7 @@ body {
 
 /* nav.css에서 header 스타일을 처리하므로 여기서는 제거 */
 
+/* Tailwind 내비와 충돌하므로 비활성화
 nav {
     display: flex;
     justify-content: space-between;
@@ -38,7 +39,9 @@ nav {
     margin: 0 auto;
     color: var(--text-primary);
 }
+*/
 
+/* Tailwind 내비와 충돌하므로 비활성화
 .nav-center {
     display: flex;
     align-items: center;
@@ -75,6 +78,7 @@ nav {
     color: #ff4655;
     font-weight: 700;
 }
+*/
 
 .login-btn,
 .signup-btn {
@@ -113,6 +117,7 @@ nav {
     text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
 }
 
+/* Tailwind flex/grid 레이아웃과 충돌하므로 주석 처리
 .schedule-section {
     display: flex;
     flex-direction: column;
@@ -130,6 +135,7 @@ nav {
     flex-wrap: wrap;
     padding: 0 20px;
 }
+*/
 
 /* 
     기존 단조로운 .tournament-tabs 관련 CSS는 대부분 HTML Tailwind 클래스로 대체되었습니다.
