@@ -1,3 +1,5 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
 /* 초기화 */
 * {
     margin: 0;
@@ -7,29 +9,23 @@
 
 /* CSS 변수 설정 */
 :root {
-    --primary-color: #1d1e4d;
-    --primary-dark: #1a1a2e;
-    --background-dark: #171727;
-    --background-light: #1e1e2f;
+    --primary-color: #a855f7;
+    --primary-dark: #9333ea;
+    --background-dark: #000000;
+    --background-light: rgba(168, 85, 247, 0.05);
     --text-primary: #ffffff;
-    --text-secondary: #b0b7d6;
-    --accent-color: #f7cf2d;
-    --border-color: rgba(8, 6, 24, 0.1);
-    --card-bg: rgba(17, 24, 39, 0.85);
+    --text-secondary: #9ca3af;
+    --accent-color: #a855f7;
+    --border-color: rgba(168, 85, 247, 0.2);
+    --card-bg: rgba(0, 0, 0, 0.85);
 }
 
 /* body 기본 스타일 */
 body {
-    background-color:var(--background-dark);
+    background-color: var(--background-dark);
     color: var(--text-primary);
-    font-family: Arial, sans-serif;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
     min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 60px;
 }
 
 /* nav.css에서 header 스타일을 처리하므로 여기서는 제거 */
@@ -114,7 +110,7 @@ nav {
     font-weight: 700;
     text-decoration: none;
     letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(39, 76, 218, 0.5);
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
 }
 
 .schedule-section {
@@ -125,178 +121,243 @@ nav {
     gap: 10px;
 }
 
-.logo_container {
+.tournament-tabs {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 15px;
     margin-top: 40px;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
     flex-wrap: wrap;
-}.logo-item-wrapper {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    
-    /* 트랜지션 유지 */
-    transition: transform 0.2s, box-shadow 0.2s;
-    
-    border-radius: 10px;
-    background-color: white; /* 래퍼의 배경색 */
-
-    
-    /* 🌟 핵심: 3D 두께를 표현하는 그림자 🌟 */
-    box-shadow: 
-        /* 1. 두께를 만드는 그림자 (흰색/밝은 회색을 사용하여 돌출된 느낌) */
-        -4px -4px 0 0 white, 
-        -8px -8px 0 0 #ccc, /* 배경색보다 약간 어두운 회색으로 두께 표현 */
-        
-        /* 2. 요소 아래에 깊이감을 주는 그림자 */
-        0 8px 15px rgba(0, 0, 0, 0.3); 
+    padding: 0 20px;
 }
 
-.logo-item-wrapper:hover {
-    /* 호버 시: 누르는 듯한 효과와 함께 3D 두께가 사라지게 함 */
-    transform: translate(8px, 8px) scale(1.0); /* 오른쪽 아래로 8px 이동 (그림자 두께만큼) */
-    
-    /* 3D 두께 그림자를 모두 제거 (요소가 '눌린' 것처럼 보임) */
-    box-shadow: 
-        0 0 0 0 white, /* 그림자 제거 */
-        0 0 0 0 #ccc, /* 그림자 제거 */
-        
-        /* 눌린 상태에 맞게 바닥 그림자 조정 */
-        0 2px 5px rgba(0, 0, 0, 0.1);
+/* 
+    기존 단조로운 .tournament-tabs 관련 CSS는 대부분 HTML Tailwind 클래스로 대체되었습니다.
+    아래는 자바스크립트에 의한 .active 상태 전환 시 활용할 세부 애니메이션 스니펫입니다.
+*/
+
+.tournament-tab.active {
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.2);
+    transform: scale(1.02);
 }
 
-.tournament_logo {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+.tournament-tab.active .indicator {
+    opacity: 1;
+    /* 활성화 시 하단 글로우 바 표시 */
 }
 
-main {
-    width: 100%;
-    max-width: 1200px; /* 900px에서 1200px로 변경 */
-    margin: 40px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.tournament-tab.active img {
+    filter: grayscale(0%) opacity(1) brightness(1.2) drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.5));
+    transform: scale(1.1);
 }
+
+.tournament-tab.active span {
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+
 
 #schedule-display {
-    width: 100%; /* 너비 100%로 변경 */
-    background-color: #2f2c3d;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    min-height: 400px;
-    max-height: 500px;
-    overflow-y: auto;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    padding-right: 16px;
+    padding-bottom: 20px;
+    height: 933px;
+    /* 사용자 요청에 따른 딱 4개 보이는 높이 */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(168, 85, 247, 0.4) transparent;
+}
+
+/* 프리미엄 커스텀 스크롤바 */
+#schedule-display::-webkit-scrollbar {
+    width: 6px;
+}
+
+#schedule-display::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+}
+
+#schedule-display::-webkit-scrollbar-thumb {
+    background-color: rgba(168, 85, 247, 0.3);
+    border-radius: 4px;
+}
+
+#schedule-display::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(168, 85, 247, 0.6);
 }
 
 .schedule-item {
     padding: 15px;
-    border-left: 5px solid #000000;
-    background-color: #9a9aaa;
+    border-left: 5px solid var(--primary-color);
+    background-color: rgba(168, 85, 247, 0.1);
     border-radius: 8px;
     transition: background-color 0.3s;
 }
 
 .schedule-item:hover {
-    background-color: #cdcce9;
+    background-color: rgba(168, 85, 247, 0.2);
 }
 
 .schedule-item h3 {
     margin: 0 0 5px 0;
-    color: #000000;
+    color: var(--text-primary);
 }
 
 .schedule-item p {
     margin: 0;
     font-size: 0.9em;
+    color: var(--text-secondary);
 }
 
 .controls-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    /* 우측 정렬 */
     align-items: center;
-    width: 100%; /* 90%에서 100%로 변경 */
-    max-width: 2000px;
-    margin: 10px auto;
+    width: 100%;
+    margin: 0 auto 20px auto;
+    gap: 15px;
+    padding: 0 10px;
 }
 
 .select-wrapper {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 12px;
+}
+
+.select-wrapper label {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-secondary);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.05em;
 }
 
 #month-select {
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1em;
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.8) 0%, rgba(10, 10, 10, 0.9) 100%);
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
+    backdrop-filter: blur(15px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.05);
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a855f7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2em;
+    padding-right: 3rem;
+}
+
+#month-select:hover,
+#month-select:focus {
+    border-color: rgba(168, 85, 247, 0.8);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), inset 0 0 10px rgba(168, 85, 247, 0.1);
+    transform: translateY(-2px);
+}
+
+#month-select option {
+    background-color: #1a1a1a;
+    color: #fff;
+    font-weight: 600;
 }
 
 .custom-select {
     position: relative;
-    width: 140px;
+    width: 200px;
 }
 
 .select-selected {
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 8px 12px;
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.8) 0%, rgba(10, 10, 10, 0.9) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 12px;
+    padding: 12px 24px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: black
+    gap: 12px;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 700;
+    backdrop-filter: blur(15px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.05);
+}
+
+.select-selected:hover {
+    border-color: rgba(168, 85, 247, 0.8);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), inset 0 0 10px rgba(168, 85, 247, 0.1);
+    transform: translateY(-2px);
 }
 
 .select-selected:after {
     content: '▼';
     font-size: 12px;
-    color: #555;
-}
-#schedule-display h2 {
-    text-align: center; /* 추가된 부분 */
-}
-.select-items {
-    position: absolute;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 99;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    list-style: none;
-    padding: 0;
-    margin-top: 5px;
-    max-height: 200px;
-    overflow-y: auto;
-    color: black
+    color: var(--primary-color);
 }
 
+#schedule-display h2 {
+    text-align: center;
+}
+
+/* 드롭다운 옵션 리스트 컨테이너 */
+.select-items {
+    position: absolute;
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    border-radius: 12px;
+    top: 110%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(168, 85, 247, 0.2);
+    backdrop-filter: blur(20px);
+}
+
+/* 드롭다운 개별 아이템 */
 .select-items li {
-    padding: 8px 12px;
+    padding: 12px 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 60px;
+    gap: 12px;
+    transition: all 0.2s ease;
+    color: #cbd5e1;
+    font-weight: 600;
 }
 
-.select-items li:hover {
-    background-color: #f1f1f1;
+.select-items li:hover,
+.select-items .same-as-selected {
+    background-color: rgba(168, 85, 247, 0.2);
+    color: #fff;
+    padding-left: 28px;
+    /* hover 시 살짝 들여쓰기 이동 애니메이션 */
+}
+
+/* 어두운 배경에서 검정 로고(LCK/전체)를 흰색으로 반전 */
+.team-logo[alt="전체"],
+.team-logo[alt="LCK"],
+img[src*="LCK.svg"].team-logo {
+    filter: brightness(0) invert(1);
 }
 
 .select-hide {
@@ -304,46 +365,86 @@ main {
 }
 
 .team-logo {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
 }
+
 .match-row {
     display: flex;
-    align-items: center; /* 수직 중앙 정렬 */
-    padding: 15px 10px; /* 패딩 증가 */
-    border-bottom: 1px solid #444; /* 경기 항목 간 구분선 (어두운 배경에 맞게 조정) */
-    font-size: 14px;
-    transition: background-color 0.2s;
+    align-items: center;
+    padding: 18px 24px;
+    /* 패딩 살짝 증가 */
+    margin-bottom: 12px;
+    font-size: 15px;
+    /* 폰트 약간 키움 */
     width: 100%;
-    
-    /* 🌟 추가/수정: 어두운 배경에 맞게 스타일 조정 🌟 */
-    color: var(--text-primary); /* 텍스트 색상을 흰색으로 설정 */
-    background-color: var(--background-light); /* 항목 배경색 설정 */
-    border-radius: 8px; /* schedule-item의 둥근 모서리 유지 */
+    color: var(--text-primary);
+    background: linear-gradient(to right, rgba(20, 20, 20, 0.8), rgba(15, 15, 15, 0.9));
+    border-radius: 16px;
+    /* 더 둥글게 */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Hover 시 배경에 은은한 보라빛과 강력한 네온 테두리, 그림자 추가 */
 .match-row:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* 호버 시 배경색 조정 */
+    background: linear-gradient(to right, rgba(168, 85, 247, 0.15), rgba(15, 15, 15, 0.9));
+    border-color: rgba(168, 85, 247, 0.6);
+    transform: translateY(-4px) scale(1.01);
+    /* 더 확실하게 떠오르고 살짝 커짐 */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(168, 85, 247, 0.2);
+    z-index: 10;
+}
+
+/* 왼쪽 엣지 하이라이트 효과 (Hover 시 나타남) */
+.match-row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--primary-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.match-row:hover::before {
+    opacity: 1;
 }
 
 /* 시간 + 날짜 정보 (좌측 고정 영역) */
 .match-time-date {
     display: flex;
-    flex-direction: column; /* 시간과 날짜를 세로로 정렬 */
+    flex-direction: column;
+    /* 시간과 날짜를 세로로 정렬 */
     width: 70px;
-    text-align: left; /* 좌측 정렬 */
-    margin-right: 25px; /* 오른쪽 마진 증가 */
-    flex-shrink: 0; /* 크기가 줄어들지 않도록 고정 */
+    text-align: left;
+    /* 좌측 정렬 */
+    margin-right: 25px;
+    /* 오른쪽 마진 증가 */
+    flex-shrink: 0;
+    /* 크기가 줄어들지 않도록 고정 */
 }
+
 .match-time {
     font-weight: bold;
-    color: var(--text-primary); /* 흰색으로 통일 */
-    font-size: 16px; /* 폰트 크기 증가 */
+    color: var(--text-primary);
+    /* 흰색으로 통일 */
+    font-size: 16px;
+    /* 폰트 크기 증가 */
 }
+
 .match-date {
-    font-size: 11px; /* 폰트 크기 조정 */
-    color: var(--text-secondary); /* 보조 텍스트 색상 */
+    font-size: 11px;
+    /* 폰트 크기 조정 */
+    color: var(--text-secondary);
+    /* 보조 텍스트 색상 */
     margin-top: 2px;
 }
 
@@ -351,26 +452,33 @@ main {
 .match-status-stage {
     width: 120px;
     display: flex;
-    flex-direction: column; /* ⭐️ 세로로 배치 (이미지 형태에 맞춤) */
+    flex-direction: column;
+    /* ⭐️ 세로로 배치 (이미지 형태에 맞춤) */
     line-height: 1.4;
     margin-right: 30px;
     flex-shrink: 0;
 }
+
 .match-status {
     /* ⭐️ 상태 뱃지 스타일 */
-    color: #fff; /* 흰색 글자 */
+    color: #fff;
+    /* 흰색 글자 */
     font-size: 11px;
     font-weight: bold;
     padding: 2px 5px;
     border-radius: 3px;
     width: fit-content;
     margin-right: 0;
-    margin-bottom: 3px; /* 라운드명과 분리 */
-    background-color: var(--primary-color); /* 상태 기본 색상 */
+    margin-bottom: 3px;
+    /* 라운드명과 분리 */
+    background-color: var(--primary-color);
+    /* 상태 기본 색상 */
     border: none;
 }
+
 .match-stage {
-    color: var(--text-secondary); /* 보조 텍스트 색상 */
+    color: var(--text-secondary);
+    /* 보조 텍스트 색상 */
     font-size: 12px;
     white-space: nowrap;
 }
@@ -379,13 +487,17 @@ main {
 
 .match-center-group {
     display: flex;
-    align-items: center; /* 수직 정렬 */
-    flex-grow: 1; /* 🌟 핵심: 남은 공간을 모두 차지하도록 강제 🌟 */
-    justify-content: center; /* 🌟 핵심: 내부 요소들을 이 넓은 공간의 중앙으로! 🌟 */
-    
+    align-items: center;
+    /* 수직 정렬 */
+    flex-grow: 1;
+    /* 🌟 핵심: 남은 공간을 모두 차지하도록 강제 🌟 */
+    justify-content: center;
+    /* 🌟 핵심: 내부 요소들을 이 넓은 공간의 중앙으로! 🌟 */
+
     /* ⚠️ 추가: 너비 확보를 위한 마진 제거 (혹시 모를 외부 마진 충돌 방지) */
     margin: 0;
 }
+
 /* 🟢 팀 정보 정렬 */
 .team {
     display: flex;
@@ -394,223 +506,215 @@ main {
     font-weight: 500;
     flex-shrink: 0;
 }
+
 .team-1 {
     justify-content: flex-end;
 }
+
 .team-2 {
     justify-content: flex-start;
 }
+
 .team-logo {
-    width: 28px; /* 로고 크기 증가 */
+    width: 28px;
+    /* 로고 크기 증가 */
     height: 28px;
-    margin: 0 10px; /* 마진 증가 */
+    margin: 0 10px;
+    /* 마진 증가 */
     object-fit: contain;
 }
+
 .team.winner {
     font-weight: bold;
 }
+
 .team.winner .team-name {
-    color: var(--accent-color); /* 승리팀 이름 색상 강조 */
+    color: var(--accent-color);
+    /* 승리팀 이름 색상 강조 */
 }
 
 /* 🟢 스코어 섹션 (가운데) */
 .match-score {
-    width: 90px; /* 너비 조정 */
+    width: 90px;
+    /* 너비 조정 */
     text-align: center;
-    font-size: 24px; /* 스코어 크기 강조 */
+    font-size: 24px;
+    /* 스코어 크기 강조 */
     font-weight: 300;
-    margin: 0 20px; /* 마진 증가 */
+    margin: 0 20px;
+    /* 마진 증가 */
     font-family: 'Arial', sans-serif;
     flex-shrink: 0;
-    color: var(--text-primary); /* 스코어 색상 설정 */
+    color: var(--text-primary);
+    /* 스코어 색상 설정 */
 }
+
 .winner-score {
-    color: var(--accent-color); /* 승리 스코어 강조 색상 */
+    color: var(--accent-color);
+    /* 승리 스코어 강조 색상 */
     font-weight: bold;
 }
 
 /* 버튼 및 장소 (우측 고정 영역) */
 .replay-btn {
-    /* ⭐️ 붉은색 버튼 스타일 */
-    margin-left: 50px; /* 중앙 그룹과 버튼 사이 간격 */
-    padding: 6px 18px;
-    border: 1px solid #ff4655; /* VALORANT 느낌의 붉은색 */
-    background-color: #ff4655; /* 붉은 배경 */
-    color: white; /* 흰색 글자 */
-    border-radius: 4px;
+    /* ⭐️ 보라색 버튼 스타일 */
+    margin-left: 50px;
+    /* 중앙 그룹과 버튼 사이 간격 */
+    padding: 8px 24px;
+    border: 1px solid var(--primary-color);
+    background-color: rgba(168, 85, 247, 0.1);
+    color: var(--primary-color);
+    border-radius: 20px;
     cursor: pointer;
-    font-size: 13px; /* 폰트 크기 조정 */
-    font-weight: 500;
+    font-size: 13px;
+    /* 폰트 크기 조정 */
+    font-weight: 700;
     white-space: nowrap;
-    transition: background-color 0.2s;
+    transition: all 0.3s ease;
     flex-shrink: 0;
 }
+
 .replay-btn:hover:not(:disabled) {
-    background-color: #d83d47;
-    border-color: #d83d47;
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+    transform: translateY(-1px);
 }
+
 .replay-btn:disabled {
     cursor: not-allowed;
-    background-color: #444; /* 어두운 배경에 맞게 조정 */
-    border-color: #444;
-    color: #888;
-    opacity: 1; /* 비활성화 시 회색으로 */
+    background-color: rgba(255, 255, 255, 0.05);
+    /* 어두운 배경에 맞게 조정 */
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #555;
+    opacity: 1;
+    /* 비활성화 시 회색으로 */
 }
+
 .match-location {
-    width: 120px; /* 너비 증가 */
+    width: 120px;
+    /* 너비 증가 */
     text-align: right;
-    margin-left: 25px; /* 마진 증가 */
+    margin-left: 25px;
+    /* 마진 증가 */
     color: var(--text-secondary);
     font-size: 13px;
     white-space: nowrap;
     flex-shrink: 0;
 }
 
-/* ⚠️ 기존의 .schedule-item 스타일은 .match-row로 대체되거나 제거되어야 함
-.schedule-item {
-    padding: 15px;
-    border-left: 5px solid #000000;
-    background-color: #9a9aaa; 
-    border-radius: 8px;
-    transition: background-color 0.3s;
+/* --- 날짜 헤더 (각 매치 그룹 상단) --- */
+.date-header {
+    background: linear-gradient(90deg, rgba(168, 85, 247, 0.2) 0%, rgba(20, 20, 20, 0.9) 30%);
+    border-left: 4px solid var(--primary-color);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    padding: 16px 24px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    border-radius: 0 12px 12px 0;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 15px rgba(168, 85, 247, 0.8);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    position: relative;
 }
-*/
 
-/* 반응형 - 로고 버튼 및 컨트롤 */
-@media (max-width: 600px) {
-    .logo_container {
-        gap: 15px;
-        margin-top: 20px;
-        margin-bottom: 50px;
+.date-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(168, 85, 247, 0.5) 0%, transparent 100%);
+}
+
+.date-header:first-child {
+    margin-top: 0;
+}
+
+
+
+/* LCK 랭킹 동적 아코디언 애니메이션 헬퍼 */
+.ranking-item .podium-view,
+.ranking-item .list-view {
+    transition: opacity 0.3s ease, margin 0.3s ease, transform 0.3s ease, height 0.3s ease;
+}
+
+.ranking-item.is-expanded .podium-view {
+    animation: expandPodium 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.ranking-item.is-expanded .list-view {
+    display: none;
+}
+
+@keyframes expandPodium {
+    0% {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
     }
 
-    .logo-item-wrapper {
-        width: 55px;
-        height: 55px;
-        box-shadow:
-            -3px -3px 0 0 white,
-            -5px -5px 0 0 #ccc,
-            0 6px 10px rgba(0, 0, 0, 0.3);
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
     }
+}
 
-    .controls-container {
-        gap: 8px;
-        flex-wrap: wrap;
+/* 완벽한 데스크탑 비율 축소 반응형 (REM 스케일링) */
+@media screen and (max-width: 1700px) {
+    html {
+        font-size: 14px;
     }
+}
 
-    .select-wrapper label {
-        font-size: 0.8em;
-        white-space: nowrap;
+@media screen and (max-width: 1500px) {
+    html {
+        font-size: 13px;
     }
+}
 
-    .custom-select {
-        width: 110px;
-    }
-
-    #month-select {
-        padding: 6px 8px;
-        font-size: 0.85em;
-    }
-
-    /* ── match row 전체 폰트/패딩 축소 ── */
-    .match-row {
-        padding: 10px 6px;
-        font-size: 11px;
-    }
-
-    /* 시간·날짜 */
-    .match-time-date {
-        width: 46px;
-        margin-right: 8px;
-        flex-shrink: 1;
-    }
-    .match-time {
+@media screen and (max-width: 1300px) {
+    html {
         font-size: 12px;
     }
-    .match-date {
-        font-size: 9px;
-    }
+}
 
-    /* 상태·라운드 */
-    .match-status-stage {
-        width: 54px;
-        margin-right: 6px;
-        flex-shrink: 1;
-    }
-    .match-status {
-        font-size: 9px;
-        padding: 1px 3px;
-    }
-    .match-stage {
-        font-size: 9px;
-        white-space: normal;
-        word-break: keep-all;
-    }
-
-    /* 팀 */
-    .team {
-        width: auto;
-        min-width: 0;
-        flex-shrink: 1;
-    }
-    .team-name {
-        font-size: 10px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        max-width: 52px;
-    }
-    .team-logo {
-        width: 18px;
-        height: 18px;
-        margin: 0 4px;
-    }
-
-    /* 스코어 */
-    .match-score {
-        width: 44px;
-        font-size: 16px;
-        margin: 0 6px;
-        flex-shrink: 1;
-    }
-
-    /* VOD 버튼 */
-    .replay-btn {
-        margin-left: 6px;
-        padding: 4px 8px;
-        font-size: 10px;
-        flex-shrink: 1;
-    }
-
-    .match-location {
-        display: none; /* 장소는 공간 부족 시 숨김 */
+@media screen and (max-width: 1100px) {
+    html {
+        font-size: 11px;
     }
 }
 
-@media (max-width: 400px) {
-    .logo-item-wrapper {
-        width: 44px;
-        height: 44px;
-    }
-
-    .custom-select {
-        width: 95px;
-    }
-
-    .match-row {
+@media screen and (max-width: 900px) {
+    html {
         font-size: 10px;
     }
 
-    .team-name {
-        max-width: 38px;
+    .schedule-sidebar {
+        display: none;
+        /* 극소형 화면에서는 사이드바 숨김 처리 가능 */
+    }
+}
+
+/* 프리미엄 페이드인 스태거 애니메이션 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
 
-    .match-time {
-        font-size: 11px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    .replay-btn {
-        padding: 3px 6px;
-        font-size: 9px;
-    }
+.animate-fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
