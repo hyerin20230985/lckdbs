@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LCK 일정</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/schedule3-styles.css">
 </head>
 
@@ -21,44 +22,23 @@
         </div>
     </div>
 
-    <header id="main-header" class="fixed top-5 left-1/2 -translate-x-1/2 z-[100]">
-        <nav class="flex items-center justify-between bg-black/30 backdrop-blur-2xl pt-4 pb-3 px-7 rounded-full border border-white/10 shadow-lg"
-            style="min-width: 600px; gap: 2rem;">
-
-            <!-- 왼쪽: 로고 + 구분선 -->
-            <div class="flex items-center gap-4 shrink-0">
-                <a href="../index.html"
-                    class="text-2xl font-bold text-white tracking-wider hover:text-gray-200 transition-colors"
-                    style="letter-spacing: 1px; text-shadow: 0 0 10px rgba(39,76,218,0.5);">
-                    LCKDBS
-                </a>
-                <span class="text-white/30 font-light text-xl">|</span>
+    <header id="main-header">
+        <nav>
+            <div class="nav-left">
+                <a href="../index.html" class="logo">LCKDBS</a>
+                <span class="nav-divider">|</span>
             </div>
-
-            <!-- 가운데: 메뉴 -->
-            <div id="nav-items" class="flex items-center whitespace-nowrap" style="gap: 3rem;">
-                <a href="/html/player-new.html"
-                    class="text-[1rem] font-medium text-white/80 hover:text-white hover:font-bold transition-all">팀</a>
-                <a href="/html/champion4.html"
-                    class="text-[1rem] font-medium text-white/80 hover:text-white hover:font-bold transition-all">챔피언</a>
-                <a href="/html/schedule3.html" class="text-[1rem] font-bold text-white transition-all">일정</a>
-                <a href="/html/mainstat.html"
-                    class="text-[1rem] font-medium text-white/80 hover:text-white hover:font-bold transition-all">스탯</a>
-                <a href="#"
-                    class="text-[1rem] font-medium text-white/80 hover:text-white hover:font-bold transition-all">분석</a>
-                <a href="/html/com.html"
-                    class="text-[1rem] font-medium text-white/80 hover:text-white hover:font-bold transition-all">커뮤니티</a>
+            <div class="nav-center">
+                <a href="/html/player-new.html" class="nav-item">팀</a>
+                <a href="/html/champion4.html" class="nav-item">챔피언</a>
+                <a href="/html/schedule3.html" class="nav-item">일정</a>
+                <a href="/html/mainstat.html" class="nav-item">스탯</a>
+                <a href="#" class="nav-item">분석</a>
+                <a href="/html/com.html" class="nav-item">커뮤니티</a>
             </div>
-
-            <!-- 오른쪽: LIVE -->
-            <div class="flex items-center shrink-0">
-                <a href="#" class="text-[1rem] font-bold text-white flex items-center gap-2 whitespace-nowrap">
-                    LIVE
-                    <span class="w-2 h-2 bg-[#ff4655] rounded-full"
-                        style="animation: pulse 2s infinite; box-shadow: 0 0 0 0 rgba(255,70,85,0.7);"></span>
-                </a>
+            <div class="nav-right">
+                <a href="#" class="nav-item live">LIVE <span class="live-dot"></span></a>
             </div>
-
         </nav>
     </header>
 
