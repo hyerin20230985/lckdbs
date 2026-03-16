@@ -1,0 +1,170 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+body {
+    font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+    overflow-x: hidden;
+    background-color: #111827; /* Tailwind bg-gray-800 from team3-styles.css */
+    color: #e2e8f0;
+}
+
+/* 커스텀 스크롤바 */
+.custom-scrollbar::-webkit-scrollbar { width: 5px; height: 5px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(168, 85, 247, 0.2); border-radius: 10px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(168, 85, 247, 0.6); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* 유리 질감 및 노이즈 */
+.glass-noise::before {
+    content: ""; position: absolute; inset: 0; border-radius: inherit;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+    opacity: 0.025; pointer-events: none;
+}
+
+/* 프리미엄 카드 호버 효과 */
+.premium-card {
+    background: rgba(168, 85, 247, 0.02);
+    border: 1px solid rgba(168, 85, 247, 0.1);
+    backdrop-filter: blur(16px);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.premium-card:hover {
+    background: rgba(168, 85, 247, 0.05);
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(168,85,247,0.2), inset 0 0 20px rgba(168,85,247,0.05);
+}
+
+/* ★ 1. 스무스 아코디언 애니메이션 (CSS Grid 해킹) */
+.accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.accordion-content.open { grid-template-rows: 1fr; }
+.accordion-inner { overflow: hidden; }
+
+/* ★ 2. 읽는 재미를 주는 인터랙티브 텍스트 (마우스 오버 시 형광펜 효과) */
+.interactive-text {
+    position: relative;
+    display: inline;
+    background-image: linear-gradient(120deg, transparent 50%, rgba(168, 85, 247, 0.25) 50%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+    border-radius: 4px;
+    padding: 0 4px;
+    margin: 0 -4px;
+}
+.interactive-text:hover {
+    background-position: 0 0;
+    color: #fff;
+    cursor: default;
+}
+
+/* ★ 3. 채팅창 순차적 등장 애니메이션 */
+@keyframes chat-pop {
+    0% { opacity: 0; transform: translateY(10px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.chat-msg-anim {
+    opacity: 0; /* 초기 숨김 */
+    animation: chat-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* 전체 등장 애니메이션 */
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up { animation: fade-in-up 0.5s ease-out forwards; }
+
+/* 지도 관련 애니메이션 유지 */
+@keyframes flow-dash { to { stroke-dashoffset: -20; } }
+.flow-fast { stroke-dasharray: 6, 4; animation: flow-dash 0.4s linear infinite; }
+.flow-slow { stroke-dasharray: 6, 4; animation: flow-dash 1.2s linear infinite; }
+@keyframes map-pulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 2px currentColor); }
+    50% { transform: scale(1.4); filter: drop-shadow(0 0 8px currentColor); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 2px currentColor); }
+}
+.pulse-anim { transform-box: fill-box; transform-origin: center; animation: map-pulse 1.5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+.pulse-red { fill: #f87171; color: #f87171; animation: map-pulse 1.2s infinite; } 
+.pulse-blue { fill: #60a5fa; color: #60a5fa; animation: map-pulse 1.5s infinite; } 
+.pulse-yellow { fill: #facc15; color: #facc15; animation: map-pulse 2s infinite; }
+
+/* ★ 4. 접혔다 펼쳤다 할 수 있는 상세 설명 섹션 (사건/사고 및 논란용) */
+.collapsible-section {
+    background: rgba(30, 30, 50, 0.6);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.collapsible-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.75rem;
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.1) 0%, transparent 100%);
+    border: none;
+    cursor: pointer;
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: #a78bfa;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.collapsible-toggle:hover {
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.2) 0%, transparent 100%);
+    color: #d8b4fe;
+}
+
+.collapsible-toggle::before {
+    content: "";
+    display: inline-block;
+    margin-right: 0.75rem;
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+.collapsible-toggle svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+    color: #a78bfa;
+}
+
+.collapsible-toggle.active svg {
+    transform: rotate(180deg);
+}
+
+.collapsible-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+    padding: 0 1.75rem;
+}
+
+.collapsible-content.active {
+    max-height: 2000px;
+    opacity: 1;
+    padding: 1.5rem 1.75rem;
+}
+
+.collapsible-content p {
+    margin-bottom: 1rem;
+    color: #d1d5db;
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+.collapsible-content p:last-child {
+    margin-bottom: 0;
+}
