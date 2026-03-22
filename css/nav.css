@@ -1,7 +1,7 @@
 /* Navbar styles extracted from style.css for reuse */
 
 /* Header (fixed) */
-header {
+body > header {
     position: fixed;
     top: 20px;
     left: 50%;
