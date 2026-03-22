@@ -2,17 +2,18 @@
 
 /* Variables from com.css for consistency */
 :root {
-  --primary-bg-color: #1A1B29; /* Dark background */
-  --secondary-bg-color: #2A2B3D; /* Slightly lighter dark for elements */
-  --accent-yellow: #ECCA52; /* Main accent color (yellow) */
-  --accent-blue: #38E4E4; /* Secondary accent color (teal/cyan) */
-  --text-color-light: #F0F2F5; /* Light text for general content on dark background */
-  --text-color-muted: #A0A0B0; /* Softer text color */
-  --text-color-dark: #333333; /* Used for placeholders or elements that need to contrast on very light backgrounds (less common in this theme) */
-  --border-color-dark: #40415A; /* General dark border */
-  --border-color-accent-blue: var(--accent-blue); /* Teal/cyan border */
-  --input-bg-color: var(--primary-bg-color); /* Input field background */
-  --hover-bg-dark: #383950; /* Darker elements hover background */
+    --primary-bg-color: transparent;
+    --secondary-bg-color: rgba(23, 23, 23, 0.6);
+    --accent-yellow: #9333ea;
+    --accent-blue: #c084fc;
+    --text-color-light: #ffffff;
+    --text-color-muted: rgba(255, 255, 255, 0.5);
+    --text-color-dark: #333333;
+    --border-color-dark: rgba(255, 255, 255, 0.1);
+    --border-color-accent-blue: var(--accent-blue);
+    --border-color-white: #ffffff;
+    --input-bg-color: rgba(0, 0, 0, 0.3);
+    --hover-bg-dark: rgba(255, 255, 255, 0.1);
   --font-family-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --shadow-light: rgba(0, 0, 0, 0.2); /* Subtle shadow for dark theme */
   --shadow-medium: rgba(0, 0, 0, 0.4); /* Medium shadow */
@@ -35,14 +36,14 @@ body {
 }
 
 #wrap {
-  min-width: 1050px; /* From FMK HTML */
   width: 100%;
   height: auto !important;
   background-color: var(--primary-bg-color); /* Match body background */
 }
 
 #container {
-  width: 1050px; /* From FMK HTML */
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   height: auto !important;
   display: flex;
@@ -51,18 +52,20 @@ body {
 
 /* #content 대신 #main-content-area 사용 */
 #main-content-area {
-  width: 860px; /* From FMK HTML */
+  width: 100%;
   height: auto !important;
   padding: 20px; /* Add some padding to the content area */
   box-sizing: border-box;
 }
 
 .content_dummy {
-  background-color: var(--secondary-bg-color); /* Slightly lighter background for the main content area */
-  padding: 20px; /* Inner padding */
-  border-radius: 8px; /* Slight roundness */
-  box-shadow: 0 4px 15px var(--shadow-medium);
+  background-color: var(--secondary-bg-color);
+  padding: 20px;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   border: 1px solid var(--border-color-dark);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* Board specific styles, mimicking FMK's write page */
@@ -515,7 +518,7 @@ body {
 
 .regist button[type="submit"].blue { /* "등록" (작성 완료) 버튼 */
   background-color: var(--accent-yellow); /* Yellow background */
-  color: var(--primary-bg-color); /* Dark text on yellow */
+  color: var(--text-color-light); /* Light text on accent */
   border: 1px solid var(--border-color-white); /* White border */
 }
 .regist button[type="submit"].blue:hover {

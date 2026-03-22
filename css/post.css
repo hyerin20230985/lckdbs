@@ -2,18 +2,18 @@
 
 /* Variables for easier theme management - consistent with com.css */
 :root {
-    --primary-bg-color: #1A1B29; /* Dark background */
-    --secondary-bg-color: #2A2B3D; /* Slightly lighter dark for cards/elements */
-    --accent-yellow: #ECCA52; /* Main accent color (yellow) */
-    --accent-blue: #38E4E4; /* Secondary accent color (teal/cyan) */
-    --text-color-light: #F0F2F5; /* Light text for general content on dark background */
-    --text-color-muted: #A0A0B0; /* Softer text color */
-    --text-color-dark: #333333; /* Used for placeholders or elements that need to contrast on very light backgrounds (less common in this theme) */
-    --border-color-dark: #40415A; /* General dark border */
-    --border-color-accent-blue: var(--accent-blue); /* Teal/cyan border */
-    --border-color-white: #ffffff; /* White border */
-    --input-bg-color: var(--primary-bg-color); /* Input field background */
-    --hover-bg-dark: #383950; /* Darker elements hover background */
+    --primary-bg-color: transparent;
+    --secondary-bg-color: rgba(23, 23, 23, 0.6);
+    --accent-yellow: #9333ea;
+    --accent-blue: #c084fc;
+    --text-color-light: #ffffff;
+    --text-color-muted: rgba(255, 255, 255, 0.5);
+    --text-color-dark: #333333;
+    --border-color-dark: rgba(255, 255, 255, 0.1);
+    --border-color-accent-blue: var(--accent-blue);
+    --border-color-white: #ffffff;
+    --input-bg-color: rgba(0, 0, 0, 0.3);
+    --hover-bg-dark: rgba(255, 255, 255, 0.1);
     --content-bg-color: #121220; /* Even darker background for content blocks */
     --font-family-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --shadow-light: rgba(0, 0, 0, 0.2); /* Subtle shadow for dark theme */
@@ -37,14 +37,14 @@ body {
 }
 
 #wrap {
-  min-width: 1050px;
   width: 100%;
   height: auto !important;
   background-color: var(--primary-bg-color);
 }
 
 #container {
-  width: 1050px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   height: auto !important;
   padding: 0;
@@ -52,14 +52,14 @@ body {
 }
 
 .Wrapper {
-  width: 1050px;
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
 }
 
 #content { /* 이 id는 이제 post.html에서 textarea가 아닌 div에 할당됨 */
-  width: 860px;
+  width: 100%;
   height: auto !important;
   padding: 0;
   box-sizing: border-box;
@@ -68,9 +68,11 @@ body {
 .content_dummy {
   background-color: var(--secondary-bg-color);
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px var(--shadow-medium);
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   border: 1px solid var(--border-color-dark);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* Board Header (bd_hd, tl_srch) */
@@ -279,7 +281,7 @@ h1.np_18px {
 
 .fm_btn_area .btn_pack button {
     background-color: var(--accent-blue);
-    color: var(--primary-bg-color);
+    color: var(--text-color-light);
     padding: 8px 15px;
     border: none;
     border-radius: 5px;
@@ -377,8 +379,8 @@ h1.np_18px {
 
 /* 댓글 등록 버튼 스타일 (write.css의 .bd_btn.blue와 통일) */
 .cmt_editor .comment-input-actions .bd_btn.blue {
-    background-color: #38E4E4;
-    color: var(--primary-bg-color);
+    background-color: var(--accent-blue);
+    color: var(--text-color-light);
     padding: 12px 25px;
     border-radius: 8px;
     font-weight: bold;
@@ -472,7 +474,7 @@ h1.np_18px {
 }
 #comment-list li.editing .edit-area button {
     background-color: var(--accent-yellow);
-    color: var(--primary-bg-color);
+    color: var(--text-color-light);
     padding: 8px 15px;
     border: none;
     border-radius: 5px;
@@ -583,7 +585,7 @@ footer #online-users {
 
 .modal-content button {
     background-color: var(--accent-yellow);
-    color: var(--primary-bg-color);
+    color: var(--text-color-light);
     padding: 12px 25px;
     border: none;
     border-radius: 8px;

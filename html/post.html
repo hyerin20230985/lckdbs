@@ -7,10 +7,29 @@
     <title>게시물 제목</title>
     <link rel="stylesheet" href="../css/com.css">
     <link rel="stylesheet" href="../css/post.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: {
+                preflight: false,
+                container: false,
+            }
+        }
+    </script>
 </head>
 
-<body>
-    <div class="ce center ko_" style="height: auto !important;">
+<body class="bg-black text-white relative min-h-screen flex flex-col">
+
+    <!-- 프리미엄 배경 글로우 & 노이즈 효과 -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute top-[0%] left-[-10%] w-[50%] h-[50%] bg-purple-900/40 rounded-full blur-[150px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-900/30 rounded-full blur-[150px]"></div>
+        <!-- 노이즈 텍스처 -->
+        <div class="absolute inset-0 opacity-[0.04]"
+            style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 800%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');">
+        </div>
+    </div>
+    <div class="ce center ko_ relative z-10 flex-1 w-full" style="height: auto !important;">
         <div id="wrap" style="height: auto !important;">
             <div id="container" class="content_padding_true" style="height: auto !important;">
                 <div class="Wrapper" style="height: auto !important;">
@@ -90,22 +109,24 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <footer id="footer">
-                <div class="Wrapper">
-                    <div class="copyright">
-                        <address>
-                            <span style="width:100%">Copyright © 2025 My Community. All rights reserved.</span>
-                        </address>
-                        <div style="float:right;">
-                            <span id="ga_counter">동시 접속자: <span id="online-users">0</span>명</span>
-                        </div>
-                        <div id="about-us">My Community 운영팀: contact@mycommunity.com | <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a> | <a href="#">청소년보호정책</a> | <a href="#">문의/신고</a> | <a href="#">게시글 중단 요청</a></div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
+
+    <!-- 푸터 (Footer) 추가: 페이지 끝부분을 닫아주는 역할 -->
+    <footer class="w-full bg-black/80 border-t border-white/10 mt-20 backdrop-blur-md relative z-10">
+        <div class="max-w-[1600px] mx-auto px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex flex-col gap-2 shadow-sm">
+                <span class="text-2xl font-black text-white/80 tracking-wider">LCKDBS</span>
+                <p class="text-sm text-gray-500">© 2025 LCKDBS. All rights reserved.</p>
+            </div>
+
+            <div class="flex gap-6 text-sm font-medium text-gray-400">
+                <a href="#" class="text-gray-400 no-underline hover:text-purple-400 transition-colors">이용약관</a>
+                <a href="#" class="text-gray-400 no-underline hover:text-purple-400 transition-colors">개인정보처리방침</a>
+                <a href="#" class="text-gray-400 no-underline hover:text-purple-400 transition-colors">고객센터</a>
+            </div>
+        </div>
+    </footer>
 
     <div id="password-modal" class="modal">
         <div class="modal-content">
