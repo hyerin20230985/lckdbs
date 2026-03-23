@@ -70,7 +70,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             const sectionDiv = document.createElement('div');
             sectionDiv.className = "mb-2";
 
-            const isExpanded = expandAll || index === 0;
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetCat = urlParams.get('section');
+            
+            let isExpanded = expandAll || index === 0;
+            if (!expandAll && targetCat !== null) {
+                isExpanded = (index === parseInt(targetCat));
+            }
+            
             const rotateClass = isExpanded ? 'rotate-180 text-purple-400' : 'text-gray-500';
             const bgClass = isExpanded ? 'bg-white/5' : 'hover:bg-white/5';
             const titleColor = isExpanded ? 'text-purple-300' : 'text-gray-300 hover:text-purple-300';
@@ -138,6 +145,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             sectionDiv.appendChild(btnHeader);
             sectionDiv.appendChild(contentWrapper);
             listContainer.appendChild(sectionDiv);
+            
+            // If this is the targeted section from URL, scroll it into view slightly
+            if (isExpanded && targetCat !== null && !expandAll) {
+                setTimeout(() => {
+                    sectionDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+            }
         });
     }
 
