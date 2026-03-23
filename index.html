@@ -22,6 +22,7 @@
         }
     </style>
     <meta name="description" content="LCK 선수, 팀, 챔피언 데이터베이스 및 통계 사이트">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
@@ -31,7 +32,6 @@
                 <a href="../index.html" class="logo">LCKDBS</a>
                 <span class="nav-divider">|</span>
             </div>
-            <div class="nav-scroll">
             <div class="nav-center">
                 <a href="/html/player-new.html" class="nav-item">팀</a>
                 <a href="/html/champion4.html" class="nav-item">챔피언</a>
@@ -43,9 +43,18 @@
             <div class="nav-right">
                 <a href="#" class="nav-item live">LIVE <span class="live-dot"></span></a>
             </div>
-            </div>
         </nav>
     </header>
+
+    <!-- 프리미엄 배경 글로우 & 노이즈 효과 -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute top-[0%] left-[-10%] w-[50%] h-[50%] bg-purple-900/40 rounded-full blur-[150px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-900/30 rounded-full blur-[150px]"></div>
+        <!-- 노이즈 텍스처 -->
+        <div class="absolute inset-0 opacity-[0.04]"
+            style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 800%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');">
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero-section" id="heroSection">
@@ -178,10 +187,35 @@
                 </div>
             </div>
 
-            <!-- Box 5: Strategy Page Placeholder -->
-            <div class="grid-box player-box empty">
-                <div class="placeholder-text">
-                    전략페이지와 연동하거나<br>전략페이지로 이동할 수 있게 하는 게 좋을듯
+            <!-- Box 5: Strategy Page Links -->
+            <div class="grid-box strategy-box flex flex-col justify-between">
+                <div class="box-header mb-2 relative z-10">
+                    <h3 class="box-title">
+                        <svg class="title-icon w-5 h-5 text-purple-400 mr-1" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                            </path>
+                        </svg>
+                        백과사전
+                    </h3>
+                </div>
+                <div class="flex gap-3 h-full relative z-10">
+                    <a href="/html/text_wiki.html?section=0"
+                        class="flex-1 flex flex-col items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-xl hover:bg-purple-500/20 hover:border-purple-400/50 hover:-translate-y-1 transition-all duration-300 group">
+                        <div class="text-4xl drop-shadow-lg group-hover:scale-110 transition-transform">⚔️</div>
+                        <span class="text-white font-bold text-[14px]">실전 전략</span>
+                    </a>
+                    <a href="/html/text_wiki.html?section=1"
+                        class="flex-1 flex flex-col items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-xl hover:bg-purple-500/20 hover:border-purple-400/50 hover:-translate-y-1 transition-all duration-300 group">
+                        <div class="text-4xl drop-shadow-lg group-hover:scale-110 transition-transform">📖</div>
+                        <span class="text-white font-bold text-[14px] text-center">역사 & 지식</span>
+                    </a>
+                    <a href="/html/text_wiki.html?section=2"
+                        class="flex-1 flex flex-col items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-xl hover:bg-purple-500/20 hover:border-purple-400/50 hover:-translate-y-1 transition-all duration-300 group">
+                        <div class="text-4xl drop-shadow-lg group-hover:scale-110 transition-transform">📚</div>
+                        <span class="text-white font-bold text-[14px] text-center">용어 사전</span>
+                    </a>
                 </div>
             </div>
 
@@ -464,6 +498,22 @@
             </div>
         </div>
     </section>
+
+    <!-- 푸터 (Footer) 추가: 페이지 끝부분을 닫아주는 역할 -->
+    <footer class="w-full bg-black/80 border-t border-white/10 mt-auto backdrop-blur-md shrink-0 relative z-20">
+        <div class="max-w-[1600px] mx-auto px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex flex-col gap-2 shadow-sm">
+                <span class="text-2xl font-black text-white/80 tracking-wider">LCKDBS</span>
+                <p class="text-sm text-gray-500">© 2025 LCKDBS. All rights reserved.</p>
+            </div>
+
+            <div class="flex gap-6 text-sm font-medium text-gray-400">
+                <a href="#" class="hover:text-purple-400 transition-colors">이용약관</a>
+                <a href="#" class="hover:text-purple-400 transition-colors">개인정보처리방침</a>
+                <a href="#" class="hover:text-purple-400 transition-colors">고객센터</a>
+            </div>
+        </div>
+    </footer>
 
     <script src="js/home.js"></script>
 </body>
