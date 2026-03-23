@@ -125,17 +125,62 @@ nav {
     .nav-item { font-size: 0.85rem; }
 }
 
-/* Tablet and below: compact, no wrapping */
-@media (max-width: 768px) {
-    header { top: 10px; max-width: 95%; }
-    nav { gap: 0.75rem; padding: 0.45rem 0.9rem; flex-wrap: nowrap; }
-    .nav-item { font-size: 0.8rem; }
-    .logo { font-size: 1.3rem; }
+/* Desktop: wrapper is transparent to flexbox */
+.nav-scroll {
+    display: contents;
 }
 
-/* Mobile: show logo only */
+/* Tablet and below: compact, wrapper scrolls */
+@media (max-width: 768px) {
+    header { top: 10px; width: 95%; max-width: 95%; }
+    nav { 
+        gap: 0; 
+        padding: 0.45rem 1rem; 
+        flex-wrap: nowrap; 
+        justify-content: flex-start;
+    }
+    
+    .nav-scroll {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; 
+        -ms-overflow-style: none; 
+        margin-left: 0;
+        padding-left: 1rem; /* Replaced margin with padding */
+        /* Fades the scrolling text naturally in the padding area */
+        -webkit-mask-image: linear-gradient(to right, transparent 0, black 1rem, black 100%);
+        mask-image: linear-gradient(to right, transparent 0, black 1rem, black 100%);
+    }
+    .nav-scroll::-webkit-scrollbar {
+        display: none; 
+    }
+
+    .nav-left {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .nav-center { 
+        flex-shrink: 0; 
+    }
+    .nav-right { 
+        padding-right: 1rem; 
+        flex-shrink: 0; 
+    }
+    
+    .nav-item { font-size: 0.85rem; }
+    .logo { font-size: 1.3rem; flex-shrink: 0; }
+}
+
+/* Mobile: sizing tweaks */
 @media (max-width: 600px) {
-    nav { gap: 0.5rem; padding: 0.45rem 0.9rem; }
-    .nav-center, .nav-right { display: none !important; }
+    nav { padding: 0.45rem 1rem; }
+    .nav-scroll { gap: 1rem; padding-left: 1rem; margin-left: 0; }
     .logo { font-size: 1.2rem; }
 }
