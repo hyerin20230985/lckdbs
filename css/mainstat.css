@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 
 :root {
-    --bg-color: #1c1f2a;
-    --primary-text-color: #e2e2e2;
-    --secondary-text-color: #8c8c8e;
-    --border-color: #2a2d39;
-    --container-bg-color: #242734;
-    --point-color-yellow: #f5c542;
+    --bg-color: transparent;
+    --primary-text-color: #ffffff;
+    --secondary-text-color: rgba(255, 255, 255, 0.7);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --container-bg-color: rgba(23, 23, 23, 0.6);
+    --point-color-yellow: #9333ea;
     --player1-color: #4299e1;
     --player2-color: #9f7aea;
-    --highlight-stat-color: #63b3ed;
-    --bar-bg-color: #313543;
+    --highlight-stat-color: #c084fc;
+    --bar-bg-color: rgba(255, 255, 255, 0.05);
 }
 
 /* General Resets and Global Styles */
@@ -36,6 +36,7 @@ body {
 .container { 
     width: 100%; 
     max-width: 1200px; 
+    margin: 0 auto;
 }
 
 /* Page header styles (not navbar) */
@@ -136,7 +137,9 @@ main > div h1 {
 
 /* Player Card Styles */
 .player-card {
-    background: linear-gradient(145deg, #2f3344, #1e222e);
+    background: linear-gradient(145deg, rgba(47, 51, 68, 0.6), rgba(30, 34, 46, 0.6));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     width: 280px; 
     min-height: 420px; 
     padding: 20px;
@@ -274,8 +277,11 @@ main > div h1 {
     align-items: center;
     background-color: var(--container-bg-color);
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 1rem;
     margin-bottom: 30px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 .player-select-container { flex: 1; display: flex; flex-direction: column; gap: 10px; }
 .vs { font-size: 24px; font-weight: 700; color: var(--point-color-yellow); margin: 0 20px; align-self: flex-end; padding-bottom: 8px; }
@@ -289,15 +295,21 @@ main > div h1 {
     margin: 0 auto 30px auto;
     background-color: var(--container-bg-color);
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 1rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Win Prediction Styles */
 #win-prediction-container {
     background-color: var(--container-bg-color);
-    border-radius: 8px;
+    border-radius: 1rem;
     padding: 20px;
     margin-bottom: 30px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 .prediction-title { text-align: center; font-size: 18px; font-weight: 600; color: var(--point-color-yellow); margin-bottom: 15px; }
 .prediction-details { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 10px; padding: 0 5px; }
@@ -313,9 +325,12 @@ main > div h1 {
 #stats-container-comparison, #stats-container-single { 
     background-color: var(--container-bg-color); 
     border: 1px solid var(--border-color); 
-    border-radius: 8px; 
-    padding: 10px 20px; 
+    border-radius: 1rem; 
+    padding: 20px; 
     min-height: 100px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 .initial-message { text-align: center; padding: 50px 0; color: var(--secondary-text-color); }
 

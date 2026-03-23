@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>게시물 작성</title>
   <link rel="stylesheet" href="../css/com.css">
   <link rel="stylesheet" href="../css/write.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+        container: false,
+      }
+    }
+  </script>
 </head>
-<body>
-  <div id="wrap">
+
+<body class="bg-black text-white relative min-h-screen flex flex-col">
+
+  <!-- 프리미엄 배경 글로우 & 노이즈 효과 -->
+  <div class="fixed inset-0 z-0 pointer-events-none">
+    <div class="absolute top-[0%] left-[-10%] w-[50%] h-[50%] bg-purple-900/40 rounded-full blur-[150px]"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-900/30 rounded-full blur-[150px]"></div>
+    <!-- 노이즈 텍스처 -->
+    <div class="absolute inset-0 opacity-[0.04]"
+      style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 800%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');">
+    </div>
+  </div>
+  <div id="wrap" class="relative z-10 flex-1 w-full">
     <div id="container">
       <div class="Wrapper">
         <div id="main-content-area">
@@ -23,7 +44,7 @@
               <form action="./" method="post" onsubmit="return false;" class="bd_wrt bd_wrt_main clear" id="postForm">
                 <input type="hidden" name="mid" value="fm24free">
                 <input type="hidden" name="document_srl" value="0">
-                <input type="hidden" id="postId"> 
+                <input type="hidden" id="postId">
                 <div class="form-group">
                   <label for="postTitle">제목</label>
                   <input type="text" id="postTitle" name="title" placeholder="제목" maxlength="90" required>
@@ -52,7 +73,8 @@
                       </ul>
                     </div>
                     <div id="xe-editor-container-1" class="input_area xpress_xeditor_editing_area_container">
-                      <textarea id="postContent" name="content" cols="10" rows="10" class="input_syntax" required style="width: 100%; height: 100%; display: block;"></textarea>
+                      <textarea id="postContent" name="content" cols="10" rows="10" class="input_syntax" required
+                        style="width: 100%; height: 100%; display: block;"></textarea>
                     </div>
                   </div>
                 </div>
@@ -89,5 +111,22 @@
     </div>
   </div>
   <script src="../js/communityjs/write.js"></script>
+
+  <!-- 푸터 (Footer) 추가: 페이지 끝부분을 닫아주는 역할 -->
+  <footer class="w-full bg-black/80 border-t border-white/10 mt-20 backdrop-blur-md relative z-10">
+    <div class="max-w-[1600px] mx-auto px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex flex-col gap-2 shadow-sm">
+        <span class="text-2xl font-black text-white/80 tracking-wider">LCKDBS</span>
+        <p class="text-sm text-gray-500">© 2025 LCKDBS. All rights reserved.</p>
+      </div>
+
+      <div class="flex gap-6 text-sm font-medium text-gray-400">
+        <a href="#" class="text-gray-400 no-underline hover:text-purple-400 transition-colors">이용약관</a>
+        <a href="#" class="text-gray-400 no-underline hover:text-purple-400 transition-colors">개인정보처리방침</a>
+        <a href="#" class="text-gray-400 no-underline hover:text-purple-400 transition-colors">고객센터</a>
+      </div>
+    </div>
+  </footer>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,18 @@
     <link rel="stylesheet" href="../css/player-new.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-black text-white">
+
+<body class="bg-black text-white relative min-h-screen flex flex-col">
+
+    <!-- 프리미엄 배경 글로우 & 노이즈 효과 -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute top-[0%] left-[-10%] w-[50%] h-[50%] bg-purple-900/40 rounded-full blur-[150px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-900/30 rounded-full blur-[150px]"></div>
+        <!-- 노이즈 텍스처 -->
+        <div class="absolute inset-0 opacity-[0.04]"
+            style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 800%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');">
+        </div>
+    </div>
     <header>
         <nav>
             <div class="nav-left">
@@ -21,7 +33,7 @@
                 <a href="/html/champion4.html" class="nav-item">챔피언</a>
                 <a href="/html/schedule3.html" class="nav-item">일정</a>
                 <a href="/html/mainstat.html" class="nav-item">스탯</a>
-                <a href="#" class="nav-item">분석</a>
+                <a href="/html/text_wiki.html" class="nav-item">분석</a>
                 <a href="/html/com.html" class="nav-item">커뮤니티</a>
             </div>
             <div class="nav-right">
@@ -30,111 +42,141 @@
             </div>
         </nav>
     </header>
-    <main class="page-container max-w-7xl mx-auto px-4">
+    <main class="page-container max-w-7xl mx-auto px-4 flex-1 w-full relative z-10">
         <div class="ui-width w-full max-w-[780px] mx-auto">
-        <!-- Year filter dropdown -->
-        <div class="year-filter">
-            <label for="season-select" class="sr-only">년도 선택</label>
-            <div class="year-select-wrapper">
-                <select id="season-select" class="year-select" aria-label="년도 선택">
-                    <option value="2026"selected>2026 LCK</option>
-                    <option value="2025">2025 LCK</option>
-                    <option value="2024">2024 LCK</option>
-                    <option value="2023">2023 LCK</option>
-                    <option value="2022">2022 LCK</option>
-                    <option value="2021">2021 LCK</option>
-                    <option value="2020">2020 LCK</option>
-                </select>
+            <!-- Year filter dropdown -->
+            <div class="year-filter">
+                <label for="season-select" class="sr-only">년도 선택</label>
+                <div class="year-select-wrapper">
+                    <select id="season-select" class="year-select" aria-label="년도 선택">
+                        <option value="2026" selected>2026 LCK</option>
+                        <option value="2025">2025 LCK</option>
+                        <option value="2024">2024 LCK</option>
+                        <option value="2023">2023 LCK</option>
+                        <option value="2022">2022 LCK</option>
+                        <option value="2021">2021 LCK</option>
+                        <option value="2020">2020 LCK</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Rounded search bar under navbar -->
+            <div class="relative">
+                <input id="search-input" type="text" placeholder="선수 검색..."
+                    class="w-full bg-neutral-900/70 border border-white/10 text-white placeholder-white/50 rounded-full py-4 pl-5 pr-12 shadow-lg focus:outline-none focus:ring-1 focus:ring-purple-600/60 backdrop-blur-md" />
+                <button type="button"
+                    class="absolute right-2 top-1/2 -translate-y-1/2 bg-neutral-800/80 hover:bg-neutral-700 border border-white/10 rounded-full w-9 h-9 flex items-center justify-center transition"
+                    aria-label="검색">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="w-4 h-4 text-white/80">
+                        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Category chips under the search bar -->
+            <div class="mt-4 w-full flex flex-nowrap justify-between items-center">
+                <button
+                    class="chip inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/70 border border-white/10 transition backdrop-blur-md shadow"
+                    aria-pressed="true" data-role="ALL">
+                    <img src="../photos/icons/all.png" alt="ALL" class="w-6 h-5" />
+                    <span>ALL</span>
+                </button>
+                <button
+                    class="chip inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/70 border border-white/10 transition backdrop-blur-md"
+                    aria-pressed="false" data-role="TOP">
+                    <img src="../photos/icons/top.webp" alt="TOP" class="w-6 h-6" />
+                    <span>TOP</span>
+                </button>
+                <button
+                    class="chip inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/70 border border-white/10 transition backdrop-blur-md"
+                    aria-pressed="false" data-role="JUNGLE">
+                    <img src="../photos/icons/jungle.webp" alt="JUNGLE" class="w-6 h-6" />
+                    <span>JUNGLE</span>
+                </button>
+                <button
+                    class="chip inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/70 border border-white/10 transition backdrop-blur-md"
+                    aria-pressed="false" data-role="MID">
+                    <img src="../photos/icons/mid.webp" alt="MID" class="w-6 h-6" />
+                    <span>MID</span>
+                </button>
+                <button
+                    class="chip inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/70 border border-white/10 transition backdrop-blur-md"
+                    aria-pressed="false" data-role="ADC">
+                    <img src="../photos/icons/adc.webp" alt="ADC" class="w-6 h-6" />
+                    <span>ADC</span>
+                </button>
+                <button
+                    class="chip inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/70 border border-white/10 transition backdrop-blur-md"
+                    aria-pressed="false" data-role="SUPPORT">
+                    <img src="../photos/icons/sup.webp" alt="SUP" class="w-6 h-6" />
+                    <span>SUP</span>
+                </button>
             </div>
         </div>
 
-        <!-- Rounded search bar under navbar -->
-        <div class="relative">
-            <input id="search-input"
-                type="text"
-                placeholder="선수 검색..."
-                class="w-full bg-neutral-900/70 border border-white/10 text-white placeholder-white/50 rounded-full py-4 pl-5 pr-12 shadow-lg focus:outline-none focus:ring-1 focus:ring-purple-600/60 backdrop-blur-md"
-            />
-            <button
-                type="button"
-                class="absolute right-2 top-1/2 -translate-y-1/2 bg-neutral-800/80 hover:bg-neutral-700 border border-white/10 rounded-full w-9 h-9 flex items-center justify-center transition"
-                aria-label="검색"
-            >
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white/80">
-                    <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
-                    <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                </svg>
-            </button>
-        </div>
-
-        <!-- Category chips under the search bar -->
-        <div class="mt-4 w-full flex flex-nowrap justify-between items-center">
-            <button class="chip inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/70 border border-white/10 transition backdrop-blur-md shadow" aria-pressed="true" data-role="ALL">
-                <img src="../photos/icons/all.png" alt="ALL" class="w-6 h-5"/>
-                <span>ALL</span>
-            </button>
-            <button class="chip inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/70 border border-white/10 transition backdrop-blur-md" aria-pressed="false" data-role="TOP">
-                <img src="../photos/icons/top.webp" alt="TOP" class="w-6 h-6"/>
-                <span>TOP</span>
-            </button>
-            <button class="chip inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/70 border border-white/10 transition backdrop-blur-md" aria-pressed="false" data-role="JUNGLE">
-                <img src="../photos/icons/jungle.webp" alt="JUNGLE" class="w-6 h-6"/>
-                <span>JUNGLE</span>
-            </button>
-            <button class="chip inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/70 border border-white/10 transition backdrop-blur-md" aria-pressed="false" data-role="MID">
-                <img src="../photos/icons/mid.webp" alt="MID" class="w-6 h-6"/>
-                <span>MID</span>
-            </button>
-            <button class="chip inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/70 border border-white/10 transition backdrop-blur-md" aria-pressed="false" data-role="ADC">
-                <img src="../photos/icons/adc.webp" alt="ADC" class="w-6 h-6"/>
-                <span>ADC</span>
-            </button>
-            <button class="chip inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900/70 border border-white/10 transition backdrop-blur-md" aria-pressed="false" data-role="SUPPORT">
-                <img src="../photos/icons/sup.webp" alt="SUP" class="w-6 h-6"/>
-                <span>SUP</span>
-            </button>
-        </div>
-        </div>
-        
         <!-- Team/logo cards grid (10 items, max 4 per row) -->
         <section id="team-section" class="mt-8">
             <div id="team-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 place-items-stretch">
-                <div class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
-                    <img src="../photos/assets/T1.svg" alt="T1" class="team-logo w-[80%] h-[80%] object-contain select-none pointer-events-none">
+                <div
+                    class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
+                    <img src="../photos/assets/T1.svg" alt="T1"
+                        class="team-logo w-[80%] h-[80%] object-contain select-none pointer-events-none">
                 </div>
-                <div class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
-                    <img src="../photos/assets/GEN.G.svg" alt="GEN.G" class="team-logo w-[50%] h-[50%] object-contain select-none pointer-events-none">
+                <div
+                    class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
+                    <img src="../photos/assets/GEN.G.svg" alt="GEN.G"
+                        class="team-logo w-[50%] h-[50%] object-contain select-none pointer-events-none">
                 </div>
-                <div class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
-                    <img src="../photos/assets/HLE.svg" alt="HLE" class="team-logo w-[80%] h-[80%] object-contain select-none pointer-events-none">
+                <div
+                    class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
+                    <img src="../photos/assets/HLE.svg" alt="HLE"
+                        class="team-logo w-[80%] h-[80%] object-contain select-none pointer-events-none">
                 </div>
-                <div class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
-                    <img src="../photos/assets/KT.svg" alt="KT" class="team-logo w-[70%] h-[70%] object-contain select-none pointer-events-none">
+                <div
+                    class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
+                    <img src="../photos/assets/KT.svg" alt="KT"
+                        class="team-logo w-[70%] h-[70%] object-contain select-none pointer-events-none">
                 </div>
-                <div class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
-                    <img src="../photos/assets/DK.svg" alt="DK" class="team-logo w-[80%] h-[80%] object-contain select-none pointer-events-none">
+                <div
+                    class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
+                    <img src="../photos/assets/DK.svg" alt="DK"
+                        class="team-logo w-[80%] h-[80%] object-contain select-none pointer-events-none">
                 </div>
-                <div class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
-                    <img src="../photos/assets/KDF.svg" alt="KDF" class="team-logo w-[70%] h-[70%] object-contain scale-150 select-none pointer-events-none">
+                <div
+                    class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
+                    <img src="../photos/assets/KDF.svg" alt="KDF"
+                        class="team-logo w-[70%] h-[70%] object-contain scale-150 select-none pointer-events-none">
                 </div>
-                <div class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
-                    <img src="../photos/assets/BNK.png" alt="FOX" class="team-logo w-[70%] h-[70%] object-contain scale-150 select-none pointer-events-none">
+                <div
+                    class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
+                    <img src="../photos/assets/BNK.png" alt="FOX"
+                        class="team-logo w-[70%] h-[70%] object-contain scale-150 select-none pointer-events-none">
                 </div>
-                <div class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
-                    <img src="../photos/assets/BRO.svg" alt="BRO" class="team-logo w-[80%] h-[80%] object-contain select-none pointer-events-none">
+                <div
+                    class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
+                    <img src="../photos/assets/BRO.svg" alt="BRO"
+                        class="team-logo w-[80%] h-[80%] object-contain select-none pointer-events-none">
                 </div>
-                <div class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
-                    <img src="../photos/assets/DRX.svg" alt="DRX" class="team-logo w-[80%] h-[80%] object-contain select-none pointer-events-none">
+                <div
+                    class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
+                    <img src="../photos/assets/DRX.svg" alt="DRX"
+                        class="team-logo w-[80%] h-[80%] object-contain select-none pointer-events-none">
                 </div>
-                <div class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
-                    <img src="../photos/assets/NS.svg" alt="NS" class="team-logo w-[80%] h-[80%] object-contain select-none pointer-events-none">
+                <div
+                    class="team-card aspect-square rounded-2xl bg-purple-500/10 border border-purple-800/20 hover:border-purple-800/50 transition flex items-center justify-center overflow-hidden">
+                    <img src="../photos/assets/NS.svg" alt="NS"
+                        class="team-logo w-[80%] h-[80%] object-contain select-none pointer-events-none">
                 </div>
             </div>
         </section>
-        
+
         <!-- Player cards grid (generated when role filtered) -->
         <section id="player-section" class="mt-8 hidden">
-            <div id="player-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-5 place-items-stretch"></div>
+            <div id="player-grid"
+                class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-5 place-items-stretch"></div>
         </section>
 
         <!-- Player detail popup -->
@@ -154,7 +196,8 @@
             <div class="player-popup-section">
                 <div class="player-popup-section__label">시즌별 스탯</div>
                 <div class="season-tabs" role="tablist" aria-label="시즌 선택">
-                    <button class="season-tab active" data-season="2024" role="tab" aria-selected="true">2024 시즌</button>
+                    <button class="season-tab active" data-season="2024" role="tab" aria-selected="true">2024
+                        시즌</button>
                     <button class="season-tab" data-season="2023" role="tab" aria-selected="false">2023 시즌</button>
                 </div>
                 <div class="radar-wrapper">
@@ -167,13 +210,31 @@
                 <button type="button" class="detail-link-btn">선수 상세 페이지 이동</button>
             </div>
         </aside>
-        
+
         <script src="../js/team.js"></script>
         <script src="../js/teamplayerjs/season-selector.js"></script>
         <script src="../js/playerjs/player-data.js"></script>
         <script src="../js/playerjs/player-season.js"></script>
     </main>
+
+    <!-- 푸터 (Footer) 추가: 페이지 끝부분을 닫아주는 역할 -->
+    <footer class="w-full bg-black/80 border-t border-white/10 mt-20 backdrop-blur-md relative z-10">
+        <div class="max-w-[1600px] mx-auto px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex flex-col gap-2 shadow-sm">
+                <span class="text-2xl font-black text-white/80 tracking-wider">LCKDBS</span>
+                <p class="text-sm text-gray-500">© 2025 LCKDBS. All rights reserved.</p>
+            </div>
+
+            <div class="flex gap-6 text-sm font-medium text-gray-400">
+                <a href="#" class="hover:text-purple-400 transition-colors">이용약관</a>
+                <a href="#" class="hover:text-purple-400 transition-colors">개인정보처리방침</a>
+                <a href="#" class="hover:text-purple-400 transition-colors">고객센터</a>
+            </div>
+        </div>
+    </footer>
+
     <script src="../js/teamplayerjs/playernav.js"></script>
     <script src="../js/teamplayerjs/playerbuild.js"></script>
 </body>
+
 </html>
