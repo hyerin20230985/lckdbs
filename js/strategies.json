@@ -1,6 +1,6 @@
 [
   {
-    "sectionTitle": "⚔️ 실전 전략 (Strategies)",
+    "sectionTitle": "<img src=\"../photos/assets/strategy-icon.png\" class=\"w-20 h-20 inline-block mr-4 flex-shrink-0 object-contain\"> 실전 전략 (Strategies)",
     "description": "소환사의 협곡 승리 공식: 라인전부터 한타까지 (맵 가이드 포함)",
     "items": [
       {
@@ -2256,7 +2256,7 @@
     ]
   },
   {
-    "sectionTitle": "📚 배경 지식 & 역사 (History & Knowledge)",
+    "sectionTitle": "<img src=\"../photos/assets/history-icon.png\" class=\"w-20 h-20 inline-block mr-4 flex-shrink-0 object-contain\"> 배경 지식 & 역사 (History & Knowledge)",
     "description": "LCK의 역사와 주요 사건 사고 모음",
     "items": [
       {
@@ -3655,7 +3655,7 @@
     ]
   },
   {
-    "sectionTitle": "📖 용어 사전 & 해설 (Terminology)",
+    "sectionTitle": "<img src=\"../photos/assets/terminology-icon.png\" class=\"w-20 h-20 inline-block mr-4 flex-shrink-0 object-contain\"> 용어 사전 & 해설 (Terminology)",
     "description": "중계와 채팅을 200% 즐기기 위한 필수 단어장",
     "items": [
       {
@@ -4408,7 +4408,7 @@
     ]
   },
   {
-    "sectionTitle": "🎮 게임 메타 & 시즌 변화 (Game Meta & Season Changes)",
+    "sectionTitle": "<img src=\"../photos/assets/meta-icon.png\" class=\"w-20 h-20 inline-block mr-4 flex-shrink-0 object-contain\"> 게임 메타 & 시즌 변화 (Game Meta & Season Changes)",
     "description": "리그 오브 레전드 시즌별 주요 시스템 변화와 현재 게임 메타 정보",
     "items": [
       {
