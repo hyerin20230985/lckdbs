@@ -97,13 +97,13 @@
 
       
 
-        <main id="main-content" class="relative z-10 w-full h-full flex pt-32 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+        <main id="main-content" class="relative z-10 w-full h-full flex flex-col lg:flex-row pt-20 lg:pt-32 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
             
-            <aside id="left-sidebar" class="w-72 flex-shrink-0 flex flex-col items-center justify-center gap-12 transition-transform duration-500 ease-out translate-x-[-100%] pl-6">
+            <aside id="left-sidebar" class="w-full lg:w-72 flex-shrink-0 flex flex-col lg:items-center justify-center gap-4 lg:gap-12 transition-transform duration-500 ease-out translate-x-[-100%] px-4 lg:px-0 lg:pl-6 bg-black/80 lg:bg-transparent backdrop-blur-xl sticky top-0 lg:fixed lg:relative z-20 pb-2 lg:pb-0 border-b border-white/10 lg:border-none">
                 
-                <div class="relative w-full px-2">
+                <div class="relative w-full px-2 mt-4 lg:mt-0 max-w-sm mx-auto lg:max-w-none">
                     <div class="relative w-full">
-                        <input id="search-input" type="text" placeholder="챔피언 검색..." class="w-full bg-white/10 text-white placeholder-gray-400 text-lg h-14 pl-6 pr-14 rounded-full outline-none transition-all duration-300 ease-in-out shadow-lg focus:bg-white/20" />
+                        <input id="search-input" type="text" placeholder="챔피언 검색..." class="w-full bg-white/10 text-white placeholder-gray-400 text-base lg:text-lg h-12 lg:h-14 pl-6 pr-14 rounded-full outline-none transition-all duration-300 ease-in-out shadow-lg focus:bg-white/20" />
                         <button id="search-icon-btn" class="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 text-gray-400 hover:text-white transition-colors">
                             <svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17.5 17.5L13.875 13.875M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -112,10 +112,10 @@
                     </div>
                 </div>
 
-                <div id="lane-filters" class="w-full flex flex-col items-center gap-6 px-2"></div>
+                <div id="lane-filters" class="w-full flex flex-row lg:flex-col lg:items-center gap-3 lg:gap-6 px-2 overflow-x-auto no-scrollbar pb-2 lg:pb-0"></div>
             </aside>
 
-            <div class="flex-1 flex flex-col overflow-y-auto overflow-x-hidden no-scrollbar relative z-10 min-w-0 w-full max-w-[calc(100vw-288px)]">
+            <div class="flex-1 flex flex-col overflow-y-auto overflow-x-hidden no-scrollbar relative z-10 min-w-0 w-full max-w-full lg:max-w-[calc(100vw-288px)]">
                 <section id="tier-content-container" class="flex-grow px-4 md:px-8 pb-16">
                 </section>
 
@@ -375,7 +375,7 @@
         let state = { selectedLane: 'ALL', searchTerm: '', selectedChampionId: null, isAllExpanded: false };
         const DOMElements = { mainContent: document.getElementById('main-content'), sidebar: document.getElementById('left-sidebar'), backgroundContainer: document.getElementById('background-container'), laneFiltersContainer: document.getElementById('lane-filters'), tierContentContainer: document.getElementById('tier-content-container'), panelContainer: document.getElementById('panel-container'), searchInput: document.getElementById('search-input'), searchIconBtn: document.getElementById('search-icon-btn') };
 
-        function renderLaneFilters() { const lanes = ['ALL', 'TOP', 'JUNGLE', 'MID', 'ADC', 'SUPPORT']; DOMElements.laneFiltersContainer.innerHTML = lanes.map(lane => `<button data-lane="${lane}" class="lane-button relative w-full py-3 text-lg font-bold transition-colors duration-300 ${state.selectedLane === lane ? 'text-white active' : 'text-gray-400 hover:text-white'}"><span class="relative z-10">${lane}</span>${state.selectedLane === lane ? `<div class="active-lane-indicator absolute inset-0 bg-white/10 backdrop-blur-xl rounded-r-full border-r-4 border-[#A855F7]" style="box-shadow: 5px 0 25px rgba(168,85,247,0.3);"><div class="absolute inset-0 rounded-r-full" style="background: radial-gradient(circle at left, rgba(168, 85, 247, 0.2), transparent 70%);"></div></div>` : ''}</button>`).join(''); }
+        function renderLaneFilters() { const lanes = ['ALL', 'TOP', 'JUNGLE', 'MID', 'ADC', 'SUPPORT']; DOMElements.laneFiltersContainer.innerHTML = lanes.map(lane => `<button data-lane="${lane}" class="lane-button flex-shrink-0 relative w-auto lg:w-full px-6 lg:px-0 py-2 lg:py-3 text-sm lg:text-lg rounded-full lg:rounded-none lg:rounded-r-full font-bold transition-colors duration-300 ${state.selectedLane === lane ? 'text-white active' : 'text-gray-400 hover:text-white bg-white/5 lg:bg-transparent'}"><span class="relative z-10">${lane}</span>${state.selectedLane === lane ? `<div class="active-lane-indicator absolute inset-0 bg-white/10 backdrop-blur-xl rounded-full lg:rounded-none lg:rounded-r-full border border-purple-500/50 lg:border-none lg:border-r-4 lg:border-[#A855F7]" style="box-shadow: 0 0 15px rgba(168,85,247,0.3);"><div class="absolute inset-0 rounded-full lg:rounded-none lg:rounded-r-full" style="background: radial-gradient(circle at center, rgba(168, 85, 247, 0.2), transparent 70%);"></div></div>` : ''}</button>`).join(''); }
         
         function renderTierList() {
             if (state.selectedLane === 'ALL') {
@@ -411,7 +411,7 @@
                     <div class="relative mb-6">
                         <h2 class="text-4xl md:text-5xl lg:text-6xl font-black purple-text tracking-wider relative z-10">TIER ${tier}</h2>
                     </div>
-                    <div class="grid grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2">
+                    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-10 gap-2">
                         ${champions.map((id, cardIndex) => {
                             const champion = championsData[id];
                             if (!champion) return '';
@@ -434,20 +434,20 @@
 
             const heroesHTML = `
                 <div class="hero-showcase-section mb-12">
-                    <div class="text-center mb-12">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black purple-text mb-4 tracking-wider truncate">
+                    <div class="text-center mb-6 lg:mb-12">
+                        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black purple-text mb-4 tracking-wider break-words leading-tight">
                             CHAMPION SHOWCASE
                         </h1>
                         <div class="w-24 h-1 bg-purple-400 mx-auto rounded-full"></div>
-                        <p class="text-gray-400 mt-4 text-base md:text-lg">각 라인별 최고 티어 챔피언</p>
+                        <p class="text-gray-400 mt-4 text-sm md:text-lg break-keep px-4">각 라인별 최고 티어 챔피언</p>
                     </div>
                     
-                    <div class="hero-card-showcase grid grid-cols-2 lg:grid-cols-5 gap-4 xl:gap-8 mb-12 px-2 xl:px-4">
+                    <div class="hero-card-showcase flex lg:grid lg:grid-cols-5 gap-4 lg:gap-8 mb-12 px-2 xl:px-4 overflow-x-auto lg:overflow-visible no-scrollbar snap-x snap-mandatory pb-4">
                         ${topChampions.map((championInfo, index) => {
                             const champion = championsData[championInfo.id];
                             const match = matchHistoryDataByChampion[championInfo.id]?.[0];
                             return `
-                            <div class="hero-card-premium champion-card relative rounded-3xl overflow-hidden purple-accent border shadow-2xl cursor-pointer group transform transition-all duration-700 hover:scale-105 hover:-translate-y-4 min-w-0" 
+                            <div class="hero-card-premium champion-card relative rounded-3xl overflow-hidden purple-accent border shadow-2xl cursor-pointer group transform transition-all duration-700 hover:scale-[1.02] lg:hover:scale-105 hover:-translate-y-2 lg:hover:-translate-y-4 min-w-[65vw] w-[65vw] max-w-[280px] sm:min-w-[280px] sm:w-[280px] lg:w-auto lg:min-w-0 lg:max-w-none flex-shrink-0 snap-center" 
                                 data-champion-id="${championInfo.id}" 
                                 style="animation-delay: ${index * 0.1}s; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(168,85,247,0.2);">
                                 
@@ -551,7 +551,7 @@
             const tierRowsHTML = Object.entries(filteredTiers).map(([tier, champions], index) => `
                 <div class="tier-row mb-10 opacity-0 translate-x-[-50px]" style="transition: opacity 0.5s ${index * 0.15}s ease-out, transform 0.5s ${index * 0.15}s ease-out;">
                     <h2 class="text-5xl md:text-6xl lg:text-7xl font-black text-white/20 tracking-widest relative -left-4 mb-2">TIER ${tier}</h2>
-                    <div class="grid grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2">
+                    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-10 gap-2">
                         ${champions.map((id, cardIndex) => {
                             const champion = championsData[id];
                             if (!champion) return ''; 
@@ -613,9 +613,9 @@
     const matches = matchHistoryDataByChampion[state.selectedChampionId] || [];
     
     const panelHTML = `
-        <div id="stats-panel" class="fixed top-1/2 right-6 -translate-y-1/2 w-[440px] h-auto max-h-[85vh] bg-black/85 backdrop-blur-3xl border border-white/10 rounded-3xl flex flex-col shadow-2xl transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] translate-x-[150%] z-50 overflow-hidden">
-            
-            <div class="relative p-6 pb-4 border-b border-white/10 bg-gradient-to-b from-white/5 to-transparent shrink-0">
+        <div id="stats-panel" class="fixed bottom-0 lg:top-1/2 left-0 lg:left-auto lg:right-6 lg:-translate-y-1/2 w-full lg:w-[440px] h-auto max-h-[85vh] bg-black/85 backdrop-blur-3xl border border-white/10 rounded-t-3xl lg:rounded-3xl flex flex-col shadow-2xl transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] translate-y-[150%] lg:translate-x-[150%] lg:translate-y-0 z-50 overflow-hidden">
+            <div class="w-12 h-1.5 bg-white/20 rounded-full mx-auto mt-3 mb-1 lg:hidden shrink-0"></div>
+            <div class="relative p-6 pt-2 lg:pt-6 pb-4 border-b border-white/10 bg-gradient-to-b from-white/5 to-transparent shrink-0">
                  <button class="close-btn absolute top-5 right-5 text-gray-400 hover:text-white transition-colors p-1 hover:bg-white/10 rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -671,7 +671,7 @@
     
     setTimeout(() => { 
         const panel = document.getElementById('stats-panel'); 
-        if(panel) panel.classList.remove('translate-x-[150%]'); 
+        if(panel) panel.classList.remove('translate-y-[150%]', 'lg:translate-x-[150%]'); 
     }, 50);
 }
         // --- 이벤트 핸들러 ---
@@ -684,10 +684,10 @@
             if (championCard) { 
                 state.selectedChampionId = championCard.dataset.championId; 
 
-                // [핵심 로직 수정]
-                // 왼쪽으로 transform 하는게 아니라, 오른쪽 여백(marginRight)을 줍니다.
-                // 패널 너비(450px)만큼 여백을 주면, flex-grow인 main-content가 줄어듭니다.
-                DOMElements.mainContent.style.marginRight = '450px';
+                // 데스크탑에서만 오른쪽 여백을 줘서 컨텐츠를 밀어냅니다.
+                if (window.innerWidth >= 1024) {
+                    DOMElements.mainContent.style.marginRight = '450px';
+                }
                 
                 renderStatsPanel(); 
             }
@@ -710,9 +710,12 @@
                 
                 // 패널이 열려있을 때만 실행
                 if (panel && state.selectedChampionId) {
-                    panel.classList.add('translate-x-[100%]'); // 패널 퇴장 애니메이션
+                    if (window.innerWidth >= 1024) {
+                        panel.classList.add('lg:translate-x-[150%]'); // 패널 퇴장 애니메이션
+                    } else {
+                        panel.classList.add('translate-y-[150%]');
+                    }
 
-                    // [핵심 로직 복구]
                     // 여백을 제거하여 원래 너비로 복귀
                     DOMElements.mainContent.style.marginRight = '0px';
                     

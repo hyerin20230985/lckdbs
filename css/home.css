@@ -830,7 +830,7 @@
     gap: 8px;
 }
 
-.table-row {
+.standings-row {
     display: grid;
     grid-template-columns: 60px 1fr 100px 80px 140px;
     gap: 12px;
@@ -841,7 +841,7 @@
     transition: all 0.3s ease;
 }
 
-.table-row:hover {
+.standings-row:hover {
     background: rgba(255, 255, 255, 0.06);
     transform: translateX(4px);
 }
@@ -857,14 +857,16 @@
     color: rgba(255, 255, 255, 0.5);
 }
 
-.table-row.rank-1 .rank-number {
+.standings-row.rank-1 .rank-number {
     color: #c8aa6e;
 }
 
 .col-team {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 4px;
 }
 
 .team-logo-small {
@@ -881,9 +883,10 @@
 }
 
 .team-name-text {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #8a91b0;
+    letter-spacing: 0.5px;
 }
 
 .col-wl {
@@ -1112,7 +1115,7 @@
 
 @media (max-width: 768px) {
     .table-header,
-    .table-row {
+    .standings-row {
         grid-template-columns: 40px 1fr 80px;
         gap: 8px;
     }
