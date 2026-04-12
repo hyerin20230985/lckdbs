@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const emptyState = document.getElementById('empty-state');
     const detailView = document.getElementById('strategy-detail');
     const contentArea = document.getElementById('content-area');
+    const sidebar = document.querySelector('aside');
+    const overlay = document.getElementById('sidebar-overlay');
+    const mobileToggle = document.getElementById('mobile-sidebar-toggle');
 
     const dTitle = document.getElementById('detail-title');
     const dCategory = document.getElementById('detail-category');
@@ -22,6 +25,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     const dCounter = document.getElementById('detail-counter');
 
     let allData = [];
+
+    // ============================================================
+    // 1-1. 모바일 사이드바 토글
+    // ============================================================
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('mobile-active');
+            overlay.classList.toggle('active');
+        });
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('mobile-active');
+            overlay.classList.remove('active');
+        });
+    }
+
+    const closeSidebarOnMobile = () => {
+        if (window.innerWidth < 1024) {
+            sidebar.classList.remove('mobile-active');
+            overlay.classList.remove('active');
+        }
+    };
 
     // ============================================================
     // 2. 데이터 로드
@@ -72,12 +99,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const urlParams = new URLSearchParams(window.location.search);
             const targetCat = urlParams.get('section');
-            
+
             let isExpanded = expandAll || index === 0;
             if (!expandAll && targetCat !== null) {
                 isExpanded = (index === parseInt(targetCat));
             }
-            
+
             const rotateClass = isExpanded ? 'rotate-180 text-purple-400' : 'text-gray-500';
             const bgClass = isExpanded ? 'bg-white/5' : 'hover:bg-white/5';
             const titleColor = isExpanded ? 'text-purple-300' : 'text-gray-300 hover:text-purple-300';
@@ -135,7 +162,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const itemBtn = document.createElement('button');
                     itemBtn.className = "w-full text-left py-2.5 px-5 ml-2 rounded-lg text-[15px] text-gray-400 hover:text-purple-200 hover:bg-purple-500/10 active:scale-[0.98] transition-all truncate border-l-2 border-transparent hover:border-purple-400 relative z-10 font-medium";
                     itemBtn.textContent = item.title;
-                    itemBtn.onclick = () => showDetail(item);
+                    itemBtn.onclick = () => {
+                        showDetail(item);
+                        closeSidebarOnMobile();
+                    };
                     catWrapper.appendChild(itemBtn);
                 });
                 contentInner.appendChild(catWrapper);
@@ -145,11 +175,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             sectionDiv.appendChild(btnHeader);
             sectionDiv.appendChild(contentWrapper);
             listContainer.appendChild(sectionDiv);
-            
+
             // If this is the targeted section from URL, scroll it into view slightly
             if (isExpanded && targetCat !== null && !expandAll) {
                 setTimeout(() => {
                     sectionDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // 메인 화면이 비어있지 않고 바로 내용이 보이도록 해당 카테고리의 첫 번째 항목 자동 열기
+                    if (section.items && section.items.length > 0) {
+                        showDetail(section.items[0]);
+                    }
                 }, 300);
             }
         });

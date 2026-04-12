@@ -182,32 +182,32 @@ document.addEventListener('DOMContentLoaded', () => {
                         <!-- LIVE 진행 시 배경 애니메이션 효과 (예정 또는 진행중 강조) -->
                         ${!isFinished ? `<div class="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/5 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>` : ''}
 
-                        <div class="flex items-center w-full p-5 relative z-10 transition-all">
+                        <div class="flex items-center w-full p-4 md:p-5 relative z-10 transition-all">
                             <!-- 시간 및 상태 -->
-                            <div class="w-28 flex-shrink-0 flex items-center justify-between pr-4 border-r border-white/10 mr-6">
-                                <span class="text-xl font-bold text-gray-200 tracking-tight group-hover:text-white transition-colors">${item.time}</span>
-                                <span class="text-[0.7rem] font-bold px-1.5 py-0.5 rounded ${isFinished ? 'bg-gray-800 text-gray-400' : 'bg-red-500/20 text-red-400 border border-red-500/30 shadow-[0_0_10px_rgba(239,68,68,0.3)]'}">${item.status}</span>
+                            <div class="w-20 md:w-28 flex-shrink-0 flex flex-col md:flex-row items-start md:items-center justify-between md:pr-4 md:border-r border-white/10 mr-4 md:mr-6 gap-1 md:gap-0">
+                                <span class="text-lg md:text-xl font-bold text-gray-200 tracking-tight group-hover:text-white transition-colors">${item.time}</span>
+                                <span class="text-[0.6rem] md:text-[0.7rem] font-bold px-1.5 py-0.5 rounded ${isFinished ? 'bg-gray-800 text-gray-400' : 'bg-red-500/20 text-red-400 border border-red-500/30'}">${item.status}</span>
                             </div>
                             
                             <!-- 팀 대진 정보 (가운데) -->
-                            <div class="flex-grow flex items-center justify-center gap-8">
-                                <div class="flex items-center gap-4 w-40 justify-end transition-transform duration-400 group-hover:-translate-x-2">
-                                    <span class="font-bold text-2xl ${isFinished ? (team1IsWinner ? 'text-white' : 'text-gray-500') : 'text-gray-200'} group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] transition-all">${item.team1}</span>
-                                    <img src="${teamLogos[item.team1]}" alt="${item.team1}" class="w-14 h-14 object-contain drop-shadow-lg group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all">
+                            <div class="flex-grow flex items-center justify-center gap-2 md:gap-8 overflow-hidden">
+                                <div class="flex items-center gap-2 md:gap-4 w-1/3 md:w-40 justify-end transition-transform duration-400 group-hover:-translate-x-2">
+                                    <span class="team-name-text font-bold text-xl md:text-2xl ${isFinished ? (team1IsWinner ? 'text-white' : 'text-gray-500') : 'text-gray-200'} truncate">${item.team1}</span>
+                                    <img src="${teamLogos[item.team1]}" alt="${item.team1}" class="team-logo-img w-10 h-10 md:w-14 md:h-14 object-contain drop-shadow-lg group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
                                 </div>
                                 
-                                <div class="match-score text-3xl font-black min-w-[5rem] text-center tracking-widest whitespace-nowrap group-hover:scale-110 transition-transform duration-400">${scoreHtml}</div>
+                                <div class="match-score text-xl md:text-3xl font-black min-w-[3rem] md:min-w-[5rem] text-center tracking-widest whitespace-nowrap group-hover:scale-110 transition-all duration-400">${scoreHtml}</div>
                                 
-                                <div class="flex items-center gap-4 w-40 justify-start transition-transform duration-400 group-hover:translate-x-2">
-                                    <img src="${teamLogos[item.team2]}" alt="${item.team2}" class="w-14 h-14 object-contain drop-shadow-lg group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all">
-                                    <span class="font-bold text-2xl ${isFinished ? (team2IsWinner ? 'text-white' : 'text-gray-500') : 'text-gray-200'} group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] transition-all">${item.team2}</span>
+                                <div class="flex items-center gap-2 md:gap-4 w-1/3 md:w-40 justify-start transition-transform duration-400 group-hover:translate-x-2">
+                                    <img src="${teamLogos[item.team2]}" alt="${item.team2}" class="team-logo-img w-10 h-10 md:w-14 md:h-14 object-contain drop-shadow-lg group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
+                                    <span class="team-name-text font-bold text-xl md:text-2xl ${isFinished ? (team2IsWinner ? 'text-white' : 'text-gray-500') : 'text-gray-200'} truncate">${item.team2}</span>
                                 </div>
                             </div>
 
-                            <!-- 원래있던 다시보기 버튼 및 화살표 -->
-                            <div class="w-auto flex items-center justify-end ml-auto flex-shrink-0 gap-4">
+                            <!-- 다시보기 버튼 및 화살표 -->
+                            <div class="w-auto flex items-center justify-end ml-auto flex-shrink-0 gap-2 md:gap-4">
                                 <button class="replay-btn" style="margin-left: 0;" ${!isFinished ? 'disabled' : ''}>다시보기</button>
-                                <svg class="w-6 h-6 text-gray-400 hover:text-white cursor-pointer expand-icon transition-transform duration-300 transform bg-white/5 rounded-full p-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                <svg class="hidden md:block w-6 h-6 text-gray-400 hover:text-white cursor-pointer expand-icon transition-transform transform bg-white/5 rounded-full p-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </div>
                         </div>
                     </div>
