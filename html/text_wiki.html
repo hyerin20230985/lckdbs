@@ -50,25 +50,61 @@
 
         /* 네비 헤더 위치: 사이드바(320px) 우측 메인 영역 중앙 */
         #main-header {
-            left: calc(320px + (100vw - 320px) / 2);
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 200;
         }
 
-        @media (max-width: 1024px) {
+        @media (min-width: 1024px) {
             #main-header {
-                left: 50%;
+                left: calc(320px + (100vw - 320px) / 2);
             }
+        }
+
+        /* 모바일 사이드바 활성화 상태 */
+        aside.mobile-active {
+            display: flex !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 320px;
+            z-index: 300;
+            animation: slide-in 0.3s ease-out;
+        }
+
+        @keyframes slide-in {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        /* 오버레이 */
+        #sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 250;
+        }
+        #sidebar-overlay.active {
+            display: block;
         }
     </style>
 </head>
 
 <body
-    class="bg-black text-gray-200 h-screen flex overflow-hidden relative selection:bg-purple-500/40 font-sans antialiased">
+    class="bg-black text-gray-200 h-screen flex overflow-x-hidden relative selection:bg-purple-500/40 font-sans antialiased">
 
     <!-- 전역 네비게이션 바 추가 -->
     <header id="main-header">
         <nav>
             <div class="nav-left">
+                <button id="mobile-sidebar-toggle" class="lg:hidden mr-2 p-2 hover:bg-white/10 rounded-lg transition-colors">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
                 <a href="../index.html" class="logo">LCKDBS</a>
                 <span class="nav-divider">|</span>
             </div>
@@ -96,8 +132,11 @@
         </div>
     </div>
 
+    <!-- 사이드바 오버레이 -->
+    <div id="sidebar-overlay"></div>
+
     <aside
-        class="w-[320px] shrink-0 bg-[#10121A]/80 backdrop-blur-3xl border-r border-purple-500/10 flex flex-col z-20 shadow-[10px_0_30px_rgba(0,0,0,0.5)] relative"
+        class="hidden lg:flex w-[320px] shrink-0 bg-[#10121A]/80 backdrop-blur-3xl border-r border-purple-500/10 flex-col z-20 shadow-[10px_0_30px_rgba(0,0,0,0.5)] relative"
         style="min-width:320px; overflow:hidden;">
         <div class="glass-noise"></div>
 
@@ -139,7 +178,7 @@
     <main class="flex-1 flex flex-col relative z-10 overflow-hidden">
         <div id="content-area" class="flex-1 overflow-y-auto custom-scrollbar relative scroll-smooth flex flex-col">
 
-            <div class="flex-1 p-8 pt-24 md:p-12 md:pt-28 lg:px-24 lg:py-16 lg:pt-32">
+            <div class="flex-1 p-4 pt-24 md:p-12 md:pt-28 lg:px-24 lg:py-16 lg:pt-32">
                 <div id="empty-state"
                     class="flex flex-col items-center justify-center min-h-[60vh] text-center select-none pt-12">
                     <div class="text-8xl mb-8 opacity-10 filter drop-shadow-[0_0_30px_rgba(168,85,247,0.5)]">📖</div>
@@ -164,10 +203,10 @@
                                     class="text-sm font-bold px-4 py-2 rounded-full">DIFFICULTY</span>
                             </div>
                             <h1 id="detail-title"
-                                class="text-5xl md:text-6xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg leading-tight">
+                                class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg leading-tight">
                                 Title</h1>
                             <p id="detail-summary"
-                                class="text-xl md:text-2xl text-purple-200/80 font-medium leading-relaxed">Summary</p>
+                                class="text-lg md:text-xl lg:text-2xl text-purple-200/80 font-medium leading-relaxed">Summary</p>
                         </div>
                     </div>
 
