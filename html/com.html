@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>커뮤니티 사이트</title>
-    <link rel="stylesheet" href="../css/com.css">
+    <link rel="stylesheet" href="../css/com.css?v=20260414">
     <!-- Quill.js 에디터 스타일시트 추가 -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/nav.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/nav.css?v=20260414">
     <script>
         tailwind.config = {
             corePlugins: {
@@ -18,9 +17,10 @@
             }
         }
     </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-black text-white relative min-h-screen flex flex-col">
+<body class="bg-black text-white relative min-h-screen flex flex-col overflow-x-hidden">
 
     <!-- 프리미엄 배경 글로우 & 노이즈 효과 -->
     <div class="fixed inset-0 z-0 pointer-events-none">
@@ -37,7 +37,6 @@
                 <a href="../index.html" class="logo">LCKDBS</a>
                 <span class="nav-divider">|</span>
             </div>
-            <div class="nav-scroll">
             <div class="nav-center">
                 <a href="/html/player-new.html" class="nav-item">팀</a>
                 <a href="/html/champion4.html" class="nav-item">챔피언</a>
@@ -49,11 +48,10 @@
             <div class="nav-right">
                 <a href="#" class="nav-item live">LIVE <span class="live-dot"></span></a>
             </div>
-            </div>
         </nav>
     </header>
 
-    <div class="container relative z-10 flex-1">
+    <div class="com-container relative z-10 flex-1 w-full max-w-full md:max-w-[800px] px-5">
         <!-- 게시물 목록 페이지 -->
         <main id="list-page" class="page">
             <div>

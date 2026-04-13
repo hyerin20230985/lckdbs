@@ -21,7 +21,7 @@ body {
 }
 
 /* Minimalist container */
-.container {
+.com-container {
     max-width: 800px; /* narrowed for simplicity and aesthetics */
     margin: 2rem auto 6rem auto;
     padding: 0 2rem;
@@ -69,6 +69,8 @@ body {
     cursor: pointer;
     transition: color 0.3s ease;
     padding: 0 0 0.5rem 0;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 .category-btn:hover { color: var(--primary-text-color); }
 .category-btn.active {
@@ -132,13 +134,13 @@ button {
 }
 button:hover { background-color: var(--primary-text-color); color: #000; }
 button#write-post-btn, button#submit-post-btn {
-    background-color: var(--primary-text-color);
-    border-color: var(--primary-text-color);
-    color: #000;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: var(--primary-text-color);
 }
 button#write-post-btn:hover, button#submit-post-btn:hover {
-    background-color: var(--secondary-text-color);
-    border-color: var(--secondary-text-color);
+    background-color: var(--primary-text-color);
+    color: #000;
 }
 
 /* Forms */
@@ -169,11 +171,17 @@ select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ffffff' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
     background-repeat: no-repeat; background-position: right 0 center;
 }
+select option {
+    background-color: #111;
+    color: var(--primary-text-color);
+}
 
 /* Quill Editor Simplified */
 .ql-toolbar {
     background-color: transparent;
     border: none !important; border-bottom: 1px solid var(--border-color) !important;
+    display: flex;
+    flex-wrap: wrap;
 }
 .ql-container {
     background-color: transparent !important;
@@ -227,16 +235,144 @@ select {
 .modal-content { background-color: #050505; padding: 3rem; border-radius: 2px; width: 100%; max-width: 400px; border: 1px solid var(--border-color); position: relative; }
 .modal-content h2 { font-weight: 300; margin-bottom: 1rem; font-size: 1.5rem; }
 .modal-content p { color: var(--secondary-text-color); margin-bottom: 2rem; font-size: 0.9rem; }
-.close-btn, .close-alert-btn { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; background: none; border: none; color: #fff; cursor: pointer; padding: 0; font-weight: 100; line-height: 1; }
+.close-btn, span.close-alert-btn { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; background: none; border: none; color: #fff; cursor: pointer; padding: 0; font-weight: 100; line-height: 1; }
 .user-post-item { padding: 1rem 0; border-bottom: 1px solid var(--border-color); display: flex; gap: 1rem; align-items: center; }
 
 #attachment-preview-container img, #attachment-preview-container video, .post-attachment img, .post-attachment video { max-width: 100%; max-height: 500px; border-radius: 2px; border: none; }
 .post-attachment { margin-bottom: 3rem; }
 
-/* Media Queries */
-@media (max-width: 600px) {
-    .container { padding: 0 1.5rem; }
-    .page > header h1 { font-size: 2rem; }
-    #post-detail-container h1 { font-size: 2rem; }
-    .comment-input-area { flex-direction: column; gap: 1rem; }
+/* =========================================
+   Responsive Design Media Queries 
+   ========================================= */
+
+@media (max-width: 768px) {
+    .com-container {
+        padding: 0 20px;
+    }
+    
+    .page > header h1, main > header h1, section > header h1 {
+        font-size: 2rem;
+    }
+    
+    #post-detail-container h1 {
+        font-size: 2.2rem;
+    }
+
+    /* Wrap post metadata to prevent overflow */
+    .post-meta, .post-detail-meta {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+    
+    .post-detail-meta {
+        margin-bottom: 2rem;
+    }
+    
+    /* Action buttons to full width stack on mobile */
+    .page-actions {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+    }
+    
+    .page-actions button {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Comments section */
+    .comment-input-area {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    /* Modals padding */
+    .modal-content {
+        padding: 1.5rem;
+    }
+    
+    .close-btn, .close-alert-btn {
+        top: 0.8rem;
+        right: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body { padding-top: 60px; }
+    
+    .com-container {
+        padding: 0 10px;
+        margin: 0.5rem auto 2rem auto;
+    }
+    
+    .page { gap: 0.5rem; }
+    .page > header, main > header, section > header {
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .page > header h1, main > header h1, section > header h1 {
+        font-size: 1rem;
+    }
+    
+    #post-detail-container h1 {
+        font-size: 1.15rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .post-item {
+        padding: 0.6rem 0;
+        gap: 0.2rem;
+    }
+
+    .post-item h2 {
+        font-size: 0.85rem;
+    }
+    
+    .post-meta {
+        font-size: 0.65rem;
+        gap: 0.5rem;
+    }
+    
+    .post-detail-content {
+        font-size: 0.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .post-detail-meta {
+        font-size: 0.65rem;
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    input[type="text"], input[type="password"], select, textarea {
+        font-size: 0.85rem;
+        padding: 0.4rem 0;
+    }
+    
+    button {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .category-btn {
+        font-size: 0.75rem;
+        padding-bottom: 0.2rem;
+    }
+    
+    /* Comments */
+    #comment-section { margin-top: 1.5rem; padding-top: 1.5rem; }
+    #comment-section h3 { font-size: 0.9rem; margin-bottom: 1rem; }
+    #comment-form { gap: 0.8rem; margin-bottom: 1.5rem; }
+    .comment-input-area { gap: 0.5rem; }
+    .comment-item { padding: 0.8rem 0; }
+    .comment-meta { font-size: 0.65rem; }
+    
+    /* Modals */
+    .modal-content { padding: 1rem; }
+    .modal-content h2 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .modal-content p { font-size: 0.75rem; margin-bottom: 1rem; }
+    
+    .page-actions { margin-top: 0.5rem; gap: 5px; }
 }

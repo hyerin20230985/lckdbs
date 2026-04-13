@@ -270,6 +270,12 @@ main > div h1 {
 }
 .player-select:focus, .filter-select:focus { outline: none; border-color: var(--point-color-yellow); }
 
+/* Fix OS default select dropdown background issue for white text */
+select option {
+    background-color: #1e222e;
+    color: #ffffff;
+}
+
 /* Comparison Selector Specific Styles */
 .comparison-selector {
     display: flex;
@@ -393,3 +399,161 @@ main > div h1 {
 }
 .stat-label:hover::after,
 .single-stat-label:hover::after { opacity: 1; visibility: visible; }
+
+/* =========================================
+   Responsive Design Media Queries 
+   ========================================= */
+
+@media (max-width: 1024px) {
+    .single-player-stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .player-card {
+        width: 250px;
+    }
+    .radar-chart-wrapper.single-radar {
+        max-width: 450px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Global Container */
+    body {
+        padding: 10px;
+        padding-top: 100px;
+    }
+    
+    .filters {
+        flex-wrap: wrap;
+    }
+    .filters select {
+        flex: 1 1 30%;
+    }
+
+    /* Comparison Layout - Vertical Stacking */
+    .player-cards-container.comparison-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        min-height: auto;
+    }
+    #player1-card { order: 1; margin: 0 auto; }
+    #player2-card { order: 2; margin: 0 auto; }
+    .radar-chart-wrapper.comparison-radar { 
+        order: 3; 
+        max-width: 100%; 
+        width: 100%;
+        margin-top: 20px;
+        padding: 0 10px;
+    }
+
+    /* Single Layout - Vertical Stacking */
+    .player-cards-container.single-layout {
+        flex-direction: column;
+        gap: 20px;
+        min-height: auto;
+    }
+    .single-player-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Selectors */
+    .comparison-selector {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        padding: 15px;
+    }
+    .player-select-container {
+        width: 100%;
+    }
+    .player-filters {
+        flex-direction: column;
+        width: 100%;
+    }
+    .filter-select {
+        width: 100%;
+    }
+    .vs {
+        align-self: center;
+        margin: 10px 0;
+    }
+    
+    /* Single Selector */
+    .single-player-selector .player-filters {
+        flex-direction: column;
+    }
+    .single-player-selector .filter-select {
+        width: 100%;
+    }
+
+    /* Stat Rows (Comparison) */
+    .stat-row {
+        padding: 10px 0;
+        gap: 5px;
+    }
+    .stat-value {
+        flex: 0 0 50px;
+        font-size: 14px;
+    }
+    .stat-diff-indicator {
+        flex: 0 0 45px;
+        font-size: 12px;
+    }
+    .stat-diff-indicator.player1 {
+        padding-right: 5px;
+    }
+    .stat-diff-indicator.player2 {
+        padding-left: 5px;
+    }
+    .stat-label {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container > div h1,
+    main > div h1 {
+        font-size: 20px;
+    }
+    
+    .tab-button {
+        padding: 8px 10px;
+        font-size: 14px;
+        flex: 1;
+        text-align: center;
+    }
+
+    /* Scale player cards nicely for ultra-mobile */
+    .player-card {
+        width: 100%;
+        max-width: 320px;
+        min-height: 280px;
+    }
+
+    /* Keep only the first best champion on mobile to save vertical space */
+    .best-champions .champion-card:nth-of-type(n+2) {
+        display: none;
+    }
+    
+    .player-select {
+        font-size: 14px;
+    }
+    
+    .stat-value {
+        flex: 0 0 40px;
+        font-size: 13px;
+    }
+    .stat-diff-indicator {
+        flex: 0 0 35px;
+        font-size: 11px;
+    }
+    
+    /* Prediction bar */
+    .prediction-title {
+        font-size: 16px;
+    }
+    .prediction-details {
+        font-size: 12px;
+    }
+}
