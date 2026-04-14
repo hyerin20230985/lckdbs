@@ -127,16 +127,19 @@ nav {
 
 /* Tablet and below: compact, no scroll, shrunk items */
 @media (max-width: 768px) {
-    body > header { top: 10px; width: 100%; max-width: 100%; padding: 0 10px; left: 0; transform: none; }
+    body > header { top: 10px; width: 100%; max-width: 100%; padding: 0 10px; left: 50%; transform: translateX(-50%); box-sizing: border-box; }
     nav { 
         gap: 1rem; 
         padding: 0.75rem 1.5rem; 
         flex-wrap: nowrap; 
         justify-content: space-between;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .nav-left {
         gap: 0; 
+        flex-shrink: 0;
     }
     .nav-divider {
         display: none; /* Hide divider to save space */
@@ -145,19 +148,26 @@ nav {
     /* Magic trick to change LCKDBS to LD */
     .logo {
         position: relative;
-        font-size: 0; /* Hide original text */
+        font-size: 0 !important; /* Hide original text */
+        color: transparent !important;
+        text-shadow: none !important; /* text-shadow가 살아있어서 글자가 렌더링되던 문제 해결 */
+        line-height: 0;
     }
     .logo::after {
         content: 'LD';
-        font-size: 1.25rem;
-        visibility: visible;
-        text-shadow: 0 0 10px rgba(39, 76, 218, 0.5);
+        font-size: 1.25rem !important;
+        color: #ffffff !important;
+        display: block;
+        line-height: 1.2;
+        text-shadow: 0 0 10px rgba(39, 76, 218, 0.5) !important;
     }
     
     .nav-center { 
-        gap: 1.2rem; 
+        gap: 1.5rem; 
         overflow-x: auto;
         scrollbar-width: none;
+        flex: 1;
+        min-width: 0;
     }
     .nav-center::-webkit-scrollbar {
         display: none;
@@ -165,11 +175,12 @@ nav {
     
     .nav-right { 
         gap: 0; 
+        flex-shrink: 0;
     }
     
     .nav-item { 
-        font-size: 0.85rem; /* Shrink to fit */
-        padding: 0.2rem 0;
+        font-size: 1rem !important; /* 너무 작은 글자 1rem 복구 */
+        padding: 0.5rem 0;
     }
 }
 
@@ -177,23 +188,23 @@ nav {
 @media (max-width: 450px) {
     body > header { top: 5px; padding: 0 5px; }
     nav { 
-        padding: 0.4rem 0.6rem; 
-        gap: 0.5rem;
+        padding: 0.5rem 1rem; 
+        gap: 1rem;
     }
     .logo::after {
-        font-size: 1rem;
+        font-size: 1.15rem !important;
     }
     .nav-center { 
-        gap: 0.6rem; 
+        gap: 1.2rem; 
     }
     .nav-item { 
-        font-size: 0.65rem; 
+        font-size: 0.95rem !important; 
     }
     .nav-item.live {
-        gap: 0.2rem;
+        gap: 0.4rem;
     }
     .live-dot {
-        width: 5px;
-        height: 5px;
+        width: 6px;
+        height: 6px;
     }
 }

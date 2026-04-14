@@ -398,11 +398,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 진입 애니메이션 (champion4 헤더 참조)
-    setTimeout(() => {
-        const header = document.getElementById('main-header');
-        if (header) {
-            header.style.transform = 'translate(-50%, 0)';
-        }
-    }, 100);
 });
